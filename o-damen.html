@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Opowieść o Damen Marine Components — historia Damen Shipyards Group, prezesi, polski zakład i osiągnięcia: dysze DMC Optima, stery Van der Velden, systemy sterów strumieniowych.">
+    <title>O Damen Marine Components — Nasza opowieść</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #2b3a4a;
+            line-height: 1.65;
+        }
+
+        a { color: #011736; }
+
+        /* ── Pasek górny ── */
+        .topbar {
+            background: linear-gradient(100deg, #011736 0%, #023466 60%, #0e7490 100%);
+            color: #fff;
+            padding: 14px 0;
+        }
+        .topbar-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .topbar .logo-badge {
+            height: 42px;
+            width: 42px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .topbar .site-name { font-size: 15px; font-weight: bold; }
+        .topbar .top-links { margin-left: auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .topbar a { color: #fff; text-decoration: none; font-size: 14px; border-bottom: 1px solid transparent; }
+        .topbar a:hover { border-bottom-color: #fff; }
+        .lang-toggle { font-size: 14px; }
+        .lang-toggle .lang-btn {
+            background: none; border: none; color: #fff; cursor: pointer;
+            font-size: 14px; padding: 2px 6px; opacity: 0.75;
+        }
+        .lang-toggle .lang-btn.active { opacity: 1; font-weight: bold; text-decoration: underline; }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 56px 20px 30px;
+            text-align: center;
+        }
+        .hero .kicker {
+            display: inline-block;
+            background: #fff3d6;
+            color: #a06200;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+        .hero h1 {
+            font-size: 2.1rem;
+            color: #011736;
+            line-height: 1.25;
+            max-width: 760px;
+            margin: 0 auto 16px;
+        }
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #5b6b7f;
+            font-size: 1.05rem;
+        }
+
+        /* ── Oś czasu ── */
+        .timeline { max-width: 980px; margin: 0 auto; padding: 10px 20px 34px; }
+        .timeline h2 { text-align: center; color: #011736; font-size: 1.25rem; margin-bottom: 22px; }
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .tl-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 18px;
+            border-top: 5px solid #0e7490;
+            box-shadow: 0 3px 12px rgba(1, 23, 54, 0.08);
+            text-align: center;
+        }
+        .tl-card:nth-child(2) { border-top-color: #f0a500; }
+        .tl-card:nth-child(3) { border-top-color: #011736; }
+        .tl-year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #011736;
+            margin-bottom: 6px;
+        }
+        .tl-card p { font-size: 0.92rem; color: #5b6b7f; }
+
+        /* ── Rozdziały ── */
+        .chapter { max-width: 980px; margin: 0 auto; padding: 30px 20px; }
+        .chapter-inner {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(1, 23, 54, 0.09);
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 30px;
+            padding: 34px;
+            align-items: center;
+        }
+        .chapter:nth-of-type(even) .chapter-inner { direction: rtl; }
+        .chapter:nth-of-type(even) .chapter-inner > * { direction: ltr; }
+
+        .chapter .ch-num {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #0e7490;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .chapter h2 { color: #011736; font-size: 1.5rem; margin-bottom: 12px; }
+        .chapter p { color: #3d4f63; font-size: 1rem; }
+
+        .chapter blockquote {
+            margin: 16px 0 4px;
+            padding: 14px 18px;
+            background: #fff8e8;
+            border-left: 4px solid #f0a500;
+            border-radius: 0 10px 10px 0;
+            color: #7a5200;
+            font-style: italic;
+            font-size: 1.02rem;
+        }
+        .chapter .ch-after { margin-top: 12px; font-size: 0.95rem; color: #5b6b7f; }
+
+        .chapter figure { margin: 0; }
+        .chapter figure img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 3px 14px rgba(1, 23, 54, 0.15);
+        }
+        .chapter figcaption {
+            font-size: 12px;
+            color: #7c8ca1;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* ── Osiągnięcia / produkty ── */
+        .products { background: linear-gradient(160deg, #eef4fb 0%, #e6f2f5 100%); }
+        .products-inner { max-width: 980px; margin: 0 auto; padding: 46px 20px; }
+        .products h2 { color: #011736; font-size: 1.5rem; margin-bottom: 12px; text-align: center; }
+        .products .lead { text-align: center; color: #5b6b7f; max-width: 720px; margin: 0 auto 28px; font-size: 1rem; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(1, 23, 54, 0.10);
+            transition: transform 0.2s;
+        }
+        .product-card:hover { transform: translateY(-4px); }
+        .product-card img { width: 100%; display: block; }
+        .product-card .p-body { padding: 16px 18px 20px; }
+        .product-card h3 { color: #011736; font-size: 1.02rem; margin-bottom: 6px; }
+        .product-card p { color: #5b6b7f; font-size: 0.9rem; }
+
+        .certs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .cert-badge {
+            background: #fff;
+            border: 2px solid #0e7490;
+            color: #0e7490;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 14px;
+        }
+        .cert-note { text-align: center; margin-top: 14px; font-size: 13px; color: #7c8ca1; }
+
+        /* ── Kontakty ── */
+        .contacts { max-width: 980px; margin: 0 auto; padding: 40px 20px; }
+        .contacts h2 { color: #011736; font-size: 1.4rem; margin-bottom: 8px; }
+        .contacts .lead { color: #5b6b7f; margin-bottom: 22px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .contact-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px;
+            border-left: 4px solid #f0a500;
+            box-shadow: 0 3px 12px rgba(1, 23, 54, 0.08);
+        }
+        .contact-card h3 { color: #011736; font-size: 1rem; margin-bottom: 4px; }
+        .contact-card p { color: #5b6b7f; font-size: 0.92rem; }
+
+        /* ── Stopka ── */
+        footer {
+            margin-top: 20px;
+            background: #011736;
+            color: #cfe0f2;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        footer .f-q { font-size: 1.1rem; color: #fff; margin-bottom: 14px; }
+        footer a.f-btn {
+            display: inline-block;
+            background: #f0a500;
+            color: #3a2b00;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 11px 26px;
+            border-radius: 999px;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        footer a.f-btn:hover { background: #ffc233; }
+        footer .f-meta { margin-top: 16px; font-size: 12px; }
+        footer .f-meta a { color: #9fc2e0; }
+
+        @media (max-width: 760px) {
+            .timeline-grid, .product-grid, .contact-grid { grid-template-columns: 1fr; }
+            .chapter-inner { grid-template-columns: 1fr; padding: 24px; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="logo-badge">D</div>
+            <div class="site-name">Damen Marine Components</div>
+            <div class="top-links">
+                <a href="index.html" data-i18n="nav_faq">← Wróć do FAQ</a>
+                <a href="admin.html" data-i18n="nav_admin">Panel admina</a>
+                <span class="lang-toggle">
+                    <span data-i18n="lang_label">Język:</span>
+                    <button type="button" class="lang-btn active" data-lang="pl">Polski</button> |
+                    <button type="button" class="lang-btn" data-lang="en">English</button>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="kicker" data-i18n="kicker">NASZA OPOWIEŚĆ</span>
+        <h1 data-i18n="hero_title">Zaczęło się od dwóch braci i jednej stoczni.</h1>
+        <p data-i18n="hero_sub">Poznaj historię Damen Marine Components — od założenia Damen Shipyards Group w 1927 roku, przez rewolucyjną koncepcję Kommera Damen, po dzisiejsze układy napędowe i sterowe, które pracują na wodach całego świata.</p>
+    </section>
+
+    <section class="timeline">
+        <h2 data-i18n="timeline_title">Trzy kamienie milowe</h2>
+        <div class="timeline-grid">
+            <div class="tl-card">
+                <div class="tl-year">1927</div>
+                <p data-i18n="tl_1927">Bracia Jan i Marinus Damen zakładają stocznię.</p>
+            </div>
+            <div class="tl-card">
+                <div class="tl-year">1969</div>
+                <p data-i18n="tl_1969">Kommer Damen wprowadza modułową budowę i standaryzację kadłubów.</p>
+            </div>
+            <div class="tl-card">
+                <div class="tl-year">Dziś</div>
+                <p data-i18n="tl_today">Arnout Damen — CEO Damen Shipyards Group.</p>
+            </div>
+        </div>
+    </section>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch1_num">Rozdział 01</div>
+                <h2 data-i18n="ch1_title">1927. Początek</h2>
+                <p data-i18n="ch1_text">Wszystko zaczęło się w 1927 roku, kiedy bracia Jan i Marinus Damen postanowili zbudować własną stocznię. Nie mieli wielkich planów — po prostu kochali morze i umieli budować statki. Z tej skromnej pasji wyrósł dziś jeden z największych koncernów stoczniowych na świecie: Damen Shipyards Group.</p>
+            </div>
+            <figure>
+                <img src="images/damen-1927.svg" alt="Damen Shipyards Group — od 1927 roku">
+                <figcaption data-i18n="ch1_img_cap">Damen Shipyards Group — od 1927 roku</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch2_num">Rozdział 02</div>
+                <h2 data-i18n="ch2_title">1969. Przełom</h2>
+                <p data-i18n="ch2_text">Przełom przyszedł w 1969 roku, gdy stery przejął Kommer Damen. Wprowadził pionierską koncepcję modułowej budowy jednostek i standaryzacji kadłubów. Statki zaczęto budować jak z klocków — szybciej, taniej i zawsze w tej samej, powtarzalnej jakości.</p>
+                <blockquote data-i18n="ch2_quote">„Ta innowacja zrewolucjonizowała światowy przemysł stoczniowy.”</blockquote>
+                <p class="ch-after" data-i18n="ch2_after">Rewolucja, która zaczęła się w jednej stoczni, zmieniła sposób, w jaki świat buduje i kupuje statki — do dziś.</p>
+            </div>
+            <figure>
+                <img src="images/damen-1927.svg" alt="Damen Shipyards Group — historia">
+                <figcaption data-i18n="ch2_img_cap">Damen Shipyards Group — historia</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch3_num">Rozdział 03</div>
+                <h2 data-i18n="ch3_title">Dziś. Trzecie pokolenie</h2>
+                <p data-i18n="ch3_text">Dziś globalną grupą kieruje przedstawiciel trzeciego pokolenia rodziny — Arnout Damen, pełniący funkcję CEO Damen Shipyards Group. To najlepszy dowód, że wartości założycieli przetrwały: rzemiosło, zaufanie i rodzinne podejście do biznesu.</p>
+            </div>
+            <figure>
+                <img src="images/damen-1927.svg" alt="Arnout Damen — CEO">
+                <figcaption data-i18n="ch3_img_cap">Arnout Damen — CEO Damen Shipyards Group</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch4_num">Rozdział 04</div>
+                <h2 data-i18n="ch4_title">Dywizja Damen Marine Components</h2>
+                <p data-i18n="ch4_text">W sercu koncernu bije dywizja Damen Marine Components, którą na szczeblu globalnym kieruje Dirk de Jong. Projektujemy, inżynierujemy i produkujemy najwyższej klasy układy napędowe, układy sterowe oraz wyposażenie pokładowe. Nasze komponenty pracują na holownikach i pogłębiarkach, na ekskluzywnych jachtach i jednostkach wojskowych — na wodach całego świata.</p>
+            </div>
+            <figure>
+                <img src="images/dmc-dywizja.svg" alt="Damen Marine Components — układy napędowe i sterowe">
+                <figcaption data-i18n="ch4_img_cap">Damen Marine Components — układy napędowe i sterowe</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch5_num">Rozdział 05</div>
+                <h2 data-i18n="ch5_title">Polski zakład</h2>
+                <p data-i18n="ch5_text">Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w Śrutowni i Malarni. Na wydziale PP1 powstają wielkogabarytowe konstrukcje spawane — dysze, płetwy sterowe, wsporniki stożkowe. Na PP2 montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.</p>
+            </div>
+            <figure>
+                <img src="images/zaklad-produkcyjny.svg" alt="Polski zakład produkcyjny — hala PPM">
+                <figcaption data-i18n="ch5_img_cap">Polski zakład produkcyjny — hala obróbki mechanicznej PPM</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <section class="products">
+        <div class="products-inner">
+            <h2 data-i18n="ch6_title">Osiągnięcia</h2>
+            <p class="lead" data-i18n="ch6_text">Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:</p>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="images/dmc-optima.svg" alt="Dysze śrubowe DMC Optima">
+                    <div class="p-body">
+                        <h3 data-i18n="prod1_title">Dysze śrubowe DMC Optima</h3>
+                        <p data-i18n="prod1_desc">Opatentowana i wdrożona seria wydajnych dysz śrubowych, które poprawiają ciąg i oszczędzają paliwo.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/van-der-velden.svg" alt="Stery Van der Velden">
+                    <div class="p-body">
+                        <h3 data-i18n="prod2_title">Stery Van der Velden</h3>
+                        <p data-i18n="prod2_desc">Zaawansowane technologicznie stery zapewniające precyzyjne prowadzenie jednostki.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/ster-strumieniowy.svg" alt="Systemy sterów strumieniowych">
+                    <div class="p-body">
+                        <h3 data-i18n="prod3_title">Systemy sterów strumieniowych</h3>
+                        <p data-i18n="prod3_desc">Kompletne systemy ułatwiające manewrowanie w porcie i na wąskich akwenach.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="certs">
+                <span class="cert-badge">DNV</span>
+                <span class="cert-badge">Lloyd's Register</span>
+                <span class="cert-badge">ABS</span>
+            </div>
+            <p class="cert-note" data-i18n="cert_note">Certyfikaty uznanych towarzystw klasyfikacyjnych potwierdzające jakość naszych wyrobów.</p>
+        </div>
+    </section>
+
+    <section class="contacts">
+        <h2 data-i18n="contacts_title">Przydatne kontakty</h2>
+        <p class="lead" data-i18n="contacts_lead">W codziennej pracy zawsze możesz liczyć na wsparcie:</p>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3 data-i18n="c1_t">Kadry i HR</h3>
+                <p data-i18n="c1_d">Formalności umowne, weryfikacja legalności zatrudnienia.</p>
+            </div>
+            <div class="contact-card">
+                <h3 data-i18n="c2_t">BHP i EHS</h3>
+                <p data-i18n="c2_d">Bezpieczeństwo, wydawanie odzieży ochronnej, certyfikacja stanowisk.</p>
+            </div>
+            <div class="contact-card">
+                <h3 data-i18n="c3_t">Kierownicy i mistrzowie wydziałów</h3>
+                <p data-i18n="c3_d">Opieka nad procesem technologicznym: PPM, PP1, PP2, Wypalarki, Śrutownia, Malarnia, Magazyn, Kompletatornia.</p>
+            </div>
+            <div class="contact-card">
+                <h3 data-i18n="c4_t">Portiernia i Administracja</h3>
+                <p data-i18n="c4_d">Sprawy organizacyjne — Główna Portiernia oraz Dział Administracyjny w budynku Biuro.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="f-q" data-i18n="footer_question">Masz pytanie? Wróć do FAQ</p>
+        <a class="f-btn" href="index.html" data-i18n="footer_cta">Zadaj pytanie</a>
+        <p class="f-meta"><a href="index.html" data-i18n="nav_faq2">← Wróć do FAQ</a> · <a href="admin.html" data-i18n="nav_admin2">Panel admina</a></p>
+    </footer>
+
+    <script>
+        // Dwujęzyczna treść strony — PL domyślnie, wybór zapamiętany w przeglądarce.
+        const I18N = {
+            pl: {
+                html_lang: 'pl',
+                title: 'O Damen Marine Components — Nasza opowieść',
+                lang_label: 'Język:',
+                nav_faq: '← Wróć do FAQ',
+                nav_faq2: '← Wróć do FAQ',
+                nav_admin: 'Panel admina',
+                nav_admin2: 'Panel admina',
+                kicker: 'NASZA OPOWIEŚĆ',
+                hero_title: 'Zaczęło się od dwóch braci i jednej stoczni.',
+                hero_sub: 'Poznaj historię Damen Marine Components — od założenia Damen Shipyards Group w 1927 roku, przez rewolucyjną koncepcję Kommera Damen, po dzisiejsze układy napędowe i sterowe, które pracują na wodach całego świata.',
+                timeline_title: 'Trzy kamienie milowe',
+                tl_1927: 'Bracia Jan i Marinus Damen zakładają stocznię.',
+                tl_1969: 'Kommer Damen wprowadza modułową budowę i standaryzację kadłubów.',
+                tl_today: 'Arnout Damen — CEO Damen Shipyards Group.',
+                ch1_num: 'Rozdział 01',
+                ch1_title: '1927. Początek',
+                ch1_text: 'Wszystko zaczęło się w 1927 roku, kiedy bracia Jan i Marinus Damen postanowili zbudować własną stocznię. Nie mieli wielkich planów — po prostu kochali morze i umieli budować statki. Z tej skromnej pasji wyrósł dziś jeden z największych koncernów stoczniowych na świecie: Damen Shipyards Group.',
+                ch1_img_cap: 'Damen Shipyards Group — od 1927 roku',
+                ch2_num: 'Rozdział 02',
+                ch2_title: '1969. Przełom',
+                ch2_text: 'Przełom przyszedł w 1969 roku, gdy stery przejął Kommer Damen. Wprowadził pionierską koncepcję modułowej budowy jednostek i standaryzacji kadłubów. Statki zaczęto budować jak z klocków — szybciej, taniej i zawsze w tej samej, powtarzalnej jakości.',
+                ch2_quote: '„Ta innowacja zrewolucjonizowała światowy przemysł stoczniowy.”',
+                ch2_after: 'Rewolucja, która zaczęła się w jednej stoczni, zmieniła sposób, w jaki świat buduje i kupuje statki — do dziś.',
+                ch2_img_cap: 'Damen Shipyards Group — historia',
+                ch3_num: 'Rozdział 03',
+                ch3_title: 'Dziś. Trzecie pokolenie',
+                ch3_text: 'Dziś globalną grupą kieruje przedstawiciel trzeciego pokolenia rodziny — Arnout Damen, pełniący funkcję CEO Damen Shipyards Group. To najlepszy dowód, że wartości założycieli przetrwały: rzemiosło, zaufanie i rodzinne podejście do biznesu.',
+                ch3_img_cap: 'Arnout Damen — CEO Damen Shipyards Group',
+                ch4_num: 'Rozdział 04',
+                ch4_title: 'Dywizja Damen Marine Components',
+                ch4_text: 'W sercu koncernu bije dywizja Damen Marine Components, którą na szczeblu globalnym kieruje Dirk de Jong. Projektujemy, inżynierujemy i produkujemy najwyższej klasy układy napędowe, układy sterowe oraz wyposażenie pokładowe. Nasze komponenty pracują na holownikach i pogłębiarkach, na ekskluzywnych jachtach i jednostkach wojskowych — na wodach całego świata.',
+                ch4_img_cap: 'Damen Marine Components — układy napędowe i sterowe',
+                ch5_num: 'Rozdział 05',
+                ch5_title: 'Polski zakład',
+                ch5_text: 'Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w Śrutowni i Malarni. Na wydziale PP1 powstają wielkogabarytowe konstrukcje spawane — dysze, płetwy sterowe, wsporniki stożkowe. Na PP2 montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.',
+                ch5_img_cap: 'Polski zakład produkcyjny — hala obróbki mechanicznej PPM',
+                ch6_title: 'Osiągnięcia',
+                ch6_text: 'Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:',
+                prod1_title: 'Dysze śrubowe DMC Optima',
+                prod1_desc: 'Opatentowana i wdrożona seria wydajnych dysz śrubowych, które poprawiają ciąg i oszczędzają paliwo.',
+                prod2_title: 'Stery Van der Velden',
+                prod2_desc: 'Zaawansowane technologicznie stery zapewniające precyzyjne prowadzenie jednostki.',
+                prod3_title: 'Systemy sterów strumieniowych',
+                prod3_desc: 'Kompletne systemy ułatwiające manewrowanie w porcie i na wąskich akwenach.',
+                cert_note: 'Certyfikaty uznanych towarzystw klasyfikacyjnych potwierdzające jakość naszych wyrobów.',
+                contacts_title: 'Przydatne kontakty',
+                contacts_lead: 'W codziennej pracy zawsze możesz liczyć na wsparcie:',
+                c1_t: 'Kadry i HR',
+                c1_d: 'Formalności umowne, weryfikacja legalności zatrudnienia.',
+                c2_t: 'BHP i EHS',
+                c2_d: 'Bezpieczeństwo, wydawanie odzieży ochronnej, certyfikacja stanowisk.',
+                c3_t: 'Kierownicy i mistrzowie wydziałów',
+                c3_d: 'Opieka nad procesem technologicznym: PPM, PP1, PP2, Wypalarki, Śrutownia, Malarnia, Magazyn, Kompletatornia.',
+                c4_t: 'Portiernia i Administracja',
+                c4_d: 'Sprawy organizacyjne — Główna Portiernia oraz Dział Administracyjny w budynku Biuro.',
+                footer_question: 'Masz pytanie? Wróć do FAQ',
+                footer_cta: 'Zadaj pytanie'
+            },
+            en: {
+                html_lang: 'en',
+                title: 'About Damen Marine Components — Our story',
+                lang_label: 'Language:',
+                nav_faq: '← Back to FAQ',
+                nav_faq2: '← Back to FAQ',
+                nav_admin: 'Admin panel',
+                nav_admin2: 'Admin panel',
+                kicker: 'OUR STORY',
+                hero_title: 'It all began with two brothers and one shipyard.',
+                hero_sub: 'Discover the story of Damen Marine Components — from the founding of Damen Shipyards Group in 1927, through Kommer Damen\'s revolutionary concept, to today\'s propulsion and steering systems working on waters all over the world.',
+                timeline_title: 'Three milestones',
+                tl_1927: 'Brothers Jan and Marinus Damen found a shipyard.',
+                tl_1969: 'Kommer Damen introduces modular construction and hull standardisation.',
+                tl_today: 'Arnout Damen — CEO of Damen Shipyards Group.',
+                ch1_num: 'Chapter 01',
+                ch1_title: '1927. The beginning',
+                ch1_text: 'It all started in 1927, when brothers Jan and Marinus Damen decided to build their own shipyard. They had no grand plans — they simply loved the sea and knew how to build ships. From that modest passion grew one of the largest shipbuilding concerns in the world: Damen Shipyards Group.',
+                ch1_img_cap: 'Damen Shipyards Group — since 1927',
+                ch2_num: 'Chapter 02',
+                ch2_title: '1969. The breakthrough',
+                ch2_text: 'The breakthrough came in 1969, when Kommer Damen took the helm. He introduced the pioneering concept of modular vessel construction and hull standardisation. Ships began to be built like building blocks — faster, cheaper and always with the same, repeatable quality.',
+                ch2_quote: '"This innovation revolutionised the global shipbuilding industry."',
+                ch2_after: 'A revolution that began in one shipyard changed the way the world builds and buys ships — to this day.',
+                ch2_img_cap: 'Damen Shipyards Group — history',
+                ch3_num: 'Chapter 03',
+                ch3_title: 'Today. Third generation',
+                ch3_text: 'Today the global group is led by a representative of the third generation of the family — Arnout Damen, who serves as CEO of Damen Shipyards Group. It is the best proof that the founders\' values have endured: craftsmanship, trust and a family approach to business.',
+                ch3_img_cap: 'Arnout Damen — CEO of Damen Shipyards Group',
+                ch4_num: 'Chapter 04',
+                ch4_title: 'The Damen Marine Components division',
+                ch4_text: 'At the heart of the concern beats the Damen Marine Components division, managed globally by Dirk de Jong. We design, engineer and produce top-class propulsion systems, steering systems and deck equipment. Our components work on tugs and dredgers, on exclusive yachts and naval vessels — on waters all over the world.',
+                ch4_img_cap: 'Damen Marine Components — propulsion and steering systems',
+                ch5_num: 'Chapter 05',
+                ch5_title: 'The Polish plant',
+                ch5_text: 'The Polish plant is the production heart of the division. This is where we give steel its shape: from cutting and welding, through advanced mechanical processing in the PPM hall, to surface protection in the shot blasting and painting departments (Śrutownia and Malarnia). In the PP1 department large welded structures are made — nozzles, rudder blades, cone supports. In PP2 we assemble smaller components. Every single one finds its way into ships sailing the seas and oceans.',
+                ch5_img_cap: 'The Polish production plant — PPM machining hall',
+                ch6_title: 'Achievements',
+                ch6_text: 'We are proud of our achievements. The high quality of our products is confirmed by international certificates of recognised classification societies:',
+                prod1_title: 'DMC Optima propeller nozzles',
+                prod1_desc: 'A patented, implemented series of efficient propeller nozzles that improve thrust and save fuel.',
+                prod2_title: 'Van der Velden rudders',
+                prod2_desc: 'Technologically advanced rudders ensuring precise vessel handling.',
+                prod3_title: 'Bow thruster systems',
+                prod3_desc: 'Complete systems that make manoeuvring in port and narrow waterways easier.',
+                cert_note: 'Certificates from recognised classification societies confirming the quality of our products.',
+                contacts_title: 'Useful contacts',
+                contacts_lead: 'In your daily work you can always count on support:',
+                c1_t: 'HR & Payroll',
+                c1_d: 'Contractual formalities, verification of the legality of employment.',
+                c2_t: 'H&S and EHS',
+                c2_d: 'Safety, issue of protective clothing, workstation certification.',
+                c3_t: 'Department managers and foremen',
+                c3_d: 'Supervision of the technological process: PPM, PP1, PP2, Cutting, Shot Blasting, Painting, Warehouse, Assembly.',
+                c4_t: 'Gatehouse and Administration',
+                c4_d: 'Organisational matters — the Main Gatehouse and the Administrative Department in the Office building.',
+                footer_question: 'Have a question? Go back to the FAQ',
+                footer_cta: 'Ask a question'
+            }
+        };
+
+        function applyLang(lang) {
+            const t = I18N[lang] || I18N.pl;
+            document.documentElement.lang = t.html_lang;
+            document.title = t.title;
+            document.querySelectorAll('[data-i18n]').forEach(function (el) {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(function (b) {
+                b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+            });
+            try { localStorage.setItem('dmc_lang', lang); } catch (e) { /* ignoruj */ }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let lang = 'pl';
+            try { lang = localStorage.getItem('dmc_lang') || 'pl'; } catch (e) { /* ignoruj */ }
+            applyLang(lang);
+            document.querySelectorAll('.lang-btn').forEach(function (b) {
+                b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+            });
+        });
+    </script>
+</body>
+</html>
