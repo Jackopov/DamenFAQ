@@ -1,0 +1,29 @@
+MIEJSCE NA GRAFIKI — instrukcja
+===============================
+
+W tym folderze znajdują się grafiki używane na stronie opowieści
+„O Damen Marine Components" (plik o-damen.html w głównym folderze FAQ).
+Obecnie są tu tzw. placeholder'y (miejsca) w formacie SVG — pokazują,
+gdzie pojawi się zdjęcie, dopóki nie wgrasz prawdziwej grafiki.
+
+Aktualne pliki i sekcje strony, do których są przypisane:
+----------------------------------------------------------
+  damen-1927.svg           → Rozdział 01–03 (historia Damen, prezesi)
+  dmc-dywizja.svg          → Rozdział 04 (dywizja Damen Marine Components)
+  zaklad-produkcyjny.svg   → Rozdział 05 (polski zakład / hala PPM)
+  dmc-optima.svg           → Osiągnięcia (dysze śrubowe DMC Optima)
+  van-der-velden.svg       → Osiągnięcia (stery Van der Velden)
+  ster-strumieniowy.svg    → Osiągnięcia (systemy sterów strumieniowych)
+
+Jak dodać prawdziwe zdjęcie:
+----------------------------
+1. Przygotuj zdjęcie w formacie JPG lub PNG (najlepiej szerokość ≥ 800 px).
+2. Nadaj mu TĘ SAMĄ nazwę co plik, który zastępujesz (np. dmc-optima.jpg
+   albo dmc-optima.png) — bez zmian w kodzie strony.
+3. Usuń stary plik .svg i umieść zdjęcie w tym folderze.
+
+Inne miejsca na grafiki (FAQ, odpowiedzi na pytania):
+-----------------------------------------------------
+W panelu admina (admin.html) rozwiń pytanie, kliknij „📋 Wklej obraz (Ctrl+V)",
+skopiuj obraz ze schowka (Ctrl+C) i wklej (Ctrl+V). Obraz trafi bezpośrednio
+do api.json jako data-URL (działa na statycznym hostingu).
