@@ -133,6 +133,19 @@
             gap: 30px;
             padding: 34px;
             align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .chapter:nth-child(2) .chapter-inner { animation-delay: 0.1s; }
+        .chapter:nth-child(3) .chapter-inner { animation-delay: 0.2s; }
+        .chapter:nth-child(4) .chapter-inner { animation-delay: 0.3s; }
+        .chapter:nth-child(5) .chapter-inner { animation-delay: 0.4s; }
+        .chapter:nth-child(6) .chapter-inner { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .chapter:nth-of-type(even) .chapter-inner { direction: rtl; }
         .chapter:nth-of-type(even) .chapter-inner > * { direction: ltr; }
@@ -146,7 +159,8 @@
             margin-bottom: 8px;
         }
         .chapter h2 { color: #011736; font-size: 1.5rem; margin-bottom: 12px; }
-        .chapter p { color: #3d4f63; font-size: 1rem; }
+        .chapter p { color: #3d4f63; font-size: 1rem; line-height: 1.7; }
+        .chapter p strong { color: #011736; font-weight: 700; }
 
         .chapter blockquote {
             margin: 16px 0 4px;
@@ -266,7 +280,7 @@
 
     <header class="topbar">
         <div class="topbar-inner">
-            <div class="logo-badge"><img src="images/damen-marine-logo.png" alt="Damen Marine Components" style="height:100%;width:auto;border-radius:4px;"></div>
+            <div class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components" style="height:100%;width:auto;border-radius:4px;"></div>
             <div class="site-name">Damen Marine Components</div>
             <div class="top-links">
                 <a href="index.html" data-i18n="nav_faq">← Wróć do FAQ</a>
@@ -308,12 +322,12 @@
         <div class="chapter-inner">
             <div>
                 <div class="ch-num" data-i18n="ch1_num">Rozdział 01</div>
-                <h2 data-i18n="ch1_title">1927. Początek</h2>
-                <p data-i18n="ch1_text">Wszystko zaczęło się w 1927 roku, kiedy bracia Jan i Marinus Damen postanowili zbudować własną stocznię. Nie mieli wielkich planów — po prostu kochali morze i umieli budować statki. Z tej skromnej pasji wyrósł dziś jeden z największych koncernów stoczniowych na świecie: Damen Shipyards Group.</p>
+                <h2 data-i18n="ch1_title">Początki (1927–1939)</h2>
+                <p data-i18n="ch1_text">Nasza historia rozpoczyna się od braci <strong>Jana</strong> i <strong>Riena Damenów</strong>, którzy otworzyli niewielką stocznię nad rzeką <strong>Merwede</strong> w miejscowości <strong>Hardinxveld</strong> w <strong>Holandii</strong>. Pod koniec lat trzydziestych <strong>Damen</strong>, mimo że pozostawał niewielkim przedsiębiorstwem, odnosił sukcesy i dostarczył swoją setną jednostkę pływającą.</p>
             </div>
             <figure>
-                <img src="images/damen-shipyard.webp" alt="Damen Shipyards Group — od 1927 roku">
-                <figcaption data-i18n="ch1_img_cap">Damen Shipyards Group — od 1927 roku</figcaption>
+                <img src="images/Damen 1927.avif" alt="Stocznia Damen — 1927 rok, Hardinxveld">
+                <figcaption data-i18n="ch1_img_cap">Stocznia Damen — 1927 rok, Hardinxveld</figcaption>
             </figure>
         </div>
     </article>
@@ -322,14 +336,14 @@
         <div class="chapter-inner">
             <div>
                 <div class="ch-num" data-i18n="ch2_num">Rozdział 02</div>
-                <h2 data-i18n="ch2_title">1969. Przełom</h2>
-                <p data-i18n="ch2_text">Przełom przyszedł w 1969 roku, gdy stery przejął Kommer Damen. Wprowadził pionierską koncepcję modułowej budowy jednostek i standaryzacji kadłubów. Statki zaczęto budować jak z klocków — szybciej, taniej i zawsze w tej samej, powtarzalnej jakości.</p>
+                <h2 data-i18n="ch2_title">Nowa era (1969–1975)</h2>
+                <p data-i18n="ch2_text">Wraz z przejęciem firmy przez drugie pokolenie w osobie <strong>Kommera Damena</strong> pojawia się nowa wizja — <strong>standaryzacja budowy statków</strong>. <strong>Damen</strong> dynamicznie się rozwija. Aby sprostać rosnącemu popytowi, firma przenosi swoją główną siedzibę w dół rzeki, do <strong>Gorinchem</strong>.</p>
                 <blockquote data-i18n="ch2_quote">„Ta innowacja zrewolucjonizowała światowy przemysł stoczniowy.”</blockquote>
                 <p class="ch-after" data-i18n="ch2_after">Rewolucja, która zaczęła się w jednej stoczni, zmieniła sposób, w jaki świat buduje i kupuje statki — do dziś.</p>
             </div>
             <figure>
-                <img src="images/kommer-damen.jpg" alt="Damen Shipyards Group — historia">
-                <figcaption data-i18n="ch2_img_cap">Damen Shipyards Group — historia</figcaption>
+                <img src="images/kommer-damen.jpg" alt="Kommer Damen — nowa era Damen Shipyards">
+                <figcaption data-i18n="ch2_img_cap">Kommer Damen — nowa era Damen Shipyards</figcaption>
             </figure>
         </div>
     </article>
@@ -338,12 +352,12 @@
         <div class="chapter-inner">
             <div>
                 <div class="ch-num" data-i18n="ch3_num">Rozdział 03</div>
-                <h2 data-i18n="ch3_title">Dziś. Trzecie pokolenie</h2>
-                <p data-i18n="ch3_text">Dziś globalną grupą kieruje przedstawiciel trzeciego pokolenia rodziny — Arnout Damen, pełniący funkcję CEO Damen Shipyards Group. To najlepszy dowód, że wartości założycieli przetrwały: rzemiosło, zaufanie i rodzinne podejście do biznesu.</p>
+                <h2 data-i18n="ch3_title">Globalna ekspansja (1978–2000)</h2>
+                <p data-i18n="ch3_text"><strong>Damen</strong> rozpoczyna budowę statków poza granicami <strong>Holandii</strong>. W kolejnych latach przedsiębiorstwo rozszerza swoją działalność, przejmując firmy <strong>De Groot</strong> (1988), <strong>Amels</strong> (1992) oraz <strong>Royal Schelde</strong> (2000), wchodząc tym samym na rynki pogłębiarek, luksusowych jachtów oraz jednostek wojskowych.</p>
             </div>
             <figure>
-                <img src="images/damen-tugboat.jpg" alt="Arnout Damen — CEO">
-                <figcaption data-i18n="ch3_img_cap">Arnout Damen — CEO Damen Shipyards Group</figcaption>
+                <img src="images/damen-tugboat.jpg" alt="Damen Crew Supplier — globalna flota Damen">
+                <figcaption data-i18n="ch3_img_cap">Damen Crew Supplier — globalna flota Damen</figcaption>
             </figure>
         </div>
     </article>
@@ -352,12 +366,12 @@
         <div class="chapter-inner">
             <div>
                 <div class="ch-num" data-i18n="ch4_num">Rozdział 04</div>
-                <h2 data-i18n="ch4_title">Dywizja Damen Marine Components</h2>
-                <p data-i18n="ch4_text">W sercu koncernu bije dywizja Damen Marine Components, którą na szczeblu globalnym kieruje Dirk de Jong. Projektujemy, inżynierujemy i produkujemy najwyższej klasy układy napędowe, układy sterowe oraz wyposażenie pokładowe. Nasze komponenty pracują na holownikach i pogłębiarkach, na ekskluzywnych jachtach i jednostkach wojskowych — na wodach całego świata.</p>
+                <h2 data-i18n="ch4_title">Przełomowy kształt dziobu (2006)</h2>
+                <p data-i18n="ch4_text"><strong>Damen</strong> bierze udział w opracowaniu innowacyjnego dziobu typu <strong>Sea Axe Bow</strong>. Ten rewolucyjny kształt kadłuba podnosi poziom bezpieczeństwa oraz komfortu na pokładzie, oferując jednocześnie bardziej ekonomiczną i efektywną żeglugę. Charakterystyczna sylwetka stała się znakiem rozpoznawczym wielu jednostek produkowanych przez grupę <strong>Damen</strong>.</p>
             </div>
             <figure>
-                <img src="images/wilton-shipyard.jpg" alt="Damen Marine Components — układy napędowe i sterowe">
-                <figcaption data-i18n="ch4_img_cap">Damen Marine Components — układy napędowe i sterowe</figcaption>
+                <img src="images/wilton-shipyard.jpg" alt="Stocznia Damen — Produkcja i innowacje">
+                <figcaption data-i18n="ch4_img_cap">Stocznia Damen — Produkcja i innowacje</figcaption>
             </figure>
         </div>
     </article>
@@ -366,37 +380,51 @@
         <div class="chapter-inner">
             <div>
                 <div class="ch-num" data-i18n="ch5_num">Rozdział 05</div>
-                <h2 data-i18n="ch5_title">Polski zakład</h2>
-                <p data-i18n="ch5_text">Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w Śrutowni i Malarni. Na wydziale PP1 powstają wielkogabarytowe konstrukcje spawane — dysze, płetwy sterowe, wsporniki stożkowe. Na PP2 montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.</p>
+                <h2 data-i18n="ch5_title">Kolejne pokolenie (2020)</h2>
+                <p data-i18n="ch5_text"><strong>Arnout Damen</strong>, syn <strong>Kommera</strong>, obejmuje stanowisko dyrektora generalnego (<strong>CEO</strong>). Nominacja <strong>Arnouta</strong> przypada na wyjątkowy okres w historii firmy, która koncentruje swoje działania na przyszłości, kładąc szczególny nacisk na <strong>zrównoważony rozwój</strong>, <strong>cyfryzację</strong> oraz <strong>doskonałość operacyjną</strong>.</p>
             </div>
             <figure>
-                <img src="images/shipyard-production.jpg" alt="Polski zakład produkcyjny — hala PPM">
-                <figcaption data-i18n="ch5_img_cap">Polski zakład produkcyjny — hala obróbki mechanicznej PPM</figcaption>
+                <img src="images/Arnout-Damen-06.avif" alt="Arnout Damen — CEO Damen Shipyards Group">
+                <figcaption data-i18n="ch5_img_cap">Arnout Damen — CEO Damen Shipyards Group</figcaption>
+            </figure>
+        </div>
+    </article>
+
+    <article class="chapter">
+        <div class="chapter-inner">
+            <div>
+                <div class="ch-num" data-i18n="ch6_num">Rozdział 06</div>
+                <h2 data-i18n="ch6_title">Polski zakład</h2>
+                <p data-i18n="ch6_text">Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w <strong>Śrutowni</strong> i <strong>Malarni</strong>. Na wydziale <strong>PP1</strong> powstają wielkogabarytowe konstrukcje spawane — <strong>dysze</strong>, <strong>płetwy sterowe</strong>, <strong>wsporniki stożkowe</strong>. Na <strong>PP2</strong> montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.</p>
+            </div>
+            <figure>
+                <img src="images/Hala 20 Damen.jpg" alt="Polski zakład produkcyjny — hala PPM">
+                <figcaption data-i18n="ch6_img_cap">Polski zakład produkcyjny — hala obróbki mechanicznej PPM</figcaption>
             </figure>
         </div>
     </article>
 
     <section class="products">
         <div class="products-inner">
-            <h2 data-i18n="ch6_title">Osiągnięcia</h2>
-            <p class="lead" data-i18n="ch6_text">Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:</p>
+            <h2 data-i18n="ch7_title">Osiągnięcia</h2>
+            <p class="lead" data-i18n="ch7_text">Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:</p>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="images/propeller-rudder.jpg" alt="Dysze śrubowe DMC Optima">
+                    <img src="images/Optima.jpg" alt="Dysze śrubowe DMC Optima">
                     <div class="p-body">
                         <h3 data-i18n="prod1_title">Dysze śrubowe DMC Optima</h3>
                         <p data-i18n="prod1_desc">Opatentowana i wdrożona seria wydajnych dysz śrubowych, które poprawiają ciąg i oszczędzają paliwo.</p>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="images/rudder-propeller.jpg" alt="Stery Van der Velden">
+                    <img src="images/rudder-propellers.jpg" alt="Stery Van der Velden">
                     <div class="p-body">
                         <h3 data-i18n="prod2_title">Stery Van der Velden</h3>
                         <p data-i18n="prod2_desc">Zaawansowane technologicznie stery zapewniające precyzyjne prowadzenie jednostki.</p>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="images/bow-thruster.png" alt="Systemy sterów strumieniowych">
+                    <img src="images/bow-thruster.jpg" alt="Systemy sterów strumieniowych">
                     <div class="p-body">
                         <h3 data-i18n="prod3_title">Systemy sterów strumieniowych</h3>
                         <p data-i18n="prod3_desc">Kompletne systemy ułatwiające manewrowanie w porcie i na wąskich akwenach.</p>
@@ -456,33 +484,37 @@
                 hero_title: 'Zaczęło się od dwóch braci i jednej stoczni.',
                 hero_sub: 'Poznaj historię Damen Marine Components — od założenia Damen Shipyards Group w 1927 roku, przez rewolucyjną koncepcję Kommera Damen, po dzisiejsze układy napędowe i sterowe, które pracują na wodach całego świata.',
                 timeline_title: 'Trzy kamienie milowe',
-                tl_1927: 'Bracia Jan i Marinus Damen zakładają stocznię.',
-                tl_1969: 'Kommer Damen wprowadza modułową budowę i standaryzację kadłubów.',
-                tl_today: 'Arnout Damen — CEO Damen Shipyards Group.',
+                tl_1927: '<strong>Jan</strong> i <strong>Rien Damen</strong> zakładają stocznię.',
+                tl_1969: '<strong>Kommer Damen</strong> wprowadza standaryzację budowy statków.',
+                tl_today: '<strong>Arnout Damen</strong> — CEO Damen Shipyards Group.',
                 ch1_num: 'Rozdział 01',
-                ch1_title: '1927. Początek',
-                ch1_text: 'Wszystko zaczęło się w 1927 roku, kiedy bracia Jan i Marinus Damen postanowili zbudować własną stocznię. Nie mieli wielkich planów — po prostu kochali morze i umieli budować statki. Z tej skromnej pasji wyrósł dziś jeden z największych koncernów stoczniowych na świecie: Damen Shipyards Group.',
-                ch1_img_cap: 'Damen Shipyards Group — od 1927 roku',
+                ch1_title: 'Początki (1927–1939)',
+                ch1_text: 'Nasza historia rozpoczyna się od braci <strong>Jana</strong> i <strong>Riena Damenów</strong>, którzy otworzyli niewielką stocznię nad rzeką <strong>Merwede</strong> w miejscowości <strong>Hardinxveld</strong> w <strong>Holandii</strong>. Pod koniec lat trzydziestych <strong>Damen</strong>, mimo że pozostawał niewielkim przedsiębiorstwem, odnosił sukcesy i dostarczył swoją setną jednostkę pływającą.',
+                ch1_img_cap: 'Stocznia Damen — 1927 rok, Hardinxveld',
                 ch2_num: 'Rozdział 02',
-                ch2_title: '1969. Przełom',
-                ch2_text: 'Przełom przyszedł w 1969 roku, gdy stery przejął Kommer Damen. Wprowadził pionierską koncepcję modułowej budowy jednostek i standaryzacji kadłubów. Statki zaczęto budować jak z klocków — szybciej, taniej i zawsze w tej samej, powtarzalnej jakości.',
+                ch2_title: 'Nowa era (1969–1975)',
+                ch2_text: 'Wraz z przejęciem firmy przez drugie pokolenie w osobie <strong>Kommera Damena</strong> pojawia się nowa wizja — <strong>standaryzacja budowy statków</strong>. <strong>Damen</strong> dynamicznie się rozwija. Aby sprostać rosnącemu popytowi, firma przenosi swoją główną siedzibę w dół rzeki, do <strong>Gorinchem</strong>.',
                 ch2_quote: '„Ta innowacja zrewolucjonizowała światowy przemysł stoczniowy.”',
                 ch2_after: 'Rewolucja, która zaczęła się w jednej stoczni, zmieniła sposób, w jaki świat buduje i kupuje statki — do dziś.',
-                ch2_img_cap: 'Damen Shipyards Group — historia',
+                ch2_img_cap: 'Kommer Damen — nowa era Damen Shipyards',
                 ch3_num: 'Rozdział 03',
-                ch3_title: 'Dziś. Trzecie pokolenie',
-                ch3_text: 'Dziś globalną grupą kieruje przedstawiciel trzeciego pokolenia rodziny — Arnout Damen, pełniący funkcję CEO Damen Shipyards Group. To najlepszy dowód, że wartości założycieli przetrwały: rzemiosło, zaufanie i rodzinne podejście do biznesu.',
-                ch3_img_cap: 'Arnout Damen — CEO Damen Shipyards Group',
+                ch3_title: 'Globalna ekspansja (1978–2000)',
+                ch3_text: '<strong>Damen</strong> rozpoczyna budowę statków poza granicami <strong>Holandii</strong>. W kolejnych latach przedsiębiorstwo rozszerza swoją działalność, przejmując firmy <strong>De Groot</strong> (1988), <strong>Amels</strong> (1992) oraz <strong>Royal Schelde</strong> (2000), wchodząc tym samym na rynki pogłębiarek, luksusowych jachtów oraz jednostek wojskowych.',
+                ch3_img_cap: 'Damen Crew Supplier — globalna flota Damen',
                 ch4_num: 'Rozdział 04',
-                ch4_title: 'Dywizja Damen Marine Components',
-                ch4_text: 'W sercu koncernu bije dywizja Damen Marine Components, którą na szczeblu globalnym kieruje Dirk de Jong. Projektujemy, inżynierujemy i produkujemy najwyższej klasy układy napędowe, układy sterowe oraz wyposażenie pokładowe. Nasze komponenty pracują na holownikach i pogłębiarkach, na ekskluzywnych jachtach i jednostkach wojskowych — na wodach całego świata.',
-                ch4_img_cap: 'Damen Marine Components — układy napędowe i sterowe',
+                ch4_title: 'Przełomowy kształt dziobu (2006)',
+                ch4_text: '<strong>Damen</strong> bierze udział w opracowaniu innowacyjnego dziobu typu <strong>Sea Axe Bow</strong>. Ten rewolucyjny kształt kadłuba podnosi poziom bezpieczeństwa oraz komfortu na pokładzie, oferując jednocześnie bardziej ekonomiczną i efektywną żeglugę. Charakterystyczna sylwetka stała się znakiem rozpoznawczym wielu jednostek produkowanych przez grupę <strong>Damen</strong>.',
+                ch4_img_cap: 'Stocznia Damen — Produkcja i innowacje',
                 ch5_num: 'Rozdział 05',
-                ch5_title: 'Polski zakład',
-                ch5_text: 'Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w Śrutowni i Malarni. Na wydziale PP1 powstają wielkogabarytowe konstrukcje spawane — dysze, płetwy sterowe, wsporniki stożkowe. Na PP2 montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.',
-                ch5_img_cap: 'Polski zakład produkcyjny — hala obróbki mechanicznej PPM',
-                ch6_title: 'Osiągnięcia',
-                ch6_text: 'Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:',
+                ch5_title: 'Kolejne pokolenie (2020)',
+                ch5_text: '<strong>Arnout Damen</strong>, syn <strong>Kommera</strong>, obejmuje stanowisko dyrektora generalnego (<strong>CEO</strong>). Nominacja <strong>Arnouta</strong> przypada na wyjątkowy okres w historii firmy, która koncentruje swoje działania na przyszłości, kładąc szczególny nacisk na <strong>zrównoważony rozwój</strong>, <strong>cyfryzację</strong> oraz <strong>doskonałość operacyjną</strong>.',
+                ch5_img_cap: 'Arnout Damen — CEO Damen Shipyards Group',
+                ch6_num: 'Rozdział 06',
+                ch6_title: 'Polski zakład',
+                ch6_text: 'Polski zakład to produkcyjne serce dywizji. Tutaj stali nadajemy kształt: od cięcia i spawania, przez zaawansowaną obróbkę mechaniczną na hali PPM, po zabezpieczenie powierzchniowe w <strong>Śrutowni</strong> i <strong>Malarni</strong>. Na wydziale <strong>PP1</strong> powstają wielkogabarytowe konstrukcje spawane — <strong>dysze</strong>, <strong>płetwy sterowe</strong>, <strong>wsporniki stożkowe</strong>. Na <strong>PP2</strong> montujemy mniejsze komponenty. Każdy z nich trafia do statków, które pływają po morzach i oceanach.',
+                ch6_img_cap: 'Polski zakład produkcyjny — hala obróbki mechanicznej PPM',
+                ch7_title: 'Osiągnięcia',
+                ch7_text: 'Jesteśmy dumni z naszych osiągnięć. Wysoką jakość wyrobów potwierdzają międzynarodowe certyfikaty uznanych towarzystw klasyfikacyjnych:',
                 prod1_title: 'Dysze śrubowe DMC Optima',
                 prod1_desc: 'Opatentowana i wdrożona seria wydajnych dysz śrubowych, które poprawiają ciąg i oszczędzają paliwo.',
                 prod2_title: 'Stery Van der Velden',
@@ -515,33 +547,37 @@
                 hero_title: 'It all began with two brothers and one shipyard.',
                 hero_sub: 'Discover the story of Damen Marine Components — from the founding of Damen Shipyards Group in 1927, through Kommer Damen\'s revolutionary concept, to today\'s propulsion and steering systems working on waters all over the world.',
                 timeline_title: 'Three milestones',
-                tl_1927: 'Brothers Jan and Marinus Damen found a shipyard.',
-                tl_1969: 'Kommer Damen introduces modular construction and hull standardisation.',
-                tl_today: 'Arnout Damen — CEO of Damen Shipyards Group.',
+                tl_1927: '<strong>Jan</strong> and <strong>Rien Damen</strong> open a shipyard.',
+                tl_1969: '<strong>Kommer Damen</strong> introduces standardised shipbuilding.',
+                tl_today: '<strong>Arnout Damen</strong> — CEO of Damen Shipyards Group.',
                 ch1_num: 'Chapter 01',
-                ch1_title: '1927. The beginning',
-                ch1_text: 'It all started in 1927, when brothers Jan and Marinus Damen decided to build their own shipyard. They had no grand plans — they simply loved the sea and knew how to build ships. From that modest passion grew one of the largest shipbuilding concerns in the world: Damen Shipyards Group.',
-                ch1_img_cap: 'Damen Shipyards Group — since 1927',
+                ch1_title: 'Beginnings (1927–1939)',
+                ch1_text: 'Our story begins with the brothers <strong>Jan</strong> and <strong>Rien Damen</strong> opening a small yard on the River <strong>Merwede</strong> in <strong>Hardinxveld</strong>, the <strong>Netherlands</strong>. By the end of the 1930s, though still a small concern, <strong>Damen</strong> was nonetheless successful and had delivered its 100th vessel.',
+                ch1_img_cap: 'Damen shipyard — 1927, Hardinxveld',
                 ch2_num: 'Chapter 02',
-                ch2_title: '1969. The breakthrough',
-                ch2_text: 'The breakthrough came in 1969, when Kommer Damen took the helm. He introduced the pioneering concept of modular vessel construction and hull standardisation. Ships began to be built like building blocks — faster, cheaper and always with the same, repeatable quality.',
+                ch2_title: 'A new era (1969–1975)',
+                ch2_text: 'The second generation begins as <strong>Kommer Damen</strong> takes over the company with a new vision — <strong>standardised shipbuilding</strong>. <strong>Damen</strong> is on the move. To ensure its ability to meet growing demand, <strong>Damen</strong> moves its HQ down the river to <strong>Gorinchem</strong>.',
                 ch2_quote: '"This innovation revolutionised the global shipbuilding industry."',
                 ch2_after: 'A revolution that began in one shipyard changed the way the world builds and buys ships — to this day.',
-                ch2_img_cap: 'Damen Shipyards Group — history',
+                ch2_img_cap: 'Kommer Damen — a new era for Damen Shipyards',
                 ch3_num: 'Chapter 03',
-                ch3_title: 'Today. Third generation',
-                ch3_text: 'Today the global group is led by a representative of the third generation of the family — Arnout Damen, who serves as CEO of Damen Shipyards Group. It is the best proof that the founders\' values have endured: craftsmanship, trust and a family approach to business.',
-                ch3_img_cap: 'Arnout Damen — CEO of Damen Shipyards Group',
+                ch3_title: 'Going global (1978–2000)',
+                ch3_text: '<strong>Damen</strong> begins to construct vessels outside the <strong>Netherlands</strong>. Over the coming years, the company expands its operations, acquiring <strong>De Groot</strong> (1988), <strong>Amels</strong> (1992) and <strong>Royal Schelde</strong> (2000) entering the dredging, yachting and naval markets.',
+                ch3_img_cap: 'Damen Crew Supplier — the global Damen fleet',
                 ch4_num: 'Chapter 04',
-                ch4_title: 'The Damen Marine Components division',
-                ch4_text: 'At the heart of the concern beats the Damen Marine Components division, managed globally by Dirk de Jong. We design, engineer and produce top-class propulsion systems, steering systems and deck equipment. Our components work on tugs and dredgers, on exclusive yachts and naval vessels — on waters all over the world.',
-                ch4_img_cap: 'Damen Marine Components — propulsion and steering systems',
+                ch4_title: 'Taking a bow (2006)',
+                ch4_text: '<strong>Damen</strong> is involved in the development of the <strong>Sea Axe Bow</strong>. This revolutionary hull form increases safety and onboard comfort and offers more efficient sailing. Its distinctive shape is a hallmark by which many <strong>Damen</strong> vessels can be recognised.',
+                ch4_img_cap: 'Damen shipyard — Production and innovation',
                 ch5_num: 'Chapter 05',
-                ch5_title: 'The Polish plant',
-                ch5_text: 'The Polish plant is the production heart of the division. This is where we give steel its shape: from cutting and welding, through advanced mechanical processing in the PPM hall, to surface protection in the shot blasting and painting departments (Śrutownia and Malarnia). In the PP1 department large welded structures are made — nozzles, rudder blades, cone supports. In PP2 we assemble smaller components. Every single one finds its way into ships sailing the seas and oceans.',
-                ch5_img_cap: 'The Polish production plant — PPM machining hall',
-                ch6_title: 'Achievements',
-                ch6_text: 'We are proud of our achievements. The high quality of our products is confirmed by international certificates of recognised classification societies:',
+                ch5_title: 'The next generation (2020)',
+                ch5_text: '<strong>Arnout Damen</strong>, son of <strong>Kommer</strong>, becomes <strong>CEO</strong>. <strong>Arnout\'s</strong> appointment comes at an exciting time for the company as it aligns towards the future with a focus on <strong>sustainability</strong>, <strong>digitalisation</strong> and <strong>operational excellence</strong>.',
+                ch5_img_cap: 'Arnout Damen — CEO of Damen Shipyards Group',
+                ch6_num: 'Chapter 06',
+                ch6_title: 'The Polish plant',
+                ch6_text: 'The Polish plant is the production heart of the division. This is where we give steel its shape: from cutting and welding, through advanced mechanical processing in the PPM hall, to surface protection in the <strong>Shot Blasting</strong> and <strong>Painting</strong> departments (<strong>Śrutownia</strong> and <strong>Malarnia</strong>). In the <strong>PP1</strong> department large welded structures are made — <strong>nozzles</strong>, <strong>rudder blades</strong>, <strong>cone supports</strong>. In <strong>PP2</strong> we assemble smaller components. Every single one finds its way into ships sailing the seas and oceans.',
+                ch6_img_cap: 'The Polish production plant — PPM machining hall',
+                ch7_title: 'Achievements',
+                ch7_text: 'We are proud of our achievements. The high quality of our products is confirmed by international certificates of recognised classification societies:',
                 prod1_title: 'DMC Optima propeller nozzles',
                 prod1_desc: 'A patented, implemented series of efficient propeller nozzles that improve thrust and save fuel.',
                 prod2_title: 'Van der Velden rudders',
@@ -564,13 +600,25 @@
             }
         };
 
+        // Klucze ktore moga zawierac HTML (np. <strong>text</strong> — pogrubienie)
+        var HTML_KEYS = [
+            'tl_1927','tl_1969','tl_today',
+            'ch1_text','ch2_text','ch2_after','ch3_text','ch4_text','ch5_text','ch6_text','ch7_text'
+        ];
+
         function applyLang(lang) {
-            const t = I18N[lang] || I18N.pl;
+            var t = I18N[lang] || I18N.pl;
             document.documentElement.lang = t.html_lang;
             document.title = t.title;
             document.querySelectorAll('[data-i18n]').forEach(function (el) {
-                const key = el.getAttribute('data-i18n');
-                if (t[key] !== undefined) el.textContent = t[key];
+                var key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    if (HTML_KEYS.indexOf(key) !== -1) {
+                        el.innerHTML = t[key];
+                    } else {
+                        el.textContent = t[key];
+                    }
+                }
             });
             document.querySelectorAll('.lang-btn').forEach(function (b) {
                 b.classList.toggle('active', b.getAttribute('data-lang') === lang);
@@ -579,7 +627,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            let lang = 'pl';
+            var lang = 'pl';
             try { lang = localStorage.getItem('dmc_lang') || 'pl'; } catch (e) { /* ignoruj */ }
             applyLang(lang);
             document.querySelectorAll('.lang-btn').forEach(function (b) {
