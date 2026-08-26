@@ -45,6 +45,13 @@
             font-weight: bold;
             letter-spacing: 1px;
             flex-shrink: 0;
+            overflow: hidden;
+            padding: 2px;
+        }
+        .topbar .logo-badge img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
         }
         .topbar .site-name { font-size: 15px; font-weight: bold; }
         .topbar .top-links { margin-left: auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -259,7 +266,7 @@
 
     <header class="topbar">
         <div class="topbar-inner">
-            <div class="logo-badge">D</div>
+            <div class="logo-badge"><img src="images/damen-marine-logo.png" alt="Damen Marine Components" style="height:100%;width:auto;border-radius:4px;"></div>
             <div class="site-name">Damen Marine Components</div>
             <div class="top-links">
                 <a href="index.html" data-i18n="nav_faq">← Wróć do FAQ</a>
