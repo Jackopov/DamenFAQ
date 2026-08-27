@@ -562,7 +562,25 @@ body::before {
     min-width: 220px;
     backdrop-filter: blur(16px);
     animation: qcSlideIn 0.4s ease;
+    transition: opacity 0.25s, transform 0.25s;
 }
+.quick-contact.minimized .qc-body { display: none; }
+.quick-contact.minimized { min-width: auto; padding: 6px 10px; }
+.qc-minimize {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--titanium-600);
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 4px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+.qc-minimize:hover { color: var(--titanium-300); }
 @keyframes qcSlideIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

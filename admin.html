@@ -945,14 +945,17 @@
 
     <!-- Pływający dymek szybkiego kontaktu (ukryty do odblokowania PIN) -->
     <div id="quick-contact" class="quick-contact" style="display:none;">
-        <div class="qc-title">📞 Szybki kontakt</div>
-        <div class="qc-item">
-            <span class="qc-role">👷 BHP</span>
-            <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
-        </div>
-        <div class="qc-item">
-            <span class="qc-role">👥 HR</span>
-            <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+        <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
+        <div class="qc-body">
+            <div class="qc-title">📞 Szybki kontakt</div>
+            <div class="qc-item">
+                <span class="qc-role">👷 BHP</span>
+                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
+            </div>
+            <div class="qc-item">
+                <span class="qc-role">👥 HR</span>
+                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+            </div>
         </div>
     </div>
 
@@ -1053,6 +1056,18 @@
             initPin();
         }
     })();
+
+    /* Quick Contact minimize toggle */
+    document.addEventListener('DOMContentLoaded', function() {
+        var qcMin = document.getElementById('qc-minimize');
+        var qc = document.getElementById('quick-contact');
+        if (qcMin && qc) {
+            qcMin.addEventListener('click', function() {
+                qc.classList.toggle('minimized');
+                qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
+            });
+        }
+    });
     </script>
 </body>
 </html>

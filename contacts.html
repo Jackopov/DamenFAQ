@@ -327,7 +327,24 @@
             padding: 10px 12px;
             min-width: 180px;
             backdrop-filter: blur(16px);
+            transition: opacity 0.25s, transform 0.25s;
         }
+        .quick-contact.minimized .qc-body { display: none; }
+        .quick-contact.minimized { min-width: auto; padding: 6px 10px; }
+        .qc-minimize {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 2px 4px;
+            line-height: 1;
+            border-radius: 4px;
+        }
+        .qc-minimize:hover { color: #e2e8f0; }
         .qc-title {
             font-size: 10px;
             font-weight: 700;
@@ -382,14 +399,17 @@
 
     <!-- Pływający dymek szybkiego kontaktu -->
     <div class="quick-contact" id="quick-contact">
-        <div class="qc-title">📞 Szybki kontakt</div>
-        <div class="qc-item">
-            <span class="qc-role">👷 BHP</span>
-            <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
-        </div>
-        <div class="qc-item">
-            <span class="qc-role">👥 HR</span>
-            <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+        <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
+        <div class="qc-body">
+            <div class="qc-title">📞 Szybki kontakt</div>
+            <div class="qc-item">
+                <span class="qc-role">👷 BHP</span>
+                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
+            </div>
+            <div class="qc-item">
+                <span class="qc-role">👥 HR</span>
+                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+            </div>
         </div>
     </div>
 
@@ -679,7 +699,15 @@
             }
         });
 
-        // Quick Contact — already visible as flat bubble, no toggle needed
+        // Quick Contact minimize toggle
+        var qcMin = document.getElementById('qc-minimize');
+        var qc = document.getElementById('quick-contact');
+        if (qcMin && qc) {
+            qcMin.addEventListener('click', function() {
+                qc.classList.toggle('minimized');
+                qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
+            });
+        }
 
         function esc(s) {
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
