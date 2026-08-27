@@ -130,8 +130,8 @@
         /* ── 3D Cylindrical Wheel Container ───────────────────────────── */
         .wheel-container {
             position: relative;
-            height: calc(100vh - 230px);
-            perspective: 1000px;
+            height: calc(100vh - 240px);
+            perspective: 1200px;
             overflow: hidden;
             margin-top: 8px;
             max-width: 66%;
@@ -144,24 +144,25 @@
         .wheel-track {
             position: absolute;
             width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
+            left: 0;
+            height: 100%;
+            top: 0;
             transform-style: preserve-3d;
-            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         /* ── Contact Card (glassmorphism) ────────────────────────────── */
         .card {
             position: absolute;
-            width: calc(100% - 20px);
-            left: 10px;
-            height: 140px;
+            width: 100%;
+            left: 0;
+            height: 130px;
+            top: 50%;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 20px 22px;
+            border-radius: 18px;
+            padding: 16px 20px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -175,13 +176,13 @@
             will-change: transform, opacity;
         }
         .card.active {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: #fff;
-            border: 1px solid rgba(96, 165, 250, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255,255,255,0.1);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25),
+                        inset 0 1px 0 rgba(255,255,255,0.08);
             z-index: 5;
         }
         .card .name {
@@ -191,7 +192,7 @@
             letter-spacing: 0.3px;
             color: #e2e8f0;
         }
-        .card.active .name { font-size: 19px; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+        .card.active .name { color: #fff; }
         .card .position {
             font-size: 13px;
             color: #94a3b8;
@@ -216,7 +217,7 @@
             color: #60a5fa;
             letter-spacing: 1px;
         }
-        .card.active .phone-num { color: #93c5fd; font-size: 18px; text-shadow: 0 0 12px rgba(96,165,250,0.4); }
+        .card.active .phone-num { color: #93c5fd; text-shadow: 0 0 8px rgba(96,165,250,0.3); }
         .card .phone-badge {
             font-size: 10px;
             padding: 3px 10px;
@@ -305,39 +306,42 @@
             z-index: 10;
         }
 
-        /* ── Quick Contact (shared) ──────────────────────────────────── */
-        .quick-contact { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
-        .qc-toggle {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 13px;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.2s;
-        }
-        .qc-toggle:hover { background: rgba(255,255,255,0.15); }
-        .qc-panel {
-            position: absolute;
-            bottom: 40px;
-            left: 0;
-            background: #fff;
-            border-radius: 10px;
+        /* ── Quick Contact bubble (always visible) ──────────────────── */
+        .quick-contact {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            z-index: 1000;
+            background: rgba(2, 29, 69, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            padding: 14px;
-            min-width: 240px;
-            color: #333;
+            padding: 10px 12px;
+            min-width: 180px;
+            backdrop-filter: blur(16px);
         }
-        .qc-item { margin-bottom: 10px; }
+        .qc-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .qc-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            padding: 6px 8px;
+            border-radius: 8px;
+        }
         .qc-item:last-child { margin-bottom: 0; }
-        .qc-role { display: block; font-size: 12px; color: #64748b; margin-bottom: 2px; }
+        .qc-role { font-size: 11px; color: #94a3b8; }
         .qc-phone {
-            display: inline-block;
-            font-size: 15px;
-            font-weight: 600;
-            color: #011736;
+            font-size: 13px;
+            font-weight: 700;
+            color: #93c5fd;
             text-decoration: none;
         }
         .qc-phone:hover { text-decoration: underline; }
@@ -369,7 +373,7 @@
     <div class="scroll-hint">↕ Przewiń, aby przeglądać kontakty</div>
 
     <!-- Pływający dymek szybkiego kontaktu -->
-    <div class="quick-contact">
+    <div class="quick-contact" id="quick-contact">
         <div class="qc-title">📞 Szybki kontakt</div>
         <div class="qc-item">
             <span class="qc-role">👷 BHP</span>
@@ -384,12 +388,12 @@
     <script>
     /* ── 3D Cylindrical Wheel Picker ────────────────────────────────── */
     (function () {
-        const CARD_HEIGHT = 145;
-        const VISIBLE_RADIUS = 5;
-        const SCALE_CENTER = 1.08;
-        const SCALE_MIN = 0.82;
-        const ROTATE_MAX = 28;
-        const TRANSLATE_Z = -120;
+        const CARD_HEIGHT = 140;
+        const VISIBLE_RADIUS = 4;
+        const SCALE_CENTER = 1.0;
+        const SCALE_MIN = 0.5;
+        const ROTATE_MAX = 22;
+        const TRANSLATE_Z = -100;
 
         let allContacts = [];
         let filtered = [];
@@ -527,30 +531,31 @@
         function updatePositions() {
             const cards = track.querySelectorAll('.card');
             const center = activeIndex;
+            const centerCardH = 130;
 
             cards.forEach((card, i) => {
                 const diff = i - center;
                 const absDiff = Math.abs(diff);
 
-                // Scale: center = 1.08, far = 0.82
+                // Scale: center = 1.0, distant = 0.5
                 const t = Math.min(absDiff / VISIBLE_RADIUS, 1);
                 const scale = SCALE_CENTER - t * (SCALE_CENTER - SCALE_MIN);
 
-                // RotateX: center = 0, far = ±28deg
+                // Gentle rotateX for 3D curvature
                 const rotateX = diff * (ROTATE_MAX / VISIBLE_RADIUS) * -1;
 
-                // TranslateZ: center = 0, far = -120px
+                // Push cards back in depth
                 const translateZ = -absDiff * (TRANSLATE_Z / VISIBLE_RADIUS);
 
-                // Vertical offset
-                const translateY = diff * CARD_HEIGHT;
+                // Vertical offset from center — cards stack above/below
+                const spacing = centerCardH * 0.78;
+                const translateY = diff * spacing - (centerCardH / 2);
 
                 // Opacity
-                const opacity = absDiff > VISIBLE_RADIUS ? 0 : 1 - t * 0.6;
+                const opacity = absDiff > VISIBLE_RADIUS ? 0 : Math.max(0, 1 - t * 0.7);
 
                 card.style.transform =
-                    'translateY(' + translateY + 'px) ' +
-                    'translateZ(' + translateZ + 'px) ' +
+                    'translate3d(0, ' + translateY + 'px, ' + translateZ + 'px) ' +
                     'rotateX(' + rotateX + 'deg) ' +
                     'scale(' + scale + ')';
                 card.style.opacity = opacity;
@@ -666,11 +671,7 @@
             }
         });
 
-        // Quick Contact toggle
-        document.getElementById('qc-toggle').addEventListener('click', function() {
-            const panel = document.getElementById('qc-panel');
-            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-        });
+        // Quick Contact — already visible as flat bubble, no toggle needed
 
         function esc(s) {
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
