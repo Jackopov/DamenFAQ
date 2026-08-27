@@ -30,6 +30,9 @@
     </nav>
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+    <!-- Blueprint Mode toggle -->
+    <button type="button" class="bp-toggle" id="bp-toggle">📐 Blueprint</button>
+
     <div class="container">
         <div class="header">
             <button type="button" class="hamburger" id="hamburger" aria-label="Menu">☰</button>
@@ -168,6 +171,14 @@
         if (hamburger) hamburger.addEventListener('click', openSidebar);
         if (overlay) overlay.addEventListener('click', closeSidebar);
         if (close) close.addEventListener('click', closeSidebar);
+
+        /* Blueprint Mode toggle */
+        var bpToggle = document.getElementById('bp-toggle');
+        if (bpToggle) {
+            bpToggle.addEventListener('click', function() {
+                document.body.classList.toggle('blueprint');
+            });
+        }
     });
     </script>
 </body>
