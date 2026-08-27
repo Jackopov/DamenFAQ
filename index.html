@@ -15,8 +15,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Sidebar nawigacja -->
+    <nav class="sidebar" id="sidebar">
+        <button type="button" class="sidebar-close" id="sidebar-close" aria-label="Zamknij menu">✕</button>
+        <div class="sidebar-logo"><img src="images/Damen Marine logo.png" alt="Damen"></div>
+        <div class="sidebar-brand">Damen Marine Components</div>
+        <div class="sidebar-divider"></div>
+        <a href="index.html" class="sidebar-link active">🏠 FAQ</a>
+        <a href="contacts.html" class="sidebar-link">📞 Kontakty</a>
+        <a href="o-damen.html" class="sidebar-link">🚢 O nas</a>
+        <a href="admin.html" class="sidebar-link">⚙️ Panel admina</a>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-footer">© 2026 Damen Marine Components</div>
+    </nav>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <div class="container">
         <div class="header">
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menu">☰</button>
             <div class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
             <div class="header-text">
                 <h1 id="title">Asystent dla nowych pracowników</h1>
@@ -141,6 +157,18 @@
             banner.remove();
         });
     }
+    /* Sidebar toggle */
+    document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburger');
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('sidebar-overlay');
+        var close = document.getElementById('sidebar-close');
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+        if (hamburger) hamburger.addEventListener('click', openSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+        if (close) close.addEventListener('click', closeSidebar);
+    });
     </script>
 </body>
 </html>
