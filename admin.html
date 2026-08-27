@@ -7,6 +7,151 @@
     <title>Panel admina — FAQ</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* ── PIN Modal ─────────────────────────────────────────────────── */
+        .pin-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(1, 23, 54, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(6px);
+            animation: pinFadeIn 0.3s ease;
+        }
+        .pin-modal-overlay.hidden {
+            display: none;
+        }
+        @keyframes pinFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .pin-modal {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 28px 28px;
+            width: 320px;
+            max-width: 92vw;
+            box-shadow: 0 8px 40px rgba(1, 23, 54, 0.35);
+            text-align: center;
+            animation: pinSlideUp 0.35s ease;
+        }
+        @keyframes pinSlideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .pin-modal-header {
+            margin-bottom: 20px;
+        }
+        .pin-logo {
+            width: 56px; height: 56px;
+            background: #011736;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .pin-logo img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+        }
+        .pin-modal-header h2 {
+            color: #011736;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        .pin-modal-header p {
+            color: #64748b;
+            font-size: 13px;
+        }
+        .pin-display {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .pin-dot {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            border: 2px solid #cbd5e1;
+            transition: all 0.2s ease;
+        }
+        .pin-dot.filled {
+            background: #011736;
+            border-color: #011736;
+            transform: scale(1.15);
+        }
+        .pin-dot.error {
+            background: #c0392b;
+            border-color: #c0392b;
+            animation: pinShake 0.4s ease;
+        }
+        @keyframes pinShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .pin-error {
+            color: #c0392b;
+            font-size: 13px;
+            min-height: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .pin-keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .pin-key {
+            height: 54px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: #f1f5f9;
+            color: #011736;
+            border: 2px solid transparent;
+        }
+        .pin-key:hover {
+            background: #e2e8f0;
+            border-color: #011736;
+        }
+        .pin-key:active {
+            transform: scale(0.94);
+            background: #011736;
+            color: #fff;
+        }
+        .pin-key-clear {
+            background: #fef2f2;
+            color: #c0392b;
+            border-color: #fecaca;
+        }
+        .pin-key-clear:hover {
+            background: #fdecea;
+            border-color: #c0392b;
+        }
+        .pin-key-clear:active {
+            background: #c0392b;
+            color: #fff;
+        }
+        .pin-key-ok {
+            background: #011736;
+            color: #fff;
+            border-color: #011736;
+        }
+        .pin-key-ok:hover {
+            background: #023466;
+            border-color: #023466;
+        }
+        .pin-key-ok:active {
+            background: #000d1f;
+        }
         .admin {
             max-width: 1100px;
         }
@@ -612,7 +757,39 @@
     </style>
 </head>
 <body>
-    <div class="container admin">
+    <!-- PIN Modal -->
+    <div id="pin-modal" class="pin-modal-overlay">
+        <div class="pin-modal">
+            <div class="pin-modal-header">
+                <div class="pin-logo"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
+                <h2>Panel Administratora</h2>
+                <p>Wprowadź kod PIN, aby uzyskać dostęp</p>
+            </div>
+            <div class="pin-display">
+                <span class="pin-dot" id="pin-dot-0"></span>
+                <span class="pin-dot" id="pin-dot-1"></span>
+                <span class="pin-dot" id="pin-dot-2"></span>
+                <span class="pin-dot" id="pin-dot-3"></span>
+            </div>
+            <div id="pin-error" class="pin-error"></div>
+            <div class="pin-keypad">
+                <button class="pin-key" data-key="1">1</button>
+                <button class="pin-key" data-key="2">2</button>
+                <button class="pin-key" data-key="3">3</button>
+                <button class="pin-key" data-key="4">4</button>
+                <button class="pin-key" data-key="5">5</button>
+                <button class="pin-key" data-key="6">6</button>
+                <button class="pin-key" data-key="7">7</button>
+                <button class="pin-key" data-key="8">8</button>
+                <button class="pin-key" data-key="9">9</button>
+                <button class="pin-key pin-key-clear" data-key="clear">⌫</button>
+                <button class="pin-key" data-key="0">0</button>
+                <button class="pin-key pin-key-ok" data-key="ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container admin" id="admin-content" style="display:none;">
         <div class="header">
             <div class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
             <h1>Panel admina — FAQ</h1>
@@ -652,5 +829,98 @@
     <input type="file" id="media-file" accept="video/*,image/*" style="display:none;" />
 
     <script src="admin.js"></script>
+    <script>
+    /* PIN Modal — inline, żeby działał niezależnie od ładowania admin.js */
+    (function() {
+        const CORRECT_PIN = '0000';
+        const MAX_LENGTH = 4;
+        let pinEntered = '';
+
+        function getModal() { return document.getElementById('pin-modal'); }
+        function getDots() {
+            return [
+                document.getElementById('pin-dot-0'),
+                document.getElementById('pin-dot-1'),
+                document.getElementById('pin-dot-2'),
+                document.getElementById('pin-dot-3')
+            ];
+        }
+        function getErrorEl() { return document.getElementById('pin-error'); }
+
+        function updateDots() {
+            getDots().forEach(function(dot, i) {
+                dot.classList.toggle('filled', i < pinEntered.length);
+                dot.classList.remove('error');
+            });
+        }
+
+        function showError(msg) {
+            var err = getErrorEl();
+            err.textContent = msg;
+            getDots().forEach(function(dot) {
+                dot.classList.add('error');
+                dot.classList.remove('filled');
+            });
+            pinEntered = '';
+            setTimeout(function() {
+                err.textContent = '';
+                getDots().forEach(function(dot) { dot.classList.remove('error'); });
+                updateDots();
+            }, 1200);
+        }
+
+        function unlock() {
+            var modal = getModal();
+            var content = document.getElementById('admin-content');
+            if (modal) { modal.style.display = 'none'; }
+            if (content) { content.style.display = ''; }
+        }
+
+        function handlePinKey(key) {
+            if (key === 'clear') {
+                pinEntered = pinEntered.slice(0, -1);
+                updateDots();
+                return;
+            }
+            if (key === 'ok') {
+                if (pinEntered === CORRECT_PIN) { unlock(); }
+                else { showError('Nieprawidłowy PIN. Spróbuj ponownie.'); }
+                return;
+            }
+            if (pinEntered.length < MAX_LENGTH) {
+                pinEntered += key;
+                updateDots();
+                if (pinEntered.length === MAX_LENGTH) {
+                    setTimeout(function() {
+                        if (pinEntered === CORRECT_PIN) { unlock(); }
+                        else { showError('Nieprawidłowy PIN. Spróbuj ponownie.'); }
+                    }, 250);
+                }
+            }
+        }
+
+        function initPin() {
+            var modal = getModal();
+            if (!modal) return;
+
+            modal.querySelectorAll('.pin-key').forEach(function(btn) {
+                btn.addEventListener('click', function() { handlePinKey(btn.dataset.key); });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (!getModal() || getModal().style.display === 'none') return;
+                if (e.key >= '0' && e.key <= '9') { e.preventDefault(); handlePinKey(e.key); }
+                else if (e.key === 'Backspace') { e.preventDefault(); handlePinKey('clear'); }
+                else if (e.key === 'Enter') { e.preventDefault(); handlePinKey('ok'); }
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPin);
+        } else {
+            initPin();
+        }
+    })();
+    </script>
 </body>
 </html>
