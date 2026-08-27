@@ -34,7 +34,7 @@
     <button type="button" class="bp-toggle" id="bp-toggle">📐 Blueprint</button>
 
     <div class="container">
-        <div class="header">
+        <div class="header" id="header-canvas">
             <button type="button" class="hamburger" id="hamburger" aria-label="Menu">☰</button>
             <div class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
             <div class="header-text">
@@ -180,6 +180,125 @@
             });
         }
     });
+    </script>
+
+    <!-- WebGL Water Shader (pure, zero dependencies) -->
+    <script>
+    (function() {
+        var container = document.getElementById('header-canvas');
+        if (!container) return;
+
+        /* ── Shader sources ─────────────────────────────────────────── */
+        var VS = 'attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}';
+        var FS = [
+            'precision mediump float;',
+            'uniform float uT;',
+            'uniform vec2 uM;',
+            'uniform float uR;',
+            'uniform vec2 uR;',
+            'void main(){',
+            '  vec2 uv=gl_FragCoord.xy/uR;',
+            '  float w1=sin(uv.x*8.+uT*.8)*cos(uv.y*6.+uT*.6)*.015;',
+            '  float w2=sin(uv.x*12.-uT*1.1)*cos(uv.y*10.+uT*.9)*.008;',
+            '  float w3=cos(uv.x*5.+uv.y*7.+uT*.4)*.01;',
+            '  float w=w1+w2+w3;',
+            '  float d=distance(uv,uM);',
+            '  w+=sin(d*40.-uT*6.)*exp(-d*4.)*uI*.06;',
+            '  float h=smoothstep(.48,.52,.5+w);',
+            '  vec3 dp=vec3(.004,.065,.14);',
+            '  vec3 md=vec3(.008,.09,.18);',
+            '  vec3 lt=vec3(.04,.16,.32);',
+            '  vec3 c=mix(dp,md,.5+w*3.);',
+            '  c=mix(c,lt,h*.15);',
+            '  c+=vec3(.23,.51,.82)*pow(max(w,0.),3.)*.16;',
+            '  gl_FragColor=vec4(c,1);',
+            '}'
+        ].join('\n');
+
+        /* ── Setup WebGL (minimal) ──────────────────────────────────── */
+        var gl = document.createElement('canvas');
+        gl.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:inherit;';
+        container.appendChild(gl);
+        var ctx = gl.getContext('webgl', { alpha: false, antialias: false, preserveDrawingBuffer: false });
+        if (!ctx) return;
+
+        function compile(type, src) {
+            var s = ctx.createShader(type);
+            ctx.shaderSource(s, src);
+            ctx.compileShader(s);
+            return s;
+        }
+        var prog = ctx.createProgram();
+        ctx.attachShader(prog, compile(ctx.VERTEX_SHADER, VS));
+        ctx.attachShader(prog, compile(ctx.FRAGMENT_SHADER, FS));
+        ctx.linkProgram(prog);
+        ctx.useProgram(prog);
+
+        // Full-screen quad
+        var buf = ctx.createBuffer();
+        ctx.bindBuffer(ctx.ARRAY_BUFFER, buf);
+        ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), ctx.STATIC_DRAW);
+        var aPos = ctx.getAttribLocation(prog, 'a_pos');
+        ctx.enableVertexAttribArray(aPos);
+        ctx.vertexAttribPointer(aPos, 2, ctx.FLOAT, false, 0, 0);
+
+        // Uniforms
+        var uT = ctx.getUniformLocation(prog, 'uT');
+        var uM = ctx.getUniformLocation(prog, 'uM');
+        var uI = ctx.getUniformLocation(prog, 'uI');
+        var uR = ctx.getUniformLocation(prog, 'uR');
+
+        var mouseTarget = [0.5, 0.5];
+        var mouseSmooth = [0.5, 0.5];
+        var ripple = 0;
+        var lastMove = 0;
+        var t0 = Date.now();
+        var running = true;
+
+        function resize() {
+            var dpr = Math.min(window.devicePixelRatio, 1.5);
+            var w = container.clientWidth;
+            var h = container.clientHeight;
+            gl.width = w * dpr;
+            gl.height = h * dpr;
+            gl.viewport(0, 0, gl.width, gl.height);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function onMove(x, y) {
+            var r = container.getBoundingClientRect();
+            mouseTarget[0] = (x - r.left) / r.width;
+            mouseTarget[1] = 1.0 - (y - r.top) / r.height;
+            ripple = 1.0;
+            lastMove = Date.now();
+        }
+        container.addEventListener('mousemove', function(e) { onMove(e.clientX, e.clientY); });
+        container.addEventListener('touchmove', function(e) {
+            var t = e.touches[0];
+            if (t) onMove(t.clientX, t.clientY);
+        }, { passive: true });
+
+        function frame() {
+            if (!running) return;
+            requestAnimationFrame(frame);
+            var t = (Date.now() - t0) / 1000;
+            mouseSmooth[0] += (mouseTarget[0] - mouseSmooth[0]) * 0.08;
+            mouseSmooth[1] += (mouseTarget[1] - mouseSmooth[1]) * 0.08;
+            if (Date.now() - lastMove > 200) ripple *= 0.92;
+            ctx.uniform1f(uT, t);
+            ctx.uniform2f(uM, mouseSmooth[0], mouseSmooth[1]);
+            ctx.uniform1f(uI, ripple);
+            ctx.uniform2f(uR, gl.width, gl.height);
+            ctx.drawArrays(ctx.TRIANGLE_STRIP, 0, 4);
+        }
+
+        document.addEventListener('visibilitychange', function() {
+            running = !document.hidden;
+            if (running) frame();
+        });
+        frame();
+    })();
     </script>
 </body>
 </html>

@@ -231,6 +231,7 @@ body.blueprint .container {
 }
 
 .header {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -241,6 +242,12 @@ body.blueprint .container {
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
     border-radius: 16px;
+    overflow: hidden;
+    z-index: 1;
+}
+.header > *:not(canvas) {
+    position: relative;
+    z-index: 2;
 }
 
 .logo-badge {
