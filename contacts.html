@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Kontakty — Damen Marine Components</title>
+    <meta name="theme-color" content="#011736">
+    <link rel="icon" href="images/Damen Marine logo.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #011736 40%, #0d2147 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* ── Header ──────────────────────────────────────────────────── */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(1, 23, 54, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            width: 40px; height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo img { width: 100%; height: 100%; object-fit: contain; }
+        .header h1 {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .header .subtitle {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 400;
+        }
+        .back-btn {
+            margin-left: auto;
+            font-size: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        /* ── Search ──────────────────────────────────────────────────── */
+        .search-bar {
+            padding: 12px 20px;
+            background: rgba(1, 23, 54, 0.7);
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 14px 10px 36px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-bar input::placeholder { color: #475569; }
+        .search-bar input:focus { border-color: #3b82f6; }
+        .search-wrap {
+            position: relative;
+        }
+        .search-wrap::before {
+            content: '🔍';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        /* ── Department pills ─────────────────────────────────────────── */
+        .dept-pills {
+            display: flex;
+            gap: 6px;
+            padding: 8px 20px 4px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .dept-pills::-webkit-scrollbar { display: none; }
+        .dept-pill {
+            flex-shrink: 0;
+            padding: 6px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: transparent;
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .dept-pill.active {
+            background: #011736;
+            color: #fff;
+            border-color: #011736;
+            box-shadow: 0 2px 8px rgba(1,23,54,0.5);
+        }
+        .dept-pill:hover:not(.active) { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+
+        /* ── 3D Cylindrical Wheel Container ───────────────────────────── */
+        .wheel-container {
+            position: relative;
+            height: calc(100vh - 220px);
+            perspective: 1000px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .wheel-track {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            transform-style: preserve-3d;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* ── Contact Card ─────────────────────────────────────────────── */
+        .card {
+            position: absolute;
+            width: calc(100% - 48px);
+            left: 24px;
+            height: 130px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 18px 20px;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                        opacity 0.35s ease,
+                        box-shadow 0.35s ease,
+                        background 0.35s ease,
+                        border-color 0.35s ease;
+            will-change: transform, opacity;
+        }
+        .card.active {
+            background: rgba(255, 255, 255, 0.95);
+            color: #011736;
+            border-color: rgba(255,255,255,1);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255,255,255,0.1);
+            z-index: 5;
+        }
+        .card .name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+        .card.active .name { font-size: 20px; color: #011736; }
+        .card .position {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+        .card.active .position { color: #475569; }
+        .card .position-en {
+            font-size: 11px;
+            color: #64748b;
+            font-style: italic;
+        }
+        .card.active .position-en { color: #94a3b8; }
+        .card .phone-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .card .phone-num {
+            font-size: 16px;
+            font-weight: 700;
+            color: #3b82f6;
+            letter-spacing: 1px;
+        }
+        .card.active .phone-num { color: #011736; font-size: 18px; }
+        .card .phone-badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            background: rgba(59,130,246,0.15);
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        .card.active .phone-badge {
+            background: #011736;
+            color: #fff;
+        }
+        .card .dept-badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.08);
+            color: #64748b;
+            font-weight: 600;
+            margin-top: 6px;
+            display: inline-block;
+        }
+        .card.active .dept-badge {
+            background: #e2e8f0;
+            color: #011736;
+        }
+        .card .email {
+            font-size: 11px;
+            color: #475569;
+            margin-top: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .card.active .email { color: #64748b; }
+
+        /* Call button on active card */
+        .call-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: #011736;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background 0.2s;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .card.active .call-btn {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .call-btn:hover { background: #1e7e34; transform: translateY(-50%) scale(1.1); }
+
+        /* ── Scroll indicator ─────────────────────────────────────────── */
+        .scroll-hint {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #475569;
+            pointer-events: none;
+            animation: fadeHint 3s ease 2s forwards;
+        }
+        @keyframes fadeHint { to { opacity: 0; } }
+
+        /* ── Counter ──────────────────────────────────────────────────── */
+        .counter {
+            position: fixed;
+            bottom: 12px;
+            right: 20px;
+            font-size: 12px;
+            color: #475569;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        /* ── Quick Contact (shared) ──────────────────────────────────── */
+        .quick-contact { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
+        .qc-toggle {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+        .qc-toggle:hover { background: rgba(255,255,255,0.15); }
+        .qc-panel {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            padding: 14px;
+            min-width: 240px;
+            color: #333;
+        }
+        .qc-item { margin-bottom: 10px; }
+        .qc-item:last-child { margin-bottom: 0; }
+        .qc-role { display: block; font-size: 12px; color: #64748b; margin-bottom: 2px; }
+        .qc-phone {
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #011736;
+            text-decoration: none;
+        }
+        .qc-phone:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><img src="images/Damen Marine logo.png" alt="Damen"></div>
+        <div>
+            <h1>Kontakty DMCG</h1>
+            <div class="subtitle">Książka telefoniczna pracowników</div>
+        </div>
+        <a href="index.html" class="back-btn">← FAQ</a>
+    </div>
+
+    <div class="search-bar">
+        <div class="search-wrap">
+            <input type="text" id="search-input" placeholder="Szukaj osoby, stanowiska, działu..." autocomplete="off" />
+        </div>
+    </div>
+
+    <div class="dept-pills" id="dept-pills"></div>
+
+    <div class="wheel-container" id="wheel-container">
+        <div class="wheel-track" id="wheel-track"></div>
+    </div>
+
+    <div class="counter" id="counter"></div>
+    <div class="scroll-hint">↕ Przewiń, aby przeglądać kontakty</div>
+
+    <!-- Quick Contact -->
+    <div class="quick-contact">
+        <button type="button" class="qc-toggle" id="qc-toggle">📞 Kontakt</button>
+        <div class="qc-panel" id="qc-panel" style="display:none;">
+            <div class="qc-item">
+                <span class="qc-role">👷 Dyżurny inspektor BHP</span>
+                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
+            </div>
+            <div class="qc-item">
+                <span class="qc-role">👥 Dział HR</span>
+                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ── 3D Cylindrical Wheel Picker ────────────────────────────────── */
+    (function () {
+        const CARD_HEIGHT = 145;
+        const VISIBLE_RADIUS = 5;
+        const SCALE_CENTER = 1.08;
+        const SCALE_MIN = 0.82;
+        const ROTATE_MAX = 28;
+        const TRANSLATE_Z = -120;
+
+        let allContacts = [];
+        let filtered = [];
+        let activeIndex = 0;
+        let activeDept = 'Wszyscy';
+        let isScrolling = false;
+        let scrollTimer = null;
+        let startY = 0;
+        let startOffset = 0;
+        let velocity = 0;
+        let lastY = 0;
+        let lastTime = 0;
+        let animFrame = null;
+        let currentOffset = 0;
+        let targetOffset = 0;
+
+        const track = document.getElementById('wheel-track');
+        const container = document.getElementById('wheel-container');
+        const counter = document.getElementById('counter');
+        const searchInput = document.getElementById('search-input');
+        const deptPills = document.getElementById('dept-pills');
+
+        /* ── Load data (inline fallback + fetch) ─────────────────────── */
+        var INLINE_CONTACTS = [{"name":"Bartnicki Oskar","phone":"737444345","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Oskar.Bartnicki@damen.com","department":"Engineering"},{"name":"Basa Sebastian","phone":"664453522","position_pl":"Kierownik Działu Utrzymania Ruchu","position_en":"Maintenance Department Manager","email":"Sebastian.Basa@damen.com","department":"Utrzymanie Ruchu"},{"name":"Bielski Piotr","phone":"692437678","position_pl":"Brygadzista (PP1)","position_en":"Chargehand","email":"Piotr.Bielski@damen.com","department":"Produkcja"},{"name":"Bieniecka-Hurka Aleksandra","phone":"532806813","position_pl":"Kierownik działu HR","position_en":"Human Resources Manager","email":"Aleksandra.Bieniecka.Hurka@damen.com","department":"HR"},{"name":"Błażejak Marcin","phone":"664925583","position_pl":"Magazynier","position_en":"Storeman","email":"magazyn.dmcgd@damen.com","department":"Magazyn"},{"name":"Bojanowski Marek","phone":"888969868","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Marek.Bojanowski@damen.com","department":"Engineering"},{"name":"Bork Iwona","phone":"734415861","position_pl":"Księgowa (DR)","position_en":"Accountant","email":"Iwona.Bork@damen.com","department":"Księgowość"},{"name":"Borowski Tomasz","phone":"602752871","position_pl":"Specjalista ds. Zakupów","position_en":"Purchasing Specialist","email":"Tomasz.Borowski@damen.com","department":"Zaopatrzenie"},{"name":"Butkiewicz Jakub","phone":"880672401","position_pl":"Operator prasy","position_en":"Press Operator","email":"Jakub.Butkiewicz@damen.com","department":"Produkcja"},{"name":"Cybowicz Daniel","phone":"574091116","position_pl":"Specjalista utrzymania ruchu","position_en":"Maintenance Specialist","email":"Daniel.Cybowicz@damen.com","department":"Utrzymanie Ruchu"},{"name":"Cytrycka Marcelina","phone":"574408784","position_pl":"Specjalista ds. zakupów","position_en":"Purchasing Specialist","email":"Marcelina.Cytrycka@damen.com","department":"Zaopatrzenie"},{"name":"Dermiaha Daniel","phone":"602310732","position_pl":"Kierownik Odziału (PPM)","position_en":"Production Manager","email":"Daniel.Dermiaha@damen.com","department":"Produkcja"},{"name":"Droszkowski Adrian","phone":"882364146","position_pl":"Operator transportu","position_en":"Transport Operator","email":"","department":"Transport"},{"name":"Dzierbicki Bartosz","phone":"532466949","position_pl":"Kierownik Techniczny","position_en":"Technical Manager","email":"Bartosz.Dzierbicki@damen.com","department":"Zarządzanie"},{"name":"Ellwart Witold","phone":"","position_pl":"Brygadzista","position_en":"Chargehand","email":"","department":"Produkcja"},{"name":"Gala Marek","phone":"","position_pl":"Asystent Szefa Produkcji","position_en":"Production Assistant","email":"","department":"Produkcja"},{"name":"Gieroń Sławomir","phone":"","position_pl":"Dyrektor Zarządu","position_en":"Board Director","email":"","department":"Zarządzanie"},{"name":"Jaromiej Bogdan","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Kozłowska Joanna","phone":"","position_pl":"Główna Księgowa","position_en":"Chief Accountant","email":"","department":"Księgowość"},{"name":"Kryla Piotr","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Nawrocki Tomasz","phone":"501773805","position_pl":"Kierownik Działu Jakości","position_en":"Quality Manager","email":"Tomasz.Nawrocki@damen.com","department":"Jakość"},{"name":"Piechota Andrzej","phone":"","position_pl":"Technolog","position_en":"Technologist","email":"","department":"Engineering"},{"name":"Przewoźny Piotr","phone":"698870232","position_pl":"Kierownik Kompletacji","position_en":"Assembly Manager","email":"","department":"Produkcja"},{"name":"Rolnicka Bożena","phone":"","position_pl":"Kierownik Działu Org. Personalnych","position_en":"HR Department Manager","email":"","department":"HR"},{"name":"Sabatura Natalia","phone":"","position_pl":"Księgowa","position_en":"Accountant","email":"","department":"Księgowość"},{"name":"Włoch Jacek","phone":"","position_pl":"Tłumacz","position_en":"Translator","email":"","department":"Inne"},{"name":"Woźniak Wojciech","phone":"604525707","position_pl":"Szef Produkcji","position_en":"Production Director","email":"","department":"Zarządzanie"},{"name":"Zaboklicki Maciej","phone":"","position_pl":"Kierownik Magazynu/Kompletacji","position_en":"Warehouse Manager","email":"","department":"Magazyn"},{"name":"Żołądowski Janusz","phone":"602729347","position_pl":"Zaopatrzenie","position_en":"Purchasing","email":"","department":"Zaopatrzenie"},{"name":"Przybyłek Ilona","phone":"","position_pl":"Specjalista ds. Księgowości","position_en":"Accounting Specialist","email":"","department":"Księgowość"}];
+
+        function loadData(data) {
+            allContacts = data;
+            filtered = [...allContacts];
+            buildDeptPills();
+            renderCards();
+            snapTo(0, false);
+        }
+
+        // Try fetch first, fall back to inline
+        fetch('contacts.json')
+            .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+            .then(loadData)
+            .catch(function() { loadData(INLINE_CONTACTS); });
+
+        /* ── Department pills ────────────────────────────────────────── */
+        function buildDeptPills() {
+            const depts = ['Wszyscy'];
+            const seen = new Set();
+            allContacts.forEach(c => {
+                if (!seen.has(c.department)) {
+                    seen.add(c.department);
+                    depts.push(c.department);
+                }
+            });
+            deptPills.innerHTML = depts.map(d =>
+                '<button class="dept-pill' + (d === activeDept ? ' active' : '') + '" data-dept="' + d + '">' + d + '</button>'
+            ).join('');
+        }
+
+        deptPills.addEventListener('click', function(e) {
+            const btn = e.target.closest('.dept-pill');
+            if (!btn) return;
+            activeDept = btn.dataset.dept;
+            deptPills.querySelectorAll('.dept-pill').forEach(b => b.classList.toggle('active', b === btn));
+            applyFilters();
+        });
+
+        /* ── Search ──────────────────────────────────────────────────── */
+        searchInput.addEventListener('input', applyFilters);
+
+        function applyFilters() {
+            const q = searchInput.value.trim().toLowerCase();
+            filtered = allContacts.filter(c => {
+                if (activeDept !== 'Wszyscy' && c.department !== activeDept) return false;
+                if (q) {
+                    const hay = (c.name + ' ' + c.position_pl + ' ' + c.position_en + ' ' + c.department + ' ' + c.email).toLowerCase();
+                    return hay.includes(q);
+                }
+                return true;
+            });
+            // Sort alphabetically
+            filtered.sort((a, b) => a.name.localeCompare(b.name, 'pl'));
+            activeIndex = 0;
+            renderCards();
+            snapTo(0, false);
+        }
+
+        /* ── Render cards ────────────────────────────────────────────── */
+        function renderCards() {
+            track.innerHTML = '';
+            if (!filtered.length) {
+                track.innerHTML = '<div style="text-align:center;color:#64748b;padding:40px;font-size:14px;">Brak wyników</div>';
+                counter.textContent = '0 / 0';
+                return;
+            }
+            filtered.forEach((c, i) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = i;
+
+                const phoneHtml = c.phone
+                    ? '<span class="phone-num">' + esc(c.phone) + '</span><span class="phone-badge">kom</span>'
+                    : '<span class="phone-num" style="color:#64748b;font-size:13px;">brak numeru</span>';
+
+                const emailHtml = c.email ? '<div class="email">✉ ' + esc(c.email) + '</div>' : '';
+
+                card.innerHTML =
+                    '<div class="name">' + esc(c.name) + '</div>' +
+                    '<div class="position">' + esc(c.position_pl) + '</div>' +
+                    (c.position_en ? '<div class="position-en">' + esc(c.position_en) + '</div>' : '') +
+                    '<div class="phone-row">' + phoneHtml + '</div>' +
+                    '<div class="dept-badge">' + esc(c.department) + '</div>' +
+                    emailHtml +
+                    (c.phone ? '<button class="call-btn" title="Zadzwoń">📞</button>' : '');
+
+                // Click card to focus
+                card.addEventListener('click', function() {
+                    if (i !== activeIndex) {
+                        snapTo(i, true);
+                    } else if (c.phone) {
+                        window.location.href = 'tel:' + c.phone;
+                    }
+                });
+
+                // Click call button
+                const callBtn = card.querySelector('.call-btn');
+                if (callBtn && c.phone) {
+                    callBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        window.location.href = 'tel:' + c.phone;
+                    });
+                }
+
+                track.appendChild(card);
+            });
+            counter.textContent = (activeIndex + 1) + ' / ' + filtered.length;
+        }
+
+        /* ── Position cards on 3D cylinder ───────────────────────────── */
+        function updatePositions() {
+            const cards = track.querySelectorAll('.card');
+            const center = activeIndex;
+
+            cards.forEach((card, i) => {
+                const diff = i - center;
+                const absDiff = Math.abs(diff);
+
+                // Scale: center = 1.08, far = 0.82
+                const t = Math.min(absDiff / VISIBLE_RADIUS, 1);
+                const scale = SCALE_CENTER - t * (SCALE_CENTER - SCALE_MIN);
+
+                // RotateX: center = 0, far = ±28deg
+                const rotateX = diff * (ROTATE_MAX / VISIBLE_RADIUS) * -1;
+
+                // TranslateZ: center = 0, far = -120px
+                const translateZ = -absDiff * (TRANSLATE_Z / VISIBLE_RADIUS);
+
+                // Vertical offset
+                const translateY = diff * CARD_HEIGHT;
+
+                // Opacity
+                const opacity = absDiff > VISIBLE_RADIUS ? 0 : 1 - t * 0.6;
+
+                card.style.transform =
+                    'translateY(' + translateY + 'px) ' +
+                    'translateZ(' + translateZ + 'px) ' +
+                    'rotateX(' + rotateX + 'deg) ' +
+                    'scale(' + scale + ')';
+                card.style.opacity = opacity;
+                card.style.zIndex = VISIBLE_RADIUS - absDiff + 10;
+
+                if (diff === 0) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            counter.textContent = filtered.length ? (activeIndex + 1) + ' / ' + filtered.length : '0 / 0';
+        }
+
+        /* ── Snap to index ───────────────────────────────────────────── */
+        function snapTo(index, animate) {
+            if (!filtered.length) return;
+            activeIndex = Math.max(0, Math.min(index, filtered.length - 1));
+            if (animate) {
+                track.style.transition = 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1)';
+            } else {
+                track.style.transition = 'none';
+            }
+            updatePositions();
+        }
+
+        /* ── Touch / Mouse handling ──────────────────────────────────── */
+        function onStart(y) {
+            isScrolling = true;
+            startY = y;
+            startOffset = activeIndex;
+            velocity = 0;
+            lastY = y;
+            lastTime = Date.now();
+            track.style.transition = 'none';
+            if (animFrame) cancelAnimationFrame(animFrame);
+        }
+
+        function onMove(y) {
+            if (!isScrolling) return;
+            const delta = startY - y;
+            const now = Date.now();
+            const dt = now - lastTime;
+            if (dt > 0) {
+                velocity = (lastY - y) / dt;
+            }
+            lastY = y;
+            lastTime = now;
+
+            const indexDelta = delta / CARD_HEIGHT;
+            let newIdx = Math.round(startOffset + indexDelta);
+            newIdx = Math.max(0, Math.min(newIdx, filtered.length - 1));
+            if (newIdx !== activeIndex) {
+                activeIndex = newIdx;
+                updatePositions();
+            }
+        }
+
+        function onEnd() {
+            if (!isScrolling) return;
+            isScrolling = false;
+
+            // Apply momentum
+            const momentum = Math.round(velocity * 8);
+            let target = activeIndex + momentum;
+            target = Math.max(0, Math.min(target, filtered.length - 1));
+
+            track.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+            activeIndex = target;
+            updatePositions();
+        }
+
+        // Touch events
+        container.addEventListener('touchstart', function(e) {
+            onStart(e.touches[0].clientY);
+        }, { passive: true });
+        container.addEventListener('touchmove', function(e) {
+            onMove(e.touches[0].clientY);
+            e.preventDefault();
+        }, { passive: false });
+        container.addEventListener('touchend', onEnd);
+
+        // Mouse events
+        container.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            onStart(e.clientY);
+        });
+        document.addEventListener('mousemove', function(e) {
+            onMove(e.clientY);
+        });
+        document.addEventListener('mouseup', onEnd);
+
+        // Wheel event
+        container.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const dir = e.deltaY > 0 ? 1 : -1;
+            snapTo(activeIndex + dir, true);
+        }, { passive: false });
+
+        // Keyboard
+        document.addEventListener('keydown', function(e) {
+            if (e.target === searchInput) return;
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                snapTo(activeIndex + 1, true);
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                snapTo(activeIndex - 1, true);
+            } else if (e.key === 'Enter') {
+                const c = filtered[activeIndex];
+                if (c && c.phone) window.location.href = 'tel:' + c.phone;
+            }
+        });
+
+        // Quick Contact toggle
+        document.getElementById('qc-toggle').addEventListener('click', function() {
+            const panel = document.getElementById('qc-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        });
+
+        function esc(s) {
+            return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    })();
+    </script>
+</body>
+</html>
