@@ -30,6 +30,47 @@
     </nav>
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
+    <!-- Command Palette (Cmd+K) -->
+    <div class="cp-overlay" id="cp-overlay">
+        <div class="cp-modal" id="cp-modal">
+            <div class="cp-search-row">
+                <span class="cp-icon">⌘</span>
+                <input type="text" id="cp-input" placeholder="Szukaj stron, pytań, kontaktów..." autocomplete="off" />
+                <kbd class="cp-kbd">ESC</kbd>
+            </div>
+            <div class="cp-results" id="cp-results">
+                <div class="cp-group">
+                    <div class="cp-group-title">Strony</div>
+                    <div class="cp-item" data-url="index.html"><span class="cp-item-icon">🏠</span>FAQ — Asystent dla pracowników<span class="cp-item-hint">Strona główna</span></div>
+                    <div class="cp-item" data-url="contacts.html"><span class="cp-item-icon">📞</span>Kontakty DMCG<span class="cp-item-hint">Książka telefoniczna</span></div>
+                    <div class="cp-item" data-url="o-damen.html"><span class="cp-item-icon">🚢</span>O Damen Marine Components<span class="cp-item-hint">Historia firmy</span></div>
+                    <div class="cp-item" data-url="admin.html"><span class="cp-item-icon">⚙️</span>Panel admina<span class="cp-item-hint">Edycja FAQ</span></div>
+                </div>
+                <div class="cp-group" id="cp-faq-group" style="display:none;">
+                    <div class="cp-group-title">Pytania FAQ</div>
+                    <div id="cp-faq-items"></div>
+                </div>
+                <div class="cp-group" id="cp-contacts-group" style="display:none;">
+                    <div class="cp-group-title">Kontakty</div>
+                    <div id="cp-contact-items"></div>
+                </div>
+                <div class="cp-group">
+                    <div class="cp-group-title">Skróty</div>
+                    <div class="cp-item" data-action="toggle-bp"><span class="cp-item-icon">📐</span>Przełącz tryb Blueprint<span class="cp-item-hint">蓝图</span></div>
+                    <div class="cp-item" data-action="scroll-top"><span class="cp-item-icon">⬆️</span>Przewiń do góry</div>
+                    <div class="cp-item" data-action="show-all"><span class="cp-item-icon">📋</span>Pokaż wszystkie pytania</div>
+                </div>
+            </div>
+            <div class="cp-footer">
+                <span>↑↓ Nawigacja</span>
+                <span>↵ Wybierz</span>
+                <span>ESC Zamknij</span>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile gesture trigger -->
+    <button type="button" class="cp-mobile-trigger" id="cp-mobile-trigger" aria-label="Szukaj">🔍</button>
+
     <!-- Blueprint Mode toggle -->
     <button type="button" class="bp-toggle" id="bp-toggle">📐 Blueprint</button>
 
@@ -178,6 +219,209 @@
             bpToggle.addEventListener('click', function() {
                 document.body.classList.toggle('blueprint');
             });
+        }
+
+        /* ── Command Palette (Cmd+K / Ctrl+K) ──────────────────────── */
+        var cpOverlay = document.getElementById('cp-overlay');
+        var cpInput = document.getElementById('cp-input');
+        var cpResults = document.getElementById('cp-results');
+        var cpFaqItems = document.getElementById('cp-faq-items');
+        var cpFaqGroup = document.getElementById('cp-faq-group');
+        var cpContactItems = document.getElementById('cp-contact-items');
+        var cpContactGroup = document.getElementById('cp-contact-group');
+        var cpActiveIdx = -1;
+        var faqData = [];
+        var contactsData = [];
+
+        function openPalette() {
+            cpOverlay.classList.add('open');
+            cpInput.value = '';
+            cpActiveIdx = -1;
+            cpInput.focus();
+            filterPalette('');
+        }
+        function closePalette() {
+            cpOverlay.classList.remove('open');
+        }
+
+        // Load FAQ data for search
+        fetch('api.json').then(function(r) { return r.ok ? r.json() : []; })
+            .then(function(d) { if (Array.isArray(d)) faqData = d; })
+            .catch(function() {});
+        // Load contacts for search
+        fetch('contacts.json').then(function(r) { return r.ok ? r.json() : []; })
+            .then(function(d) { if (Array.isArray(d)) contactsData = d; })
+            .catch(function() {});
+
+        function filterPalette(q) {
+            var ql = q.toLowerCase().trim();
+            var visible = 0;
+
+            // Filter FAQ
+            var faqMatches = ql ? faqData.filter(function(f) {
+                var hay = ((f.question && f.question.pl) || '') + ' ' + ((f.category && f.category.pl) || '');
+                return hay.toLowerCase().indexOf(ql) !== -1;
+            }).slice(0, 5) : [];
+
+            if (faqMatches.length) {
+                cpFaqGroup.style.display = '';
+                cpFaqItems.innerHTML = faqMatches.map(function(f) {
+                    var q = (f.question && f.question.pl) || '';
+                    return '<div class="cp-item" data-faq="' + f.id + '"><span class="cp-item-icon">❓</span>' + escH(q) + '</div>';
+                }).join('');
+                visible += faqMatches.length;
+            } else {
+                cpFaqGroup.style.display = 'none';
+            }
+
+            // Filter contacts
+            var contactMatches = ql ? contactsData.filter(function(c) {
+                var hay = c.name + ' ' + c.position_pl + ' ' + c.department;
+                return hay.toLowerCase().indexOf(ql) !== -1;
+            }).slice(0, 5) : [];
+
+            if (contactMatches.length) {
+                cpContactGroup.style.display = '';
+                cpContactItems.innerHTML = contactMatches.map(function(c) {
+                    var phoneHint = c.phone ? ' — ' + c.phone : '';
+                    return '<div class="cp-item" data-contact="' + escH(c.name) + '"><span class="cp-item-icon">👤</span>' + escH(c.name) + '<span class="cp-item-hint">' + escH(c.department) + phoneHint + '</span></div>';
+                }).join('');
+                visible += contactMatches.length;
+            } else {
+                cpContactGroup.style.display = 'none';
+            }
+
+            // Filter static items
+            var items = cpResults.querySelectorAll('.cp-group:not(#cp-faq-group):not(#cp-contacts-group) .cp-item');
+            items.forEach(function(item) {
+                if (!ql) { item.style.display = ''; visible++; return; }
+                var text = item.textContent.toLowerCase();
+                var match = text.indexOf(ql) !== -1;
+                item.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+
+            // Show empty state
+            var existing = cpResults.querySelector('.cp-empty');
+            if (existing) existing.remove();
+            if (visible === 0 && ql) {
+                var empty = document.createElement('div');
+                empty.className = 'cp-empty';
+                empty.textContent = 'Brak wyników dla "' + q + '"';
+                cpResults.appendChild(empty);
+            }
+
+            cpActiveIdx = -1;
+            updateActiveItem();
+        }
+
+        function getVisibleItems() {
+            return Array.from(cpResults.querySelectorAll('.cp-item:not([style*="display: none"])'));
+        }
+
+        function updateActiveItem() {
+            var items = getVisibleItems();
+            items.forEach(function(item, i) {
+                item.classList.toggle('active', i === cpActiveIdx);
+            });
+            if (cpActiveIdx >= 0 && items[cpActiveIdx]) {
+                items[cpActiveIdx].scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        function executeItem(item) {
+            if (!item) return;
+            var url = item.dataset.url;
+            var faqId = item.dataset.faq;
+            var action = item.dataset.action;
+            var contact = item.dataset.contact;
+
+            closePalette();
+
+            if (url) {
+                // View Transitions API
+                if (document.startViewTransition) {
+                    document.startViewTransition(function() {
+                        window.location.href = url;
+                    });
+                } else {
+                    window.location.href = url;
+                }
+            } else if (faqId) {
+                var input = document.getElementById('question-input');
+                var item_data = faqData.find(function(f) { return String(f.id) === String(faqId); });
+                if (item_data && item_data.question && item_data.question.pl) {
+                    input.value = item_data.question.pl;
+                    document.getElementById('ask-btn').click();
+                }
+            } else if (action === 'toggle-bp') {
+                document.body.classList.toggle('blueprint');
+            } else if (action === 'scroll-top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (action === 'show-all') {
+                var toggle = document.querySelector('.toggle-all');
+                if (toggle) toggle.click();
+            } else if (contact) {
+                window.location.href = 'contacts.html';
+            }
+        }
+
+        function escH(s) {
+            return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // Keyboard shortcut: Cmd+K / Ctrl+K
+        document.addEventListener('keydown', function(e) {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                if (cpOverlay.classList.contains('open')) {
+                    closePalette();
+                } else {
+                    openPalette();
+                }
+            }
+            if (e.key === 'Escape' && cpOverlay.classList.contains('open')) {
+                closePalette();
+            }
+        });
+
+        // Input filtering
+        if (cpInput) {
+            cpInput.addEventListener('input', function() {
+                filterPalette(cpInput.value);
+            });
+            cpInput.addEventListener('keydown', function(e) {
+                var items = getVisibleItems();
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    cpActiveIdx = Math.min(cpActiveIdx + 1, items.length - 1);
+                    updateActiveItem();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    cpActiveIdx = Math.max(cpActiveIdx - 1, 0);
+                    updateActiveItem();
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeItem(items[cpActiveIdx] || items[0]);
+                }
+            });
+        }
+
+        // Click on item
+        cpResults.addEventListener('click', function(e) {
+            var item = e.target.closest('.cp-item');
+            if (item) executeItem(item);
+        });
+
+        // Click overlay to close
+        cpOverlay.addEventListener('click', function(e) {
+            if (e.target === cpOverlay) closePalette();
+        });
+
+        // Mobile trigger
+        var cpMobile = document.getElementById('cp-mobile-trigger');
+        if (cpMobile) {
+            cpMobile.addEventListener('click', openPalette);
         }
     });
     </script>
