@@ -56,7 +56,7 @@
                 </div>
                 <div class="cp-group">
                     <div class="cp-group-title">Skróty</div>
-                    <div class="cp-item" data-action="toggle-bp"><span class="cp-item-icon">📐</span>Przełącz tryb Blueprint<span class="cp-item-hint">蓝图</span></div>
+
                     <div class="cp-item" data-action="scroll-top"><span class="cp-item-icon">⬆️</span>Przewiń do góry</div>
                     <div class="cp-item" data-action="show-all"><span class="cp-item-icon">📋</span>Pokaż wszystkie pytania</div>
                 </div>
@@ -70,9 +70,6 @@
     </div>
     <!-- Mobile gesture trigger -->
     <button type="button" class="cp-mobile-trigger" id="cp-mobile-trigger" aria-label="Szukaj">🔍</button>
-
-    <!-- Blueprint Mode toggle -->
-    <button type="button" class="bp-toggle" id="bp-toggle">📐 Blueprint</button>
 
     <div class="container">
         <div class="header" id="header-canvas">
@@ -213,14 +210,6 @@
         if (overlay) overlay.addEventListener('click', closeSidebar);
         if (close) close.addEventListener('click', closeSidebar);
 
-        /* Blueprint Mode toggle */
-        var bpToggle = document.getElementById('bp-toggle');
-        if (bpToggle) {
-            bpToggle.addEventListener('click', function() {
-                document.body.classList.toggle('blueprint');
-            });
-        }
-
         /* ── Command Palette (Cmd+K / Ctrl+K) ──────────────────────── */
         var cpOverlay = document.getElementById('cp-overlay');
         var cpInput = document.getElementById('cp-input');
@@ -354,8 +343,6 @@
                     input.value = item_data.question.pl;
                     document.getElementById('ask-btn').click();
                 }
-            } else if (action === 'toggle-bp') {
-                document.body.classList.toggle('blueprint');
             } else if (action === 'scroll-top') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else if (action === 'show-all') {

@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    Damen FAQ — Technical Luxury Design System
-   Deep Navy + Titanium + Arctic Blue + Glassmorphism + Blueprint Mode
+   Deep Navy + Titanium + Arctic Blue + Glassmorphism
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -57,22 +57,6 @@ body::before {
     background-size: 256px 256px;
     pointer-events: none;
     z-index: 0;
-}
-
-/* ── Blueprint mode background ─────────────────────────────────────────── */
-body.blueprint {
-    background: #0a1628;
-}
-body.blueprint::before {
-    background-image:
-        url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 0v40M0 0h40' stroke='%231e3a5f' stroke-width='0.5' opacity='0.4'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 800 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 350 Q200 340 400 200 Q500 100 600 80 Q700 60 750 100' fill='none' stroke='%231e3a5f' stroke-width='1.5' opacity='0.3'/%3E%3Cpath d='M50 350 Q150 360 300 320 Q500 280 650 200 Q720 160 750 100' fill='none' stroke='%231e3a5f' stroke-width='0.8' opacity='0.2'/%3E%3Cpath d='M100 355 Q250 345 400 250 Q500 170 600 130' fill='none' stroke='%232563eb' stroke-width='0.4' opacity='0.15' stroke-dasharray='4 4'/%3E%3C/svg%3E");
-    background-size: 40px 40px, 100% 100%;
-    opacity: 1;
-}
-body.blueprint .container {
-    position: relative;
-    z-index: 1;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -614,54 +598,6 @@ body.blueprint .container {
     white-space: nowrap;
 }
 .qc-phone:hover { text-decoration: underline; }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLUEPRINT MODE TOGGLE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.bp-toggle {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 100;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    padding: 6px 12px;
-    font-size: 12px;
-    color: var(--titanium-400);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-}
-.bp-toggle:hover {
-    background: rgba(255,255,255,0.1);
-    color: var(--arctic-400);
-    border-color: var(--arctic-500);
-}
-body.blueprint .bp-toggle {
-    background: rgba(96, 165, 250, 0.15);
-    color: var(--arctic-400);
-    border-color: var(--arctic-500);
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-}
-body.blueprint * {
-    font-family: 'JetBrains Mono', 'Courier New', monospace !important;
-}
-body.blueprint .header-text h1 {
-    font-family: 'JetBrains Mono', monospace !important;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-body.blueprint .answer p,
-body.blueprint .example-question,
-body.blueprint .story-tab p {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 13px;
-    line-height: 1.8;
-}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    COMMAND PALETTE (Cmd+K / Ctrl+K)
