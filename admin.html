@@ -532,6 +532,68 @@
             color: #64748b;
         }
 
+        /* ── Sekcja nietrafionych zapytań ──────────────────────────────── */
+        .unanswered-detail {
+            padding: 14px 16px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .unanswered-detail h3 {
+            color: #011736;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .unanswered-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .unanswered-row:last-child {
+            border-bottom: none;
+        }
+        .unanswered-text {
+            flex: 1;
+            font-size: 14px;
+            color: #334155;
+        }
+        .unanswered-count {
+            font-size: 12px;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .unanswered-date {
+            font-size: 11px;
+            color: #94a3b8;
+            flex-shrink: 0;
+        }
+        .unanswered-add-btn {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid #011736;
+            background: #011736;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            flex-shrink: 0;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .unanswered-add-btn:hover {
+            background: #023466;
+        }
+        .unanswered-add-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .unanswered-add-btn.added {
+            background: #1e7e34;
+            border-color: #1e7e34;
+        }
+
         @media (max-width: 720px) {
             .stats-cols {
                 grid-template-columns: 1fr;
@@ -877,6 +939,17 @@
                 <button type="button" id="btn-stats-refresh">🔄 Odśwież</button>
             </div>
             <div id="stats-body"><p class="empty-note">Ładowanie statystyk...</p></div>
+        </div>
+
+        <!-- Nietrafione zapytania — lista z przyciskami dodawania do FAQ -->
+        <div id="unanswered-panel" class="stats-panel" style="display:none;">
+            <div class="stats-header">
+                <h2>🔍 Nietrafione zapytania — do uzupełnienia bazy wiedzy</h2>
+            </div>
+            <div style="padding:14px 16px;">
+                <p class="stats-empty" id="unanswered-empty">Ładowanie...</p>
+                <div id="unanswered-list"></div>
+            </div>
         </div>
 
         <div class="admin-search">

@@ -822,17 +822,23 @@ function statsSyncEvent(event) {
             body: JSON.stringify(event)
         }).catch(() => { /* statyczny hosting bez backendu — dane zostają lokalnie */ });
     } catch (e) { /* ignoruj */ }
-}
-
-function statsRecord(itemId, rawQuestion, matched) {
+}function statsRecord(itemId, rawQuestion, matched) {
     const stats = statsLoad();
+    const today = new Date();
+    const dateKey = today.getFullYear() + '-' +
+        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+        String(today.getDate()).padStart(2, '0');
+    const timeKey = today.toISOString();
+
     if (matched && itemId != null) {
         statsIncMap(stats.questions, String(itemId), STATS_MAX_QUESTIONS);
-        statsSyncEvent({ id: itemId });
+        statsSyncEvent({ type: 'question', id: itemId, date: dateKey });
     } else {
         const k = normalize(String(rawQuestion || '')).slice(0, 120) || '?';
+        const raw = String(rawQuestion || '').slice(0, 120);
         statsIncMap(stats.unanswered, k, STATS_MAX_UNANSWERED);
-        statsSyncEvent({ text: String(rawQuestion || '').slice(0, 120) });
+        // Wyślij nietrafione zapytanie do stats.json (dla admina)
+        statsSyncEvent({ type: 'unanswered', text: k, raw: raw, date: dateKey, time: timeKey });
     }
     stats.total += 1;
     stats.updated = new Date().toISOString();

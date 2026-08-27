@@ -324,6 +324,11 @@ function renderStats() {
                 ${rows(topU, maxU, (k) => '„' + k + '”')}
             </div>
         </div>
+        <div class="unanswered-detail" id="unanswered-detail">
+            <h3>🔍 Nietrafione zapytania — do uzupełnienia bazy wiedzy</h3>
+            <p class="stats-empty" id="unanswered-empty">Ładowanie...</p>
+            <div id="unanswered-list"></div>
+        </div>
         <div class="stats-history">
             <div class="hist-head">
                 <h3>Historia pytań (dane kumulowane, nic nie jest kasowane)</h3>
@@ -337,6 +342,94 @@ function renderStats() {
         <div class="stats-meta">Okres: ${periodSelectLabel()} · ostatnia aktualizacja: ${fmtDate(stats.updated)} · dane anonimowe, bez identyfikacji użytkowników</div>`;
 }
 
+/* ── Sekcja "Nietrafione zapytania" — lista + przycisk Dodaj do FAQ ─── */
+function renderUnansweredDetail() {
+    const panel = $('unanswered-panel');
+    const container = $('unanswered-list');
+    const emptyEl = $('unanswered-empty');
+    if (!container) return;
+
+    // Zbierz nietrafione zapytania z wszystkich dziennych bucketów
+    const queries = new Map(); // normalized -> { raw, count, dates }
+    if (stats && stats.daily) {
+        Object.entries(stats.daily).forEach(([date, bucket]) => {
+            const u = bucket.unanswered || {};
+            Object.entries(u).forEach(([k, v]) => {
+                const existing = queries.get(k);
+                if (existing) {
+                    existing.count += v;
+                    if (!existing.dates.includes(date)) existing.dates.push(date);
+                } else {
+                    queries.set(k, { raw: k, count: v, dates: [date] });
+                }
+            });
+        });
+    }
+
+    // Posortuj malejąco po liczbie wystąpień
+    const sorted = Array.from(queries.values())
+        .sort((a, b) => b.count - a.count);
+
+    if (sorted.length === 0) {
+        if (panel) panel.style.display = 'none';
+        return;
+    }
+
+    if (panel) panel.style.display = '';
+    if (emptyEl) emptyEl.style.display = 'none';
+
+    container.innerHTML = sorted.map((q, i) => {
+        const lastDate = q.dates.sort().pop();
+        // Sprawdź czy to zapytanie już jest w FAQ (porównanie znormalizowane)
+        const existsInFaq = items.some((it) => {
+            const qNorm = (it.question.pl || '').toLowerCase().trim();
+            return qNorm === q.raw.toLowerCase().trim();
+        });
+        const btnLabel = existsInFaq ? '✅ W FAQ' : '➕ Do FAQ';
+        const btnClass = existsInFaq ? 'unanswered-add-btn added' : 'unanswered-add-btn';
+        const btnDisabled = existsInFaq ? 'disabled' : '';
+        return `
+            <div class="unanswered-row">
+                <span class="unanswered-text">„${escHtml(q.raw)}"</span>
+                <span class="unanswered-count">${q.count}×${q.dates.length > 1 ? ' (' + q.dates.length + ' dni)' : ''}</span>
+                <span class="unanswered-date">${escHtml(lastDate)}</span>
+                <button type="button" class="${btnClass}" data-add-faq="${escHtml(q.raw)}" ${btnDisabled} title="Dodaj to jako nowe pytanie w FAQ">${btnLabel}</button>
+            </div>`;
+    }).join('');
+}
+
+/* Dodaje nietrafione zapytanie jako nowe puste pytanie w FAQ */
+function addUnansweredToFaq(text) {
+    const id = items.reduce((m, i) => Math.max(m, i.id), 0) + 1;
+    const newItem = {
+        id,
+        category: { pl: '', en: '' },
+        question: { pl: text, en: '' },
+        answer: { pl: '', en: '' },
+        keywords: [],
+        synonyms: [],
+        media: []
+    };
+    items.push(newItem);
+    renderAll(id);
+    setDirty(true);
+    showMsg('Dodano pytanie #' + id + ' z nietrafionego zapytania: „' + text + '”. Uzupełnij odpowiedź i zapisz.', 'ok');
+
+    // Oznacz przycisk jako dodany
+    const btn = document.querySelector(`[data-add-faq="${text}"]`);
+    if (btn) {
+        btn.textContent = '✅ Dodano';
+        btn.classList.add('added');
+        btn.disabled = true;
+    }
+
+    // Przewiń do nowego pytania
+    setTimeout(() => {
+        const card = document.querySelector(`.item-card[data-id="${id}"]`);
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+}
+
 async function loadStats() {
     const body = $('stats-body');
     if (body) body.innerHTML = '<p class="empty-note">Ładowanie statystyk...</p>';
@@ -348,6 +441,7 @@ async function loadStats() {
         stats = null;
     }
     renderStats();
+    renderUnansweredDetail();
 }
 
 /* ── Eksport do XLSX (bez zewnętrznych bibliotek) ───────────────────────── */
@@ -862,6 +956,14 @@ function bind() {
             e.preventDefault();
             if (dirty) save();
         }
+    });
+
+    // Delegacja: przyciski "➕ Do FAQ" przy nietrafionych zapytaniach.
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-add-faq]');
+        if (!btn) return;
+        const text = btn.dataset.addFaq;
+        if (text) addUnansweredToFaq(text);
     });
 }
 
