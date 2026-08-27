@@ -155,14 +155,15 @@
             position: absolute;
             width: 100%;
             left: 0;
-            height: 120px;
+            height: 105px;
             top: 50%;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 14px 16px;
+            border-radius: 14px;
+            padding: 12px 14px;
+            overflow: hidden;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -186,26 +187,26 @@
             z-index: 5;
         }
         .card .name {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             color: #e2e8f0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .card.active .name { color: #fff; }
+        .card.active .name { color: #fff; font-size: 13px; }
         .card .position {
-            font-size: 12px;
+            font-size: 10px;
             color: #94a3b8;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
         .card.active .position { color: #cbd5e0; }
         .card .position-en {
-            font-size: 10px;
+            font-size: 9px;
             color: #64748b;
             font-style: italic;
             overflow: hidden;
@@ -216,20 +217,20 @@
         .card .phone-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 6px;
+            gap: 6px;
+            margin-top: 4px;
         }
         .card .phone-num {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 700;
             color: #60a5fa;
             letter-spacing: 0.5px;
         }
         .card.active .phone-num { color: #93c5fd; }
         .card .phone-badge {
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 6px;
+            font-size: 8px;
+            padding: 1px 5px;
+            border-radius: 4px;
             background: rgba(96,165,250,0.15);
             color: #60a5fa;
             font-weight: 600;
@@ -239,9 +240,10 @@
             color: #93c5fd;
         }
         .card .dept-badge {
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 6px;
+            font-size: 8px;
+            padding: 1px 5px;
+            border-radius: 4px;
+            margin-top: 2px;
             background: rgba(255,255,255,0.06);
             color: #64748b;
             font-weight: 600;
@@ -253,9 +255,9 @@
             color: #93c5fd;
         }
         .card .email {
-            font-size: 9px;
+            font-size: 8px;
             color: #475569;
-            margin-top: 2px;
+            margin-top: 1px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -268,8 +270,8 @@
             right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            width: 36px; height: 36px;
-            border-radius: 10px;
+            width: 32px; height: 32px;
+            border-radius: 8px;
             border: 1px solid rgba(96,165,250,0.3);
             background: rgba(96,165,250,0.15);
             backdrop-filter: blur(12px);
@@ -421,10 +423,11 @@
     <script>
     /* ── 3D Cylindrical Wheel Picker ────────────────────────────────── */
     (function () {
-        const CARD_HEIGHT = 125;
+        const CARD_HEIGHT = 110;
         const VISIBLE_RADIUS = 4;
         const SCALE_CENTER = 1.0;
-        const SCALE_MIN = 0.55;
+        const SCALE_ADJACENT = 0.85;
+        const SCALE_DISTANT = 0.6;
         const ROTATE_MAX = 20;
         const TRANSLATE_Z = -90;
 
@@ -564,15 +567,17 @@
         function updatePositions() {
             const cards = track.querySelectorAll('.card');
             const center = activeIndex;
-            const centerCardH = 120;
+            const centerCardH = 105;
 
             cards.forEach((card, i) => {
                 const diff = i - center;
                 const absDiff = Math.abs(diff);
 
-                // Scale: center = 1.0, distant = 0.55
-                const t = Math.min(absDiff / VISIBLE_RADIUS, 1);
-                const scale = SCALE_CENTER - t * (SCALE_CENTER - SCALE_MIN);
+                // Scale: center=1.0, adjacent(±1)=0.85, rest=0.60 (30% smaller)
+                let scale;
+                if (absDiff === 0) scale = SCALE_CENTER;
+                else if (absDiff === 1) scale = SCALE_ADJACENT;
+                else scale = SCALE_DISTANT;
 
                 // Gentle rotateX for 3D curvature
                 const rotateX = diff * (ROTATE_MAX / VISIBLE_RADIUS) * -1;
@@ -580,8 +585,8 @@
                 // Push cards back in depth
                 const translateZ = -absDiff * (TRANSLATE_Z / VISIBLE_RADIUS);
 
-                // Vertical offset from center — wider spacing for readability
-                const spacing = centerCardH * 0.95;
+                // Vertical offset from center
+                const spacing = centerCardH * 1.0;
                 const translateY = diff * spacing - (centerCardH / 2);
 
                 // Opacity
