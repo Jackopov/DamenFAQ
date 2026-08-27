@@ -902,18 +902,16 @@
         <div id="items-list"></div>
     </div>
 
-    <!-- Pływający pasek szybkiego kontaktu (ukryty do odblokowania PIN) -->
+    <!-- Pływający dymek szybkiego kontaktu (ukryty do odblokowania PIN) -->
     <div id="quick-contact" class="quick-contact" style="display:none;">
-        <button type="button" id="qc-toggle" class="qc-toggle" aria-label="Szybki kontakt">📞 Kontakt</button>
-        <div id="qc-panel" class="qc-panel" style="display:none;">
-            <div class="qc-item">
-                <span class="qc-role">👷 Dyżurny inspektor BHP</span>
-                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
-            </div>
-            <div class="qc-item">
-                <span class="qc-role">👥 Dział HR</span>
-                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
-            </div>
+        <div class="qc-title">📞 Szybki kontakt</div>
+        <div class="qc-item">
+            <span class="qc-role">👷 BHP</span>
+            <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
+        </div>
+        <div class="qc-item">
+            <span class="qc-role">👥 HR</span>
+            <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
         </div>
     </div>
 
@@ -1014,18 +1012,6 @@
             initPin();
         }
     })();
-
-    /* Quick Contact toggle */
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggle = document.getElementById('qc-toggle');
-        var panel = document.getElementById('qc-panel');
-        if (toggle && panel) {
-            toggle.addEventListener('click', function() {
-                var visible = panel.style.display !== 'none';
-                panel.style.display = visible ? 'none' : 'block';
-            });
-        }
-    });
     </script>
 </body>
 </html>

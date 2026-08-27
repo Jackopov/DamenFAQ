@@ -517,55 +517,60 @@ h1 {
 /* ── Pływający pasek szybkiego kontaktu ────────────────────────────── */
 .quick-contact {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
+    bottom: 60px;
+    right: 16px;
+    z-index: 10000;
     font-family: Arial, sans-serif;
-}
-.qc-toggle {
-    background: #011736;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 13px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: background 0.2s, transform 0.2s;
-}
-.qc-toggle:hover {
-    background: #023466;
-    transform: scale(1.05);
-}
-.qc-panel {
-    position: absolute;
-    bottom: 40px;
-    right: 0;
     background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.18);
     border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    padding: 14px;
-    min-width: 240px;
+    padding: 12px 14px;
+    min-width: 220px;
+    animation: qcSlideIn 0.4s ease;
+}
+@keyframes qcSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.qc-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #011736;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 .qc-item {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.15s;
 }
 .qc-item:last-child {
     margin-bottom: 0;
 }
+.qc-item:hover {
+    background: #f1f5f9;
+}
 .qc-role {
-    display: block;
-    font-size: 12px;
+    font-size: 11px;
     color: #64748b;
-    margin-bottom: 2px;
+    flex-shrink: 0;
 }
 .qc-phone {
     display: inline-block;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     color: #011736;
     text-decoration: none;
+    white-space: nowrap;
 }
 .qc-phone:hover {
     text-decoration: underline;
