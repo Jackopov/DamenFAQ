@@ -30,6 +30,7 @@
             to { opacity: 1; }
         }
         .pin-modal {
+            position: relative;
             background: #fff;
             border-radius: 16px;
             padding: 32px 28px 28px;
@@ -154,6 +155,44 @@
         }
         .pin-key-ok:active {
             background: #000d1f;
+        }
+        .pin-back-arrow {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(1,23,54,0.06);
+            color: #011736;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            z-index: 2;
+        }
+        .pin-back-arrow:hover {
+            background: #011736;
+            color: #fff;
+        }
+        .pin-back {
+            display: block;
+            text-align: center;
+            margin-top: 14px;
+            font-size: 13px;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .pin-back:hover {
+            color: #011736;
+            background: #f1f5f9;
         }
         .admin {
             max-width: 1100px;
@@ -825,6 +864,7 @@
     <!-- PIN Modal -->
     <div id="pin-modal" class="pin-modal-overlay">
         <div class="pin-modal">
+            <a href="index.html" class="pin-back-arrow" title="Wróć do FAQ">←</a>
             <div class="pin-modal-header">
                 <div class="pin-logo"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
                 <h2>Panel Administratora</h2>
@@ -851,6 +891,7 @@
                 <button class="pin-key" data-key="0">0</button>
                 <button class="pin-key pin-key-ok" data-key="ok">OK</button>
             </div>
+            <a href="index.html" class="pin-back">← Wróć do FAQ</a>
         </div>
     </div>
 
