@@ -4,84 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Kontakty — Damen Marine Components</title>
-    <meta name="theme-color" content="#011736">
+    <meta name="theme-color" content="#0a1128">
     <link rel="icon" href="images/Damen Marine logo.png">
     <link rel="manifest" href="manifest.json">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ═══════════════════════════════════════════════════════════════
+           RESET & BASE — Dark Maritime Theme
+           ═══════════════════════════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-deep: #0a1128;
+            --bg-mid: #0d1b3e;
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-blur: 12px;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --accent: #38BDF8;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-border: rgba(56, 189, 248, 0.5);
+            --accent-badge-bg: rgba(56, 189, 248, 0.15);
+            --accent-badge-border: rgba(56, 189, 248, 0.3);
+            --shadow-active: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #011736 40%, #0d2147 100%);
-            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
             min-height: 100vh;
             overflow: hidden;
             -webkit-user-select: none;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* ── Header ──────────────────────────────────────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           HEADER
+           ═══════════════════════════════════════════════════════════════ */
         .header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            margin: 0 16px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.08);
+            gap: 12px;
+            padding: 14px 20px;
+            margin: 12px 16px 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             position: relative;
             z-index: 10;
         }
         .logo {
-            width: 34px; height: 34px;
-            border-radius: 7px;
+            width: 38px; height: 38px;
+            border-radius: 8px;
             overflow: hidden;
             flex-shrink: 0;
         }
         .logo img { width: 100%; height: 100%; object-fit: contain; }
-        .header h1 {
-            font-size: 14px;
+        .header-text { flex: 1; min-width: 0; }
+        .header-text h1 {
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .header .subtitle {
+        .header-text .subtitle {
             font-size: 11px;
-            color: #64748b;
+            color: var(--text-muted);
             font-weight: 400;
         }
         .back-btn {
-            margin-left: auto;
             font-size: 12px;
-            color: #94a3b8;
+            color: var(--text-secondary);
             text-decoration: none;
             padding: 6px 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 6px;
-            transition: all 0.2s;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
         }
-        .back-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .back-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
 
-        /* ── Search ──────────────────────────────────────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           SEARCH BAR
+           ═══════════════════════════════════════════════════════════════ */
         .search-bar {
-            padding: 6px 16px;
+            padding: 10px 16px 0;
         }
-        .search-bar input {
-            width: 100%;
-            padding: 8px 12px 8px 32px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .search-bar input::placeholder { color: #475569; }
-        .search-bar input:focus { border-color: #3b82f6; }
         .search-wrap {
             position: relative;
         }
@@ -91,15 +109,35 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 14px;
+            font-size: 13px;
             pointer-events: none;
+            opacity: 0.6;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 14px 10px 34px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .search-bar input::placeholder { color: var(--text-muted); }
+        .search-bar input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
         }
 
-        /* ── Department pills ─────────────────────────────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           DEPARTMENT PILLS
+           ═══════════════════════════════════════════════════════════════ */
         .dept-pills {
             display: flex;
             gap: 6px;
-            padding: 4px 16px 2px;
+            padding: 8px 16px 4px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -107,232 +145,250 @@
         .dept-pills::-webkit-scrollbar { display: none; }
         .dept-pill {
             flex-shrink: 0;
-            padding: 6px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(6px);
-            color: #94a3b8;
-            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--text-muted);
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition-smooth);
             white-space: nowrap;
         }
         .dept-pill.active {
-            background: rgba(96, 165, 250, 0.15);
-            color: #93c5fd;
-            border-color: rgba(96, 165, 250, 0.3);
-            box-shadow: 0 2px 8px rgba(96,165,250,0.15);
+            background: var(--accent-badge-bg);
+            color: var(--accent);
+            border-color: var(--accent-badge-border);
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.12);
         }
-        .dept-pill:hover:not(.active) { background: rgba(255,255,255,0.08); color: #e2e8f0; }
+        .dept-pill:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
 
-        /* ── 3D Cylindrical Wheel Container ───────────────────────────── */
-        .wheel-container {
+        /* ═══════════════════════════════════════════════════════════════
+           3D CYLINDRICAL WHEEL
+           ═══════════════════════════════════════════════════════════════ */
+        .wheel-viewport {
             position: relative;
             height: calc(100vh - 210px);
+            max-width: 650px;
+            width: 100%;
+            margin: 0 auto;
             perspective: 1200px;
             overflow: hidden;
-            margin-top: 8px;
-            max-width: 66%;
-            margin-left: auto;
-            margin-right: auto;
         }
-        @media (max-width: 768px) {
-            .wheel-container { max-width: 92%; }
+        @media (max-width: 480px) {
+            .wheel-viewport { max-width: 100%; height: calc(100vh - 200px); }
         }
         .wheel-track {
             position: absolute;
             width: 100%;
-            left: 0;
             height: 100%;
             top: 0;
+            left: 0;
             transform-style: preserve-3d;
         }
 
-        /* ── Contact Card (glassmorphism) ────────────────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           CONTACT CARD
+           ═══════════════════════════════════════════════════════════════ */
         .card {
             position: absolute;
             width: 100%;
             left: 0;
-            height: 105px;
+            height: 110px;
             top: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
             border-radius: 14px;
-            padding: 12px 14px;
-            overflow: hidden;
+            padding: 18px 20px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.45s cubic-bezier(0.25, 1, 0.35, 1),
-                        opacity 0.4s ease,
-                        box-shadow 0.4s ease,
-                        background 0.4s ease,
-                        border-color 0.4s ease;
+            overflow: hidden;
+            transition: var(--transition-smooth);
             will-change: transform, opacity;
         }
+
+        /* ── Active card ─────────────────────────────────────────── */
         .card.active {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            color: #fff;
-            border: 1px solid rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25),
-                        inset 0 1px 0 rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.09);
+            border-color: var(--accent-border);
+            box-shadow: var(--shadow-active);
             z-index: 5;
         }
+
+        /* ── Name ────────────────────────────────────────────────── */
         .card .name {
-            font-size: 12px;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 2px;
-            color: #e2e8f0;
+            color: var(--text-primary);
+            line-height: 1.3;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
-        .card.active .name { color: #fff; font-size: 13px; }
+        .card.active .name { color: #FFFFFF; }
+
+        /* ── Position ────────────────────────────────────────────── */
         .card .position {
-            font-size: 10px;
-            color: #94a3b8;
-            margin-bottom: 1px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
-        .card.active .position { color: #cbd5e0; }
+        .card.active .position { color: #CBD5E1; }
+
         .card .position-en {
-            font-size: 9px;
-            color: #64748b;
+            font-size: 0.75rem;
+            color: var(--text-muted);
             font-style: italic;
+            line-height: 1.3;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
-        .card.active .position-en { color: #94a3b8; }
+        .card.active .position-en { color: var(--text-secondary); }
+
+        /* ── Phone row ───────────────────────────────────────────── */
         .card .phone-row {
             display: flex;
             align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .card .phone-link {
+            display: inline-flex;
+            align-items: center;
             gap: 6px;
-            margin-top: 4px;
-        }
-        .card .phone-num {
-            font-size: 12px;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #60a5fa;
-            letter-spacing: 0.5px;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: color 0.15s;
+            min-height: 44px;
         }
-        .card.active .phone-num { color: #93c5fd; }
+        .card .phone-link:hover { color: #7DD3FC; }
+        .card .phone-link::before {
+            content: '📞';
+            font-size: 0.8rem;
+        }
+        .card .phone-no {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
         .card .phone-badge {
-            font-size: 8px;
-            padding: 1px 5px;
-            border-radius: 4px;
-            background: rgba(96,165,250,0.15);
-            color: #60a5fa;
+            font-size: 0.65rem;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: var(--accent-badge-bg);
+            color: var(--accent);
+            border: 1px solid var(--accent-badge-border);
             font-weight: 600;
+            letter-spacing: 0.3px;
         }
-        .card.active .phone-badge {
-            background: rgba(96,165,250,0.2);
-            color: #93c5fd;
-        }
-        .card .dept-badge {
-            font-size: 8px;
-            padding: 1px 5px;
-            border-radius: 4px;
-            margin-top: 2px;
-            background: rgba(255,255,255,0.06);
-            color: #64748b;
-            font-weight: 600;
-            margin-top: 3px;
-            display: inline-block;
-        }
-        .card.active .dept-badge {
-            background: rgba(96,165,250,0.12);
-            color: #93c5fd;
-        }
-        .card .email {
-            font-size: 8px;
-            color: #475569;
-            margin-top: 1px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .card.active .email { color: #94a3b8; }
 
-        /* Call button on active card */
+        /* ── Department badge ────────────────────────────────────── */
+        .card .dept-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #7DD3FC;
+            background: var(--accent-badge-bg);
+            border: 1px solid var(--accent-badge-border);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 5px;
+            width: fit-content;
+        }
+
+        /* ── Call button (active card only) ──────────────────────── */
         .call-btn {
             position: absolute;
-            right: 12px;
+            right: 16px;
             top: 50%;
             transform: translateY(-50%);
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            border: 1px solid rgba(96,165,250,0.3);
-            background: rgba(96,165,250,0.15);
-            backdrop-filter: blur(12px);
-            color: #93c5fd;
-            font-size: 16px;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--accent-badge-border);
+            background: var(--accent-badge-bg);
+            backdrop-filter: blur(8px);
+            color: var(--accent);
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-            transition: transform 0.2s, background 0.2s;
             opacity: 0;
             pointer-events: none;
+            transition: var(--transition-smooth);
+            min-width: 44px;
+            min-height: 44px;
         }
         .card.active .call-btn {
             opacity: 1;
             pointer-events: all;
         }
-        .call-btn:hover { background: rgba(52,211,153,0.2); border-color: rgba(52,211,153,0.4); color: #34d399; transform: translateY(-50%) scale(1.08); }
+        .call-btn:hover {
+            background: rgba(56, 189, 248, 0.25);
+            transform: translateY(-50%) scale(1.08);
+        }
 
-        /* ── Scroll indicator ─────────────────────────────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           COUNTER & HINTS
+           ═══════════════════════════════════════════════════════════════ */
+        .counter {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 6px 0 2px;
+        }
         .scroll-hint {
-            position: fixed;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
             font-size: 11px;
-            color: #475569;
-            pointer-events: none;
+            color: var(--text-muted);
+            opacity: 0.6;
             animation: fadeHint 3s ease 2s forwards;
         }
         @keyframes fadeHint { to { opacity: 0; } }
 
-        /* ── Counter ──────────────────────────────────────────────────── */
-        .counter {
-            position: fixed;
-            bottom: 12px;
-            right: 20px;
-            font-size: 12px;
-            color: #475569;
-            font-weight: 600;
-            z-index: 10;
+        .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 60px 20px;
+            font-size: 14px;
         }
 
-        /* ── Quick Contact bubble (always visible) ──────────────────── */
+        /* ═══════════════════════════════════════════════════════════════
+           QUICK CONTACT BUBBLE
+           ═══════════════════════════════════════════════════════════════ */
         .quick-contact {
             position: fixed;
             bottom: 16px;
             left: 16px;
             z-index: 1000;
-            background: rgba(2, 29, 69, 0.9);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-            padding: 10px 12px;
-            min-width: 180px;
+            background: rgba(10, 17, 40, 0.92);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+            padding: 12px 14px;
+            min-width: 190px;
             backdrop-filter: blur(16px);
-            transition: opacity 0.25s, transform 0.25s;
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--transition-smooth);
         }
         .quick-contact.minimized .qc-body { display: none; }
-        .quick-contact.minimized { min-width: auto; padding: 6px 10px; }
+        .quick-contact.minimized { min-width: auto; padding: 8px 12px; }
         .qc-minimize {
             position: absolute;
             top: 4px;
@@ -344,385 +400,386 @@
             justify-content: center;
             background: rgba(255,255,255,0.08);
             border: none;
-            color: #94a3b8;
-            font-size: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
             cursor: pointer;
             padding: 0;
             border-radius: 50%;
             z-index: 10;
+            transition: var(--transition-smooth);
         }
-        .qc-minimize:hover { color: #e2e8f0; background: rgba(255,255,255,0.15); }
+        .qc-minimize:hover { color: var(--text-primary); background: rgba(255,255,255,0.15); }
         .qc-title {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
-            color: #93c5fd;
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             margin-bottom: 8px;
         }
         .qc-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 6px;
-            padding: 6px 8px;
-            border-radius: 8px;
+            margin-bottom: 5px;
+            padding: 4px 0;
         }
         .qc-item:last-child { margin-bottom: 0; }
-        .qc-role { font-size: 11px; color: #94a3b8; }
-        .qc-phone {
-            font-size: 13px;
+        .qc-role { font-size: 11px; color: var(--text-secondary); }
+        .qc-phone-link {
+            font-size: 12px;
             font-weight: 700;
-            color: #93c5fd;
+            color: var(--accent);
             text-decoration: none;
         }
-        .qc-phone:hover { text-decoration: underline; }
+        .qc-phone-link:hover { text-decoration: underline; }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 480px) {
+            .header { padding: 10px 14px; margin: 8px 10px 0; gap: 10px; }
+            .logo { width: 32px; height: 32px; }
+            .header-text h1 { font-size: 13px; }
+            .back-btn { font-size: 11px; padding: 5px 10px; }
+            .card { height: 100px; padding: 14px 16px; }
+            .card .name { font-size: 1rem; }
+            .card .position { font-size: 0.8rem; }
+            .call-btn { width: 40px; height: 40px; right: 12px; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- ── Header ──────────────────────────────────────────────────── -->
     <div class="header">
-        <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="logo"><img src="images/Damen Marine logo.png" alt="Damen"></a>
-        <div>
+        <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="logo">
+            <img src="images/Damen Marine logo.png" alt="Damen Marine Components">
+        </a>
+        <div class="header-text">
             <h1>Kontakty DMCG</h1>
             <div class="subtitle">Książka telefoniczna pracowników</div>
         </div>
         <a href="index.html" class="back-btn">← FAQ</a>
     </div>
 
+    <!-- ── Search ──────────────────────────────────────────────────── -->
     <div class="search-bar">
         <div class="search-wrap">
             <input type="text" id="search-input" placeholder="Szukaj osoby, stanowiska, działu..." autocomplete="off" />
         </div>
     </div>
 
+    <!-- ── Department pills ─────────────────────────────────────────── -->
     <div class="dept-pills" id="dept-pills"></div>
 
-    <div class="wheel-container" id="wheel-container">
+    <!-- ── 3D Wheel ────────────────────────────────────────────────── -->
+    <div class="wheel-viewport" id="wheel-viewport">
         <div class="wheel-track" id="wheel-track"></div>
     </div>
 
     <div class="counter" id="counter"></div>
     <div class="scroll-hint">↕ Przewiń, aby przeglądać kontakty</div>
 
-    <!-- Pływający dymek szybkiego kontaktu -->
+    <!-- ── Quick Contact ────────────────────────────────────────────── -->
     <div class="quick-contact" id="quick-contact">
         <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
         <div class="qc-body">
             <div class="qc-title">📞 Szybki kontakt</div>
             <div class="qc-item">
                 <span class="qc-role">👷 BHP</span>
-                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
+                <a href="tel:+48123456789" class="qc-phone-link">+48 123 456 789</a>
             </div>
             <div class="qc-item">
                 <span class="qc-role">👥 HR</span>
-                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
+                <a href="tel:+48987654321" class="qc-phone-link">+48 987 654 321</a>
             </div>
         </div>
     </div>
 
-    <script>
-    /* ── 3D Cylindrical Wheel Picker ────────────────────────────────── */
-    (function () {
-        const CARD_HEIGHT = 110;
-        const VISIBLE_RADIUS = 4;
-        const SCALE_CENTER = 1.0;
-        const SCALE_ADJACENT = 0.85;
-        const SCALE_DISTANT = 0.6;
-        const ROTATE_MAX = 20;
-        const TRANSLATE_Z = -90;
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   3D CYLINDRICAL WHEEL — Damen Marine Contacts
+   ═══════════════════════════════════════════════════════════════════════ */
+(function () {
+    'use strict';
 
-        let allContacts = [];
-        let filtered = [];
-        let activeIndex = 0;
-        let activeDept = 'Wszyscy';
-        let isScrolling = false;
-        let scrollTimer = null;
-        let startY = 0;
-        let startOffset = 0;
-        let velocity = 0;
-        let lastY = 0;
-        let lastTime = 0;
-        let animFrame = null;
-        let currentOffset = 0;
-        let targetOffset = 0;
+    /* ── Configuration ─────────────────────────────────────────────── */
+    const CARD_H         = 110;   // base card height (px)
+    const SPACING        = 1.05;  // vertical spacing multiplier vs CARD_H
+    const VISIBLE_RADIUS = 4;     // how many cards above/below are visible
+    const SCALE_CENTER   = 1.0;   // center card scale
+    const SCALE_ADJ      = 0.88;  // adjacent cards (±1)
+    const SCALE_FAR      = 0.65;  // all others (30% smaller than adjacent)
+    const ROTATE_MAX     = 18;    // max rotateX degrees at edge
+    const DEPTH_STEP     = -25;   // translateZ per step (px)
 
-        const track = document.getElementById('wheel-track');
-        const container = document.getElementById('wheel-container');
-        const counter = document.getElementById('counter');
-        const searchInput = document.getElementById('search-input');
-        const deptPills = document.getElementById('dept-pills');
+    /* ── State ─────────────────────────────────────────────────────── */
+    let allContacts = [];
+    let filtered    = [];
+    let activeIdx   = 0;
+    let activeDept  = 'Wszyscy';
+    let dragging    = false;
+    let startY      = 0;
+    let startIdx    = 0;
+    let velocity    = 0;
+    let lastY       = 0;
+    let lastT       = 0;
+    let rafId       = null;
 
-        /* ── Load data (inline fallback + fetch) ─────────────────────── */
-        var INLINE_CONTACTS = [{"name":"Bartnicki Oskar","phone":"737444345","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Oskar.Bartnicki@damen.com","department":"Engineering"},{"name":"Basa Sebastian","phone":"664453522","position_pl":"Kierownik Działu Utrzymania Ruchu","position_en":"Maintenance Department Manager","email":"Sebastian.Basa@damen.com","department":"Utrzymanie Ruchu"},{"name":"Bielski Piotr","phone":"692437678","position_pl":"Brygadzista (PP1)","position_en":"Chargehand","email":"Piotr.Bielski@damen.com","department":"Produkcja"},{"name":"Bieniecka-Hurka Aleksandra","phone":"532806813","position_pl":"Kierownik działu HR","position_en":"Human Resources Manager","email":"Aleksandra.Bieniecka.Hurka@damen.com","department":"HR"},{"name":"Błażejak Marcin","phone":"664925583","position_pl":"Magazynier","position_en":"Storeman","email":"magazyn.dmcgd@damen.com","department":"Magazyn"},{"name":"Bojanowski Marek","phone":"888969868","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Marek.Bojanowski@damen.com","department":"Engineering"},{"name":"Bork Iwona","phone":"734415861","position_pl":"Księgowa (DR)","position_en":"Accountant","email":"Iwona.Bork@damen.com","department":"Księgowość"},{"name":"Borowski Tomasz","phone":"602752871","position_pl":"Specjalista ds. Zakupów","position_en":"Purchasing Specialist","email":"Tomasz.Borowski@damen.com","department":"Zaopatrzenie"},{"name":"Butkiewicz Jakub","phone":"880672401","position_pl":"Operator prasy","position_en":"Press Operator","email":"Jakub.Butkiewicz@damen.com","department":"Produkcja"},{"name":"Cybowicz Daniel","phone":"574091116","position_pl":"Specjalista utrzymania ruchu","position_en":"Maintenance Specialist","email":"Daniel.Cybowicz@damen.com","department":"Utrzymanie Ruchu"},{"name":"Cytrycka Marcelina","phone":"574408784","position_pl":"Specjalista ds. zakupów","position_en":"Purchasing Specialist","email":"Marcelina.Cytrycka@damen.com","department":"Zaopatrzenie"},{"name":"Dermiaha Daniel","phone":"602310732","position_pl":"Kierownik Odziału (PPM)","position_en":"Production Manager","email":"Daniel.Dermiaha@damen.com","department":"Produkcja"},{"name":"Droszkowski Adrian","phone":"882364146","position_pl":"Operator transportu","position_en":"Transport Operator","email":"","department":"Transport"},{"name":"Dzierbicki Bartosz","phone":"532466949","position_pl":"Kierownik Techniczny","position_en":"Technical Manager","email":"Bartosz.Dzierbicki@damen.com","department":"Zarządzanie"},{"name":"Ellwart Witold","phone":"","position_pl":"Brygadzista","position_en":"Chargehand","email":"","department":"Produkcja"},{"name":"Gala Marek","phone":"","position_pl":"Asystent Szefa Produkcji","position_en":"Production Assistant","email":"","department":"Produkcja"},{"name":"Gieroń Sławomir","phone":"","position_pl":"Dyrektor Zarządu","position_en":"Board Director","email":"","department":"Zarządzanie"},{"name":"Jaromiej Bogdan","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Kozłowska Joanna","phone":"","position_pl":"Główna Księgowa","position_en":"Chief Accountant","email":"","department":"Księgowość"},{"name":"Kryla Piotr","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Nawrocki Tomasz","phone":"501773805","position_pl":"Kierownik Działu Jakości","position_en":"Quality Manager","email":"Tomasz.Nawrocki@damen.com","department":"Jakość"},{"name":"Piechota Andrzej","phone":"","position_pl":"Technolog","position_en":"Technologist","email":"","department":"Engineering"},{"name":"Przewoźny Piotr","phone":"698870232","position_pl":"Kierownik Kompletacji","position_en":"Assembly Manager","email":"","department":"Produkcja"},{"name":"Rolnicka Bożena","phone":"","position_pl":"Kierownik Działu Org. Personalnych","position_en":"HR Department Manager","email":"","department":"HR"},{"name":"Sabatura Natalia","phone":"","position_pl":"Księgowa","position_en":"Accountant","email":"","department":"Księgowość"},{"name":"Włoch Jacek","phone":"","position_pl":"Tłumacz","position_en":"Translator","email":"","department":"Inne"},{"name":"Woźniak Wojciech","phone":"604525707","position_pl":"Szef Produkcji","position_en":"Production Director","email":"","department":"Zarządzanie"},{"name":"Zaboklicki Maciej","phone":"","position_pl":"Kierownik Magazynu/Kompletacji","position_en":"Warehouse Manager","email":"","department":"Magazyn"},{"name":"Żołądowski Janusz","phone":"602729347","position_pl":"Zaopatrzenie","position_en":"Purchasing","email":"","department":"Zaopatrzenie"},{"name":"Przybyłek Ilona","phone":"","position_pl":"Specjalista ds. Księgowości","position_en":"Accounting Specialist","email":"","department":"Księgowość"}];
+    /* ── DOM refs ──────────────────────────────────────────────────── */
+    const track      = document.getElementById('wheel-track');
+    const viewport   = document.getElementById('wheel-viewport');
+    const counter    = document.getElementById('counter');
+    const searchIn   = document.getElementById('search-input');
+    const pillsEl    = document.getElementById('dept-pills');
 
-        function loadData(data) {
-            allContacts = data;
-            filtered = [...allContacts];
-            buildDeptPills();
-            renderCards();
-            snapTo(0, false);
-        }
+    /* ════════════════════════════════════════════════════════════════
+       DATA — inline + fetch fallback
+       ════════════════════════════════════════════════════════════════ */
+    var INLINE = [{"name":"Bartnicki Oskar","phone":"737444345","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Oskar.Bartnicki@damen.com","department":"Engineering"},{"name":"Basa Sebastian","phone":"664453522","position_pl":"Kierownik Działu Utrzymania Ruchu","position_en":"Maintenance Department Manager","email":"Sebastian.Basa@damen.com","department":"Utrzymanie Ruchu"},{"name":"Bielski Piotr","phone":"692437678","position_pl":"Brygadzista (PP1)","position_en":"Chargehand","email":"Piotr.Bielski@damen.com","department":"Produkcja"},{"name":"Bieniecka-Hurka Aleksandra","phone":"532806813","position_pl":"Kierownik działu HR","position_en":"Human Resources Manager","email":"Aleksandra.Bieniecka.Hurka@damen.com","department":"HR"},{"name":"Błażejak Marcin","phone":"664925583","position_pl":"Magazynier","position_en":"Storeman","email":"magazyn.dmcgd@damen.com","department":"Magazyn"},{"name":"Bojanowski Marek","phone":"888969868","position_pl":"Konstruktor","position_en":"Engineering Specialist","email":"Marek.Bojanowski@damen.com","department":"Engineering"},{"name":"Bork Iwona","phone":"734415861","position_pl":"Księgowa (DR)","position_en":"Accountant","email":"Iwona.Bork@damen.com","department":"Księgowość"},{"name":"Borowski Tomasz","phone":"602752871","position_pl":"Specjalista ds. Zakupów","position_en":"Purchasing Specialist","email":"Tomasz.Borowski@damen.com","department":"Zaopatrzenie"},{"name":"Butkiewicz Jakub","phone":"880672401","position_pl":"Operator prasy","position_en":"Press Operator","email":"Jakub.Butkiewicz@damen.com","department":"Produkcja"},{"name":"Cybowicz Daniel","phone":"574091116","position_pl":"Specjalista utrzymania ruchu","position_en":"Maintenance Specialist","email":"Daniel.Cybowicz@damen.com","department":"Utrzymanie Ruchu"},{"name":"Cytrycka Marcelina","phone":"574408784","position_pl":"Specjalista ds. zakupów","position_en":"Purchasing Specialist","email":"Marcelina.Cytrycka@damen.com","department":"Zaopatrzenie"},{"name":"Dermiaha Daniel","phone":"602310732","position_pl":"Kierownik Odziału (PPM)","position_en":"Production Manager","email":"Daniel.Dermiaha@damen.com","department":"Produkcja"},{"name":"Droszkowski Adrian","phone":"882364146","position_pl":"Operator transportu","position_en":"Transport Operator","email":"","department":"Transport"},{"name":"Dzierbicki Bartosz","phone":"532466949","position_pl":"Kierownik Techniczny","position_en":"Technical Manager","email":"Bartosz.Dzierbicki@damen.com","department":"Zarządzanie"},{"name":"Ellwart Witold","phone":"","position_pl":"Brygadzista","position_en":"Chargehand","email":"","department":"Produkcja"},{"name":"Gala Marek","phone":"","position_pl":"Asystent Szefa Produkcji","position_en":"Production Assistant","email":"","department":"Produkcja"},{"name":"Gieroń Sławomir","phone":"","position_pl":"Dyrektor Zarządu","position_en":"Board Director","email":"","department":"Zarządzanie"},{"name":"Jaromiej Bogdan","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Kozłowska Joanna","phone":"","position_pl":"Główna Księgowa","position_en":"Chief Accountant","email":"","department":"Księgowość"},{"name":"Kryla Piotr","phone":"","position_pl":"Kierownik Działu PP2","position_en":"Production Manager PP2","email":"","department":"Produkcja"},{"name":"Nawrocki Tomasz","phone":"501773805","position_pl":"Kierownik Działu Jakości","position_en":"Quality Manager","email":"Tomasz.Nawrocki@damen.com","department":"Jakość"},{"name":"Piechota Andrzej","phone":"","position_pl":"Technolog","position_en":"Technologist","email":"","department":"Engineering"},{"name":"Przewoźny Piotr","phone":"698870232","position_pl":"Kierownik Kompletacji","position_en":"Assembly Manager","email":"","department":"Produkcja"},{"name":"Rolnicka Bożena","phone":"","position_pl":"Kierownik Działu Org. Personalnych","position_en":"HR Department Manager","email":"","department":"HR"},{"name":"Sabatura Natalia","phone":"","position_pl":"Księgowa","position_en":"Accountant","email":"","department":"Księgowość"},{"name":"Włoch Jacek","phone":"","position_pl":"Tłumacz","position_en":"Translator","email":"","department":"Inne"},{"name":"Woźniak Wojciech","phone":"604525707","position_pl":"Szef Produkcji","position_en":"Production Director","email":"","department":"Zarządzanie"},{"name":"Zaboklicki Maciej","phone":"","position_pl":"Kierownik Magazynu/Kompletacji","position_en":"Warehouse Manager","email":"","department":"Magazyn"},{"name":"Żołądowski Janusz","phone":"602729347","position_pl":"Zaopatrzenie","position_en":"Purchasing","email":"","department":"Zaopatrzenie"},{"name":"Przybyłek Ilona","phone":"","position_pl":"Specjalista ds. Księgowości","position_en":"Accounting Specialist","email":"","department":"Księgowość"}];
 
-        // Try fetch first, fall back to inline
-        fetch('contacts.json')
-            .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
-            .then(loadData)
-            .catch(function() { loadData(INLINE_CONTACTS); });
+    function init(data) {
+        allContacts = data;
+        filtered = [...allContacts];
+        buildPills();
+        renderCards();
+        positionCards(false);
+    }
 
-        /* ── Department pills ────────────────────────────────────────── */
-        function buildDeptPills() {
-            const depts = ['Wszyscy'];
-            const seen = new Set();
-            allContacts.forEach(c => {
-                if (!seen.has(c.department)) {
-                    seen.add(c.department);
-                    depts.push(c.department);
-                }
-            });
-            deptPills.innerHTML = depts.map(d =>
-                '<button class="dept-pill' + (d === activeDept ? ' active' : '') + '" data-dept="' + d + '">' + d + '</button>'
-            ).join('');
-        }
+    fetch('contacts.json')
+        .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(init)
+        .catch(function() { init(INLINE); });
 
-        deptPills.addEventListener('click', function(e) {
-            const btn = e.target.closest('.dept-pill');
-            if (!btn) return;
-            activeDept = btn.dataset.dept;
-            deptPills.querySelectorAll('.dept-pill').forEach(b => b.classList.toggle('active', b === btn));
-            applyFilters();
+    /* ════════════════════════════════════════════════════════════════
+       DEPARTMENT PILLS
+       ════════════════════════════════════════════════════════════════ */
+    function buildPills() {
+        var depts = ['Wszyscy'];
+        var seen = new Set();
+        allContacts.forEach(function(c) {
+            if (!seen.has(c.department)) { seen.add(c.department); depts.push(c.department); }
         });
+        pillsEl.innerHTML = depts.map(function(d) {
+            return '<button class="dept-pill' + (d === activeDept ? ' active' : '') + '" data-dept="' + d + '">' + d + '</button>';
+        }).join('');
+    }
 
-        /* ── Search ──────────────────────────────────────────────────── */
-        searchInput.addEventListener('input', applyFilters);
+    pillsEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.dept-pill');
+        if (!btn) return;
+        activeDept = btn.dataset.dept;
+        pillsEl.querySelectorAll('.dept-pill').forEach(function(b) { b.classList.toggle('active', b === btn); });
+        applyFilters();
+    });
 
-        function applyFilters() {
-            const q = searchInput.value.trim().toLowerCase();
-            filtered = allContacts.filter(c => {
-                if (activeDept !== 'Wszyscy' && c.department !== activeDept) return false;
-                if (q) {
-                    const hay = (c.name + ' ' + c.position_pl + ' ' + c.position_en + ' ' + c.department + ' ' + c.email).toLowerCase();
-                    return hay.includes(q);
-                }
-                return true;
-            });
-            // Sort alphabetically
-            filtered.sort((a, b) => a.name.localeCompare(b.name, 'pl'));
-            activeIndex = 0;
-            renderCards();
-            snapTo(0, false);
-        }
+    /* ════════════════════════════════════════════════════════════════
+       SEARCH + FILTER
+       ════════════════════════════════════════════════════════════════ */
+    searchIn.addEventListener('input', applyFilters);
 
-        /* ── Render cards ────────────────────────────────────────────── */
-        function renderCards() {
-            track.innerHTML = '';
-            if (!filtered.length) {
-                track.innerHTML = '<div style="text-align:center;color:#64748b;padding:40px;font-size:14px;">Brak wyników</div>';
-                counter.textContent = '0 / 0';
-                return;
+    function applyFilters() {
+        var q = searchIn.value.trim().toLowerCase();
+        filtered = allContacts.filter(function(c) {
+            if (activeDept !== 'Wszyscy' && c.department !== activeDept) return false;
+            if (q) {
+                var hay = (c.name + ' ' + c.position_pl + ' ' + c.position_en + ' ' + c.department + ' ' + c.email).toLowerCase();
+                return hay.indexOf(q) !== -1;
             }
-            filtered.forEach((c, i) => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.dataset.index = i;
+            return true;
+        });
+        filtered.sort(function(a, b) { return a.name.localeCompare(b.name, 'pl'); });
+        activeIdx = 0;
+        renderCards();
+        positionCards(false);
+    }
 
-                const phoneHtml = c.phone
-                    ? '<span class="phone-num">' + esc(c.phone) + '</span><span class="phone-badge">kom</span>'
-                    : '<span class="phone-num" style="color:#64748b;font-size:13px;">brak numeru</span>';
+    /* ════════════════════════════════════════════════════════════════
+       RENDER CARDS
+       ════════════════════════════════════════════════════════════════ */
+    function esc(s) {
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
 
-                const emailHtml = c.email ? '<div class="email">✉ ' + esc(c.email) + '</div>' : '';
-
-                card.innerHTML =
-                    '<div class="name">' + esc(c.name) + '</div>' +
-                    '<div class="position">' + esc(c.position_pl) + '</div>' +
-                    (c.position_en ? '<div class="position-en">' + esc(c.position_en) + '</div>' : '') +
-                    '<div class="phone-row">' + phoneHtml + '</div>' +
-                    '<div class="dept-badge">' + esc(c.department) + '</div>' +
-                    emailHtml +
-                    (c.phone ? '<button class="call-btn" title="Zadzwoń">📞</button>' : '');
-
-                // Click card to focus
-                card.addEventListener('click', function() {
-                    if (i !== activeIndex) {
-                        snapTo(i, true);
-                    } else if (c.phone) {
-                        window.location.href = 'tel:' + c.phone;
-                    }
-                });
-
-                // Click call button
-                const callBtn = card.querySelector('.call-btn');
-                if (callBtn && c.phone) {
-                    callBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        window.location.href = 'tel:' + c.phone;
-                    });
-                }
-
-                track.appendChild(card);
-            });
-            counter.textContent = (activeIndex + 1) + ' / ' + filtered.length;
+    function renderCards() {
+        track.innerHTML = '';
+        if (!filtered.length) {
+            track.innerHTML = '<div class="empty-state">Brak wyników dla podanych kryteriów</div>';
+            counter.textContent = '0 / 0';
+            return;
         }
+        filtered.forEach(function(c, i) {
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.idx = i;
 
-        /* ── Position cards on 3D cylinder ───────────────────────────── */
-        function updatePositions() {
-            const cards = track.querySelectorAll('.card');
-            const center = activeIndex;
-            const centerCardH = 105;
-
-            cards.forEach((card, i) => {
-                const diff = i - center;
-                const absDiff = Math.abs(diff);
-
-                // Scale: center=1.0, adjacent(±1)=0.85, rest=0.60 (30% smaller)
-                let scale;
-                if (absDiff === 0) scale = SCALE_CENTER;
-                else if (absDiff === 1) scale = SCALE_ADJACENT;
-                else scale = SCALE_DISTANT;
-
-                // Gentle rotateX for 3D curvature
-                const rotateX = diff * (ROTATE_MAX / VISIBLE_RADIUS) * -1;
-
-                // Push cards back in depth
-                const translateZ = -absDiff * (TRANSLATE_Z / VISIBLE_RADIUS);
-
-                // Vertical offset from center
-                const spacing = centerCardH * 1.0;
-                const translateY = diff * spacing - (centerCardH / 2);
-
-                // Opacity
-                const opacity = absDiff > VISIBLE_RADIUS ? 0 : Math.max(0, 1 - t * 0.7);
-
-                card.style.transform =
-                    'translate3d(0, ' + translateY + 'px, ' + translateZ + 'px) ' +
-                    'rotateX(' + rotateX + 'deg) ' +
-                    'scale(' + scale + ')';
-                card.style.opacity = opacity;
-                card.style.zIndex = VISIBLE_RADIUS - absDiff + 10;
-
-                if (diff === 0) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
-                }
-            });
-
-            counter.textContent = filtered.length ? (activeIndex + 1) + ' / ' + filtered.length : '0 / 0';
-        }
-
-        /* ── Snap to index ───────────────────────────────────────────── */
-        function snapTo(index, animate) {
-            if (!filtered.length) return;
-            activeIndex = Math.max(0, Math.min(index, filtered.length - 1));
-            if (animate) {
-                track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.35, 1)';
+            var phoneHtml;
+            if (c.phone) {
+                phoneHtml =
+                    '<a href="tel:' + esc(c.phone) + '" class="phone-link" onclick="event.stopPropagation()">' +
+                    esc(c.phone) + '</a>' +
+                    '<span class="phone-badge">kom</span>';
             } else {
-                track.style.transition = 'none';
+                phoneHtml = '<span class="phone-no">Brak numeru</span>';
             }
-            updatePositions();
-        }
 
-        /* ── Touch / Mouse handling ──────────────────────────────────── */
-        function onStart(y) {
-            isScrolling = true;
-            startY = y;
-            startOffset = activeIndex;
-            velocity = 0;
-            lastY = y;
-            lastTime = Date.now();
-            track.style.transition = 'none';
-            if (animFrame) cancelAnimationFrame(animFrame);
-        }
+            var positionEnHtml = c.position_en
+                ? '<div class="position-en">' + esc(c.position_en) + '</div>'
+                : '';
 
-        function onMove(y) {
-            if (!isScrolling) return;
-            const delta = startY - y;
-            const now = Date.now();
-            const dt = now - lastTime;
-            if (dt > 0) {
-                velocity = (lastY - y) / dt;
-            }
-            lastY = y;
-            lastTime = now;
+            card.innerHTML =
+                '<div class="name">' + esc(c.name) + '</div>' +
+                '<div class="position">' + esc(c.position_pl) + '</div>' +
+                positionEnHtml +
+                '<div class="phone-row">' + phoneHtml + '</div>' +
+                '<div class="dept-badge">' + esc(c.department) + '</div>' +
+                (c.phone ? '<button class="call-btn" title="Zadzwoń" onclick="event.stopPropagation();window.location.href=\'tel:' + esc(c.phone) + '\'">📞</button>' : '');
 
-            const indexDelta = delta / CARD_HEIGHT;
-            let newIdx = Math.round(startOffset + indexDelta);
-            newIdx = Math.max(0, Math.min(newIdx, filtered.length - 1));
-            if (newIdx !== activeIndex) {
-                activeIndex = newIdx;
-                updatePositions();
-            }
-        }
-
-        function onEnd() {
-            if (!isScrolling) return;
-            isScrolling = false;
-
-            // Apply momentum — smoother with larger factor
-            const momentum = Math.round(velocity * 10);
-            let target = activeIndex + momentum;
-            target = Math.max(0, Math.min(target, filtered.length - 1));
-
-            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.35, 1)';
-            activeIndex = target;
-            updatePositions();
-        }
-
-        // Touch events
-        container.addEventListener('touchstart', function(e) {
-            onStart(e.touches[0].clientY);
-        }, { passive: true });
-        container.addEventListener('touchmove', function(e) {
-            onMove(e.touches[0].clientY);
-            e.preventDefault();
-        }, { passive: false });
-        container.addEventListener('touchend', onEnd);
-
-        // Mouse events
-        container.addEventListener('mousedown', function(e) {
-            e.preventDefault();
-            onStart(e.clientY);
-        });
-        document.addEventListener('mousemove', function(e) {
-            onMove(e.clientY);
-        });
-        document.addEventListener('mouseup', onEnd);
-
-        // Wheel event
-        container.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            const dir = e.deltaY > 0 ? 1 : -1;
-            snapTo(activeIndex + dir, true);
-        }, { passive: false });
-
-        // Keyboard
-        document.addEventListener('keydown', function(e) {
-            if (e.target === searchInput) return;
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                e.preventDefault();
-                snapTo(activeIndex + 1, true);
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                e.preventDefault();
-                snapTo(activeIndex - 1, true);
-            } else if (e.key === 'Enter') {
-                const c = filtered[activeIndex];
-                if (c && c.phone) window.location.href = 'tel:' + c.phone;
-            }
-        });
-
-        // Quick Contact minimize toggle
-        var qcMin = document.getElementById('qc-minimize');
-        var qc = document.getElementById('quick-contact');
-        if (qcMin && qc) {
-            qcMin.addEventListener('click', function() {
-                qc.classList.toggle('minimized');
-                qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
+            card.addEventListener('click', function() {
+                if (i !== activeIdx) { snapTo(i, true); }
+                else if (c.phone) { window.location.href = 'tel:' + c.phone; }
             });
+
+            track.appendChild(card);
+        });
+        counter.textContent = (activeIdx + 1) + ' / ' + filtered.length;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       3D POSITIONING
+       ════════════════════════════════════════════════════════════════ */
+    function positionCards(animate) {
+        var cards = track.querySelectorAll('.card');
+        if (!cards.length) return;
+
+        if (animate) {
+            track.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+        } else {
+            track.style.transition = 'none';
         }
 
-        function esc(s) {
-            return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        cards.forEach(function(card, i) {
+            var diff = i - activeIdx;
+            var abs = Math.abs(diff);
+
+            // 3-tier scale: center=1.0, adjacent=0.88, far=0.65
+            var scale;
+            if (abs === 0) scale = SCALE_CENTER;
+            else if (abs === 1) scale = SCALE_ADJ;
+            else scale = SCALE_FAR;
+
+            // 3D transforms
+            var rotateX = diff * (ROTATE_MAX / VISIBLE_RADIUS) * -1;
+            var translateZ = abs * DEPTH_STEP;
+            var translateY = diff * (CARD_H * SPACING) - (CARD_H / 2);
+
+            // Opacity: center full, adjacent 0.7, far fade out
+            var opacity;
+            if (abs === 0) opacity = 1;
+            else if (abs === 1) opacity = 0.7;
+            else opacity = Math.max(0, 0.45 - (abs - 2) * 0.12);
+
+            card.style.transform =
+                'translate3d(0, ' + translateY + 'px, ' + translateZ + 'px) ' +
+                'rotateX(' + rotateX + 'deg) ' +
+                'scale(' + scale + ')';
+            card.style.opacity = opacity;
+            card.style.zIndex = VISIBLE_RADIUS - abs + 10;
+            card.classList.toggle('active', diff === 0);
+        });
+
+        counter.textContent = filtered.length ? (activeIdx + 1) + ' / ' + filtered.length : '0 / 0';
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       SNAP / NAVIGATE
+       ════════════════════════════════════════════════════════════════ */
+    function snapTo(idx, animate) {
+        if (!filtered.length) return;
+        activeIdx = Math.max(0, Math.min(idx, filtered.length - 1));
+        positionCards(animate);
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       TOUCH / MOUSE / WHEEL / KEYBOARD
+       ════════════════════════════════════════════════════════════════ */
+    function onStart(y) {
+        dragging = true;
+        startY = y;
+        startIdx = activeIdx;
+        velocity = 0;
+        lastY = y;
+        lastT = Date.now();
+        track.style.transition = 'none';
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    function onMove(y) {
+        if (!dragging) return;
+        var now = Date.now();
+        var dt = now - lastT;
+        if (dt > 0) velocity = (lastY - y) / dt;
+        lastY = y;
+        lastT = now;
+
+        var delta = (startY - y) / (CARD_H * SPACING);
+        var newIdx = Math.round(startIdx + delta);
+        newIdx = Math.max(0, Math.min(newIdx, filtered.length - 1));
+        if (newIdx !== activeIdx) {
+            activeIdx = newIdx;
+            positionCards(false);
         }
-    })();
-    </script>
+    }
+
+    function onEnd() {
+        if (!dragging) return;
+        dragging = false;
+        var momentum = Math.round(velocity * 12);
+        var target = Math.max(0, Math.min(activeIdx + momentum, filtered.length - 1));
+        activeIdx = target;
+        positionCards(true);
+    }
+
+    // Touch
+    viewport.addEventListener('touchstart', function(e) { onStart(e.touches[0].clientY); }, { passive: true });
+    viewport.addEventListener('touchmove', function(e) { onMove(e.touches[0].clientY); e.preventDefault(); }, { passive: false });
+    viewport.addEventListener('touchend', onEnd);
+
+    // Mouse
+    viewport.addEventListener('mousedown', function(e) { e.preventDefault(); onStart(e.clientY); });
+    document.addEventListener('mousemove', function(e) { onMove(e.clientY); });
+    document.addEventListener('mouseup', onEnd);
+
+    // Wheel
+    viewport.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        snapTo(activeIdx + (e.deltaY > 0 ? 1 : -1), true);
+    }, { passive: false });
+
+    // Keyboard
+    document.addEventListener('keydown', function(e) {
+        if (e.target === searchIn) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); snapTo(activeIdx + 1, true); }
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); snapTo(activeIdx - 1, true); }
+        else if (e.key === 'Enter') {
+            var c = filtered[activeIdx];
+            if (c && c.phone) window.location.href = 'tel:' + c.phone;
+        }
+    });
+
+    /* ════════════════════════════════════════════════════════════════
+       QUICK CONTACT MINIMIZE
+       ════════════════════════════════════════════════════════════════ */
+    var qcMin = document.getElementById('qc-minimize');
+    var qc = document.getElementById('quick-contact');
+    if (qcMin && qc) {
+        qcMin.addEventListener('click', function() {
+            qc.classList.toggle('minimized');
+            qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
+        });
+    }
+})();
+</script>
 </body>
 </html>
