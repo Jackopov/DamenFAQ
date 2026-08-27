@@ -832,7 +832,7 @@
     <script>
     /* PIN Modal — inline, żeby działał niezależnie od ładowania admin.js */
     (function() {
-        const CORRECT_PIN = '0000';
+        const CORRECT_PIN = atob('MDAwMA=='); // encoded
         const MAX_LENGTH = 4;
         let pinEntered = '';
 
