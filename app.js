@@ -128,6 +128,93 @@ function diceSimilarity(a, b) {
     return (2 * inter) / (A.size + B.size);
 }
 
+// ── Levenshtein distance (edycja znakowa) ──────────────────────────────────
+function levenshtein(a, b) {
+    if (a === b) return 0;
+    if (!a.length) return b.length;
+    if (!b.length) return a.length;
+
+    // Macierz z optymalizacją pamięci (2 rzędy)
+    let prev = new Array(b.length + 1);
+    let curr = new Array(b.length + 1);
+    for (let j = 0; j <= b.length; j++) prev[j] = j;
+
+    for (let i = 1; i <= a.length; i++) {
+        curr[0] = i;
+        for (let j = 1; j <= b.length; j++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            curr[j] = Math.min(
+                prev[j] + 1,       // usunięcie
+                curr[j - 1] + 1,   // wstawienie
+                prev[j - 1] + cost  // zamiana
+            );
+        }
+        [prev, curr] = [curr, prev];
+    }
+    return prev[b.length];
+}
+
+// Normalizuje tekst do porównywania: usuwa polskie znaki,-spacing, lowercase
+function normalizeForCompare(str) {
+    return normalize(str)
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+// Sprawdza czy zapytanie pasuje do tekstu z tolerancją literówek
+// Zwraca score 0-1 (0 = brak dopasowania, 1 = idealne dopasowanie)
+function fuzzyMatch(query, text) {
+    const qNorm = normalizeForCompare(query);
+    const tNorm = normalizeForCompare(text);
+
+    // 1) Idealne dopasowanie
+    if (tNorm.includes(qNorm)) return 1.0;
+
+    // 2) Token-level matching (każde słowo zapytania występuje w tekście)
+    const qWords = qNorm.split(/\s+/).filter(w => w.length > 1);
+    const tWords = new Set(tNorm.split(/\s+/));
+
+    let tokenHits = 0;
+    qWords.forEach(qw => {
+        let bestScore = 0;
+        tWords.forEach(tw => {
+            // Dokładne dopasowanie
+            if (tw === qw || tw.includes(qw) || qw.includes(tw)) {
+                bestScore = 1.0;
+            } else if (qw.length >= 3 && tw.length >= 3) {
+                // Levenshtein tolerance: max 2 błędy dla słów >= 4 znaków, 1 dla 3
+                const maxDist = qw.length >= 4 ? 2 : 1;
+                const dist = levenshtein(qw, tw);
+                if (dist <= maxDist) {
+                    bestScore = Math.max(bestScore, 1 - dist / Math.max(qw.length, tw.length));
+                }
+                // Bigram similarity
+                const dice = diceSimilarity(qw, tw);
+                if (dice >= 0.55) {
+                    bestScore = Math.max(bestScore, dice);
+                }
+            }
+        });
+        if (bestScore > 0.4) tokenHits++;
+    });
+
+    if (qWords.length > 0 && tokenHits === qWords.length) return 0.95;
+    if (qWords.length > 0 && tokenHits >= qWords.length * 0.7) return 0.80;
+    if (tokenHits > 0) return 0.5 + (tokenHits / qWords.length) * 0.3;
+
+    // 3) Substring matching na całym znormalizowanym tekście
+    const minLen = Math.max(3, Math.floor(qNorm.length * 0.6));
+    for (let i = 0; i <= tNorm.length - minLen; i++) {
+        const chunk = tNorm.substring(i, i + qNorm.length + 2);
+        const dist = levenshtein(qNorm, chunk);
+        if (dist <= Math.max(2, Math.floor(qNorm.length * 0.3))) {
+            return 0.5 + (1 - dist / qNorm.length) * 0.3;
+        }
+    }
+
+    return 0;
+}
+
 // ── Pomocnicze funkcje ──────────────────────────────────────────────────────
 function normalize(str) {
     return String(str || '').toLowerCase()
@@ -190,8 +277,8 @@ function entryCorpus(item) {
     return item._corpus;
 }
 
-// Ocena trafności wpisu względem zapytania (rdzenie słów).
-function scoreEntry(item, queryTokens) {
+// Ocena trafności wpisu względem zapytania (rdzenie słów + Levenshtein).
+function scoreEntry(item, queryTokens, rawQuery) {
     const { qTokens, aTokens } = entryCorpus(item);
     let hits = 0, qHits = 0, aHits = 0;
 
@@ -207,10 +294,19 @@ function scoreEntry(item, queryTokens) {
                     hits++; qHits++; matched = true; break;
                 }
             }
-            // 3) podobieństwo znakowe — literówki i bliskie formy
+            // 3) Levenshtein — tolerancja literówek
+            if (!matched) {
+                const maxDist = t.length >= 5 ? 2 : 1;
+                for (const ct of qTokens) {
+                    if (Math.abs(ct.length - t.length) <= 2 && levenshtein(t, ct) <= maxDist) {
+                        hits++; qHits++; matched = true; break;
+                    }
+                }
+            }
+            // 4) podobieństwo znakowe (bigram) — dla pozostałych form
             if (!matched) {
                 for (const ct of qTokens) {
-                    if (diceSimilarity(t, ct) >= 0.62) { hits++; qHits++; matched = true; break; }
+                    if (diceSimilarity(t, ct) >= 0.60) { hits++; qHits++; matched = true; break; }
                 }
             }
         }
@@ -220,6 +316,14 @@ function scoreEntry(item, queryTokens) {
     if (hits === 0) return 0;
     let score = qHits * 12 + aHits * 2;
     score += (hits / queryTokens.length) * 40; // premia za pokrycie całego zapytania
+
+    // 5) Bonus za fuzzy match całego zapytania na pełnym tekście pytania
+    if (rawQuery && item.question) {
+        const qText = getLocalized(item.question);
+        const fullFuzzy = fuzzyMatch(rawQuery, qText);
+        if (fullFuzzy >= 0.8) score += fullFuzzy * 30;
+    }
+
     return score;
 }
 
@@ -228,7 +332,7 @@ function findBest(question, exclude) {
     if (!tokens.length) return [];
     return faqData
         .filter(f => f !== exclude)
-        .map(f => ({ f, s: scoreEntry(f, tokens) }))
+        .map(f => ({ f, s: scoreEntry(f, tokens, question) }))
         .filter(x => x.s > 0)
         .sort((a, b) => b.s - a.s);
 }
@@ -517,7 +621,20 @@ function askQuestion() {
         return;
     }
 
-    // 2. Dopasowanie semantyczne (stemming, synonimy, podobieństwo znakowe)
+    // 1b. Fuzzy exact — pytanie bardzo zbliżone (1-2 literówki)
+    const fuzzyExact = faqData.find(f => {
+        const qNorm = normalize(getLocalized(f.question));
+        if (Math.abs(qNorm.length - qn.length) > 3) return false;
+        const dist = levenshtein(qn, qNorm);
+        return dist <= Math.max(2, Math.floor(qn.length * 0.15));
+    });
+    if (fuzzyExact) {
+        statsRecord(fuzzyExact.id, question, true);
+        showAnswer(getLocalized(fuzzyExact.answer), findBest(question, fuzzyExact).slice(0, 3).map(x => x.f), fuzzyExact.media);
+        return;
+    }
+
+    // 2. Dopasowanie semantyczne (stemming, synonimy, Levenshtein, bigramy)
     const scored = findBest(question);
     if (scored.length > 0 && scored[0].s >= ANSWER_THRESHOLD) {
         const top = scored[0];
