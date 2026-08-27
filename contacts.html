@@ -155,24 +155,24 @@
             position: absolute;
             width: 100%;
             left: 0;
-            height: 100px;
+            height: 120px;
             top: 50%;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px;
-            padding: 10px 14px;
+            border-radius: 16px;
+            padding: 14px 16px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-                        opacity 0.35s ease,
-                        box-shadow 0.35s ease,
-                        background 0.35s ease,
-                        border-color 0.35s ease;
+            transition: transform 0.45s cubic-bezier(0.25, 1, 0.35, 1),
+                        opacity 0.4s ease,
+                        box-shadow 0.4s ease,
+                        background 0.4s ease,
+                        border-color 0.4s ease;
             will-change: transform, opacity;
         }
         .card.active {
@@ -186,9 +186,9 @@
             z-index: 5;
         }
         .card .name {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             color: #e2e8f0;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -196,9 +196,9 @@
         }
         .card.active .name { color: #fff; }
         .card .position {
-            font-size: 11px;
+            font-size: 12px;
             color: #94a3b8;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -217,10 +217,10 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 4px;
+            margin-top: 6px;
         }
         .card .phone-num {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: #60a5fa;
             letter-spacing: 0.5px;
@@ -421,12 +421,12 @@
     <script>
     /* ── 3D Cylindrical Wheel Picker ────────────────────────────────── */
     (function () {
-        const CARD_HEIGHT = 105;
+        const CARD_HEIGHT = 125;
         const VISIBLE_RADIUS = 4;
         const SCALE_CENTER = 1.0;
-        const SCALE_MIN = 0.5;
-        const ROTATE_MAX = 22;
-        const TRANSLATE_Z = -100;
+        const SCALE_MIN = 0.55;
+        const ROTATE_MAX = 20;
+        const TRANSLATE_Z = -90;
 
         let allContacts = [];
         let filtered = [];
@@ -564,13 +564,13 @@
         function updatePositions() {
             const cards = track.querySelectorAll('.card');
             const center = activeIndex;
-            const centerCardH = 100;
+            const centerCardH = 120;
 
             cards.forEach((card, i) => {
                 const diff = i - center;
                 const absDiff = Math.abs(diff);
 
-                // Scale: center = 1.0, distant = 0.5
+                // Scale: center = 1.0, distant = 0.55
                 const t = Math.min(absDiff / VISIBLE_RADIUS, 1);
                 const scale = SCALE_CENTER - t * (SCALE_CENTER - SCALE_MIN);
 
@@ -580,8 +580,8 @@
                 // Push cards back in depth
                 const translateZ = -absDiff * (TRANSLATE_Z / VISIBLE_RADIUS);
 
-                // Vertical offset from center — cards stack above/below
-                const spacing = centerCardH * 0.78;
+                // Vertical offset from center — wider spacing for readability
+                const spacing = centerCardH * 0.95;
                 const translateY = diff * spacing - (centerCardH / 2);
 
                 // Opacity
@@ -609,7 +609,7 @@
             if (!filtered.length) return;
             activeIndex = Math.max(0, Math.min(index, filtered.length - 1));
             if (animate) {
-                track.style.transition = 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1)';
+                track.style.transition = 'transform 0.45s cubic-bezier(0.25, 1, 0.35, 1)';
             } else {
                 track.style.transition = 'none';
             }
@@ -652,12 +652,12 @@
             if (!isScrolling) return;
             isScrolling = false;
 
-            // Apply momentum
-            const momentum = Math.round(velocity * 8);
+            // Apply momentum — smoother with larger factor
+            const momentum = Math.round(velocity * 10);
             let target = activeIndex + momentum;
             target = Math.max(0, Math.min(target, filtered.length - 1));
 
-            track.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.35, 1)';
             activeIndex = target;
             updatePositions();
         }
