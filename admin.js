@@ -1,7 +1,7 @@
 /* Panel admina FAQ — edycja api.json (pytania, synonimy, tłumaczenia pl/en,
    media: obrazy/wideo), anonimowe statystyki (stats.json, per dzień) + XLSX. */
 const LANGS = ['pl', 'en'];
-const LANG_NAMES = { pl: 'Polski', en: 'English' };
+const LANG_NAMES = { pl: '🇵🇱 Polski', en: '🇬🇧 English' };
 
 let items = [];      // dane robocze (aktualizowane przy każdej edycji)
 let dirty = false;
