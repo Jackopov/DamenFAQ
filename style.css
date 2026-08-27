@@ -162,6 +162,8 @@ body::before {
     overflow: hidden;
 }
 .sidebar-logo img { width: 100%; height: 100%; object-fit: contain; }
+.sidebar-logo { text-decoration: none; }
+.sidebar-logo:hover { transform: scale(1.05); transition: transform 0.2s; }
 .sidebar-brand {
     text-align: center;
     font-size: 13px;
@@ -246,6 +248,7 @@ body::before {
     flex-shrink: 0;
 }
 .logo-badge img { width: 100%; height: 100%; object-fit: contain; }
+.logo-badge:hover { transform: scale(1.05); transition: transform 0.2s; }
 
 .header-text h1 {
     font-size: 17px;
