@@ -333,18 +333,23 @@
         .quick-contact.minimized { min-width: auto; padding: 6px 10px; }
         .qc-minimize {
             position: absolute;
-            top: 6px;
-            right: 8px;
-            background: none;
+            top: 4px;
+            right: 6px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.08);
             border: none;
-            color: #64748b;
-            font-size: 14px;
+            color: #94a3b8;
+            font-size: 16px;
             cursor: pointer;
-            padding: 2px 4px;
-            line-height: 1;
-            border-radius: 4px;
+            padding: 0;
+            border-radius: 50%;
+            z-index: 10;
         }
-        .qc-minimize:hover { color: #e2e8f0; }
+        .qc-minimize:hover { color: #e2e8f0; background: rgba(255,255,255,0.15); }
         .qc-title {
             font-size: 10px;
             font-weight: 700;

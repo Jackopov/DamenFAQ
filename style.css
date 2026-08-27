@@ -856,4 +856,19 @@ body::before {
     .bento-3col { grid-template-columns: 1fr; }
     .bento-span-2 { grid-column: span 1; }
     .quick-contact { right: 10px; min-width: 180px; bottom: 50px; }
+    .qc-minimize {
+        position: absolute;
+        top: 4px;
+        right: 6px;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.08);
+        border-radius: 50%;
+        font-size: 16px;
+        color: var(--titanium-400);
+        z-index: 10;
+    }
 }
