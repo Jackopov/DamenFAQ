@@ -103,14 +103,27 @@ body::before {
 .hamburger {
     background: none;
     border: none;
-    font-size: 22px;
     cursor: pointer;
-    color: var(--titanium-200);
-    padding: 4px 8px;
+    padding: 8px 6px;
     border-radius: 6px;
     transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .hamburger:hover { background: rgba(255,255,255,0.1); }
+.hamburger-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid var(--titanium-500);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hamburger.open .hamburger-arrow {
+    transform: rotate(180deg);
+}
 
 .sidebar-overlay {
     position: fixed;

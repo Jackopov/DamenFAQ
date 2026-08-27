@@ -73,7 +73,7 @@
 
     <div class="container">
         <div class="header" id="header-canvas">
-            <button type="button" class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+            <button type="button" class="hamburger" id="hamburger" aria-label="Menu"><span class="hamburger-arrow"></span></button>
             <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></a>
             <div class="header-text">
                 <h1 id="title">Asystent dla nowych pracowników</h1>
@@ -219,8 +219,8 @@
         var sidebar = document.getElementById('sidebar');
         var overlay = document.getElementById('sidebar-overlay');
         var close = document.getElementById('sidebar-close');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); hamburger.classList.add('open'); }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); hamburger.classList.remove('open'); }
         if (hamburger) hamburger.addEventListener('click', openSidebar);
         if (overlay) overlay.addEventListener('click', closeSidebar);
         if (close) close.addEventListener('click', closeSidebar);
