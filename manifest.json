@@ -1,0 +1,27 @@
+{
+    "name": "Damen FAQ — Asystent dla nowych pracowników",
+    "short_name": "Damen FAQ",
+    "description": "FAQ dla nowych pracowników Damen Marine Components — odpowiedzi na pytania o firmie, przepisach, BHP i codziennych sprawach. Działa offline.",
+    "start_url": "/index.html",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#f5f5f5",
+    "theme_color": "#011736",
+    "lang": "pl",
+    "categories": ["education", "business"],
+    "icons": [
+        {
+            "src": "images/Damen Marine logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/Damen Marine logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
