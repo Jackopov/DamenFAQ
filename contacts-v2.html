@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakty v2 — Damen Marine Components</title>
+    <meta name="theme-color" content="#070D1E">
+    <link rel="icon" href="images/Damen Marine logo.png">
+    <link rel="manifest" href="manifest.json">
+    <style>
+/* ═══════════════════════════════════════════════════════════════
+   VARIABLES & RESET
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+    --bg-deep: #070D1E;
+    --bg-card: rgba(15, 23, 42, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(255, 255, 255, 0.14);
+    --accent: #38BDF8;
+    --accent-dark: #0284C7;
+    --accent-glow: rgba(56, 189, 248, 0.15);
+    --accent-border: rgba(56, 189, 248, 0.3);
+    --text-white: #FFFFFF;
+    --text-light: #CBD5E1;
+    --text-muted: #94A3B8;
+    --text-dim: #64748B;
+    --success: #34D399;
+    --danger: #F87171;
+    --star: #FBBF24;
+    --radius: 16px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-white);
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPOTLIGHT CURSOR (desktop only)
+   ═══════════════════════════════════════════════════════════════ */
+.spotlight { position: fixed; pointer-events: none; z-index: 0; border-radius: 50%;
+    width: 300px; height: 300px; transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%);
+    transition: opacity 0.3s; opacity: 0; }
+@media (hover: hover) { .spotlight { opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   STICKY HEADER
+   ═══════════════════════════════════════════════════════════════ */
+.sticky-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7, 13, 30, 0.92);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 12px 16px 0;
+}
+.header-top {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.logo-link { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-link img { width: 34px; height: 34px; border-radius: 8px; }
+.logo-link span { font-size: 14px; font-weight: 700; color: var(--text-white); }
+.back-link {
+    margin-left: auto; font-size: 12px; color: var(--text-muted);
+    text-decoration: none; padding: 6px 12px; border: 1px solid var(--glass-border);
+    border-radius: 8px; white-space: nowrap; transition: var(--transition); flex-shrink: 0;
+}
+.back-link:hover { background: rgba(255,255,255,0.06); color: var(--text-white); }
+
+/* Search */
+.search-row { position: relative; margin-bottom: 10px; }
+.search-row::before {
+    content: '🔍'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 13px; pointer-events: none; opacity: 0.5;
+}
+.search-input {
+    width: 100%; padding: 10px 70px 10px 36px; border: 1px solid var(--glass-border);
+    border-radius: 12px; background: rgba(255,255,255,0.04); color: var(--text-white);
+    font-size: 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: var(--text-dim); }
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.search-shortcut {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    font-size: 11px; padding: 3px 8px; border-radius: 5px;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--glass-border);
+    color: var(--text-dim); pointer-events: none;
+}
+.search-count {
+    position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+    font-size: 11px; color: var(--text-dim); pointer-events: none;
+}
+
+/* Pills */
+.pills-row {
+    display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.pills-row::-webkit-scrollbar { display: none; }
+.pill {
+    flex-shrink: 0; padding: 5px 12px; border-radius: 20px;
+    border: 1px solid var(--glass-border); background: rgba(255,255,255,0.03);
+    color: var(--text-dim); font-size: 11px; font-weight: 600; cursor: pointer;
+    transition: var(--transition); white-space: nowrap; user-select: none;
+}
+.pill.active {
+    background: var(--accent-glow); color: var(--accent);
+    border-color: var(--accent-border);
+}
+.pill:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ═══════════════════════════════════════════════════════════════ */
+.main { max-width: 900px; margin: 0 auto; padding: 12px 16px 80px; position: relative; z-index: 1; }
+
+/* ── Pinned Essentials ────────────────────────────────────────── */
+.pinned-title {
+    font-size: 10px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+}
+.pinned-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;
+}
+.pinned-card {
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); border-radius: 12px;
+    padding: 12px; text-align: center; cursor: pointer;
+    transition: var(--transition); text-decoration: none; color: inherit;
+    position: relative; overflow: hidden;
+}
+.pinned-card::before {
+    content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(56,189,248,0.08), transparent 60%);
+}
+.pinned-card:hover::before { opacity: 1; }
+.pinned-card:hover { border-color: var(--glass-border-hover); transform: translateY(-1px); }
+.pinned-icon { font-size: 22px; margin-bottom: 4px; }
+.pinned-label { font-size: 10px; color: var(--text-muted); margin-bottom: 2px; font-weight: 600; }
+.pinned-number { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+
+/* ── Section titles ───────────────────────────────────────────── */
+.section-title {
+    font-size: 10px; font-weight: 700; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin: 16px 0 8px; padding-left: 2px;
+}
+
+/* ── Contact Bento Grid ───────────────────────────────────────── */
+.bento-grid {
+    display: grid; grid-template-columns: 1fr; gap: 8px;
+}
+@media (min-width: 640px) { .bento-grid { grid-template-columns: 1fr 1fr; } }
+
+.contact-card {
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius);
+    padding: 16px; position: relative; overflow: hidden;
+    transition: var(--transition); animation: cardIn 0.35s ease both;
+}
+.contact-card::before {
+    content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(56,189,248,0.06), transparent 60%);
+    pointer-events: none;
+}
+@media (hover: hover) { .contact-card:hover::before { opacity: 1; } }
+.contact-card:hover { border-color: var(--glass-border-hover); }
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card header */
+.card-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+.card-name { font-size: 1.1rem; font-weight: 700; color: var(--text-white); line-height: 1.3; flex: 1; min-width: 0; }
+.card-dept {
+    flex-shrink: 0; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--accent); background: var(--accent-glow);
+    border: 1px solid var(--accent-border); padding: 2px 8px; border-radius: 20px;
+    white-space: nowrap;
+}
+.card-position { font-size: 0.8rem; color: var(--text-muted); line-height: 1.3; margin-bottom: 1px; }
+.card-position-en { font-size: 0.7rem; color: var(--text-dim); font-style: italic; margin-bottom: 8px; }
+
+/* Phone numbers */
+.card-phones { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.phone-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.85rem; font-weight: 700; color: var(--accent);
+    text-decoration: none; padding: 4px 10px; border-radius: 8px;
+    background: var(--accent-glow); border: 1px solid var(--accent-border);
+    transition: var(--transition); min-height: 36px;
+}
+.phone-chip:hover { background: rgba(56,189,248,0.25); }
+.phone-chip .icon { font-size: 0.8rem; }
+.phone-chip.internal {
+    background: rgba(148, 163, 184, 0.08); border-color: rgba(148, 163, 184, 0.2);
+    color: var(--text-muted); font-size: 0.75rem; font-weight: 600;
+}
+.phone-chip.no-number {
+    background: none; border: 1px dashed rgba(100,116,139,0.3);
+    color: var(--text-dim); font-style: italic; font-weight: 400; font-size: 0.75rem;
+    cursor: default;
+}
+
+/* Action buttons */
+.card-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.action-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.03); color: var(--text-muted);
+    font-size: 0.7rem; font-weight: 600; cursor: pointer;
+    transition: var(--transition); text-decoration: none; white-space: nowrap;
+    min-height: 32px;
+}
+.action-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-white); border-color: var(--glass-border-hover); }
+.action-btn.call { background: rgba(52, 211, 153, 0.1); border-color: rgba(52,211,153,0.25); color: var(--success); }
+.action-btn.call:hover { background: rgba(52,211,153,0.2); }
+.action-btn.star { color: var(--text-dim); }
+.action-btn.star.active { color: var(--star); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.08); }
+.action-btn.mail { color: var(--accent); }
+
+/* Empty state */
+.empty-state { text-align: center; color: var(--text-dim); padding: 40px 20px; font-size: 14px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TOAST
+   ═══════════════════════════════════════════════════════════════ */
+.toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px);
+    border: 1px solid var(--accent-border); border-radius: 10px;
+    padding: 10px 20px; font-size: 13px; color: var(--accent);
+    font-weight: 600; z-index: 9999; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ═══════════════════════════════════════════════════════════════
+   QUICK CONTACT BUBBLE
+   ═══════════════════════════════════════════════════════════════ */
+.quick-contact {
+    position: fixed; bottom: 16px; left: 16px; z-index: 1000;
+    background: rgba(7, 13, 30, 0.92); border: 1px solid var(--glass-border);
+    border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    padding: 12px 14px; min-width: 190px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    transition: var(--transition);
+}
+.quick-contact.minimized .qc-body { display: none; }
+.quick-contact.minimized { min-width: auto; padding: 8px 12px; }
+.qc-minimize {
+    position: absolute; top: 4px; right: 6px; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.08); border: none; color: var(--text-muted);
+    font-size: 15px; cursor: pointer; padding: 0; border-radius: 50%; z-index: 10;
+    transition: var(--transition);
+}
+.qc-minimize:hover { color: var(--text-white); background: rgba(255,255,255,0.15); }
+.qc-title { font-size: 9px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+.qc-item { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; padding: 4px 0; }
+.qc-item:last-child { margin-bottom: 0; }
+.qc-role { font-size: 11px; color: var(--text-muted); }
+.qc-phone-link { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+.qc-phone-link:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+    .sticky-header { padding: 8px 12px 0; }
+    .logo-link img { width: 28px; height: 28px; }
+    .logo-link span { font-size: 13px; }
+    .pinned-grid { gap: 6px; }
+    .pinned-card { padding: 10px 8px; }
+    .pinned-number { font-size: 12px; }
+    .contact-card { padding: 14px; }
+    .card-name { font-size: 1rem; }
+    .search-shortcut { display: none; }
+    .search-count { right: 12px; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Spotlight cursor -->
+<div class="spotlight" id="spotlight"></div>
+
+<!-- ═══════ STICKY HEADER ═══════ -->
+<header class="sticky-header">
+    <div class="header-top">
+        <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="logo-link">
+            <img src="images/Damen Marine logo.png" alt="Damen">
+            <span>Kontakty v2</span>
+        </a>
+        <a href="index.html" class="back-link">← FAQ</a>
+    </div>
+    <div class="search-row">
+        <input type="text" class="search-input" id="search" placeholder="Szukaj po imieniu, stanowisku, dziale, numerze..." autocomplete="off" />
+        <span class="search-count" id="search-count"></span>
+        <span class="search-shortcut">/</span>
+    </div>
+    <div class="pills-row" id="pills"></div>
+</header>
+
+<!-- ═══════ MAIN ═══════ -->
+<main class="main">
+    <!-- Pinned essentials -->
+    <div class="pinned-title">⚡ Szybki dostęp</div>
+    <div class="pinned-grid" id="pinned"></div>
+
+    <!-- Contact list -->
+    <div class="section-title" id="list-title">📋 Wszyscy pracownicy</div>
+    <div class="bento-grid" id="grid"></div>
+    <div class="empty-state" id="empty" style="display:none;">Brak wyników dla podanych kryteriów</div>
+</main>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Quick Contact -->
+<div class="quick-contact" id="quick-contact">
+    <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
+    <div class="qc-body">
+        <div class="qc-title">📞 Szybki kontakt</div>
+        <div class="qc-item">
+            <span class="qc-role">👷 BHP</span>
+            <a href="tel:+48123456789" class="qc-phone-link">+48 123 456 789</a>
+        </div>
+        <div class="qc-item">
+            <span class="qc-role">👥 HR</span>
+            <a href="tel:+48987654321" class="qc-phone-link">+48 987 654 321</a>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ════════════════════════════════════════════════════════════
+       DATA
+       ════════════════════════════════════════════════════════════ */
+    var CONTACTS = [
+        { imieNazwisko:"Portiernia Główna", stanowiskoPL:"Portiernia", stanowiskoEN:"Reception", dzial:"Zarząd", telefonKomorkowy:null, telefonWewnetrzny:"100", email:null, wazny:true },
+        { imieNazwisko:"Inspektor BHP (dyżurny)", stanowiskoPL:"Inspektor BHP", stanowiskoEN:"HSE Officer", dzial:"Zarząd", telefonKomorkowy:"123456789", telefonWewnetrzny:null, email:null, wazny:true },
+        { imieNazwisko:"Dyspozytor Produkcji", stanowiskoPL:"Dyspozytor Produkcji", stanowiskoEN:"Production Dispatcher", dzial:"PPM", telefonKomorkowy:"987654321", telefonWewnetrzny:"320", email:null, wazny:true },
+        { imieNazwisko:"Bartnicki Oskar", stanowiskoPL:"Konstruktor", stanowiskoEN:"Engineering Specialist", dzial:"PP1", telefonKomorkowy:"737444345", telefonWewnetrzny:null, email:"Oskar.Bartnicki@damen.com", wazny:false },
+        { imieNazwisko:"Basa Sebastian", stanowiskoPL:"Kierownik Działu Utrzymania Ruchu", stanowiskoEN:"Maintenance Department Manager", dzial:"Utrzymanie Ruchu", telefonKomorkowy:"664453522", telefonWewnetrzny:null, email:"Sebastian.Basa@damen.com", wazny:false },
+        { imieNazwisko:"Bielski Piotr", stanowiskoPL:"Brygadzista (PP1)", stanowiskoEN:"Chargehand", dzial:"PP1", telefonKomorkowy:"692437678", telefonWewnetrzny:null, email:"Piotr.Bielski@damen.com", wazny:false },
+        { imieNazwisko:"Bieniecka-Hurka Aleksandra", stanowiskoPL:"Kierownik działu HR", stanowiskoEN:"Human Resources Manager", dzial:"Zarząd", telefonKomorkowy:"532806813", telefonWewnetrzny:null, email:"Aleksandra.Bieniecka.Hurka@damen.com", wazny:false },
+        { imieNazwisko:"Błażejak Marcin", stanowiskoPL:"Magazynier", stanowiskoEN:"Storeman", dzial:"Magazyn", telefonKomorkowy:"664925583", telefonWewnetrzny:null, email:"magazyn.dmcgd@damen.com", wazny:false },
+        { imieNazwisko:"Bojanowski Marek", stanowiskoPL:"Konstruktor", stanowiskoEN:"Engineering Specialist", dzial:"PP1", telefonKomorkowy:"888969868", telefonWewnetrzny:null, email:"Marek.Bojanowski@damen.com", wazny:false },
+        { imieNazwisko:"Bork Iwona", stanowiskoPL:"Księgowa (DR)", stanowiskoEN:"Accountant", dzial:"Biuro / Księgowość", telefonKomorkowy:"734415861", telefonWewnetrzny:null, email:"Iwona.Bork@damen.com", wazny:false },
+        { imieNazwisko:"Borowski Tomasz", stanowiskoPL:"Specjalista ds. Zakupów", stanowiskoEN:"Purchasing Specialist", dzial:"Logistyka & Magazyn", telefonKomorkowy:"602752871", telefonWewnetrzny:null, email:"Tomasz.Borowski@damen.com", wazny:false },
+        { imieNazwisko:"Butkiewicz Jakub", stanowiskoPL:"Operator prasy", stanowiskoEN:"Press Operator", dzial:"PP2", telefonKomorkowy:"880672401", telefonWewnetrzny:null, email:"Jakub.Butkiewicz@damen.com", wazny:false },
+        { imieNazwisko:"Cybowicz Daniel", stanowiskoPL:"Specjalista utrzymania ruchu", stanowiskoEN:"Maintenance Specialist", dzial:"Utrzymanie Ruchu", telefonKomorkowy:"574091116", telefonWewnetrzny:null, email:"Daniel.Cybowicz@damen.com", wazny:false },
+        { imieNazwisko:"Cytrycka Marcelina", stanowiskoPL:"Specjalista ds. zakupów", stanowiskoEN:"Purchasing Specialist", dzial:"Logistyka & Magazyn", telefonKomorkowy:"574408784", telefonWewnetrzny:null, email:"Marcelina.Cytrycka@damen.com", wazny:false },
+        { imieNazwisko:"Dermiaha Daniel", stanowiskoPL:"Kierownik Odziału (PPM)", stanowiskoEN:"Production Manager", dzial:"PPM", telefonKomorkowy:"602310732", telefonWewnetrzny:null, email:"Daniel.Dermiaha@damen.com", wazny:false },
+        { imieNazwisko:"Droszkowski Adrian", stanowiskoPL:"Operator transportu", stanowiskoEN:"Transport Operator", dzial:"Logistyka & Magazyn", telefonKomorkowy:"882364146", telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Dzierbicki Bartosz", stanowiskoPL:"Kierownik Techniczny", stanowiskoEN:"Technical Manager", dzial:"Zarząd", telefonKomorkowy:"532466949", telefonWewnetrzny:null, email:"Bartosz.Dzierbicki@damen.com", wazny:false },
+        { imieNazwisko:"Ellwart Witold", stanowiskoPL:"Brygadzista", stanowiskoEN:"Chargehand", dzial:"PP1", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Gala Marek", stanowiskoPL:"Asystent Szefa Produkcji", stanowiskoEN:"Production Assistant", dzial:"PPM", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Gieroń Sławomir", stanowiskoPL:"Dyrektor Zarządu", stanowiskoEN:"Board Director", dzial:"Zarząd", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Jaromiej Bogdan", stanowiskoPL:"Kierownik Działu PP2", stanowiskoEN:"Production Manager PP2", dzial:"PP2", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Kozłowska Joanna", stanowiskoPL:"Główna Księgowa", stanowiskoEN:"Chief Accountant", dzial:"Biuro / Księgowość", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Kryla Piotr", stanowiskoPL:"Kierownik Działu PP2", stanowiskoEN:"Production Manager PP2", dzial:"PP2", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Nawrocki Tomasz", stanowiskoPL:"Kierownik Działu Jakości", stanowiskoEN:"Quality Manager", dzial:"Jakość", telefonKomorkowy:"501773805", telefonWewnetrzny:null, email:"Tomasz.Nawrocki@damen.com", wazny:false },
+        { imieNazwisko:"Piechota Andrzej", stanowiskoPL:"Technolog", stanowiskoEN:"Technologist", dzial:"PP1", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Przewoźny Piotr", stanowiskoPL:"Kierownik Kompletacji", stanowiskoEN:"Assembly Manager", dzial:"PPM", telefonKomorkowy:"698870232", telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Rolnicka Bożena", stanowiskoPL:"Kierownik Działu Org. Personalnych", stanowiskoEN:"HR Department Manager", dzial:"Zarząd", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Sabatura Natalia", stanowiskoPL:"Księgowa", stanowiskoEN:"Accountant", dzial:"Biuro / Księgowość", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Włoch Jacek", stanowiskoPL:"Tłumacz", stanowiskoEN:"Translator", dzial:"Biuro / Księgowość", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Woźniak Wojciech", stanowiskoPL:"Szef Produkcji", stanowiskoEN:"Production Director", dzial:"Zarząd", telefonKomorkowy:"604525707", telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Zaboklicki Maciej", stanowiskoPL:"Kierownik Magazynu/Kompletacji", stanowiskoEN:"Warehouse Manager", dzial:"Magazyn", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Żołądowski Janusz", stanowiskoPL:"Zaopatrzenie", stanowiskoEN:"Purchasing", dzial:"Logistyka & Magazyn", telefonKomorkowy:"602729347", telefonWewnetrzny:null, email:null, wazny:false },
+        { imieNazwisko:"Przybyłek Ilona", stanowiskoPL:"Specjalista ds. Księgowości", stanowiskoEN:"Accounting Specialist", dzial:"Biuro / Księgowość", telefonKomorkowy:null, telefonWewnetrzny:null, email:null, wazny:false }
+    ];
+
+    /* ════════════════════════════════════════════════════════════
+       FILTER GROUPS
+       ════════════════════════════════════════════════════════════ */
+    var FILTER_GROUPS = {
+        'Wszystkie': function() { return true; },
+        'Produkcja': function(c) { return ['PP1','PP2','PPM'].indexOf(c.dzial) !== -1; },
+        'Konstruktorzy / Technolodzy': function(c) { return c.stanowiskoPL.indexOf('Konstruktor') !== -1 || c.stanowiskoPL.indexOf('Technolog') !== -1; },
+        'BHP & Zarząd': function(c) { return c.dzial === 'Zarząd' || c.wazny; },
+        'Logistyka & Magazyn': function(c) { return c.dzial === 'Magazyn' || c.dzial === 'Logistyka & Magazyn'; },
+        'Ulubione ⭐': function(c) { return favorites.indexOf(c.imieNazwisko) !== -1; }
+    };
+
+    /* ════════════════════════════════════════════════════════════
+       STATE
+       ════════════════════════════════════════════════════════════ */
+    var FAV_KEY = 'damen_favorites_v2';
+    var favorites = [];
+    try { favorites = JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e) { favorites = []; }
+
+    var activeFilter = 'Wszystkie';
+    var searchQuery = '';
+    var toastTimer = null;
+
+    /* ════════════════════════════════════════════════════════════
+       DOM REFS
+       ════════════════════════════════════════════════════════════ */
+    var searchIn = document.getElementById('search');
+    var countEl = document.getElementById('search-count');
+    var pillsEl = document.getElementById('pills');
+    var pinnedEl = document.getElementById('pinned');
+    var gridEl = document.getElementById('grid');
+    var emptyEl = document.getElementById('empty');
+    var listTitle = document.getElementById('list-title');
+    var toastEl = document.getElementById('toast');
+    var spotlight = document.getElementById('spotlight');
+
+    /* ════════════════════════════════════════════════════════════
+       UTILITIES
+       ════════════════════════════════════════════════════════════ */
+    function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function vibrate() {
+        try { if (navigator.vibrate) navigator.vibrate(15); } catch(e) {}
+    }
+
+    function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function() { toastEl.classList.remove('show'); }, 2000);
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() { showToast('📋 Skopiowano: ' + text); });
+        } else {
+            var ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            showToast('📋 Skopiowano: ' + text);
+        }
+        vibrate();
+    }
+
+    function saveFavorites() {
+        try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch(e) {}
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PINNED ESSENTIALS
+       ════════════════════════════════════════════════════════════ */
+    function renderPinned() {
+        var important = CONTACTS.filter(function(c) { return c.wazny; });
+        pinnedEl.innerHTML = important.map(function(c) {
+            var phone = c.telefonKomorkowy || c.telefonWewnetrzny || '';
+            var icon = c.stanowiskoPL.indexOf('Portiernia') !== -1 ? '🏛' :
+                       c.stanowiskoPL.indexOf('BHP') !== -1 ? '👷' : '🏭';
+            var href = phone ? 'tel:+48' + phone : '#';
+            return '<a href="' + href + '" class="pinned-card" onclick="event.preventDefault();if(\'' + phone + '\')window.location.href=\'' + href + '\'">' +
+                '<div class="pinned-icon">' + icon + '</div>' +
+                '<div class="pinned-label">' + esc(c.stanowiskoPL) + '</div>' +
+                '<div class="pinned-number">' + (phone ? esc(phone) : '—') + '</div>' +
+            '</a>';
+        }).join('');
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PILLS
+       ════════════════════════════════════════════════════════════ */
+    function renderPills() {
+        pillsEl.innerHTML = Object.keys(FILTER_GROUPS).map(function(name) {
+            return '<button class="pill' + (name === activeFilter ? ' active' : '') + '" data-filter="' + name + '">' + name + '</button>';
+        }).join('');
+    }
+
+    pillsEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.pill');
+        if (!btn) return;
+        activeFilter = btn.dataset.filter;
+        pillsEl.querySelectorAll('.pill').forEach(function(b) { b.classList.toggle('active', b === btn); });
+        renderList();
+    });
+
+    /* ════════════════════════════════════════════════════════════
+       SEARCH + FILTER
+       ════════════════════════════════════════════════════════════ */
+    searchIn.addEventListener('input', function() {
+        searchQuery = searchIn.value.trim().toLowerCase();
+        renderList();
+    });
+
+    // "/" shortcut
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '/' && document.activeElement !== searchIn) {
+            e.preventDefault(); searchIn.focus();
+        }
+    });
+
+    function getFiltered() {
+        var filterFn = FILTER_GROUPS[activeFilter] || FILTER_GROUPS['Wszystkie'];
+        return CONTACTS.filter(function(c) {
+            if (!filterFn(c)) return false;
+            if (!searchQuery) return true;
+            var hay = (c.imieNazwisko + ' ' + c.stanowiskoPL + ' ' + c.stanowiskoEN + ' ' + c.dzial + ' ' + (c.telefonWewnetrzny||'') + ' ' + (c.email||'')).toLowerCase();
+            return hay.indexOf(searchQuery) !== -1;
+        });
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       RENDER LIST
+       ════════════════════════════════════════════════════════════ */
+    function renderList() {
+        var items = getFiltered();
+        // Sort: important first, then alphabetical
+        items.sort(function(a, b) {
+            if (a.wazny && !b.wazny) return -1;
+            if (!a.wazny && b.wazny) return 1;
+            return a.imieNazwisko.localeCompare(b.imieNazwisko, 'pl');
+        });
+
+        countEl.textContent = items.length + ' / ' + CONTACTS.length;
+        listTitle.textContent = activeFilter === 'Wszystkie' ? '📋 Wszyscy pracownicy' : '📋 ' + activeFilter;
+
+        if (!items.length) {
+            gridEl.innerHTML = '';
+            emptyEl.style.display = '';
+            return;
+        }
+        emptyEl.style.display = 'none';
+
+        gridEl.innerHTML = items.map(function(c, i) {
+            var isFav = favorites.indexOf(c.imieNazwisko) !== -1;
+            var phone = c.telefonKomorkowy;
+            var internal = c.telefonWewnetrzny;
+            var email = c.email;
+
+            // Phone chips
+            var phoneHtml = '';
+            if (phone) {
+                phoneHtml += '<a href="tel:+48' + esc(phone) + '" class="phone-chip" onclick="event.stopPropagation()"><span class="icon">📞</span>' + esc(phone) + '</a>';
+            } else {
+                phoneHtml += '<span class="phone-chip no-number">Brak numeru komórkowego</span>';
+            }
+            if (internal) {
+                phoneHtml += '<span class="phone-chip internal">Wewn. ' + esc(internal) + '</span>';
+            }
+
+            // Action buttons
+            var actionsHtml = '';
+            if (phone) {
+                actionsHtml += '<a href="tel:+48' + esc(phone) + '" class="action-btn call" onclick="event.stopPropagation()">📞 Zadzwoń</a>';
+                actionsHtml += '<button class="action-btn" onclick="event.stopPropagation();copyToClipboard(\'' + esc(phone) + '\')">📋 Kopiuj</button>';
+            }
+            if (email) {
+                actionsHtml += '<a href="mailto:' + esc(email) + '" class="action-btn mail" onclick="event.stopPropagation()">✉ E-mail</a>';
+            }
+            actionsHtml += '<button class="action-btn star' + (isFav ? ' active' : '') + '" data-fav="' + esc(c.imieNazwisko) + '" onclick="event.stopPropagation()">' + (isFav ? '★' : '☆') + '</button>';
+
+            return '<div class="contact-card" style="animation-delay:' + (i * 0.03) + 's">' +
+                '<div class="card-head">' +
+                    '<div class="card-name">' + esc(c.imieNazwisko) + '</div>' +
+                    '<div class="card-dept">' + esc(c.dzial) + '</div>' +
+                '</div>' +
+                '<div class="card-position">' + esc(c.stanowiskoPL) + '</div>' +
+                (c.stanowiskoEN ? '<div class="card-position-en">' + esc(c.stanowiskoEN) + '</div>' : '') +
+                '<div class="card-phones">' + phoneHtml + '</div>' +
+                '<div class="card-actions">' + actionsHtml + '</div>' +
+            '</div>';
+        }).join('');
+
+        // Bind star buttons
+        gridEl.querySelectorAll('.star').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var name = btn.dataset.fav;
+                var idx = favorites.indexOf(name);
+                if (idx === -1) { favorites.push(name); btn.classList.add('active'); btn.textContent = '★'; showToast('⭐ Dodano do ulubionych'); }
+                else { favorites.splice(idx, 1); btn.classList.remove('active'); btn.textContent = '☆'; showToast('☆ Usunięto z ulubionych'); }
+                saveFavorites(); vibrate();
+            });
+        });
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       SPOTLIGHT CURSOR
+       ════════════════════════════════════════════════════════════ */
+    document.addEventListener('mousemove', function(e) {
+        spotlight.style.left = e.clientX + 'px';
+        spotlight.style.top = e.clientY + 'px';
+        // Also update card ::before custom properties
+        document.querySelectorAll('.contact-card, .pinned-card').forEach(function(card) {
+            var r = card.getBoundingClientRect();
+            var x = ((e.clientX - r.left) / r.width * 100);
+            var y = ((e.clientY - r.top) / r.height * 100);
+            card.style.setProperty('--mx', x + '%');
+            card.style.setProperty('--my', y + '%');
+        });
+    });
+
+    /* ════════════════════════════════════════════════════════════
+       QUICK CONTACT MINIMIZE
+       ════════════════════════════════════════════════════════════ */
+    var qcMin = document.getElementById('qc-minimize');
+    var qc = document.getElementById('quick-contact');
+    if (qcMin && qc) {
+        qcMin.addEventListener('click', function() {
+            qc.classList.toggle('minimized');
+            qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
+        });
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       INIT
+       ════════════════════════════════════════════════════════════ */
+    renderPinned();
+    renderPills();
+    renderList();
+
+})();
+</script>
+</body>
+</html>
