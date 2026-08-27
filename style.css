@@ -818,30 +818,7 @@ body::before {
     color: var(--titanium-600);
 }
 
-/* Mobile trigger */
-.cp-mobile-trigger {
-    position: fixed;
-    bottom: 60px;
-    left: 16px;
-    z-index: 10001;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: var(--navy-800);
-    backdrop-filter: blur(12px);
-    color: var(--arctic-400);
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-}
-.cp-mobile-trigger:hover {
-    transform: scale(1.1);
-}
+
 
 /* ═══════════════════════════════════════════════════════════════════════════
    RESPONSIVE

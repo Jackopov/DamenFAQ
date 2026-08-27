@@ -21,6 +21,7 @@
         <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="sidebar-logo"><img src="images/Damen Marine logo.png" alt="Damen"></a>
         <div class="sidebar-brand">Damen Marine Components</div>
         <div class="sidebar-divider"></div>
+        <a href="#" class="sidebar-link" id="sidebar-search"><span>🔍</span> Szukaj</a>
         <a href="index.html" class="sidebar-link active">🏠 FAQ</a>
         <a href="contacts.html" class="sidebar-link">📞 Kontakty (3D)</a>
         <a href="contacts-v2.html" class="sidebar-link">📋 Kontakty v2</a>
@@ -70,9 +71,6 @@
             </div>
         </div>
     </div>
-    <!-- Mobile gesture trigger -->
-    <button type="button" class="cp-mobile-trigger" id="cp-mobile-trigger" aria-label="Szukaj">🔍</button>
-
     <div class="container">
         <div class="header" id="header-canvas">
             <button type="button" class="hamburger" id="hamburger" aria-label="Menu"><span class="hamburger-arrow"></span></button>
@@ -226,6 +224,16 @@
         if (hamburger) hamburger.addEventListener('click', openSidebar);
         if (overlay) overlay.addEventListener('click', closeSidebar);
         if (close) close.addEventListener('click', closeSidebar);
+
+        /* Sidebar search → opens command palette */
+        var sidebarSearch = document.getElementById('sidebar-search');
+        if (sidebarSearch) {
+            sidebarSearch.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeSidebar();
+                setTimeout(function() { openPalette(); }, 300);
+            });
+        }
 
         /* ── Command Palette (Cmd+K / Ctrl+K) ──────────────────────── */
         var cpOverlay = document.getElementById('cp-overlay');
