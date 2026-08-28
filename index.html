@@ -3,7 +3,7 @@
 <head>
     <title>Damen FAQ — Asystent dla pracowników</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="FAQ dla nowych pracowników i gości — pierwszy dzień, godziny pracy, urlopy, BHP, IT i codzienne sprawy.">
     <meta name="theme-color" content="#070D1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,8 +15,15 @@
     <link rel="stylesheet" href="style.css">
     <style>
     /* ═══════════════════════════════════════════════════════════════════════
-       HERO SEARCH-FIRST DESIGN SYSTEM
+       GLOBAL RESET & MOBILE VIEWPORT FIX
        ═══════════════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
 
     body {
         background: #070D1E;
@@ -40,11 +47,13 @@
     .hero-top {
         position: absolute;
         top: 0; left: 0; right: 0;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 14px 20px;
+        padding: 14px 16px;
         z-index: 5;
+        box-sizing: border-box;
     }
     .hero-logo {
         height: 36px;
@@ -93,6 +102,7 @@
         text-align: center;
         max-width: 640px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-greeting {
@@ -122,6 +132,7 @@
         max-width: 680px;
         width: 100%;
         margin: 0 auto;
+        box-sizing: border-box;
     }
 
     /* Sonar glow behind the capsule */
@@ -261,12 +272,17 @@
     }
 
     @media (max-width: 600px) {
-        .hero-search-inner { padding: 4px 6px 4px 16px; border-radius: 22px; min-height: 52px; }
-        .hero-search-inner input { font-size: 15px; }
+        .hero { min-height: 72vh; padding: 20px 12px 16px; }
+        .hero-top { padding: 10px 12px; }
+        .hero-logo { height: 32px; }
+        .hero-lang a { font-size: 14px; padding: 3px 6px; }
+        .hero h1 { font-size: 20px; margin-bottom: 16px; }
+        .hero-search { max-width: 100%; padding: 0 4px; }
+        .hero-search-inner { padding: 4px 6px 4px 14px; border-radius: 22px; min-height: 50px; gap: 4px; }
+        .hero-search-inner input { font-size: 15px; padding: 6px 0; }
         .hero-sparkle { display: none; }
-        .hero-search-btn { width: 38px; height: 38px; }
-        .hero-mic { width: 38px; height: 38px; }
-        .hero h1 { font-size: 22px; margin-bottom: 18px; }
+        .hero-search-btn { width: 36px; height: 36px; }
+        .hero-mic { width: 36px; height: 36px; }
         .hero-hint { display: none; }
     }
 
@@ -313,11 +329,13 @@
 
     /* ── Content Below Hero ───────────────────────────────────────────── */
     .below-hero {
+        width: 100%;
         max-width: 860px;
         margin: 0 auto;
         padding: 0 16px 80px;
         position: relative;
         z-index: 1;
+        box-sizing: border-box;
     }
 
     /* ── Recommended Questions ────────────────────────────────────────── */
