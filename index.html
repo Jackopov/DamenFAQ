@@ -271,6 +271,170 @@
         color: #64748B;
     }
 
+    /* ═══════════════ SEARCH MODULE WRAPPER ═══════════════════════════════ */
+    .search-module-wrapper {
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    /* ═══════════════ SEARCH RESULTS CONTAINER ══════════════════════════ */
+    .search-results-container {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        transform: translateY(-8px);
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.3s ease,
+                    margin-top 0.3s ease,
+                    transform 0.3s ease;
+    }
+    body.is-searching .search-results-container {
+        max-height: 70vh;
+        opacity: 1;
+        margin-top: 14px;
+        transform: translateY(0);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(56,189,248,0.3) transparent;
+    }
+    body.is-searching .search-results-container::-webkit-scrollbar {
+        width: 6px;
+    }
+    body.is-searching .search-results-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    body.is-searching .search-results-container::-webkit-scrollbar-thumb {
+        background: rgba(56,189,248,0.3);
+        border-radius: 3px;
+    }
+
+    /* ═══════════════ IS-SEARCHING STATE TRANSITIONS ══════════════════════ */
+    .hero {
+        transition: min-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    body.is-searching .hero {
+        min-height: 32vh;
+        padding-top: 20px;
+        padding-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+        body.is-searching .hero { min-height: 36vh; padding-top: 16px; }
+    }
+
+    .hero-hint,
+    .cat-pills,
+    .rec-section,
+    .story-banner,
+    .answer-section {
+        transition: opacity 0.3s ease, max-height 0.4s ease, transform 0.3s ease;
+    }
+    body.is-searching .hero-hint,
+    body.is-searching .cat-pills,
+    body.is-searching .rec-section,
+    body.is-searching .story-banner,
+    body.is-searching .answer-section {
+        opacity: 0;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transform: translateY(-10px);
+    }
+
+    /* ═══════════════ RESULT CARDS (Glassmorphism) ════════════════════════ */
+    .sr-card {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+        position: relative;
+    }
+    .sr-card:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .sr-card-question {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.35;
+        margin-bottom: 8px;
+    }
+    .sr-card-question mark {
+        background: rgba(56, 189, 248, 0.25);
+        color: #7DD3FC;
+        border-radius: 3px;
+        padding: 0 2px;
+    }
+    .sr-card-answer {
+        font-size: 0.925rem;
+        color: #CBD5E1;
+        line-height: 1.55;
+        margin-bottom: 10px;
+    }
+    .sr-card-answer mark {
+        background: rgba(56, 189, 248, 0.2);
+        color: #93C5FD;
+        border-radius: 3px;
+        padding: 0 2px;
+    }
+    .sr-card-badge {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #7DD3FC;
+        background: rgba(56, 189, 248, 0.12);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        padding: 3px 10px;
+        border-radius: 20px;
+    }
+    .sr-card-arrow {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #475569;
+        font-size: 18px;
+        transition: color 0.2s, transform 0.2s;
+    }
+    .sr-card:hover .sr-card-arrow {
+        color: #38BDF8;
+        transform: translateY(-50%) translateX(3px);
+    }
+
+    /* ═══════════════ EMPTY STATE ════════════════════════════════════════ */
+    .sr-empty {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .sr-empty-icon {
+        font-size: 36px;
+        margin-bottom: 12px;
+        opacity: 0.6;
+    }
+    .sr-empty-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #CBD5E1;
+        margin-bottom: 6px;
+    }
+    .sr-empty-hint {
+        font-size: 0.85rem;
+        color: #64748B;
+        line-height: 1.5;
+    }
+
     @media (max-width: 600px) {
         .hero { min-height: 72vh; padding: 20px 12px 16px; }
         .hero-top { padding: 10px 12px; }
@@ -825,31 +989,34 @@
             <div class="hero-greeting" id="hero-greeting">DAMEN MARINE COMPONENTS</div>
             <h1 id="hero-title">W czym możemy Ci <span>pomóc</span>?</h1>
 
-            <div class="hero-search" id="hero-search">
-                <div class="hero-search-glow"></div>
-                <div class="hero-search-inner">
-                    <span class="hero-sparkle">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74z"/>
-                        </svg>
-                    </span>
-                    <input type="text" id="question-input" placeholder="Zadaj pytanie lub opisz swój problem..." autocomplete="off" />
-                    <button type="button" id="mic-btn" class="hero-mic" aria-label="Zadaj pytanie głosowo">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                            <line x1="12" y1="19" x2="12" y2="23"></line>
-                            <line x1="8" y1="23" x2="16" y2="23"></line>
-                        </svg>
-                    </button>
-                    <button id="ask-btn" class="hero-search-btn" aria-label="Szukaj">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </button>
+            <div class="search-module-wrapper">
+                <div class="hero-search" id="hero-search">
+                    <div class="hero-search-glow"></div>
+                    <div class="hero-search-inner">
+                        <span class="hero-sparkle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74z"/>
+                            </svg>
+                        </span>
+                        <input type="text" id="question-input" placeholder="Zadaj pytanie lub opisz swój problem..." autocomplete="off" />
+                        <button type="button" id="mic-btn" class="hero-mic" aria-label="Zadaj pytanie głosowo">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                            </svg>
+                        </button>
+                        <button id="ask-btn" class="hero-search-btn" aria-label="Szukaj">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="hero-suggestions" class="hero-suggestions"></div>
                 </div>
-                <div id="hero-suggestions" class="hero-suggestions"></div>
+                <div id="searchResults" class="search-results-container"></div>
             </div>
 
             <div class="hero-hint">Naciśnij <kbd>/</kbd> aby szukać &middot; <kbd>⌘K</kbd> paleta komend</div>
@@ -997,6 +1164,126 @@
             document.getElementById('question-input').focus();
         }
     });
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       DYNAMIC SEARCH DOCKING — Search-First UX
+       ═══════════════════════════════════════════════════════════════════════ */
+    (function() {
+        var input = document.getElementById('question-input');
+        var results = document.getElementById('searchResults');
+        var answerBox = document.getElementById('answer-box');
+        if (!input || !results) return;
+
+        var faqData = [];
+        var MIN_CHARS = 2;
+
+        // Load FAQ data
+        fetch('api.json')
+            .then(function(r) { return r.ok ? r.json() : []; })
+            .then(function(d) { if (Array.isArray(d)) faqData = d; })
+            .catch(function() {});
+
+        function escH(s) {
+            return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function highlightText(text, query) {
+            if (!query || query.length < 2) return escH(text);
+            var words = query.toLowerCase().split(/\s+/).filter(function(w) { return w.length >= 2; });
+            var result = escH(text);
+            words.forEach(function(w) {
+                var re = new RegExp('(' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                result = result.replace(re, '<mark>$1</mark>');
+            });
+            return result;
+        }
+
+        function enterSearchMode() {
+            document.body.classList.add('is-searching');
+        }
+
+        function exitSearchMode() {
+            document.body.classList.remove('is-searching');
+            results.innerHTML = '';
+            results.style.maxHeight = '0';
+        }
+
+        function renderResults(matches, query) {
+            if (!matches.length) {
+                results.innerHTML =
+                    '<div class="sr-empty">' +
+                        '<div class="sr-empty-icon">🔍</div>' +
+                        '<div class="sr-empty-title">Nie znaleźliśmy dokładnej odpowiedzi</div>' +
+                        '<div class="sr-empty-hint">Skontaktuj się z mistrzem wydziału lub działem HR — pomożemy Ci znaleźć potrzebną informację.</div>' +
+                    '</div>';
+                return;
+            }
+            results.innerHTML = matches.map(function(item) {
+                var q = (item.question && item.question.pl) || item.question || '';
+                var a = (item.answer && item.answer.pl) || item.answer || '';
+                var cat = (item.category && item.category.pl) || item.category || '';
+                // Truncate answer to ~180 chars
+                if (a.length > 180) a = a.substring(0, 180) + '…';
+                return '<div class="sr-card" data-id="' + (item.id || '') + '">' +
+                    '<div class="sr-card-question">' + highlightText(q, query) + '</div>' +
+                    '<div class="sr-card-answer">' + highlightText(a, query) + '</div>' +
+                    (cat ? '<span class="sr-card-badge">' + escH(cat) + '</span>' : '') +
+                    '<span class="sr-card-arrow">›</span>' +
+                '</div>';
+            }).join('');
+        }
+
+        function searchFAQ(query) {
+            var ql = query.toLowerCase().trim();
+            if (ql.length < MIN_CHARS) {
+                exitSearchMode();
+                return;
+            }
+            enterSearchMode();
+            var matches = faqData.filter(function(item) {
+                var q = ((item.question && item.question.pl) || item.question || '').toLowerCase();
+                var a = ((item.answer && item.answer.pl) || item.answer || '').toLowerCase();
+                var c = ((item.category && item.category.pl) || item.category || '').toLowerCase();
+                return q.indexOf(ql) !== -1 || a.indexOf(ql) !== -1 || c.indexOf(ql) !== -1;
+            });
+            renderResults(matches, ql);
+        }
+
+        // Input event listener
+        var debounceTimer = null;
+        input.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                searchFAQ(input.value);
+            }, 200);
+        });
+
+        // Click on result card → open FAQ answer
+        results.addEventListener('click', function(e) {
+            var card = e.target.closest('.sr-card');
+            if (!card) return;
+            var id = card.dataset.id;
+            if (!id) return;
+            var item = faqData.find(function(f) { return String(f.id) === String(id); });
+            if (item) {
+                // Use existing app.js answer mechanism
+                var inputEl = document.getElementById('question-input');
+                var q = (item.question && item.question.pl) || item.question || '';
+                inputEl.value = q;
+                var askBtn = document.getElementById('ask-btn');
+                if (askBtn) askBtn.click();
+            }
+        });
+
+        // Clear on Escape
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                input.value = '';
+                exitSearchMode();
+                input.blur();
+            }
+        });
+    })();
 
     /* ── PWA: Service Worker + Install Prompt ───────────────────────── */
     if ('serviceWorker' in navigator) {
