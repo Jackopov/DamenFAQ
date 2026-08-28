@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Asystent dla nowych pracowników</title>
+    <title>Damen FAQ — Asystent dla pracowników</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FAQ dla nowych pracowników i gości — pierwszy dzień, godziny pracy, urlopy, BHP, IT i codzienne sprawy. Informacje o Damen Marine Components: historia, prezes i osiągnięcia.">
-    <meta name="theme-color" content="#011736">
+    <meta name="description" content="FAQ dla nowych pracowników i gości — pierwszy dzień, godziny pracy, urlopy, BHP, IT i codzienne sprawy.">
+    <meta name="theme-color" content="#070D1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Damen FAQ">
@@ -13,6 +13,473 @@
     <link rel="icon" href="images/Damen Marine logo.png">
     <link rel="apple-touch-icon" href="images/Damen Marine logo.png">
     <link rel="stylesheet" href="style.css">
+    <style>
+    /* ═══════════════════════════════════════════════════════════════════════
+       HERO SEARCH-FIRST DESIGN SYSTEM
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    body {
+        background: #070D1E;
+        min-height: 100vh;
+    }
+
+    /* ── Hero Section ─────────────────────────────────────────────────── */
+    .hero {
+        min-height: 68vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px 20px;
+        position: relative;
+    }
+    @media (max-width: 600px) {
+        .hero { min-height: 72vh; padding: 24px 16px 16px; }
+    }
+
+    .hero-top {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        z-index: 5;
+    }
+    .hero-logo {
+        height: 36px;
+        background: #38BDF8;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-logo:hover { transform: scale(1.05); transition: transform 0.2s; }
+
+    .hero-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .hero-lang {
+        display: flex;
+        gap: 2px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: 2px;
+    }
+    .hero-lang a {
+        text-decoration: none;
+        font-size: 15px;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: all 0.2s;
+        color: rgba(255,255,255,0.5);
+    }
+    .hero-lang a.active {
+        background: #38BDF8;
+        color: #fff;
+    }
+    .hero-lang a:hover:not(.active) {
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 640px;
+        width: 100%;
+    }
+
+    .hero-greeting {
+        font-size: 13px;
+        color: #64748B;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+
+    .hero h1 {
+        font-size: clamp(24px, 5vw, 36px);
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.2;
+        margin-bottom: 24px;
+        letter-spacing: -0.3px;
+    }
+    .hero h1 span {
+        color: #38BDF8;
+    }
+
+    /* ── Sonar Pulse Search ───────────────────────────────────────────── */
+    .hero-search {
+        position: relative;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+    .hero-search-glow {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110%;
+        height: 180%;
+        background: radial-gradient(ellipse, rgba(56,189,248,0) 0%, transparent 70%);
+        pointer-events: none;
+        transition: opacity 0.4s;
+        opacity: 0;
+    }
+    .hero-search.focused .hero-search-glow {
+        opacity: 1;
+        animation: sonarPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes sonarPulse {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+        50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.3; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    }
+
+    .hero-search-inner {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 16px;
+        padding: 6px 6px 6px 20px;
+        box-shadow: 0 0 25px rgba(56, 189, 248, 0.08);
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .hero-search.focused .hero-search-inner {
+        border-color: rgba(56, 189, 248, 0.5);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+    }
+
+    .hero-search-inner input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-family: inherit;
+        min-width: 0;
+    }
+    .hero-search-inner input::placeholder {
+        color: #64748B;
+    }
+
+    .hero-search-btn {
+        padding: 12px 24px;
+        background: #0284C7;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .hero-search-btn:hover {
+        background: #0369A1;
+        transform: translateY(-1px);
+    }
+
+    .hero-mic {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        color: #94A3B8;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .hero-mic:hover {
+        background: rgba(255,255,255,0.1);
+        color: #38BDF8;
+    }
+
+    .hero-hint {
+        margin-top: 14px;
+        font-size: 12px;
+        color: #475569;
+    }
+    .hero-hint kbd {
+        display: inline-block;
+        padding: 1px 6px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 11px;
+        color: #64748B;
+    }
+
+    @media (max-width: 600px) {
+        .hero-search-inner { padding: 4px 4px 4px 14px; border-radius: 14px; }
+        .hero-search-inner input { font-size: 15px; }
+        .hero-search-btn { padding: 10px 16px; font-size: 13px; }
+        .hero-mic { width: 38px; height: 38px; }
+        .hero h1 { font-size: 22px; margin-bottom: 18px; }
+        .hero-hint { display: none; }
+    }
+
+    /* ── Suggestions Dropdown (hero) ──────────────────────────────────── */
+    .hero-suggestions {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0; right: 0;
+        background: #0f172a;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        z-index: 20;
+        display: none;
+    }
+    .hero-suggestions.show { display: block; }
+    .hero-suggestion-item {
+        padding: 12px 18px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #CBD5E1;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        transition: background 0.12s;
+    }
+    .hero-suggestion-item:last-child { border-bottom: none; }
+    .hero-suggestion-item:hover, .hero-suggestion-item.active {
+        background: rgba(56, 189, 248, 0.08);
+        color: #38BDF8;
+    }
+
+    /* ── Staggered Reveal Animations ──────────────────────────────────── */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    .reveal.visible {
+        animation: heroReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroReveal {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Content Below Hero ───────────────────────────────────────────── */
+    .below-hero {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 16px 80px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ── Recommended Questions ────────────────────────────────────────── */
+    .rec-section {
+        margin-bottom: 20px;
+    }
+    .rec-section h3 {
+        font-size: 12px;
+        color: #64748B;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        padding-left: 2px;
+    }
+    .rec-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+        margin-bottom: 8px;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: inherit;
+    }
+    .rec-card:hover {
+        background: rgba(56, 189, 248, 0.06);
+        border-color: rgba(56, 189, 248, 0.2);
+        transform: translateX(4px);
+    }
+    .rec-icon {
+        font-size: 20px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(56, 189, 248, 0.1);
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+    .rec-text {
+        flex: 1;
+        min-width: 0;
+    }
+    .rec-text strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #E2E8F0;
+        margin-bottom: 2px;
+    }
+    .rec-text span {
+        font-size: 12px;
+        color: #64748B;
+    }
+    .rec-chevron {
+        color: #475569;
+        font-size: 18px;
+        flex-shrink: 0;
+        transition: transform 0.2s;
+    }
+    .rec-card:hover .rec-chevron {
+        transform: translateX(3px);
+        color: #38BDF8;
+    }
+
+    /* ── Category Pills ───────────────────────────────────────────────── */
+    .cat-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+    .cat-pill {
+        padding: 6px 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 999px;
+        font-size: 12px;
+        color: #94A3B8;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    .cat-pill:hover, .cat-pill.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.3);
+        color: #38BDF8;
+    }
+
+    /* ── Story Banner ─────────────────────────────────────────────────── */
+    .story-banner {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(2, 132, 199, 0.12) 100%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: border-color 0.3s;
+    }
+    .story-banner:hover {
+        border-color: rgba(56, 189, 248, 0.2);
+    }
+    .story-banner-icon {
+        font-size: 32px;
+        flex-shrink: 0;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(56, 189, 248, 0.1);
+        border-radius: 14px;
+    }
+    .story-banner-text {
+        flex: 1;
+    }
+    .story-banner-text h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 4px;
+    }
+    .story-banner-text p {
+        font-size: 13px;
+        color: #94A3B8;
+        line-height: 1.5;
+    }
+    .story-banner-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .story-banner-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
+    }
+    @media (max-width: 600px) {
+        .story-banner { flex-direction: column; text-align: center; padding: 20px; }
+        .story-banner-icon { margin: 0 auto; }
+    }
+
+    /* ── Answer Box ───────────────────────────────────────────────────── */
+    .answer-section {
+        margin-bottom: 24px;
+    }
+    .answer-box {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(56, 189, 248, 0.15);
+        border-radius: 16px;
+        padding: 20px;
+    }
+    .answer-box h3 {
+        font-size: 12px;
+        color: #38BDF8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+    .answer-box p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #CBD5E1;
+    }
+    .answer-box strong { color: #38BDF8; }
+
+    @media (max-width: 600px) {
+        .below-hero { padding: 0 12px 100px; }
+        .rec-card { padding: 12px 14px; }
+    }
+    </style>
 </head>
 <body>
     <!-- Sidebar nawigacja -->
@@ -59,7 +526,6 @@
                 </div>
                 <div class="cp-group">
                     <div class="cp-group-title">Skróty</div>
-
                     <div class="cp-item" data-action="scroll-top"><span class="cp-item-icon">⬆️</span>Przewiń do góry</div>
                     <div class="cp-item" data-action="show-all"><span class="cp-item-icon">📋</span>Pokaż wszystkie pytania</div>
                 </div>
@@ -71,64 +537,86 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="header" id="header-canvas">
-            <button type="button" class="hamburger" id="hamburger" aria-label="Menu"><span class="hamburger-arrow"></span></button>
-            <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></a>
-            <div class="header-text">
-                <h1 id="title">Asystent dla nowych pracowników</h1>
-                <p id="subtitle" class="subtitle">Informacje dla pracowników i gości — historia, ludzie i osiągnięcia Damen</p>
-            </div>
-            <a href="admin.html" class="admin-link">⚙️ Panel admina</a>
-        </div>
 
-        <div class="language-selector">
-            <span id="lang-label">Język:</span>
-            <a href="#" id="lang-pl" class="active">🇵🇱</a> |
-            <a href="#" id="lang-en">🇬🇧</a>
-        </div>
-
-        <div id="search-area" class="search-area">
-            <div class="form-box">
-                <input type="text" id="question-input" placeholder="Zadaj pytanie..." autocomplete="off" />
-                <button id="ask-btn">Zadaj pytanie</button>
-                <button type="button" id="mic-btn" class="mic-btn" aria-label="Zadaj pytanie głosowo" title="Zadaj pytanie głosowo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                        <line x1="12" y1="19" x2="12" y2="23"></line>
-                        <line x1="8" y1="23" x2="16" y2="23"></line>
-                    </svg>
-                </button>
-            </div>
-            <div id="suggestions" class="suggestions" style="display:none;"></div>
-        </div>
-
-        <div class="answer" id="answer-box" style="display:none;">
-            <h3 id="answer-title">Odpowiedź:</h3>
-            <p id="answer-text"></p>
-            <div id="answer-media"></div>
-            <div id="answer-suggestions"></div>
-        </div>
-
-        <div class="examples">
-            <h3 id="examples-title">Rekomendowane pytania:</h3>
-            <div id="examples-list">
-                <!-- dynamically populated from api.json -->
+    <!-- ═══════════════ HERO — Search First ═══════════════ -->
+    <div class="hero">
+        <div class="hero-top">
+            <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="hero-logo"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></a>
+            <div class="hero-nav">
+                <div class="hero-lang">
+                    <a href="#" id="lang-pl" class="active">🇵🇱</a>
+                    <a href="#" id="lang-en">🇬🇧</a>
+                </div>
+                <button type="button" class="hamburger" id="hamburger" aria-label="Menu"><span class="hamburger-arrow"></span></button>
             </div>
         </div>
 
-        <div class="story-tab">
-            <div class="story-tab-text">
-                <div class="story-kicker" id="story-kicker">POZNAJ NAS</div>
-                <h3 id="story-title">O Damen Marine Components — nasza historia</h3>
-                <p id="story-text">Od stoczni braci Damen w 1927 roku, przez przełom Kommera Damen, po dzisiejszą dywizję produkującą układy napędowe, stery i wyposażenie pokładowe dla statków na całym świecie.</p>
+        <div class="hero-content">
+            <div class="hero-greeting" id="hero-greeting">DAMEN MARINE COMPONENTS</div>
+            <h1 id="hero-title">W czym możemy Ci <span>pomóc</span>?</h1>
+
+            <div class="hero-search" id="hero-search">
+                <div class="hero-search-glow"></div>
+                <div class="hero-search-inner">
+                    <input type="text" id="question-input" placeholder="Zadaj pytanie..." autocomplete="off" />
+                    <button id="ask-btn" class="hero-search-btn">Szukaj</button>
+                    <button type="button" id="mic-btn" class="hero-mic" aria-label="Zadaj pytanie głosowo">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div id="hero-suggestions" class="hero-suggestions"></div>
             </div>
-            <a href="o-damen.html" class="story-tab-btn" id="story-cta">Czytaj opowieść →</a>
+
+            <div class="hero-hint">Naciśnij <kbd>/</kbd> aby szukać &middot; <kbd>⌘K</kbd> paleta komend</div>
         </div>
     </div>
 
-    <!-- Pływający dymek szybkiego kontaktu — zawsze widoczny -->
+    <!-- ═══════════════ CONTENT — Staggered Reveal ═══════════════ -->
+    <div class="below-hero">
+
+        <!-- Answer (hidden by default) -->
+        <div class="answer-section reveal" id="answer-box" style="display:none;">
+            <div class="answer-box">
+                <h3 id="answer-title">Odpowiedź</h3>
+                <p id="answer-text"></p>
+                <div id="answer-media"></div>
+                <div id="answer-suggestions"></div>
+            </div>
+        </div>
+
+        <!-- Category Pills -->
+        <div class="cat-pills reveal" id="cat-pills">
+            <span class="cat-pill active" data-cat="all">Wszystkie</span>
+            <span class="cat-pill" data-cat="produkcja">🔧 Produkcja</span>
+            <span class="cat-pill" data-cat="konstrukcja">📐 Konstrukcja</span>
+            <span class="cat-pill" data-cat="bhp">🦺 BHP</span>
+            <span class="cat-pill" data-cat="logistyka">📦 Logistyka</span>
+            <span class="cat-pill" data-cat="hr">👥 HR</span>
+        </div>
+
+        <!-- Recommended Questions -->
+        <div class="rec-section reveal" id="examples-section">
+            <h3 id="examples-title">Rekomendowane pytania</h3>
+            <div id="examples-list"></div>
+        </div>
+
+        <!-- Story Banner -->
+        <div class="story-banner reveal" id="story-banner">
+            <div class="story-banner-icon">🚢</div>
+            <div class="story-banner-text">
+                <h3 id="story-title">O Damen Marine Components</h3>
+                <p id="story-text">Od stoczni braci Damen w 1927 roku po dzisiejszą dywizję produkującą układy napędowe i wyposażenie pokładowe dla statków na całym świecie.</p>
+            </div>
+            <a href="o-damen.html" class="story-banner-btn" id="story-cta">Poznaj nas →</a>
+        </div>
+    </div>
+
+    <!-- Pływający dymek szybkiego kontaktu -->
     <div class="quick-contact" id="quick-contact">
         <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
         <div class="qc-body">
@@ -146,7 +634,35 @@
 
     <script src="app.js"></script>
     <script>
-    /* ── PWA: Rejestracja Service Worker + prompt instalacji ──────────── */
+    /* ── Hero Reveal Animation ──────────────────────────────────────── */
+    (function() {
+        var reveals = document.querySelectorAll('.reveal');
+        // Stagger: each element appears 150ms after the previous
+        reveals.forEach(function(el, i) {
+            setTimeout(function() {
+                el.classList.add('visible');
+            }, 400 + i * 150);
+        });
+    })();
+
+    /* ── Sonar Pulse on Focus ───────────────────────────────────────── */
+    (function() {
+        var search = document.getElementById('hero-search');
+        var input = document.getElementById('question-input');
+        if (!search || !input) return;
+        input.addEventListener('focus', function() { search.classList.add('focused'); });
+        input.addEventListener('blur', function() { search.classList.remove('focused'); });
+    })();
+
+    /* ── "/" keyboard shortcut to focus search ──────────────────────── */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+            e.preventDefault();
+            document.getElementById('question-input').focus();
+        }
+    });
+
+    /* ── PWA: Service Worker + Install Prompt ───────────────────────── */
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker.register('./service-worker.js').then(function(reg) {
@@ -157,9 +673,7 @@
         });
     }
 
-    /* Prompt instalacji na urządzeniach mobilnych */
-    let deferredPrompt = null;
-
+    var deferredPrompt = null;
     window.addEventListener('beforeinstallprompt', function(e) {
         e.preventDefault();
         deferredPrompt = e;
@@ -168,7 +682,7 @@
 
     function showInstallBanner() {
         if (document.getElementById('pwa-install-banner')) return;
-        const banner = document.createElement('div');
+        var banner = document.createElement('div');
         banner.id = 'pwa-install-banner';
         banner.innerHTML =
             '<div style="position:fixed;bottom:0;left:0;right:0;background:#011736;color:#fff;' +
@@ -181,27 +695,23 @@
             '<button id="pwa-install-dismiss" style="background:transparent;color:#94a3b8;' +
             'border:none;font-size:18px;cursor:pointer;padding:4px 8px;">✕</button>' +
             '</div>';
-        // Auto-zamknij po 8 sekundach
         setTimeout(function() { if (banner.parentNode) banner.remove(); }, 8000);
         document.body.appendChild(banner);
-
         document.getElementById('pwa-install-btn').addEventListener('click', function() {
             if (!deferredPrompt) return;
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then(function(result) {
-                if (result.outcome === 'accepted') {
-                    console.log('PWA installed');
-                }
+                if (result.outcome === 'accepted') console.log('PWA installed');
                 deferredPrompt = null;
                 banner.remove();
             });
         });
-
         document.getElementById('pwa-install-dismiss').addEventListener('click', function() {
             banner.remove();
         });
     }
-    /* Quick Contact minimize toggle */
+
+    /* ── Quick Contact toggle ───────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', function() {
         var qcMin = document.getElementById('qc-minimize');
         var qc = document.getElementById('quick-contact');
@@ -213,7 +723,7 @@
         }
     });
 
-    /* Sidebar toggle */
+    /* ── Sidebar toggle ─────────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', function() {
         var hamburger = document.getElementById('hamburger');
         var sidebar = document.getElementById('sidebar');
@@ -235,7 +745,7 @@
             });
         }
 
-        /* ── Command Palette (Cmd+K / Ctrl+K) ──────────────────────── */
+        /* ── Command Palette ────────────────────────────────────────── */
         var cpOverlay = document.getElementById('cp-overlay');
         var cpInput = document.getElementById('cp-input');
         var cpResults = document.getElementById('cp-results');
@@ -254,68 +764,46 @@
             cpInput.focus();
             filterPalette('');
         }
-        function closePalette() {
-            cpOverlay.classList.remove('open');
-        }
+        function closePalette() { cpOverlay.classList.remove('open'); }
 
-        // Load FAQ data for search
         fetch('api.json').then(function(r) { return r.ok ? r.json() : []; })
-            .then(function(d) { if (Array.isArray(d)) faqData = d; })
-            .catch(function() {});
-        // Load contacts for search
+            .then(function(d) { if (Array.isArray(d)) faqData = d; }).catch(function() {});
         fetch('contacts.json').then(function(r) { return r.ok ? r.json() : []; })
-            .then(function(d) { if (Array.isArray(d)) contactsData = d; })
-            .catch(function() {});
+            .then(function(d) { if (Array.isArray(d)) contactsData = d; }).catch(function() {});
 
         function filterPalette(q) {
             var ql = q.toLowerCase().trim();
             var visible = 0;
-
-            // Filter FAQ
             var faqMatches = ql ? faqData.filter(function(f) {
                 var hay = ((f.question && f.question.pl) || '') + ' ' + ((f.category && f.category.pl) || '');
                 return hay.toLowerCase().indexOf(ql) !== -1;
             }).slice(0, 5) : [];
-
             if (faqMatches.length) {
                 cpFaqGroup.style.display = '';
                 cpFaqItems.innerHTML = faqMatches.map(function(f) {
-                    var q = (f.question && f.question.pl) || '';
-                    return '<div class="cp-item" data-faq="' + f.id + '"><span class="cp-item-icon">❓</span>' + escH(q) + '</div>';
+                    return '<div class="cp-item" data-faq="' + f.id + '"><span class="cp-item-icon">❓</span>' + escH((f.question && f.question.pl) || '') + '</div>';
                 }).join('');
                 visible += faqMatches.length;
-            } else {
-                cpFaqGroup.style.display = 'none';
-            }
+            } else { cpFaqGroup.style.display = 'none'; }
 
-            // Filter contacts
             var contactMatches = ql ? contactsData.filter(function(c) {
-                var hay = c.name + ' ' + c.position_pl + ' ' + c.department;
-                return hay.toLowerCase().indexOf(ql) !== -1;
+                return (c.name + ' ' + c.position_pl + ' ' + c.department).toLowerCase().indexOf(ql) !== -1;
             }).slice(0, 5) : [];
-
             if (contactMatches.length) {
                 cpContactGroup.style.display = '';
                 cpContactItems.innerHTML = contactMatches.map(function(c) {
-                    var phoneHint = c.phone ? ' — ' + c.phone : '';
-                    return '<div class="cp-item" data-contact="' + escH(c.name) + '"><span class="cp-item-icon">👤</span>' + escH(c.name) + '<span class="cp-item-hint">' + escH(c.department) + phoneHint + '</span></div>';
+                    return '<div class="cp-item" data-contact="' + escH(c.name) + '"><span class="cp-item-icon">👤</span>' + escH(c.name) + '<span class="cp-item-hint">' + escH(c.department) + (c.phone ? ' — ' + c.phone : '') + '</span></div>';
                 }).join('');
                 visible += contactMatches.length;
-            } else {
-                cpContactGroup.style.display = 'none';
-            }
+            } else { cpContactGroup.style.display = 'none'; }
 
-            // Filter static items
             var items = cpResults.querySelectorAll('.cp-group:not(#cp-faq-group):not(#cp-contacts-group) .cp-item');
             items.forEach(function(item) {
                 if (!ql) { item.style.display = ''; visible++; return; }
-                var text = item.textContent.toLowerCase();
-                var match = text.indexOf(ql) !== -1;
+                var match = item.textContent.toLowerCase().indexOf(ql) !== -1;
                 item.style.display = match ? '' : 'none';
                 if (match) visible++;
             });
-
-            // Show empty state
             var existing = cpResults.querySelector('.cp-empty');
             if (existing) existing.remove();
             if (visible === 0 && ql) {
@@ -324,132 +812,72 @@
                 empty.textContent = 'Brak wyników dla "' + q + '"';
                 cpResults.appendChild(empty);
             }
-
             cpActiveIdx = -1;
             updateActiveItem();
         }
-
         function getVisibleItems() {
             return Array.from(cpResults.querySelectorAll('.cp-item:not([style*="display: none"])'));
         }
-
         function updateActiveItem() {
             var items = getVisibleItems();
-            items.forEach(function(item, i) {
-                item.classList.toggle('active', i === cpActiveIdx);
-            });
-            if (cpActiveIdx >= 0 && items[cpActiveIdx]) {
-                items[cpActiveIdx].scrollIntoView({ block: 'nearest' });
-            }
+            items.forEach(function(item, i) { item.classList.toggle('active', i === cpActiveIdx); });
+            if (cpActiveIdx >= 0 && items[cpActiveIdx]) items[cpActiveIdx].scrollIntoView({ block: 'nearest' });
         }
-
         function executeItem(item) {
             if (!item) return;
-            var url = item.dataset.url;
-            var faqId = item.dataset.faq;
-            var action = item.dataset.action;
-            var contact = item.dataset.contact;
-
             closePalette();
-
-            if (url) {
-                // View Transitions API
-                if (document.startViewTransition) {
-                    document.startViewTransition(function() {
-                        window.location.href = url;
-                    });
-                } else {
-                    window.location.href = url;
-                }
-            } else if (faqId) {
+            if (item.dataset.url) {
+                if (document.startViewTransition) document.startViewTransition(function() { window.location.href = item.dataset.url; });
+                else window.location.href = item.dataset.url;
+            } else if (item.dataset.faq) {
                 var input = document.getElementById('question-input');
-                var item_data = faqData.find(function(f) { return String(f.id) === String(faqId); });
-                if (item_data && item_data.question && item_data.question.pl) {
-                    input.value = item_data.question.pl;
-                    document.getElementById('ask-btn').click();
-                }
-            } else if (action === 'scroll-top') {
+                var fd = faqData.find(function(f) { return String(f.id) === String(item.dataset.faq); });
+                if (fd && fd.question && fd.question.pl) { input.value = fd.question.pl; document.getElementById('ask-btn').click(); }
+            } else if (item.dataset.action === 'scroll-top') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else if (action === 'show-all') {
+            } else if (item.dataset.action === 'show-all') {
                 var toggle = document.querySelector('.toggle-all');
                 if (toggle) toggle.click();
-            } else if (contact) {
+            } else if (item.dataset.contact) {
                 window.location.href = 'contacts.html';
             }
         }
-
         function escH(s) {
             return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
-        // Keyboard shortcut: Cmd+K / Ctrl+K
         document.addEventListener('keydown', function(e) {
             if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
                 e.preventDefault();
-                if (cpOverlay.classList.contains('open')) {
-                    closePalette();
-                } else {
-                    openPalette();
-                }
+                cpOverlay.classList.contains('open') ? closePalette() : openPalette();
             }
-            if (e.key === 'Escape' && cpOverlay.classList.contains('open')) {
-                closePalette();
-            }
+            if (e.key === 'Escape' && cpOverlay.classList.contains('open')) closePalette();
         });
-
-        // Input filtering
         if (cpInput) {
-            cpInput.addEventListener('input', function() {
-                filterPalette(cpInput.value);
-            });
+            cpInput.addEventListener('input', function() { filterPalette(cpInput.value); });
             cpInput.addEventListener('keydown', function(e) {
                 var items = getVisibleItems();
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    cpActiveIdx = Math.min(cpActiveIdx + 1, items.length - 1);
-                    updateActiveItem();
-                } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    cpActiveIdx = Math.max(cpActiveIdx - 1, 0);
-                    updateActiveItem();
-                } else if (e.key === 'Enter') {
-                    e.preventDefault();
-                    executeItem(items[cpActiveIdx] || items[0]);
-                }
+                if (e.key === 'ArrowDown') { e.preventDefault(); cpActiveIdx = Math.min(cpActiveIdx + 1, items.length - 1); updateActiveItem(); }
+                else if (e.key === 'ArrowUp') { e.preventDefault(); cpActiveIdx = Math.max(cpActiveIdx - 1, 0); updateActiveItem(); }
+                else if (e.key === 'Enter') { e.preventDefault(); executeItem(items[cpActiveIdx] || items[0]); }
             });
         }
-
-        // Click on item
-        cpResults.addEventListener('click', function(e) {
-            var item = e.target.closest('.cp-item');
-            if (item) executeItem(item);
-        });
-
-        // Click overlay to close
-        cpOverlay.addEventListener('click', function(e) {
-            if (e.target === cpOverlay) closePalette();
-        });
-
-        // Mobile trigger
-        var cpMobile = document.getElementById('cp-mobile-trigger');
-        if (cpMobile) {
-            cpMobile.addEventListener('click', openPalette);
-        }
+        cpResults.addEventListener('click', function(e) { var item = e.target.closest('.cp-item'); if (item) executeItem(item); });
+        cpOverlay.addEventListener('click', function(e) { if (e.target === cpOverlay) closePalette(); });
     });
     </script>
 
-    <!-- WebGL Water Shader (pure, zero dependencies) -->
+    <!-- WebGL Water Shader -->
     <script>
     (function() {
-        var container = document.getElementById('header-canvas');
+        var container = document.querySelector('.hero');
         if (!container) return;
-
-        /* ── Shader sources ─────────────────────────────────────────── */
         var VS = 'attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}';
         var FS = [
             'precision mediump float;',
             'uniform float uT;',
             'uniform vec2 uM;',
+            'uniform float uI;',
             'uniform vec2 uR;',
             'void main(){',
             '  vec2 uv=gl_FragCoord.xy/uR;',
@@ -469,71 +897,46 @@
             '  gl_FragColor=vec4(c,1);',
             '}'
         ].join('\n');
-
-        /* ── Setup WebGL (minimal) ──────────────────────────────────── */
-        var gl = document.createElement('canvas');
-        gl.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:inherit;';
-        container.appendChild(gl);
-        var ctx = gl.getContext('webgl', { alpha: false, antialias: false, preserveDrawingBuffer: false });
-        if (!ctx) return;
-
+        var cvs = document.createElement('canvas');
+        cvs.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;border-radius:inherit;z-index:0;';
+        container.appendChild(cvs);
+        var gl = cvs.getContext('webgl', { alpha: false, antialias: false, preserveDrawingBuffer: false });
+        if (!gl) return;
         function compile(type, src) {
-            var s = ctx.createShader(type);
-            ctx.shaderSource(s, src);
-            ctx.compileShader(s);
-            return s;
+            var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s;
         }
-        var prog = ctx.createProgram();
-        ctx.attachShader(prog, compile(ctx.VERTEX_SHADER, VS));
-        ctx.attachShader(prog, compile(ctx.FRAGMENT_SHADER, FS));
-        ctx.linkProgram(prog);
-        ctx.useProgram(prog);
-
-        // Full-screen quad
-        var buf = ctx.createBuffer();
-        ctx.bindBuffer(ctx.ARRAY_BUFFER, buf);
-        ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), ctx.STATIC_DRAW);
-        var aPos = ctx.getAttribLocation(prog, 'a_pos');
-        ctx.enableVertexAttribArray(aPos);
-        ctx.vertexAttribPointer(aPos, 2, ctx.FLOAT, false, 0, 0);
-
-        // Uniforms
-        var uT = ctx.getUniformLocation(prog, 'uT');
-        var uM = ctx.getUniformLocation(prog, 'uM');
-        var uI = ctx.getUniformLocation(prog, 'uI');
-        var uR = ctx.getUniformLocation(prog, 'uR');
-
-        var mouseTarget = [0.5, 0.5];
-        var mouseSmooth = [0.5, 0.5];
-        var ripple = 0;
-        var lastMove = 0;
-        var t0 = Date.now();
-        var running = true;
-
+        var prog = gl.createProgram();
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+        var buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+        var aPos = gl.getAttribLocation(prog, 'a_pos');
+        gl.enableVertexAttribArray(aPos);
+        gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+        var uT = gl.getUniformLocation(prog, 'uT');
+        var uM = gl.getUniformLocation(prog, 'uM');
+        var uI = gl.getUniformLocation(prog, 'uI');
+        var uR = gl.getUniformLocation(prog, 'uR');
+        var mouseTarget = [0.5, 0.5], mouseSmooth = [0.5, 0.5], ripple = 0, lastMove = 0, t0 = Date.now(), running = true;
         function resize() {
             var dpr = Math.min(window.devicePixelRatio, 1.5);
-            var w = container.clientWidth;
-            var h = container.clientHeight;
-            gl.width = w * dpr;
-            gl.height = h * dpr;
-            gl.viewport(0, 0, gl.width, gl.height);
+            cvs.width = container.clientWidth * dpr;
+            cvs.height = container.clientHeight * dpr;
+            gl.viewport(0, 0, cvs.width, cvs.height);
         }
         resize();
         window.addEventListener('resize', resize);
-
         function onMove(x, y) {
             var r = container.getBoundingClientRect();
             mouseTarget[0] = (x - r.left) / r.width;
             mouseTarget[1] = 1.0 - (y - r.top) / r.height;
-            ripple = 1.0;
-            lastMove = Date.now();
+            ripple = 1.0; lastMove = Date.now();
         }
         container.addEventListener('mousemove', function(e) { onMove(e.clientX, e.clientY); });
-        container.addEventListener('touchmove', function(e) {
-            var t = e.touches[0];
-            if (t) onMove(t.clientX, t.clientY);
-        }, { passive: true });
-
+        container.addEventListener('touchmove', function(e) { var t = e.touches[0]; if (t) onMove(t.clientX, t.clientY); }, { passive: true });
         function frame() {
             if (!running) return;
             requestAnimationFrame(frame);
@@ -541,17 +944,13 @@
             mouseSmooth[0] += (mouseTarget[0] - mouseSmooth[0]) * 0.08;
             mouseSmooth[1] += (mouseTarget[1] - mouseSmooth[1]) * 0.08;
             if (Date.now() - lastMove > 200) ripple *= 0.92;
-            ctx.uniform1f(uT, t);
-            ctx.uniform2f(uM, mouseSmooth[0], mouseSmooth[1]);
-            ctx.uniform1f(uI, ripple);
-            ctx.uniform2f(uR, gl.width, gl.height);
-            ctx.drawArrays(ctx.TRIANGLE_STRIP, 0, 4);
+            gl.uniform1f(uT, t);
+            gl.uniform2f(uM, mouseSmooth[0], mouseSmooth[1]);
+            gl.uniform1f(uI, ripple);
+            gl.uniform2f(uR, cvs.width, cvs.height);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         }
-
-        document.addEventListener('visibilitychange', function() {
-            running = !document.hidden;
-            if (running) frame();
-        });
+        document.addEventListener('visibilitychange', function() { running = !document.hidden; if (running) frame(); });
         frame();
     })();
     </script>
