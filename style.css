@@ -161,7 +161,8 @@ body::before {
 }
 .vs-link svg {
     flex-shrink: 0;
-    min-width: 20px;
+    width: 22px; height: 22px;
+    min-width: 22px;
 }
 .vs-label {
     font-size: 13px;
@@ -195,12 +196,77 @@ body::before {
     border-radius: 0 3px 3px 0;
 }
 
-.vs-bhp {
-    margin-top: auto;
-}
-
 .vs-spacer {
     flex: 1;
+}
+
+/* ── More Options button + Context Menu ───────────────────────── */
+.vs-more { cursor: pointer; }
+.vs-context-menu {
+    position: absolute;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    background: #1E293B;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    padding: 6px;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: bottom center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.vs-context-menu.open {
+    opacity: 1;
+    pointer-events: all;
+}
+.vs-cm-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #CBD5E1;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+.vs-cm-item:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38BDF8;
+}
+
+/* ── Floating Action Button ──────────────────────────────────────── */
+.vs-fab {
+    position: fixed;
+    left: 28px;
+    bottom: 96px;
+    z-index: 110;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), 0 0 10px rgba(56, 189, 248, 0.2);
+    color: #38BDF8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s;
+}
+.vs-fab:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(56, 189, 248, 0.3);
+}
+.vs-fab:active {
+    transform: scale(0.95);
 }
 
 /* Tooltip on hover (desktop only) */
@@ -245,9 +311,7 @@ body::before {
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
     }
     .vsidebar:hover { width: 100%; }
-    .vs-logo { display: none; }
-    .vs-divider { display: none; }
-    .vs-spacer { display: none; }
+    .vs-logo, .vs-divider, .vs-spacer, .vs-more, .vs-context-menu, .vs-fab { display: none !important; }
     .vs-label { display: none !important; opacity: 0 !important; }
     .vs-link {
         width: auto;
@@ -263,7 +327,7 @@ body::before {
         background: rgba(56, 189, 248, 0.2);
         border-radius: 12px;
     }
-    .vs-link svg { min-width: 22px; }
+    .vs-link svg { min-width: 22px; width: 22px; height: 22px; }
     .vs-link:hover { transform: none !important; background: rgba(255,255,255,0.06); }
 }
 

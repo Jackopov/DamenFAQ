@@ -85,7 +85,11 @@
         overflow: hidden;
         white-space: nowrap;
     }
-    .vs-link svg { flex-shrink: 0; min-width: 20px; }
+    .vs-link svg {
+        flex-shrink: 0;
+        width: 22px; height: 22px;
+        min-width: 22px;
+    }
     .vs-label {
         font-size: 13px;
         font-weight: 500;
@@ -118,7 +122,75 @@
         border-radius: 0 3px 3px 0;
     }
     .vs-spacer { flex: 1; }
-    .vs-bhp { margin-top: auto; }
+
+    /* ── More Options button + Context Menu ───────────────────────── */
+    .vs-more { cursor: pointer; }
+    .vs-context-menu {
+        position: absolute;
+        bottom: 56px;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 200px;
+        background: #1E293B;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 14px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        padding: 6px;
+        z-index: 99999;
+        opacity: 0;
+        pointer-events: none;
+        transform-origin: bottom center;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .vs-context-menu.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+    .vs-cm-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: #CBD5E1;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.15s;
+    }
+    .vs-cm-item:hover {
+        background: rgba(56, 189, 248, 0.1);
+        color: #38BDF8;
+    }
+
+    /* ── Floating Action Button ──────────────────────────────────────── */
+    .vs-fab {
+        position: fixed;
+        left: 28px;
+        bottom: 96px;
+        z-index: 110;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), 0 0 10px rgba(56, 189, 248, 0.2);
+        color: #38BDF8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s;
+    }
+    .vs-fab:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+    .vs-fab:active {
+        transform: scale(0.95);
+    }
     @media (max-width: 768px) {
         .vsidebar {
             position: fixed;
@@ -135,7 +207,7 @@
             box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
         }
         .vsidebar:hover { width: 100%; }
-        .vs-logo, .vs-divider, .vs-spacer { display: none; }
+        .vs-logo, .vs-divider, .vs-spacer, .vs-more, .vs-context-menu, .vs-fab { display: none !important; }
         .vs-label { display: none !important; opacity: 0 !important; width: 0 !important; }
         .vs-link {
             width: auto; flex-direction: column; gap: 2px;
@@ -143,7 +215,7 @@
         }
         .vs-link::before { display: none !important; }
         .vs-link.active { background: rgba(56, 189, 248, 0.2); border-radius: 12px; }
-        .vs-link svg { min-width: 22px; }
+        .vs-link svg { min-width: 22px; width: 22px; height: 22px; }
         .vs-link:hover { transform: none !important; background: rgba(255,255,255,0.06); }
         .quick-contact { bottom: calc(60px + env(safe-area-inset-bottom, 0px)); right: 10px; min-width: 180px; }
         .qc-minimize {
@@ -1143,31 +1215,41 @@
         </a>
         <div class="vs-divider"></div>
         <a href="index.html" class="vs-link active" data-tip="FAQ">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <span class="vs-label">FAQ</span>
         </a>
         <a href="contacts.html" class="vs-link" data-tip="Kontakty">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span class="vs-label">Kontakty</span>
         </a>
         <a href="contacts-v2.html" class="vs-link" data-tip="Kontakty v2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            <span class="vs-label">Bento</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span class="vs-label">Kontakty v2</span>
         </a>
         <a href="o-damen.html" class="vs-link" data-tip="O nas">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
             <span class="vs-label">O nas</span>
         </a>
         <a href="admin.html" class="vs-link" data-tip="Admin">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
             <span class="vs-label">Admin</span>
         </a>
         <div class="vs-spacer"></div>
-        <a href="#" class="vs-link vs-bhp" data-tip="BHP" id="sidebar-search">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span class="vs-label">BHP</span>
-        </a>
+        <button class="vs-link vs-more" data-tip="Więcej opcji" id="vs-more-btn" aria-label="Więcej opcji" type="button">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+            <span class="vs-label">Więcej</span>
+        </button>
+        <div class="vs-context-menu" id="vs-context-menu">
+            <a href="#" class="vs-cm-item" id="cm-regulamin">📋 Regulamin zakładowy</a>
+            <a href="#" class="vs-cm-item" id="cm-report">⚠️ Zgłoś błąd</a>
+            <a href="#" class="vs-cm-item" id="cm-settings">⚙️ Ustawienia</a>
+        </div>
     </nav>
+
+    <!-- Floating Action Button (above sidebar) -->
+    <button class="vs-fab" id="vs-fab" title="Szybkie akcje" aria-label="Szybkie akcje" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
 
     <!-- Command Palette (Cmd+K) -->
     <div class="cp-overlay" id="cp-overlay">
@@ -1619,13 +1701,51 @@
         }
     });
 
-    /* ── Sidebar search → opens command palette ────────────────────── */
+    /* ── Sidebar: More Options context menu + FAB ──────────────── */
     document.addEventListener('DOMContentLoaded', function() {
-        var sidebarSearch = document.getElementById('sidebar-search');
-        if (sidebarSearch) {
-            sidebarSearch.addEventListener('click', function(e) {
+        var moreBtn = document.getElementById('vs-more-btn');
+        var ctxMenu = document.getElementById('vs-context-menu');
+        var fabBtn = document.getElementById('vs-fab');
+
+        if (moreBtn && ctxMenu) {
+            moreBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                setTimeout(function() { openPalette(); }, 200);
+                e.stopPropagation();
+                ctxMenu.classList.toggle('open');
+            });
+            document.addEventListener('click', function(e) {
+                if (!ctxMenu.contains(e.target) && e.target !== moreBtn) {
+                    ctxMenu.classList.remove('open');
+                }
+            });
+            /* Context menu actions */
+            var cmRegulamin = document.getElementById('cm-regulamin');
+            var cmReport = document.getElementById('cm-report');
+            var cmSettings = document.getElementById('cm-settings');
+            if (cmRegulamin) cmRegulamin.addEventListener('click', function(e) {
+                e.preventDefault();
+                ctxMenu.classList.remove('open');
+                alert('Regulamin zakładowy — wkrótce');
+            });
+            if (cmReport) cmReport.addEventListener('click', function(e) {
+                e.preventDefault();
+                ctxMenu.classList.remove('open');
+                alert('Zgłoś błąd — wkrótce');
+            });
+            if (cmSettings) cmSettings.addEventListener('click', function(e) {
+                e.preventDefault();
+                ctxMenu.classList.remove('open');
+                alert('Ustawienia — wkrótce');
+            });
+        }
+
+        if (fabBtn) {
+            fabBtn.addEventListener('click', function() {
+                var input = document.getElementById('question-input');
+                if (input) {
+                    input.focus();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         }
 
