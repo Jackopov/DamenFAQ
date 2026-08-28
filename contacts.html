@@ -195,14 +195,14 @@
             position: absolute;
             width: 100%;
             left: 0;
-            height: 140px;
+            height: 130px;
             top: 50%;
             background: var(--glass-bg);
             backdrop-filter: blur(var(--glass-blur));
             -webkit-backdrop-filter: blur(var(--glass-blur));
             border: 1px solid var(--glass-border);
             border-radius: 14px;
-            padding: 14px 52px 14px 18px;
+            padding: 14px 56px 14px 20px;
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
@@ -222,44 +222,36 @@
 
         /* ── Name ────────────────────────────────────────────────── */
         .card .name {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-primary);
-            line-height: 1.2;
+            line-height: 1.25;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-bottom: 2px;
         }
         .card.active .name { color: #FFFFFF; }
 
-        /* ── Position ────────────────────────────────────────────── */
+        /* ── Position (PL only) ─────────────────────────────────── */
         .card .position {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
+            font-weight: 500;
             color: var(--text-secondary);
-            line-height: 1.2;
+            line-height: 1.3;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-bottom: 2px;
         }
         .card.active .position { color: #CBD5E1; }
-
-        .card .position-en {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            font-style: italic;
-            line-height: 1.2;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .card.active .position-en { color: var(--text-secondary); }
 
         /* ── Phone row ───────────────────────────────────────────── */
         .card .phone-row {
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-top: 4px;
+            margin-top: 3px;
         }
         .card .phone-link {
             display: inline-flex;
@@ -271,7 +263,7 @@
             text-decoration: none;
             letter-spacing: 0.3px;
             transition: color 0.15s;
-            min-height: 44px;
+            min-height: 36px;
         }
         .card .phone-link:hover { color: #7DD3FC; }
         .card .phone-link::before {
@@ -441,9 +433,9 @@
             .logo { width: 32px; height: 32px; }
             .header-text h1 { font-size: 13px; }
             .back-btn { font-size: 11px; padding: 5px 10px; }
-            .card { height: 120px; padding: 12px 46px 12px 14px; }
+            .card { height: 120px; padding: 12px 48px 12px 16px; }
             .card .name { font-size: 0.95rem; }
-            .card .position { font-size: 0.75rem; }
+            .card .position { font-size: 0.78rem; }
             .call-btn { width: 40px; height: 40px; right: 12px; }
         }
     </style>
@@ -505,7 +497,7 @@
     'use strict';
 
     /* ── Configuration ─────────────────────────────────────────────── */
-    const CARD_H         = 140;   // base card height (px)
+    const CARD_H         = 130;   // base card height (px)
     const SPACING        = 1.05;  // vertical spacing multiplier vs CARD_H
     const VISIBLE_RADIUS = 4;     // how many cards above/below are visible
     const SCALE_CENTER   = 1.0;   // center card scale
@@ -584,7 +576,7 @@
         filtered = allContacts.filter(function(c) {
             if (activeDept !== 'Wszyscy' && c.department !== activeDept) return false;
             if (q) {
-                var hay = (c.name + ' ' + c.position_pl + ' ' + c.position_en + ' ' + c.department + ' ' + c.email).toLowerCase();
+                var hay = (c.name + ' ' + c.position_pl + ' ' + c.department + ' ' + c.email).toLowerCase();
                 return hay.indexOf(q) !== -1;
             }
             return true;
@@ -624,14 +616,9 @@
                 phoneHtml = '<span class="phone-no">Brak numeru</span>';
             }
 
-            var positionEnHtml = c.position_en
-                ? '<div class="position-en">' + esc(c.position_en) + '</div>'
-                : '';
-
             card.innerHTML =
                 '<div class="name">' + esc(c.name) + '</div>' +
                 '<div class="position">' + esc(c.position_pl) + '</div>' +
-                positionEnHtml +
                 '<div class="phone-row">' + phoneHtml + '</div>' +
                 '<div class="dept-badge">' + esc(c.department) + '</div>' +
                 (c.phone ? '<button class="call-btn" title="Zadzwoń" onclick="event.stopPropagation();window.location.href=\'tel:' + esc(c.phone) + '\'">📞</button>' : '');
