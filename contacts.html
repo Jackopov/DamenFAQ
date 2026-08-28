@@ -425,6 +425,14 @@
         }
         .qc-phone-link:hover { text-decoration: underline; }
 
+        /* Hide quick-contact on contacts pages */
+        .hidden-contact-widget {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
         /* ═══════════════════════════════════════════════════════════════
            RESPONSIVE
            ═══════════════════════════════════════════════════════════════ */
@@ -474,7 +482,7 @@
     <div class="scroll-hint">↕ Przewiń, aby przeglądać kontakty</div>
 
     <!-- ── Quick Contact ────────────────────────────────────────────── -->
-    <div class="quick-contact" id="quick-contact">
+    <div class="quick-contact hidden-contact-widget" id="quick-contact">
         <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
         <div class="qc-body">
             <div class="qc-title">📞 Szybki kontakt</div>

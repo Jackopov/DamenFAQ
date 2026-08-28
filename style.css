@@ -638,6 +638,14 @@ body::before {
 }
 .quick-contact.minimized .qc-body { display: none; }
 .quick-contact.minimized { min-width: auto; padding: 6px 10px; }
+
+/* Hide quick-contact widget on non-FAQ pages */
+.hidden-contact-widget {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
 .qc-minimize {
     position: absolute;
     top: 6px;
