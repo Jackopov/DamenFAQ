@@ -204,7 +204,7 @@ body::before {
 }
 
 /* Tooltip on hover (desktop only) */
-.vsidebar:not(:hover) .vs-link[data-tip]:not(.active)::after {
+.vsidebar:hover .vs-link[data-tip]::after {
     content: attr(data-tip);
     position: absolute;
     left: calc(100% + 12px);
@@ -223,7 +223,7 @@ body::before {
     border: 1px solid rgba(56,189,248,0.15);
     z-index: 10;
 }
-.vsidebar:not(:hover) .vs-link[data-tip]:not(.active):hover::after {
+.vsidebar:hover .vs-link[data-tip]:hover::after {
     opacity: 1;
 }
 
@@ -248,21 +248,23 @@ body::before {
     .vs-logo { display: none; }
     .vs-divider { display: none; }
     .vs-spacer { display: none; }
-    .vs-label { display: none; }
+    .vs-label { display: none !important; opacity: 0 !important; }
     .vs-link {
         width: auto;
         flex-direction: column;
         gap: 2px;
-        padding: 6px 10px;
+        padding: 8px 12px;
         font-size: 10px;
+        transform: none !important;
     }
-    .vs-link::before { display: none; }
+    .vs-link::before { display: none !important; }
+    .vs-link::after { display: none !important; }
     .vs-link.active {
-        background: rgba(56, 189, 248, 0.15);
+        background: rgba(56, 189, 248, 0.2);
         border-radius: 12px;
     }
-    .vs-link:not(.active)::after { display: none; }
     .vs-link svg { min-width: 22px; }
+    .vs-link:hover { transform: none !important; background: rgba(255,255,255,0.06); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
