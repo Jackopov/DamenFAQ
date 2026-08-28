@@ -3,7 +3,7 @@
 <head>
     <title>Damen FAQ — Asystent dla pracowników</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="FAQ dla nowych pracowników i gości — pierwszy dzień, godziny pracy, urlopy, BHP, IT i codzienne sprawy.">
     <meta name="theme-color" content="#070D1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,13 +21,14 @@
     html, body {
         width: 100%;
         max-width: 100%;
+        min-height: 100dvh;
         overflow-x: hidden;
         position: relative;
-    }
-
-    body {
         background: #070D1E;
-        min-height: 100vh;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
     }
 
     /* ═══════════════ VERTICAL SIDEBAR (inline to guarantee load) ═══════════ */
@@ -144,6 +145,14 @@
         .vs-link.active { background: rgba(56, 189, 248, 0.2); border-radius: 12px; }
         .vs-link svg { min-width: 22px; }
         .vs-link:hover { transform: none !important; background: rgba(255,255,255,0.06); }
+        .quick-contact { bottom: calc(60px + env(safe-area-inset-bottom, 0px)); right: 10px; min-width: 180px; }
+        .qc-minimize {
+            position: absolute; top: 4px; right: 6px;
+            width: 22px; height: 22px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.08); border-radius: 50%;
+            font-size: 16px; color: #94A3B8; z-index: 10;
+        }
     }
 
     /* ═══════════════ COMMAND PALETTE (inline to guarantee load) ════════════ */
@@ -220,9 +229,16 @@
         padding: 40px 20px 20px 96px;
         position: relative;
         z-index: 1;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
     }
-    @media (max-width: 600px) {
-        .hero { min-height: 72vh; padding: 24px 16px 16px; }
+    @media (max-width: 768px) {
+        .hero {
+            min-height: 72vh;
+            padding: max(16px, env(safe-area-inset-top)) 16px 16px 16px;
+        }
     }
 
     .hero-top {
@@ -236,8 +252,14 @@
         z-index: 5;
         box-sizing: border-box;
     }
+    @media (max-width: 768px) {
+        .hero-top {
+            padding: max(10px, env(safe-area-inset-top)) 12px 10px 12px;
+        }
+    }
     .hero-logo {
         height: 36px;
+        width: auto;
         background: #38BDF8;
         border-radius: 8px;
         display: flex;
@@ -245,9 +267,15 @@
         justify-content: center;
         overflow: hidden;
         flex-shrink: 0;
+        margin: 0;
+        margin-right: auto;
+        object-fit: contain;
     }
     .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
     .hero-logo:hover { transform: scale(1.05); transition: transform 0.2s; }
+    @media (max-width: 768px) {
+        .hero-logo { height: 32px; }
+    }
 
     .hero-nav {
         display: flex;
@@ -286,6 +314,13 @@
         box-sizing: border-box;
         position: relative;
         z-index: 2;
+        padding: 0 16px;
+    }
+    @media (max-width: 768px) {
+        .hero-content {
+            padding: 0;
+            max-width: 100%;
+        }
     }
 
     .hero-greeting {
@@ -620,19 +655,15 @@
     }
 
     @media (max-width: 768px) {
-        .hero { min-height: 60vh; padding: 20px 16px 80px 16px; }
-        .hero-top { padding: 10px 12px; }
-        .hero-logo { height: 32px; }
-        .hero-lang a { font-size: 14px; padding: 3px 6px; }
-        .hero h1 { font-size: 22px; margin-bottom: 20px; }
-        .hero-search { max-width: 100%; padding: 0; }
         .hero-search-inner { padding: 4px 6px 4px 14px; border-radius: 22px; min-height: 50px; gap: 4px; }
-        .hero-search-inner input { font-size: 15px; padding: 6px 0; }
+        .hero-search-inner input { font-size: 16px; padding: 6px 0; }
         .hero-sparkle { display: none; }
         .hero-search-btn { width: 36px; height: 36px; }
         .hero-mic { width: 36px; height: 36px; }
         .hero-hint { display: none; }
-        .below-hero { margin-left: 0; padding: 0 12px 100px; }
+        .hero h1 { font-size: 22px; margin-bottom: 20px; }
+        .hero-lang a { font-size: 14px; padding: 3px 6px; }
+        .hero-greeting { font-size: 11px; letter-spacing: 1.5px; margin-bottom: 8px; }
     }
 
     /* ── Suggestions Dropdown (hero) ──────────────────────────────────── */
@@ -686,6 +717,12 @@
         position: relative;
         z-index: 1;
         box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+        .below-hero {
+            margin-left: 0;
+            padding: 0 16px calc(80px + env(safe-area-inset-bottom, 0px));
+        }
     }
 
     /* ── Recommended Questions ────────────────────────────────────────── */
