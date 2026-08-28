@@ -37,7 +37,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 40px 20px 20px;
+        padding: 40px 20px 20px 96px;
         position: relative;
     }
     @media (max-width: 600px) {
@@ -435,8 +435,8 @@
         line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
-        .hero { min-height: 72vh; padding: 20px 12px 16px; }
+    @media (max-width: 768px) {
+        .hero { min-height: 72vh; padding: 20px 12px 80px 12px; }
         .hero-top { padding: 10px 12px; }
         .hero-logo { height: 32px; }
         .hero-lang a { font-size: 14px; padding: 3px 6px; }
@@ -496,6 +496,7 @@
         width: 100%;
         max-width: 860px;
         margin: 0 auto;
+        margin-left: 96px;
         padding: 0 16px 80px;
         position: relative;
         z-index: 1;
@@ -690,8 +691,8 @@
     }
     .answer-box strong { color: #38BDF8; }
 
-    @media (max-width: 600px) {
-        .below-hero { padding: 0 12px 100px; }
+    @media (max-width: 768px) {
+        .below-hero { margin-left: 0; padding: 0 12px 100px; }
         .rec-card { padding: 12px 14px; }
     }
 
@@ -916,22 +917,38 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar nawigacja -->
-    <nav class="sidebar" id="sidebar">
-        <button type="button" class="sidebar-close" id="sidebar-close" aria-label="Zamknij menu">✕</button>
-        <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="sidebar-logo"><img src="images/Damen Marine logo.png" alt="Damen"></a>
-        <div class="sidebar-brand">Damen Marine Components</div>
-        <div class="sidebar-divider"></div>
-        <a href="#" class="sidebar-link" id="sidebar-search"><span>🔍</span> Szukaj</a>
-        <a href="index.html" class="sidebar-link active">🏠 FAQ</a>
-        <a href="contacts.html" class="sidebar-link">📞 Kontakty (3D)</a>
-        <a href="contacts-v2.html" class="sidebar-link">📋 Kontakty v2</a>
-        <a href="o-damen.html" class="sidebar-link">🚢 O nas</a>
-        <a href="admin.html" class="sidebar-link">⚙️ Panel admina</a>
-        <div class="sidebar-divider"></div>
-        <div class="sidebar-footer">© 2026 Damen Marine Components</div>
+    <!-- ═══════════════ VERTICAL SIDEBAR (Desktop) / BOTTOM BAR (Mobile) ═══ -->
+    <nav class="vsidebar" id="vsidebar">
+        <a href="https://www.damenmc.com/" target="_blank" rel="noopener" class="vs-logo" title="Damen Marine Components">
+            <img src="images/Damen Marine logo.png" alt="Damen">
+        </a>
+        <div class="vs-divider"></div>
+        <a href="index.html" class="vs-link active" data-tip="FAQ">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span class="vs-label">FAQ</span>
+        </a>
+        <a href="contacts.html" class="vs-link" data-tip="Kontakty">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span class="vs-label">Kontakty</span>
+        </a>
+        <a href="contacts-v2.html" class="vs-link" data-tip="Kontakty v2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span class="vs-label">Bento</span>
+        </a>
+        <a href="o-damen.html" class="vs-link" data-tip="O nas">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
+            <span class="vs-label">O nas</span>
+        </a>
+        <a href="admin.html" class="vs-link" data-tip="Admin">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <span class="vs-label">Admin</span>
+        </a>
+        <div class="vs-spacer"></div>
+        <a href="#" class="vs-link vs-bhp" data-tip="BHP" id="sidebar-search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="vs-label">BHP</span>
+        </a>
     </nav>
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <!-- Command Palette (Cmd+K) -->
     <div class="cp-overlay" id="cp-overlay">
@@ -981,7 +998,6 @@
                     <a href="#" id="lang-pl" class="active">🇵🇱</a>
                     <a href="#" id="lang-en">🇬🇧</a>
                 </div>
-                <button type="button" class="hamburger" id="hamburger" aria-label="Menu"><span class="hamburger-arrow"></span></button>
             </div>
         </div>
 
@@ -1384,25 +1400,13 @@
         }
     });
 
-    /* ── Sidebar toggle ─────────────────────────────────────────────── */
+    /* ── Sidebar search → opens command palette ────────────────────── */
     document.addEventListener('DOMContentLoaded', function() {
-        var hamburger = document.getElementById('hamburger');
-        var sidebar = document.getElementById('sidebar');
-        var overlay = document.getElementById('sidebar-overlay');
-        var close = document.getElementById('sidebar-close');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('open'); hamburger.classList.add('open'); }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); hamburger.classList.remove('open'); }
-        if (hamburger) hamburger.addEventListener('click', openSidebar);
-        if (overlay) overlay.addEventListener('click', closeSidebar);
-        if (close) close.addEventListener('click', closeSidebar);
-
-        /* Sidebar search → opens command palette */
         var sidebarSearch = document.getElementById('sidebar-search');
         if (sidebarSearch) {
             sidebarSearch.addEventListener('click', function(e) {
                 e.preventDefault();
-                closeSidebar();
-                setTimeout(function() { openPalette(); }, 300);
+                setTimeout(function() { openPalette(); }, 200);
             });
         }
 
