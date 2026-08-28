@@ -682,84 +682,137 @@ body::before {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   QUICK CONTACT BUBBLE (shared)
+   QUICK CONTACT — Draggable Red Phone FAB
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.quick-contact {
+.qc-fab {
     position: fixed;
-    bottom: 60px;
-    right: 16px;
+    bottom: 80px;
+    right: 20px;
     z-index: 10000;
-    background: var(--navy-800);
-    border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    padding: 12px 14px;
-    min-width: 220px;
-    backdrop-filter: blur(16px);
-    animation: qcSlideIn 0.4s ease;
-    transition: opacity 0.25s, transform 0.25s;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #DC2626;
+    border: none;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.45), 0 0 0 3px rgba(220, 38, 38, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s;
+    animation: qcPulse 2.5s ease-in-out infinite;
 }
-.quick-contact.minimized .qc-body { display: none; }
-.quick-contact.minimized { min-width: auto; padding: 6px 10px; }
+.qc-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(220, 38, 38, 0.55), 0 0 0 4px rgba(220, 38, 38, 0.25);
+}
+.qc-fab:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+    animation: none;
+}
+.qc-fab.dragging {
+    cursor: grabbing;
+    transform: scale(1.12);
+    box-shadow: 0 8px 32px rgba(220, 38, 38, 0.6), 0 0 0 5px rgba(220, 38, 38, 0.3);
+    animation: none;
+}
+@keyframes qcPulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(220, 38, 38, 0.45), 0 0 0 3px rgba(220, 38, 38, 0.2); }
+    50% { box-shadow: 0 4px 20px rgba(220, 38, 38, 0.55), 0 0 0 6px rgba(220, 38, 38, 0.1); }
+}
 
-/* Hide quick-contact widget on non-FAQ pages */
+/* Bubble */
+.qc-bubble {
+    position: fixed;
+    z-index: 10001;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    padding: 14px 16px;
+    min-width: 200px;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9) translateY(8px);
+    transform-origin: bottom right;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.qc-bubble.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: scale(1) translateY(0);
+}
+.qc-bubble-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.qc-bubble-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #EF4444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.qc-bubble-close {
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    color: #94A3B8;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+.qc-bubble-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #E2E8F0;
+}
+.qc-bubble-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: background 0.15s;
+}
+.qc-bubble-item:last-child { margin-bottom: 0; }
+.qc-bubble-item:hover { background: rgba(255, 255, 255, 0.06); }
+.qc-bubble-role {
+    font-size: 12px;
+    color: #94A3B8;
+}
+.qc-bubble-phone {
+    font-size: 14px;
+    font-weight: 700;
+    color: #38BDF8;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.qc-bubble-phone:hover { text-decoration: underline; }
+
+/* Hide on non-FAQ pages */
 .hidden-contact-widget {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
-.qc-minimize {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    background: none;
-    border: none;
-    color: var(--titanium-600);
-    font-size: 14px;
-    cursor: pointer;
-    padding: 2px 4px;
-    line-height: 1;
-    border-radius: 4px;
-    transition: color 0.15s;
-}
-.qc-minimize:hover { color: var(--titanium-300); }
-@keyframes qcSlideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.qc-title {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--arctic-400);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-.qc-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-    padding: 6px 8px;
-    border-radius: 8px;
-    transition: background 0.15s;
-}
-.qc-item:last-child { margin-bottom: 0; }
-.qc-item:hover { background: rgba(255,255,255,0.06); }
-.qc-role {
-    font-size: 11px;
-    color: var(--titanium-500);
-}
-.qc-phone {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--arctic-400);
-    text-decoration: none;
-    white-space: nowrap;
-}
-.qc-phone:hover { text-decoration: underline; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    COMMAND PALETTE (Cmd+K / Ctrl+K)

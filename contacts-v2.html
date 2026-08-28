@@ -334,21 +334,9 @@ body {
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- Quick Contact -->
-<div class="quick-contact hidden-contact-widget" id="quick-contact">
-    <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
-    <div class="qc-body">
-        <div class="qc-title">📞 Szybki kontakt</div>
-        <div class="qc-item">
-            <span class="qc-role">👷 BHP</span>
-            <a href="tel:+48123456789" class="qc-phone-link">+48 123 456 789</a>
-        </div>
-        <div class="qc-item">
-            <span class="qc-role">👥 HR</span>
-            <a href="tel:+48987654321" class="qc-phone-link">+48 987 654 321</a>
-        </div>
-    </div>
-</div>
+<!-- Quick Contact (hidden on contacts pages) -->
+<div class="qc-fab hidden-contact-widget" id="qc-fab"></div>
+<div class="qc-bubble hidden-contact-widget" id="qc-bubble"></div>
 
 <script>
 (function () {
@@ -612,18 +600,6 @@ body {
             card.style.setProperty('--my', y + '%');
         });
     });
-
-    /* ════════════════════════════════════════════════════════════
-       QUICK CONTACT MINIMIZE
-       ════════════════════════════════════════════════════════════ */
-    var qcMin = document.getElementById('qc-minimize');
-    var qc = document.getElementById('quick-contact');
-    if (qcMin && qc) {
-        qcMin.addEventListener('click', function() {
-            qc.classList.toggle('minimized');
-            qcMin.textContent = qc.classList.contains('minimized') ? '+' : '\u2013';
-        });
-    }
 
     /* ════════════════════════════════════════════════════════════
        INIT

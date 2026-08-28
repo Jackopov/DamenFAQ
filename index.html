@@ -217,14 +217,8 @@
         .vs-link.active { background: rgba(56, 189, 248, 0.2); border-radius: 12px; }
         .vs-link svg { min-width: 22px; width: 22px; height: 22px; }
         .vs-link:hover { transform: none !important; background: rgba(255,255,255,0.06); }
-        .quick-contact { bottom: calc(60px + env(safe-area-inset-bottom, 0px)); right: 10px; min-width: 180px; }
-        .qc-minimize {
-            position: absolute; top: 4px; right: 6px;
-            width: 22px; height: 22px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.08); border-radius: 50%;
-            font-size: 16px; color: #94A3B8; z-index: 10;
-        }
+        .qc-fab { bottom: calc(70px + env(safe-area-inset-bottom, 0px)); right: 16px; width: 48px; height: 48px; }
+        .qc-bubble { min-width: 180px; }
     }
 
     /* ═══════════════ COMMAND PALETTE (inline to guarantee load) ════════════ */
@@ -1380,19 +1374,22 @@
         </div>
     </div>
 
-    <!-- Pływający dymek szybkiego kontaktu -->
-    <div class="quick-contact" id="quick-contact">
-        <button class="qc-minimize" id="qc-minimize" title="Zminimalizuj">–</button>
-        <div class="qc-body">
-            <div class="qc-title">📞 Szybki kontakt</div>
-            <div class="qc-item">
-                <span class="qc-role">👷 BHP</span>
-                <a href="tel:+48123456789" class="qc-phone">+48 123 456 789</a>
-            </div>
-            <div class="qc-item">
-                <span class="qc-role">👥 HR</span>
-                <a href="tel:+48987654321" class="qc-phone">+48 987 654 321</a>
-            </div>
+    <!-- Pływający telefon — przeciąganyFAB -->
+    <div class="qc-fab" id="qc-fab" title="Szybki kontakt">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+    </div>
+    <div class="qc-bubble" id="qc-bubble">
+        <div class="qc-bubble-header">
+            <span class="qc-bubble-title">Szybki kontakt</span>
+            <button class="qc-bubble-close" id="qc-bubble-close" aria-label="Zamknij">&times;</button>
+        </div>
+        <div class="qc-bubble-item">
+            <span class="qc-bubble-role">👷 BHP</span>
+            <a href="tel:+48123456789" class="qc-bubble-phone">+48 123 456 789</a>
+        </div>
+        <div class="qc-bubble-item">
+            <span class="qc-bubble-role">👥 HR</span>
+            <a href="tel:+48987654321" class="qc-bubble-phone">+48 987 654 321</a>
         </div>
     </div>
 
@@ -1689,16 +1686,112 @@
         });
     });
 
-    /* ── Quick Contact toggle ───────────────────────────────────────── */
+    /* ── Quick Contact — Draggable Red Phone FAB ──────────────────── */
     document.addEventListener('DOMContentLoaded', function() {
-        var qcMin = document.getElementById('qc-minimize');
-        var qc = document.getElementById('quick-contact');
-        if (qcMin && qc) {
-            qcMin.addEventListener('click', function() {
-                qc.classList.toggle('minimized');
-                qcMin.textContent = qc.classList.contains('minimized') ? '+' : '–';
+        var fab = document.getElementById('qc-fab');
+        var bubble = document.getElementById('qc-bubble');
+        var closeBtn = document.getElementById('qc-bubble-close');
+        if (!fab || !bubble) return;
+
+        /* Position bubble near FAB */
+        function positionBubble() {
+            var r = fab.getBoundingClientRect();
+            var bw = 210;
+            var bh = bubble.offsetHeight || 140;
+            var left = r.right - bw;
+            var top = r.top - bh - 10;
+            if (top < 10) top = r.bottom + 10;
+            if (left < 10) left = 10;
+            bubble.style.left = left + 'px';
+            bubble.style.top = top + 'px';
+        }
+
+        /* Toggle bubble */
+        fab.addEventListener('click', function(e) {
+            if (fab.classList.contains('was-dragged')) {
+                fab.classList.remove('was-dragged');
+                return;
+            }
+            bubble.classList.toggle('open');
+            if (bubble.classList.contains('open')) positionBubble();
+        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                bubble.classList.remove('open');
             });
         }
+        /* Close on outside click */
+        document.addEventListener('click', function(e) {
+            if (!fab.contains(e.target) && !bubble.contains(e.target)) {
+                bubble.classList.remove('open');
+            }
+        });
+
+        /* ── Drag logic (touch + mouse) ─────────────────────────── */
+        var isDragging = false;
+        var startX, startY, startLeft, startTop;
+        var dragMoved = false;
+
+        function onStart(clientX, clientY) {
+            isDragging = true;
+            dragMoved = false;
+            var r = fab.getBoundingClientRect();
+            startLeft = r.left;
+            startTop = r.top;
+            startX = clientX;
+            startY = clientY;
+            fab.classList.add('dragging');
+            bubble.classList.remove('open');
+        }
+
+        function onMove(clientX, clientY) {
+            if (!isDragging) return;
+            var dx = clientX - startX;
+            var dy = clientY - startY;
+            if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragMoved = true;
+            var newLeft = startLeft + dx;
+            var newTop = startTop + dy;
+            /* Clamp to viewport */
+            var vw = window.innerWidth;
+            var vh = window.innerHeight;
+            newLeft = Math.max(0, Math.min(vw - 52, newLeft));
+            newTop = Math.max(0, Math.min(vh - 52, newTop));
+            fab.style.left = newLeft + 'px';
+            fab.style.top = newTop + 'px';
+            fab.style.right = 'auto';
+            fab.style.bottom = 'auto';
+        }
+
+        function onEnd() {
+            if (!isDragging) return;
+            isDragging = false;
+            fab.classList.remove('dragging');
+            if (dragMoved) {
+                fab.classList.add('was-dragged');
+            }
+        }
+
+        /* Touch events */
+        fab.addEventListener('touchstart', function(e) {
+            var t = e.touches[0];
+            onStart(t.clientX, t.clientY);
+        }, { passive: true });
+        document.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            var t = e.touches[0];
+            onMove(t.clientX, t.clientY);
+        }, { passive: true });
+        document.addEventListener('touchend', onEnd);
+
+        /* Mouse events */
+        fab.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            onStart(e.clientX, e.clientY);
+        });
+        document.addEventListener('mousemove', function(e) {
+            onMove(e.clientX, e.clientY);
+        });
+        document.addEventListener('mouseup', onEnd);
     });
 
     /* ── Sidebar: More Options context menu + FAB ──────────────── */
