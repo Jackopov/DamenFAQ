@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Mapa zakładu Damen Marine Components — wklej lub wstaw plan hali, żeby szybko znaleźć swoje stanowisko.">
+    <title>Mapa zakładu — Damen Marine Components</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #070D1E;
+            color: #E2E8F0;
+            min-height: 100dvh;
+            line-height: 1.55;
+        }
+
+        /* ── Górny pasek ── */
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(7, 13, 30, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+            padding-top: env(safe-area-inset-top, 0px);
+        }
+        .topbar-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .logo-badge {
+            height: 38px; width: 38px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-badge img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .site-name { font-size: 14px; font-weight: 600; color: #CBD5E1; }
+        .top-links { margin-left: auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .top-links a {
+            color: #94A3B8;
+            text-decoration: none;
+            font-size: 13.5px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .top-links a:hover { color: #38BDF8; background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.25); }
+
+        /* ── Karta ── */
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 28px 16px calc(48px + env(safe-area-inset-bottom, 0px));
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+            padding: 26px;
+        }
+        .card-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+        .pin-badge {
+            flex-shrink: 0;
+            width: 52px; height: 52px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38BDF8;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
+        }
+        .card-head h1 { font-size: 1.45rem; font-weight: 700; color: #F1F5F9; line-height: 1.25; }
+        .card-head p { font-size: 0.92rem; color: #94A3B8; margin-top: 4px; }
+
+        /* ── Strefa upuszczania / wklejania ── */
+        .dropzone {
+            border: 2px dashed rgba(56, 189, 248, 0.45);
+            border-radius: 16px;
+            background: rgba(2, 6, 23, 0.45);
+            padding: 38px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .dropzone:hover, .dropzone.dragover {
+            border-color: #38BDF8;
+            background: rgba(56, 189, 248, 0.07);
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.18);
+        }
+        .dz-icon { color: #38BDF8; margin-bottom: 10px; }
+        .dz-title { font-size: 1rem; font-weight: 600; color: #E2E8F0; }
+        .dz-sub { font-size: 0.85rem; color: #94A3B8; margin-top: 6px; }
+        .dz-kbd {
+            display: inline-block;
+            background: rgba(148, 163, 184, 0.15);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-bottom-width: 2px;
+            border-radius: 6px;
+            padding: 1px 7px;
+            font-size: 0.8rem;
+            color: #CBD5E1;
+        }
+
+        /* ── Podgląd mapy ── */
+        .map-view {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        }
+        .map-view img { display: block; width: 100%; height: auto; cursor: zoom-in; }
+        .map-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: rgba(7, 13, 30, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38BDF8;
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            backdrop-filter: blur(6px);
+            pointer-events: none;
+        }
+        .zoom-hint {
+            position: absolute;
+            right: 10px; bottom: 10px;
+            background: rgba(7, 13, 30, 0.8);
+            color: #CBD5E1;
+            font-size: 11.5px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            pointer-events: none;
+        }
+
+        /* ── Przyciski akcji ── */
+        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .btn {
+            font: inherit;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.1);
+            color: #7DD3FC;
+        }
+        .btn:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-1px); }
+        .btn:active { transform: scale(0.97); }
+        .btn.ghost {
+            border-color: rgba(148, 163, 184, 0.3);
+            background: rgba(148, 163, 184, 0.08);
+            color: #CBD5E1;
+        }
+        .btn.ghost:hover { background: rgba(148, 163, 184, 0.16); }
+        .btn.danger {
+            border-color: rgba(248, 113, 113, 0.35);
+            background: rgba(248, 113, 113, 0.08);
+            color: #FCA5A5;
+        }
+        .btn.danger:hover { background: rgba(248, 113, 113, 0.18); }
+        .btn[hidden] { display: none !important; }
+
+        .hint { font-size: 0.8rem; color: #64748B; margin-top: 14px; }
+        .msg {
+            margin-top: 12px;
+            font-size: 0.87rem;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.08);
+            color: #BAE6FD;
+        }
+        .msg.error {
+            border-color: rgba(248, 113, 113, 0.4);
+            background: rgba(248, 113, 113, 0.09);
+            color: #FCA5A5;
+        }
+
+        /* ── Lightbox ── */
+        .lightbox {
+            position: fixed; inset: 0;
+            z-index: 999;
+            background: rgba(2, 6, 23, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            cursor: zoom-out;
+            opacity: 1;
+            transition: opacity 0.2s;
+        }
+        .lightbox[hidden] { display: none; }
+        .lightbox img {
+            max-width: 96vw;
+            max-height: 92vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+            cursor: default;
+        }
+
+        @media (max-width: 640px) {
+            .card { padding: 18px; border-radius: 16px; }
+            .card-head h1 { font-size: 1.2rem; }
+            .site-name { display: none; }
+            .dropzone { padding: 28px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="logo-badge"><img src="images/Damen Marine logo.png" alt="Damen Marine Components"></div>
+            <div class="site-name">Damen Marine Components</div>
+            <nav class="top-links">
+                <a href="index.html">← Wróć do FAQ</a>
+                <a href="admin.html">Panel admina</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section class="card">
+            <div class="card-head">
+                <div class="pin-badge" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                    <h1>Mapa zakładu</h1>
+                    <p>Wklej zrzut ekranu albo zdjęcie planu hali — zobaczysz je tutaj od razu.</p>
+                </div>
+            </div>
+
+            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Wstaw mapę zakładu">
+                <div class="dz-icon">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="dz-title">Wklej mapę skrótem <span class="dz-kbd">Ctrl</span> + <span class="dz-kbd">V</span></div>
+                <div class="dz-sub">lub kliknij tutaj, żeby wybrać plik · albo upuść zdjęcie w tym miejscu</div>
+            </div>
+
+            <div class="map-view" id="map-view" hidden>
+                <span class="map-badge" id="map-badge">📍 MAPA ZAKŁADU</span>
+                <img id="map-img" alt="Mapa zakładu Damen Marine Components">
+                <span class="zoom-hint">Kliknij, aby powiększyć</span>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn" id="btn-change">🔄 Wstaw nową mapę</button>
+                <button type="button" class="btn ghost" id="btn-download" hidden>⬇️ Pobierz</button>
+                <button type="button" class="btn danger" id="btn-remove" hidden>🗑️ Usuń mapę</button>
+            </div>
+
+            <input type="file" id="file-input" accept="image/*" hidden>
+
+            <p class="hint">Obsługuje PNG, JPG i inne obrazy. Duże zdjęcia są automatycznie pomniejszane i zapisywane lokalnie w tej przeglądarce (dane nie opuszczają urządzenia).</p>
+
+            <div class="msg" id="msg" hidden></div>
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" hidden>
+        <img id="lightbox-img" alt="Mapa zakładu — powiększenie">
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var STORE_KEY = 'damen-map-image';
+        var DEFAULT_SRC = 'images/mapa-zakladu.jpg';
+
+        var dropzone = document.getElementById('dropzone');
+        var fileInput = document.getElementById('file-input');
+        var mapView = document.getElementById('map-view');
+        var mapImg = document.getElementById('map-img');
+        var mapBadge = document.getElementById('map-badge');
+        var btnChange = document.getElementById('btn-change');
+        var btnDownload = document.getElementById('btn-download');
+        var btnRemove = document.getElementById('btn-remove');
+        var msgBox = document.getElementById('msg');
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+
+        var currentIsStored = false;
+        var currentSrc = null;
+
+        /* ── Komunikaty ── */
+        function showMsg(text, isError) {
+            msgBox.textContent = text;
+            msgBox.className = 'msg' + (isError ? ' error' : '');
+            msgBox.hidden = false;
+        }
+        function clearMsg() { msgBox.hidden = true; }
+
+        /* ── Wyświetlanie mapy ── */
+        function showMap(src, fromStorage, label) {
+            currentSrc = src;
+            currentIsStored = !!fromStorage;
+            mapImg.src = src;
+            mapBadge.textContent = label || '📍 MAPA ZAKŁADU';
+            mapView.hidden = false;
+            dropzone.style.display = 'none';
+            btnDownload.hidden = false;
+            btnRemove.hidden = !fromStorage;
+            btnChange.firstChild.nodeValue = fromStorage ? '🔄 Wstaw nową mapę' : '🔄 Wstaw mapę z pliku';
+        }
+
+        function showEmpty() {
+            currentSrc = null;
+            currentIsStored = false;
+            mapImg.removeAttribute('src');
+            mapView.hidden = true;
+            dropzone.style.display = '';
+            btnDownload.hidden = true;
+            btnRemove.hidden = true;
+        }
+
+        /* ── Skalowanie + kompresja obrazu (ochrona przed limitem localStorage) ── */
+        function processFile(file) {
+            if (!file) return;
+            if (!file.type || file.type.indexOf('image/') !== 0) {
+                showMsg('To nie jest plik graficzny — wklej zdjęcie lub zrzut ekranu.', true);
+                return;
+            }
+            clearMsg();
+
+            var reader = new FileReader();
+            reader.onerror = function () { showMsg('Nie udało się odczytać pliku.', true); };
+            reader.onload = function (e) {
+                var img = new Image();
+                img.onerror = function () { showMsg('Nie udało się wczytać obrazu — spróbuj innego pliku.', true); };
+                img.onload = function () {
+                    var dataUrl = encode(img, 2200, 0.85);
+                    /* jeśli wciąż za duży — mocniej kompresujemy */
+                    if (dataUrl && dataUrl.length > 4200000) dataUrl = encode(img, 1500, 0.72);
+                    if (!dataUrl) { showMsg('Nie udało się przetworzyć obrazu.', true); return; }
+                    try {
+                        localStorage.setItem(STORE_KEY, dataUrl);
+                    } catch (err) {
+                        showMsg('Zdjęcie jest za duże na pamięć przeglądarki — zmniejsz je i spróbuj ponownie.', true);
+                        return;
+                    }
+                    showMap(dataUrl, true, '📍 MAPA ZAKŁADU · TWOJA');
+                    showMsg('✅ Mapa zapisana — będzie widoczna po kolejnym otwarciu tej strony.');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function encode(img, maxDim, quality) {
+            try {
+                var w = img.naturalWidth || img.width;
+                var h = img.naturalHeight || img.height;
+                if (!w || !h) return null;
+                var scale = Math.min(1, maxDim / Math.max(w, h));
+                var canvas = document.createElement('canvas');
+                canvas.width = Math.max(1, Math.round(w * scale));
+                canvas.height = Math.max(1, Math.round(h * scale));
+                canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                return canvas.toDataURL('image/jpeg', quality);
+            } catch (err) {
+                return null;
+            }
+        }
+
+        /* ── Wklejanie (Ctrl+V) ── */
+        document.addEventListener('paste', function (e) {
+            var items = e.clipboardData && e.clipboardData.items;
+            if (!items) return;
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].kind === 'file' && items[i].type.indexOf('image/') === 0) {
+                    e.preventDefault();
+                    processFile(items[i].getAsFile());
+                    return;
+                }
+            }
+        });
+
+        /* ── Wybór pliku ── */
+        dropzone.addEventListener('click', function () { fileInput.click(); });
+        dropzone.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+        });
+        btnChange.addEventListener('click', function () { fileInput.click(); });
+        fileInput.addEventListener('change', function () {
+            processFile(fileInput.files && fileInput.files[0]);
+            fileInput.value = '';
+        });
+
+        /* ── Drag & drop ── */
+        ['dragenter', 'dragover'].forEach(function (ev) {
+            dropzone.addEventListener(ev, function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.add('dragover');
+            });
+        });
+        ['dragleave', 'drop'].forEach(function (ev) {
+            dropzone.addEventListener(ev, function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.remove('dragover');
+            });
+        });
+        dropzone.addEventListener('drop', function (e) {
+            var files = e.dataTransfer && e.dataTransfer.files;
+            if (files && files.length) processFile(files[0]);
+        });
+        /* cała karta też akceptuje upuszczone zdjęcie */
+        document.addEventListener('dragover', function (e) { e.preventDefault(); });
+        document.addEventListener('drop', function (e) {
+            e.preventDefault();
+            var files = e.dataTransfer && e.dataTransfer.files;
+            if (files && files.length && !mapView.hidden && e.target !== dropzone) processFile(files[0]);
+        });
+
+        /* ── Pobieranie / usuwanie ── */
+        btnDownload.addEventListener('click', function () {
+            if (!currentSrc) return;
+            var a = document.createElement('a');
+            a.href = currentSrc;
+            a.download = 'mapa-zakladu.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+        btnRemove.addEventListener('click', function () {
+            try { localStorage.removeItem(STORE_KEY); } catch (err) {}
+            clearMsg();
+            loadInitial();
+            showMsg('Mapa usunięta.');
+        });
+
+        /* ── Lightbox ── */
+        mapImg.addEventListener('click', function () {
+            if (!currentSrc) return;
+            lightboxImg.src = currentSrc;
+            lightbox.hidden = false;
+        });
+        lightbox.addEventListener('click', function () { lightbox.hidden = true; });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') lightbox.hidden = true;
+        });
+
+        /* ── Start: własna mapa → mapa domyślna → pusto ── */
+        function loadInitial() {
+            var stored = null;
+            try { stored = localStorage.getItem(STORE_KEY); } catch (err) {}
+            if (stored) {
+                showMap(stored, true, '📍 MAPA ZAKŁADU');
+                return;
+            }
+            var probe = new Image();
+            probe.onload = function () {
+                showMap(DEFAULT_SRC, false, '📍 MAPA ZAKŁADU');
+            };
+            probe.onerror = function () { showEmpty(); };
+            probe.src = DEFAULT_SRC;
+        }
+
+        loadInitial();
+
+        /* udostępnione do testów / debugowania */
+        window.__mapa = { processFile: processFile, showMap: showMap, loadInitial: loadInitial };
+    })();
+    </script>
+</body>
+</html>
