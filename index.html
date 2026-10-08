@@ -653,12 +653,21 @@
         body.is-searching .hero { min-height: 36vh; padding-top: calc(52px + env(safe-area-inset-top, 0px)); }
     }
 
+    /* ── Tryb odpowiedzi: hero kurczy się do zawartości, żeby pytanie i
+          odpowiedź leżały bezpośrednio pod paskiem zapytania (bez przerwy) ── */
+    body.answer-open .hero {
+        min-height: 0;
+        padding-bottom: 10px;
+    }
+    body.answer-open .hero-hint { display: none; }
+
     .hero-hint,
     .cat-pills,
     .rec-section,
     .story-banner,
     .answer-section {
-        transition: opacity 0.3s ease, max-height 0.4s ease, transform 0.3s ease;
+        transition: opacity 0.3s ease, max-height 0.4s ease, transform 0.3s ease,
+                    padding 0.3s ease, margin 0.3s ease;
     }
     body.is-searching .hero-hint,
     body.is-searching .cat-pills,
@@ -669,6 +678,8 @@
         pointer-events: none;
         max-height: 0;
         overflow: hidden;
+        padding: 0;
+        margin: 0;
         transform: translateY(-10px);
     }
 
@@ -1009,6 +1020,17 @@
         border-radius: 16px;
         padding: 20px;
     }
+    .answer-question {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.45;
+        color: #F1F5F9;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+        word-break: break-word;
+    }
+    .answer-question:empty { display: none; }
     .answer-box h3 {
         font-size: 12px;
         color: #38BDF8;
@@ -1429,6 +1451,7 @@
         <!-- Answer (hidden by default) -->
         <div class="answer-section reveal" id="answer-box" style="display:none;">
             <div class="answer-box">
+                <div class="answer-question" id="answer-question"></div>
                 <h3 id="answer-title">Odpowiedź</h3>
                 <p id="answer-text"></p>
                 <div id="answer-media"></div>
@@ -1608,7 +1631,8 @@
         function exitSearchMode() {
             document.body.classList.remove('is-searching');
             results.innerHTML = '';
-            results.style.maxHeight = '0';
+            // czyścimy tylko ewentualny styl inline — domyślny CSS ma max-height: 0
+            results.style.maxHeight = '';
         }
 
         function renderResults(matches, query) {
@@ -1678,12 +1702,16 @@
             }
         });
 
-        // Clear on Escape
+        // Clear on Escape / Enter
         input.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 input.value = '';
                 exitSearchMode();
                 input.blur();
+            } else if (e.key === 'Enter') {
+                // przerwij odliczanie podmiany wyników — odpowiedź ma zostać
+                // wyświetlona od razu pod paskiem, bez powrotu trybu wyszukiwania
+                clearTimeout(debounceTimer);
             }
         });
     })();

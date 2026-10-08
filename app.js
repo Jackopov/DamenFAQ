@@ -438,7 +438,10 @@ function setLang(lang) {
     hideSuggestions();
 
     const ansBox = document.getElementById('answer-box');
-    if (ansBox) ansBox.style.display = 'none';
+    if (ansBox) {
+        ansBox.style.display = 'none';
+        document.body.classList.remove('answer-open');
+    }
 
     const input = document.getElementById('question-input');
     if (input) input.value = '';
@@ -617,7 +620,7 @@ function askQuestion() {
     const exact = faqData.find(f => normalize(getLocalized(f.question)) === qn);
     if (exact) {
         statsRecord(exact.id, question, true);
-        showAnswer(getLocalized(exact.answer), findBest(question, exact).slice(0, 3).map(x => x.f), exact.media);
+        showAnswer(getLocalized(exact.answer), findBest(question, exact).slice(0, 3).map(x => x.f), exact.media, question);
         return;
     }
 
@@ -630,7 +633,7 @@ function askQuestion() {
     });
     if (fuzzyExact) {
         statsRecord(fuzzyExact.id, question, true);
-        showAnswer(getLocalized(fuzzyExact.answer), findBest(question, fuzzyExact).slice(0, 3).map(x => x.f), fuzzyExact.media);
+        showAnswer(getLocalized(fuzzyExact.answer), findBest(question, fuzzyExact).slice(0, 3).map(x => x.f), fuzzyExact.media, question);
         return;
     }
 
@@ -640,10 +643,10 @@ function askQuestion() {
         const top = scored[0];
         statsRecord(top.f.id, question, true);
         showAnswer(`${t.similar_prefix}${getLocalized(top.f.question)}\n\n${getLocalized(top.f.answer)}`,
-            scored.slice(1, 4).map(x => x.f), top.f.media);
+            scored.slice(1, 4).map(x => x.f), top.f.media, question);
     } else {
         statsRecord(null, question, false);
-        showAnswer(t.not_found, scored.slice(0, 3).map(x => x.f));
+        showAnswer(t.not_found, scored.slice(0, 3).map(x => x.f), null, question);
     }
 }
 
@@ -733,13 +736,27 @@ function renderMedia(container, media) {
     });
 }
 
-function showAnswer(text, alternatives, media) {
+function showAnswer(text, alternatives, media, question) {
     const ansText = document.getElementById('answer-text');
     const ansBox = document.getElementById('answer-box');
     const suggWrap = document.getElementById('answer-suggestions');
     const mediaWrap = document.getElementById('answer-media');
+    const qEl = document.getElementById('answer-question');
 
     if (!ansText || !ansBox) return;
+
+    // Pełne pytanie bezpośrednio pod paskiem zapytania
+    if (qEl) qEl.textContent = question || '';
+
+    // Tryb odpowiedzi: bez trybu live-search i bez min-height hero —
+    // dzięki temu odpowiedź leży tuż pod paskiem (bez dużej przerwy)
+    document.body.classList.remove('is-searching');
+    document.body.classList.add('answer-open');
+    const sr = document.getElementById('searchResults');
+    if (sr) {
+        sr.innerHTML = '';
+        sr.style.maxHeight = '';
+    }
 
     ansText.innerHTML = renderBold(text);
     renderMedia(mediaWrap, media);
@@ -767,7 +784,17 @@ function showAnswer(text, alternatives, media) {
     }
 
     ansBox.style.display = 'block';
-    ansBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Po animacji skrócenia hero przewiń tylko wtedy, gdy pasek lub pytanie
+    // są poza ekranem — dzięki temu pasek + pytanie + odpowiedź są widoczne razem
+    setTimeout(function () {
+        const bar = document.getElementById('hero-search');
+        if (!bar) return;
+        const barRect = bar.getBoundingClientRect();
+        const qRect = ansBox.getBoundingClientRect();
+        if (barRect.bottom < 0 || barRect.top > window.innerHeight || qRect.top > window.innerHeight * 0.6) {
+            window.scrollTo({ top: window.scrollY + barRect.top - 8, behavior: 'smooth' });
+        }
+    }, 450);
 }
 
 // ── Funkcja obsługująca kliknięcie w przycisk z przykładowym pytaniem ──────
