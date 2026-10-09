@@ -2321,5 +2321,548 @@
             "centrum obsługi ppk"
         ],
         "media": []
+    },
+    {
+        "id": 86,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jaką metodą szacowane jest ryzyko zawodowe w zakładzie produkcyjnym Damen Marine Components Gdańsk?",
+            "en": "How is occupational risk estimated at Damen Marine Components Gdańsk?"
+        },
+        "answer": {
+            "pl": "Ryzyko liczymy metodą wskaźnikową **RISC SCORE** = waga skutków × ekspozycja × prawdopodobieństwo. Wynik klasyfikuje zagrożenie do pięciu kategorii — od pomijalnego po bardzo wysokie — a **powyżej 200 punktów** obowiązuje natychmiastowe wdrożenie środków naprawczych.",
+            "en": "Risk is scored with the **RISC SCORE** indicator method = severity × exposure × probability. The result classifies a hazard into five categories, from negligible to very high, and **above 200 points** immediate corrective action is mandatory."
+        },
+        "keywords": [
+            "ryzyko zawodowe",
+            "risc score",
+            "ocena ryzyka",
+            "wskaźnik ryzyka",
+            "200 punktów"
+        ],
+        "synonyms": [
+            "metoda risc",
+            "jak szacuje się ryzyko",
+            "pięć kategorii ryzyka"
+        ],
+        "media": []
+    },
+    {
+        "id": 87,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Kiedy wyjściowe ryzyko zawodowe uznawane jest za wysokie i co to oznacza w praktyce inżynieryjnej?",
+            "en": "When is initial occupational risk considered high and what does it mean in practice?"
+        },
+        "answer": {
+            "pl": "Powyżej **200 punktów** = zagrożenie kalectwem lub śmiercią przy codziennej ekspozycji: prace pod napięciem, prace suwnicami, prace na wysokości powyżej 1 m, pożar lub wybuch gazów technicznych, pyły i hałas. W stanie wyjściowym daje to **210–270 punktów** — bez barier technicznych i osobistych pracownik nie schodzi na stanowisko.",
+            "en": "Above **200 points** means risk of severe injury or death with daily exposure: live electrical work, crane operations, work above one metre, fire or explosion of technical gases, dust and noise. Initially these reach **210–270 points** — without technical and personal barriers the worker does not start the job."
+        },
+        "keywords": [
+            "wysokie ryzyko",
+            "200 punktów",
+            "210",
+            "270",
+            "prace na wysokości",
+            "suwnica",
+            "gazy techniczne"
+        ],
+        "synonyms": [
+            "kiedy ryzyko jest wysokie",
+            "próg 200 punktów"
+        ],
+        "media": []
+    },
+    {
+        "id": 88,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jakie najpoważniejsze zagrożenia wypadkowe występują na stanowisku montera konstrukcji okrętowych?",
+            "en": "What are the most serious accident hazards for a ship structure fitter?"
+        },
+        "answer": {
+            "pl": "Monter konstrukcji okrętowych: porażenie prądem przy sczepianiu, upadek z wysokości i zerwanie ładunku z suwnicy — każde w przedziale **252–270 punktów** (możliwość śmierci). Do tego pożar i wybuch gazów technicznych: **210 punktów**, bo palniki i butle stoją w strefie montażu.",
+            "en": "Ship structure fitter: electric shock while tacking parts, falls from height and crane load failure — each **252–270 points** (fatal potential). On top of that, fire and explosion of technical gases: **210 points**, because burners and cylinders sit right in the assembly zone."
+        },
+        "keywords": [
+            "monter",
+            "konstrukcje okrętowe",
+            "suwnica",
+            "upadek z wysokości",
+            "porażenie prądem"
+        ],
+        "synonyms": [
+            "zagrożenia montera",
+            "ryzyko montera",
+            "sczepianie prąd"
+        ],
+        "media": []
+    },
+    {
+        "id": 89,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Z jakimi substancjami chemicznymi ma styczność monter i jak eliminowane jest ich działanie?",
+            "en": "Which chemicals does a fitter come into contact with and how is their effect eliminated?"
+        },
+        "answer": {
+            "pl": "Dymy spawalnicze z manganem (układ nerwowy, nerki, wątroba) oraz rozpuszczalniki: **Benzyna Ekstrakcyjna** i **Aceton**. Aerozole manganu startują z **108 punktami**; stała wentylacja mechaniczna i półmaski **3M** z filtrami **3M 2138** zbijają ryzyko do małego — **54 punktów**.",
+            "en": "Welding fumes containing manganese (nervous system, kidneys, liver) plus solvents: **extraction benzene** and **acetone**. Manganese aerosols start at **108 points**; permanent mechanical ventilation and **3M** half masks with **3M 2138** filters cut the risk to small — **54 points**."
+        },
+        "keywords": [
+            "mangan",
+            "benzyna ekstrakcyjna",
+            "aceton",
+            "3m 2138",
+            "półmaska",
+            "dymy spawalnicze"
+        ],
+        "synonyms": [
+            "chemia montera",
+            "rozpuszczalniki",
+            "filtry 3m"
+        ],
+        "media": []
+    },
+    {
+        "id": 90,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jaki ciekawy fakt z zakresu fizyki zjawisk spawalniczych chroni wzrok montera przed trwałym kalectwem?",
+            "en": "What physics fact protects a fitter’s eyesight from permanent damage?"
+        },
+        "answer": {
+            "pl": "Łuk spawalniczy wali promieniowaniem UV i podczerwonym — **kilkanaście sekund bez osłony** wywołuje ostre zapalenie spojówek i rogówki, a potem trwałe uszkodzenie siatkówki. Wyjściowo **252 punkty**; okulary i atestowane parawany wyłapują ponad 99% promieniowania, redukując ryzyko do **42**.",
+            "en": "The welding arc floods the eye with UV and infrared — **a dozen seconds without protection** causes acute conjunctivitis and cornea inflammation, later irreversible retina damage. Initially **252 points**; goggles and certified welding screens block over 99% of stray radiation, cutting the risk to **42**."
+        },
+        "keywords": [
+            "łuk spawalniczy",
+            "okulary",
+            "parawany",
+            "uv",
+            "rogówka",
+            "spojówki"
+        ],
+        "synonyms": [
+            "ochrona wzroku",
+            "zapalenie spojówek",
+            "promieniowanie spawalnicze"
+        ],
+        "media": []
+    },
+    {
+        "id": 91,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Czym wyróżnia się środowisko pracy mechanika zakładowego i dlaczego wymaga ono najwyższej czujności?",
+            "en": "What makes the plant mechanic’s work environment require maximum alertness?"
+        },
+        "answer": {
+            "pl": "Mechanik to utrzymanie ruchu i usuwanie awarii w całej hali, łącznie z pracami na wysokości torowisk suwnic. Ciągle zmieniające się otoczenie (widlaki, pomosty, próby ruchowe maszyn) daje **270 punktów** na upadek i porażenie prądem — wymagane pełne szelki bezpieczeństwa i bezwzględne wygradzanie stref remontów.",
+            "en": "The mechanic keeps the plant running and fixes failures everywhere, including work at crane rail height. The constantly changing environment (forklifts, platforms, machine test runs) gives **270 points** for falls and electric shock — full safety harnesses and strict isolation of repair zones are mandatory."
+        },
+        "keywords": [
+            "mechanik",
+            "utrzymanie ruchu",
+            "szelki",
+            "torowiska suwnic",
+            "270 punktów"
+        ],
+        "synonyms": [
+            "praca mechanika",
+            "awarie maszyn",
+            "prace na wysokości mechanik"
+        ],
+        "media": []
+    },
+    {
+        "id": 92,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jakie agresywne związki chemiczne stanowią ukryte niebezpieczeństwo w codziennym warsztacie mechanika?",
+            "en": "Which aggressive chemicals are a hidden danger in the mechanic’s workshop?"
+        },
+        "answer": {
+            "pl": "Kleje **Butapren**, zmywacze **Berner**, **WD-40**, kwas fosforowy **Eskaphor W 634**, oleje **Gear Oil GL-4** oraz rozcieńczalniki nitro, chlorokauczukowe i poliuretanowe — część zawiera toluen, ksylem i benzen szkodliwe dla CNS i układu rozrodczego. Hermetyczne opakowania, zakaz rozpylania w zamkniętych i mycie rąk przed posiłkiem = ryzyko **pomijalne**.",
+            "en": "Contact adhesives **Butapren**, **Berner** degreasers, **WD-40**, phosphoric acid **Eskaphor W 634**, **Gear Oil GL-4** and nitro, chlorinated-rubber and polyurethane thinners — some contain toluene, xylene and benzene harmful to the CNS and reproductive system. Sealed containers, no spraying indoors and washing hands before meals keep the risk **negligible**."
+        },
+        "keywords": [
+            "butapren",
+            "berner",
+            "wd-40",
+            "eskaphor",
+            "gear oil",
+            "toluen",
+            "ksylen",
+            "benzen"
+        ],
+        "synonyms": [
+            "chemia warsztatowa",
+            "rozcieńczalniki nitro",
+            "preparaty techniczne"
+        ],
+        "media": []
+    },
+    {
+        "id": 93,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jak procedury techniczne neutralizują ryzyko porażenia prądem podczas napraw układów zasilania?",
+            "en": "How do technical procedures neutralise electric shock risk during power system repairs?"
+        },
+        "answer": {
+            "pl": "Z **270 punktów** zostaje **21** dzięki reżimowi technologicznemu: bezwzględny zakaz prac pod napięciem bez środków izolacyjnych, codzienne testy wyłączników różnicowoprądowych, pomiary skuteczności zerowania, a także dielektryczne narzędzia i rękawice elektroizolacyjne.",
+            "en": "**270 points** drop to **21** thanks to a strict technological regime: an absolute ban on live work without insulating means, daily RCD tests, earthing effectiveness measurements, plus dielectric tools and insulating gloves."
+        },
+        "keywords": [
+            "prąd",
+            "izolacja",
+            "wyłącznik różnicowoprądowy",
+            "zerowanie",
+            "rękawice elektroizolacyjne"
+        ],
+        "synonyms": [
+            "prace pod napięciem",
+            "bezpieczeństwo elektryczne",
+            "270 do 21"
+        ],
+        "media": []
+    },
+    {
+        "id": 94,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "W jakich warunkach pracują operatorzy obrabiarek w Hali 1/14 i na jakie urazy mechaniczne są najbardziej podatni?",
+            "en": "What are the working conditions of machine tool operators in Hall 1/14 and their main injury risks?"
+        },
+        "answer": {
+            "pl": "Tokarze, frezerzy, wytaczarze i operatorzy **CNC** pracują w **Hali 1/14** (600 m², dwie suwnice pomostowe 6 t i 3 t). Główny wróg to wirujące wrzeciona, uchwyty tokarskie i detale — pochwycenie lub wciągnięcie grozi kalectwem lub śmiercią (**63 punkty**, kategoria istotna).",
+            "en": "Turners, millers, boring operators and **CNC** operators work in **Hall 1/14** (600 m², two overhead cranes of 6 t and 3 t). The main enemy: spinning spindles, lathe chucks and workpieces — entanglement means severe injury or death (**63 points**, significant category)."
+        },
+        "keywords": [
+            "obróbkiarki",
+            "cnc",
+            "hala 1/14",
+            "tokarz",
+            "frezer",
+            "wrzeciono",
+            "pochwycenie"
+        ],
+        "synonyms": [
+            "operator cnc",
+            "wciąganie odzieży",
+            "obróbka skrawaniem"
+        ],
+        "media": []
+    },
+    {
+        "id": 95,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Co wykazują rzeczywiste pomiary środowiskowe na stanowisku operatora obrabiarek skrawających?",
+            "en": "What do real environmental measurements show at a machining operator’s station?"
+        },
+        "answer": {
+            "pl": "Pomiary mówią same za siebie: pył całkowity zaledwie **0,64 mg/m³ = 0,06 NDS**, a hałas **79,3 dB = 0,27 NDN**. Po zastosowaniu rotacji stanowiskowej i zatyczek przeciwhałasowych oba czynniki uzyskują ocenę małą: **54 punkty**.",
+            "en": "The measurements speak for themselves: total dust only **0.64 mg/m³ = 0.06 of the permissible limit** and noise **79.3 dB = 0.27 of the permissible intensity**. With job rotation and earplugs both factors score small: **54 points**."
+        },
+        "keywords": [
+            "pomiary",
+            "nds",
+            "ndn",
+            "pył",
+            "hałas",
+            "79,3 db",
+            "0,64"
+        ],
+        "synonyms": [
+            "stężenie pyłu",
+            "poziom hałasu",
+            "pomiary środowiskowe"
+        ],
+        "media": []
+    },
+    {
+        "id": 96,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jaka fundamentalna reguła dotycząca odzieży roboczej chroni tokarza przed śmiertelnym wciągnięciem w strefę obróbczą?",
+            "en": "What fundamental clothing rule protects a lathe operator from fatal entanglement?"
+        },
+        "answer": {
+            "pl": "Przy wirującym wrzecionie kategoryczny zakaz luźnych mankietów, rękawic materiałowych i rozpuszczonych włosów — detal nawija materiał w ułamek sekundy z siłą wielu tysięcy niutonów. Obcisła odzież bez luźnych elementów i kompletne osłony mechaniczne redukują ryzyko do **18 punktów** (akceptowalne).",
+            "en": "Near a spinning spindle, loose cuffs, cloth gloves and loose hair are strictly forbidden — the workpiece wraps fabric in a fraction of a second with thousands of newtons of force. Tight clothing and complete mechanical guards cut the risk to **18 points** (acceptable)."
+        },
+        "keywords": [
+            "odzież",
+            "wciąganie",
+            "włosy",
+            "rękawice materiałowe",
+            "osłony"
+        ],
+        "synonyms": [
+            "zakaz luźnej odzieży",
+            "ubiór przy tokarce",
+            "18 punktów"
+        ],
+        "media": []
+    },
+    {
+        "id": 97,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Dlaczego stanowisko spawacza charakteryzuje się największą kumulacją zagrożeń o najwyższej skali ryzyka?",
+            "en": "Why does the welder’s station accumulate the highest-scale hazards?"
+        },
+        "answer": {
+            "pl": "Spawanie **MIG/MAG** w osłonie CO₂ i argonu, na zróżnicowanych wysokościach i w wymuszonych pozycjach. Karta ryzyka wskazuje cztery czynniki naraz na poziomie **252–270 punktów**: upadek z wysokości, prąd ze spawarek dużej mocy, ładunek z suwnicy i toksyczne dymy z manganem.",
+            "en": "**MIG/MAG** welding in CO₂ and argon, at varying heights and in forced positions. The risk sheet lists four parallel factors at **252–270 points**: falls from height, current from high-power welding machines, crane loads and toxic manganese fumes."
+        },
+        "keywords": [
+            "spawacz",
+            "mig/mag",
+            "dymy",
+            "252",
+            "270",
+            "kumulacja"
+        ],
+        "synonyms": [
+            "najgorsze stanowisko",
+            "ryzyko spawacza",
+            "cztery czynniki"
+        ],
+        "media": []
+    },
+    {
+        "id": 98,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Czym jest preparat Antox 71E i dlaczego jego użycie wymaga szczególnego rygoru sanitarnego?",
+            "en": "What is Antox 71E paste and why does it demand strict hygiene?"
+        },
+        "answer": {
+            "pl": "Pasta **Antox 71E** (do zgorzelin na stali szlachetnej) zawiera żrący kwas azotowy i **fluorowodorowy** — ten drugi przenika przez skórę bez bólu i wiąże wapń w kościach i osoczu: hipokalcemia i zatrzymanie krążenia. Tylko wyciągi miejscowe i rękawice chemoodporne utrzymują ryzyko w kategorii małej.",
+            "en": "**Antox 71E** paste (for heat scale on stainless steel) contains corrosive nitric and **hydrofluoric acid** — the latter penetrates the skin painlessly and binds calcium in bones and blood plasma: hypocalcaemia and cardiac arrest. Only local exhaust and chemical-resistant gloves keep the risk small."
+        },
+        "keywords": [
+            "antox 71e",
+            "kwas fluorowodorowy",
+            "kwas azotowy",
+            "spoiny",
+            "rękawice chemoodporne"
+        ],
+        "synonyms": [
+            "pasta trawiąca",
+            "zgorzeliny",
+            "fluorowodorowy"
+        ],
+        "media": []
+    },
+    {
+        "id": 99,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Na czym polega specyficzne zagrożenie mechaniczne podczas spawania na obrotnikach rolkowych?",
+            "en": "What is the specific mechanical hazard when welding on turning rolls?"
+        },
+        "answer": {
+            "pl": "Detal na obracających się rolkach: każdy błąd wyważenia grozi zepchnięciem elementu lub wciągnięciem kończyny między rolkę a detal (**63 punkty**). Reguła zakładu: natychmiastowy stop napędu przy wędrówce osiowej detalu i stała strefa bezpieczna wokół rolek → **21 punktów**.",
+            "en": "A workpiece on rotating rolls: any imbalance can push the element off or pull a limb between roll and workpiece (**63 points**). Plant rule: stop the drive instantly on axial drift and keep a permanent safe zone around the rolls → **21 points**."
+        },
+        "keywords": [
+            "obrotniki rolkowe",
+            "rolki",
+            "wciągnięcie",
+            "strefa bezpieczna"
+        ],
+        "synonyms": [
+            "spawanie na obrotnikach",
+            "wędrówka osiowa",
+            "63 do 21"
+        ],
+        "media": []
+    },
+    {
+        "id": 100,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jak nowoczesne hełmy z nawiewem chronią płuca spawacza przed pylicą i przewlekłym zapaleniem oskrzeli?",
+            "en": "How do modern powered helmets protect a welder’s lungs?"
+        },
+        "answer": {
+            "pl": "Dymy spawalnicze to cząstki poniżej **1 µm** — lądują w pęcherzykach płucnych (pylica spawaczy, duszności) i generują **108 punktów**. Zintegrowane przyłbice **3M Speedglas 9100 FX** oraz maski **3M 6300** z filtrami **3M 2138** tworzą barierę i tną ryzyko o połowę: **54 punkty**.",
+            "en": "Welding fumes are particles below **1 µm** — they reach the alveoli (welders’ pneumoconiosis, dyspnoea) and score **108 points**. Integrated **3M Speedglas 9100 FX** helmets and **3M 6300** masks with **3M 2138** filters form a barrier and halve the risk: **54 points**."
+        },
+        "keywords": [
+            "przyłbica",
+            "speedglas 9100",
+            "3m 6300",
+            "pylica",
+            "pęcherzyki",
+            "tlenki metali"
+        ],
+        "synonyms": [
+            "hełm z nawiewem",
+            "ochrona dróg oddechowych",
+            "108 do 54"
+        ],
+        "media": []
+    },
+    {
+        "id": 101,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jakie czynniki fizyczne powodują największe obciążenie organizmu na stanowisku szlifierza?",
+            "en": "Which physical factors load a grinder’s body the most?"
+        },
+        "answer": {
+            "pl": "Dwa wampiry: hałas szybkoobrotowych szlifierek kątowych (**252 punkty**, klasa bardzo duża) i pył całkowity ze zdzierania metalu i tarcz ściernych (**108 punktów**). Bez ochronników — trwały ubytek słuchu, chroniczne zmęczenie i zwłóknienie tkanki płucnej.",
+            "en": "Two vampires: noise of high-speed angle grinders (**252 points**, very high class) and total dust from stripping metal and abrasive wheels (**108 points**). Without protection — permanent hearing loss, chronic fatigue and lung fibrosis."
+        },
+        "keywords": [
+            "szlifierz",
+            "hałas",
+            "pył",
+            "szlifierka kątowa",
+            "252",
+            "108"
+        ],
+        "synonyms": [
+            "czynniki szkodliwe szlifierz",
+            "ochrona słuchu",
+            "zwłóknienie płuc"
+        ],
+        "media": []
+    },
+    {
+        "id": 102,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Jakie zjawisko sprawia, że pęknięcie tarczy szlifierskiej staje się zdarzeniem o sile pocisku?",
+            "en": "Why does a grinding wheel burst behave like a projectile?"
+        },
+        "answer": {
+            "pl": "Tarcza o średnicy **230 mm** osiąga prędkość obwodową **~80 m/s** — po zakleszczeniu jej odłamki lecą jak pocisk artyleryjski: **126 punktów** i głębokie rany cięte. Kategoryczny zakaz demontażu osłon fabrycznych oraz świeże tarcze o potwierdzonej dacie sprowadzają ryzyko do **18 punktów**.",
+            "en": "A **230 mm** wheel reaches a peripheral speed of **~80 m/s** — after jamming its shards fly like artillery shells: **126 points** and deep cut wounds. A strict ban on removing factory guards plus fresh wheels with verified expiry dates cut the risk to **18 points**."
+        },
+        "keywords": [
+            "tarcza szlifierska",
+            "pęknięcie",
+            "80 m/s",
+            "230 mm",
+            "osłony"
+        ],
+        "synonyms": [
+            "odłamki tarczy",
+            "prędkość obwodowa",
+            "126 do 18"
+        ],
+        "media": []
+    },
+    {
+        "id": 103,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "W jaki sposób rotacja stanowiskowa i organizacja pracy redukują obciążenie układu kostno-stawowego szlifierzy?",
+            "en": "How do job rotation and work organisation reduce musculoskeletal load for grinders?"
+        },
+        "answer": {
+            "pl": "Wymuszone pozycje i wibracje z kończyn górnych = zwyrodnienia kręgosłupa i stawów (**126 punktów**). W Damen rotacja między uciążliwymi operacjami, prace szlifierskie przesuwane na inne zmiany, ergonomiczne nakolanniki i przerwy regeneracyjne zbijają wskaźnik do małego: **42 punkty**.",
+            "en": "Forced postures and hand-arm vibrations mean spinal and joint degeneration (**126 points**). At Damen, rotation between burdensome operations, moving grinding work to other shifts, ergonomic knee pads and regeneration breaks drop the indicator to small: **42 points**."
+        },
+        "keywords": [
+            "rotacja",
+            "kręgosłup",
+            "wibracje",
+            "nakolanniki",
+            "ergonomia"
+        ],
+        "synonyms": [
+            "obciążenie kostno-stawowe",
+            "zwyrodnienia",
+            "126 do 42"
+        ],
+        "media": []
+    },
+    {
+        "id": 104,
+        "category": {
+            "pl": "BHP",
+            "en": "Health & Safety"
+        },
+        "question": {
+            "pl": "Do jakiego poziomu spada ostateczne ryzyko zawodowe na wszystkich pięciu stanowiskach po wdrożeniu pełnej profilaktyki?",
+            "en": "What final risk level remains on all five stations after full prevention is implemented?"
+        },
+        "answer": {
+            "pl": "Dokumentacja jest jednoznaczna: **żadne stanowisko nie zostaje w ryzyku wysokim ani niedopuszczalnym**. Eliminacja zagrożeń, sprawna wentylacja, atestowane zawiesia dźwigowe i środki ochrony głowy, wzroku, słuchu i dróg oddechowych zamykają montera, mechanika, operatora obrabiarek, spawacza i szlifierza na poziomach **pomijalnym, małym lub akceptowalnym**.",
+            "en": "The documentation is unambiguous: **no station remains in the high or unacceptable risk zone**. Hazard elimination, efficient ventilation, certified lifting gear and protection of head, eyes, ears and airways leave the fitter, mechanic, machine operator, welder and grinder at **negligible, small or acceptable** levels only."
+        },
+        "keywords": [
+            "podsumowanie",
+            "profilaktyka",
+            "finalne ryzyko",
+            "pięć stanowisk"
+        ],
+        "synonyms": [
+            "czy ryzyko jest bezpieczne",
+            "wynik oceny ryzyka",
+            "małe ryzyko"
+        ],
+        "media": []
     }
 ]
