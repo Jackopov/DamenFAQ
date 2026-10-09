@@ -1228,5 +1228,566 @@
             "płatne usługi taniej"
         ],
         "media": []
+    },
+    {
+        "id": 45,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jaki ubezpieczyciel obsługuje polisę grupową i jaki jest numer umowy?",
+            "en": "Which insurer handles the group policy and what is the contract number?"
+        },
+        "answer": {
+            "pl": "Grupowe ubezpieczenie na życie dla pracowników **Damen Marine Components Gdańsk Sp. z o.o.** świadczone jest przez towarzystwo ubezpieczeniowe **Nationale-Nederlanden** w ramach umowy zarejestrowanej jako **Polisa 4347/100**.",
+            "en": "Group life insurance for employees of **Damen Marine Components Gdańsk Sp. z o.o.** is provided by the insurer **Nationale-Nederlanden** under a contract registered as **Policy 4347/100**."
+        },
+        "keywords": [
+            "ubezpieczenie grupowe",
+            "polisa",
+            "nationale-nederlanden",
+            "ubezpieczyciel",
+            "numer umowy"
+        ],
+        "synonyms": [
+            "jaki ubezpieczyciel",
+            "numer polisy",
+            "ubezpieczenie na życie w firmie"
+        ],
+        "media": []
+    },
+    {
+        "id": 46,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Kto może zostać objęty ochroną ubezpieczeniową?",
+            "en": "Who can be covered by the insurance protection?"
+        },
+        "answer": {
+            "pl": "Pakiet podstawowy przeznaczony jest dla **pracowników przedsiębiorstwa** oraz zgłoszonych osób **współubezpieczonych**, w tym małżonków lub partnerów życiowych.",
+            "en": "The basic package is intended for **employees of the company** and registered **co-insured persons**, including spouses or life partners."
+        },
+        "keywords": [
+            "ochrona",
+            "kto objęty",
+            "współubezpieczeni",
+            "małżonek",
+            "partner"
+        ],
+        "synonyms": [
+            "kto jest ubezpieczony",
+            "objęcie ochroną",
+            "rodzina ubezpieczenie"
+        ],
+        "media": []
+    },
+    {
+        "id": 47,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynoszą miesięczne składki w pakiecie podstawowym?",
+            "en": "How much are the monthly premiums in the basic package?"
+        },
+        "answer": {
+            "pl": "Koszt ubezpieczenia potrącany co miesiąc zależy od wybranego zakresu i wynosi **75,00 zł** w przypadku **Wariantu 1** lub **60,00 zł** w przypadku **Wariantu 2**.",
+            "en": "The insurance cost deducted each month depends on the chosen scope and amounts to **PLN 75.00** for **Variant 1** or **PLN 60.00** for **Variant 2**."
+        },
+        "keywords": [
+            "składka",
+            "koszt",
+            "miesięcznie",
+            "wariant 1",
+            "wariant 2"
+        ],
+        "synonyms": [
+            "ile kosztuje ubezpieczenie",
+            "składka miesięczna",
+            "potrącenie z wypłaty"
+        ],
+        "media": []
+    },
+    {
+        "id": 48,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie świadczenie przysługuje w przypadku śmierci ubezpieczonego z przyczyn ogólnych?",
+            "en": "What benefit is paid in case of the insured’s death from general causes?"
+        },
+        "answer": {
+            "pl": "Z tytułu podstawowego ubezpieczenia na życie osobie uposażonej wypłacana jest suma w wysokości **60 000 zł** w **Wariancie 1** oraz **40 000 zł** w **Wariancie 2**.",
+            "en": "Under the basic life cover, the designated beneficiary receives **PLN 60,000** under **Variant 1** and **PLN 40,000** under **Variant 2**."
+        },
+        "keywords": [
+            "śmierć",
+            "zgon",
+            "na życie",
+            "uposażony",
+            "świadczenie"
+        ],
+        "synonyms": [
+            "zgon z przyczyn ogólnych",
+            "wypłata po śmierci",
+            "suma na życie"
+        ],
+        "media": []
+    },
+    {
+        "id": 49,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynosi odszkodowanie w razie śmierci na skutek nieszczęśliwego wypadku?",
+            "en": "What is the payout in case of death caused by an accident?"
+        },
+        "answer": {
+            "pl": "W przypadku nieszczęśliwego wypadku świadczenie ulega zsumowaniu z polisą na życie, co daje łącznie **120 000 zł** w **Wariancie 1** (składowe: 60 000 zł na życie oraz 60 000 zł za wypadek) oraz **80 000 zł** w **Wariancie 2** (składowe: 40 000 zł na życie oraz 40 000 zł za wypadek).",
+            "en": "In case of accidental death the benefit is summed up with the life cover, giving **PLN 120,000** under **Variant 1** (components: PLN 60,000 life + PLN 60,000 accident) and **PLN 80,000** under **Variant 2** (components: PLN 40,000 life + PLN 40,000 accident)."
+        },
+        "keywords": [
+            "wypadek",
+            "śmierć wypadkowa",
+            "nieszczęśliwy wypadek",
+            "zgon powypadkowy"
+        ],
+        "synonyms": [
+            "śmierć w wypadku",
+            "odszkodowanie za wypadek"
+        ],
+        "media": []
+    },
+    {
+        "id": 50,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie dodatkowe świadczenie przysługuje, gdy wypadek miał miejsce w pracy?",
+            "en": "What additional benefit applies when the accident happened at work?"
+        },
+        "answer": {
+            "pl": "Jeżeli nieszczęśliwy wypadek zdarzy się **na terenie zakładu pracy**, ubezpieczyciel dopłaca dodatkowe **30 000 zł** w obu wariantach, co łącznie ze świadczeniem podstawowym i powypadkowym daje **150 000 zł** w **Wariancie 1** oraz **110 000 zł** w **Wariancie 2**.",
+            "en": "If the accident occurs **on the premises of the workplace**, the insurer pays an additional **PLN 30,000** in both variants, which together with the basic and accidental-death benefits gives **PLN 150,000** under **Variant 1** and **PLN 110,000** under **Variant 2**."
+        },
+        "keywords": [
+            "wypadek przy pracy",
+            "zakład pracy",
+            "dopłata",
+            "30 000"
+        ],
+        "synonyms": [
+            "wypadek w pracy",
+            "wypadek na terenie zakładu"
+        ],
+        "media": []
+    },
+    {
+        "id": 51,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynosi odszkodowanie w przypadku śmierci w wypadku komunikacyjnym?",
+            "en": "What is the payout for death in a traffic accident?"
+        },
+        "answer": {
+            "pl": "Za zgon w wypadku komunikacyjnym przysługuje dodatkowe świadczenie w kwocie **30 000 zł** w obu wariantach, dzięki czemu łączna wypłata wynosi **150 000 zł** w **Wariancie 1** lub **110 000 zł** w **Wariancie 2**.",
+            "en": "For death in a traffic accident an additional benefit of **PLN 30,000** is paid in both variants, so the total payout is **PLN 150,000** under **Variant 1** or **PLN 110,000** under **Variant 2**."
+        },
+        "keywords": [
+            "wypadek komunikacyjny",
+            "kolizja",
+            "samochód",
+            "zgon komunikacyjny"
+        ],
+        "synonyms": [
+            "śmierć w wypadku samochodowym",
+            "wypadek drogowy"
+        ],
+        "media": []
+    },
+    {
+        "id": 52,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jaka jest maksymalna łączna kwota odszkodowania powypadkowego?",
+            "en": "What is the maximum total accident payout?"
+        },
+        "answer": {
+            "pl": "Gdy zdarzenie jest jednocześnie **wypadkiem przy pracy i wypadkiem komunikacyjnym**, łączne świadczenie po skumulowaniu wszystkich składowych wynosi maksymalnie **180 000 zł** w **Wariancie 1** oraz **140 000 zł** w **Wariancie 2**.",
+            "en": "When the event is both a **work accident and a traffic accident**, the total benefit after cumulating all components amounts to at most **PLN 180,000** under **Variant 1** and **PLN 140,000** under **Variant 2**."
+        },
+        "keywords": [
+            "maksimum",
+            "suma",
+            "skumulowanie",
+            "180 000"
+        ],
+        "synonyms": [
+            "najwyższa wypłata",
+            "maksymalne odszkodowanie"
+        ],
+        "media": []
+    },
+    {
+        "id": 53,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Na jakie świadczenie można liczyć w razie trwałego uszczerbku na zdrowiu?",
+            "en": "What benefit can be expected in case of permanent disability?"
+        },
+        "answer": {
+            "pl": "Maksymalna suma ubezpieczenia z tytułu uszczerbku na zdrowiu będącego skutkiem nieszczęśliwego wypadku wynosi **65 000 zł** w **Wariancie 1** oraz **40 000 zł** w **Wariancie 2**, a finalna wypłata jest **proporcjonalna do procentowego stopnia** doznanego uszkodzenia ciała.",
+            "en": "The maximum sum insured for disability resulting from an accident amounts to **PLN 65,000** under **Variant 1** and **PLN 40,000** under **Variant 2**, and the final payout is **proportional to the percentage degree** of bodily injury suffered."
+        },
+        "keywords": [
+            "uszczerbek",
+            "trwały uszczerbek",
+            "niezdolność",
+            "procent"
+        ],
+        "synonyms": [
+            "odszkodowanie za uszczerbek",
+            "trwałe uszkodzenie ciała"
+        ],
+        "media": []
+    },
+    {
+        "id": 54,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jak ubezpieczyciel wspiera w przypadku zawału mięśnia sercowego lub udaru mózgu?",
+            "en": "How does the insurer support in case of a heart attack or a stroke?"
+        },
+        "answer": {
+            "pl": "W razie śmierci spowodowanej **zawałem serca lub udarem** do podstawowej sumy na życie dopłacane jest świadczenie w wysokości **5 000 zł**, co daje łączne odszkodowanie równe **65 000 zł** w **Wariancie 1** oraz **45 000 zł** w **Wariancie 2**.",
+            "en": "In case of death caused by a **heart attack or a stroke**, a benefit of **PLN 5,000** is added to the basic life sum, giving a total of **PLN 65,000** under **Variant 1** and **PLN 45,000** under **Variant 2**."
+        },
+        "keywords": [
+            "zawał",
+            "udar",
+            "serce",
+            "mózg"
+        ],
+        "synonyms": [
+            "zawał serca",
+            "udar mózgu",
+            "zgon na zawał"
+        ],
+        "media": []
+    },
+    {
+        "id": 55,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynosi wypłata w przypadku zdiagnozowania ciężkiej choroby?",
+            "en": "What is the payout upon diagnosis of a critical illness?"
+        },
+        "answer": {
+            "pl": "W sytuacji rozpoznania jednej z **trzydziestu trzech jednostek chorobowych** objętych zakresem **Wariantu II** ubezpieczony otrzymuje jednorazowo **5 000 zł** w **Wariancie 1** lub **3 000 zł** w **Wariancie 2**.",
+            "en": "Upon diagnosis of one of the **thirty-three medical conditions** covered under **Variant II**, the insured receives a one-off payment of **PLN 5,000** under **Variant 1** or **PLN 3,000** under **Variant 2**."
+        },
+        "keywords": [
+            "ciężka choroba",
+            "choroba nowotworowa",
+            "jednostki chorobowe",
+            "33"
+        ],
+        "synonyms": [
+            "diagnoza choroby",
+            "wypłata za chorobę",
+            "nowotwór"
+        ],
+        "media": []
+    },
+    {
+        "id": 56,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie stawki dzienne obowiązują za pobyt w szpitalu?",
+            "en": "What daily rates apply for a hospital stay?"
+        },
+        "answer": {
+            "pl": "Za każdy dzień hospitalizacji spowodowanej **nieszczęśliwym wypadkiem** przysługuje **130 zł** w **Wariancie 1** i **115 zł** w **Wariancie 2**, natomiast za pobyt wywołany **chorobą** stawka wynosi odpowiednio **50 zł** lub **35 zł** za dzień.",
+            "en": "For each day of hospitalisation caused by an **accident**, **PLN 130** per day is paid under **Variant 1** and **PLN 115** under **Variant 2**, while for a stay caused by **illness** the rate is **PLN 50** or **PLN 35** per day respectively."
+        },
+        "keywords": [
+            "szpital",
+            "hospitalizacja",
+            "stawka dzienna",
+            "pobyt"
+        ],
+        "synonyms": [
+            "pobyt w szpitalu",
+            "ile za dzień w szpitalu"
+        ],
+        "media": []
+    },
+    {
+        "id": 57,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynosi dodatkowy ryczałt za pobyt na oddziale intensywnej terapii?",
+            "en": "What is the additional lump sum for an intensive care unit stay?"
+        },
+        "answer": {
+            "pl": "Za leczenie na oddziale **OIOM** lub **OIT** ubezpieczyciel wypłaca świadczenie w wysokości **100 zł** za każdy dzień pobytu, niezależnie od wybranego wariantu polisy.",
+            "en": "For treatment in an **ICU** ward the insurer pays **PLN 100** for each day of stay, regardless of the chosen policy variant."
+        },
+        "keywords": [
+            "oiom",
+            "oit",
+            "intensywna terapia",
+            "ryczałt"
+        ],
+        "synonyms": [
+            "oddział intensywnej terapii",
+            "ile za oiom"
+        ],
+        "media": []
+    },
+    {
+        "id": 58,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie środki przysługują w przypadku przebycia operacji medycznej?",
+            "en": "What funds are paid after a medical operation?"
+        },
+        "answer": {
+            "pl": "Z tytułu **operacji chirurgicznej wynikającej z nieszczęśliwego wypadku** ubezpieczony otrzymuje **3 000 zł** w **Wariancie 1** lub **2 000 zł** w **Wariancie 2**, natomiast gdy operacja była konieczna ze względu na **stan chorobowy**, wypłata wynosi **1 500 zł** w **Wariancie 1** oraz **1 250 zł** w **Wariancie 2**.",
+            "en": "For a **surgical operation resulting from an accident** the insured receives **PLN 3,000** under **Variant 1** or **PLN 2,000** under **Variant 2**, while for an operation necessary due to an **illness**, the payout is **PLN 1,500** under **Variant 1** and **PLN 1,250** under **Variant 2**."
+        },
+        "keywords": [
+            "operacja",
+            "zabieg chirurgiczny",
+            "chirurgia"
+        ],
+        "synonyms": [
+            "wypłata po operacji",
+            "operacja w szpitalu"
+        ],
+        "media": []
+    },
+    {
+        "id": 59,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie odszkodowanie przewidziano w przypadku śmierci małżonka lub partnera?",
+            "en": "What compensation is provided for the death of a spouse or partner?"
+        },
+        "answer": {
+            "pl": "Zgon **współmałżonka lub partnera z przyczyn naturalnych** wiąże się z wypłatą **20 000 zł** w **Wariancie 1** oraz **10 000 zł** w **Wariancie 2**. Jeżeli śmierć nastąpiła w **nieszczęśliwym wypadku**, kwota powiększana jest o kolejne 5 000 zł lub 10 000 zł, co daje łącznie **25 000 zł** w **Wariancie 1** i **20 000 zł** w **Wariancie 2**.",
+            "en": "Death of a **spouse or partner from natural causes** results in a payout of **PLN 20,000** under **Variant 1** and **PLN 10,000** under **Variant 2**. If the death occurred in an **accident**, the amount is increased by another PLN 5,000 or PLN 10,000, giving **PLN 25,000** under **Variant 1** and **PLN 20,000** under **Variant 2** in total."
+        },
+        "keywords": [
+            "małżonek",
+            "partner",
+            "śmierć współmałżonka"
+        ],
+        "synonyms": [
+            "zgon żony",
+            "zgon męża",
+            "śmierć partnera"
+        ],
+        "media": []
+    },
+    {
+        "id": 60,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie wsparcie przysługuje, gdy małżonek lub partner ulegnie chorobie lub wypadkowi?",
+            "en": "What support is provided when a spouse or partner falls ill or has an accident?"
+        },
+        "answer": {
+            "pl": "W przypadku zdiagnozowania **groźnej choroby u partnera** wypłacane jest świadczenie w wysokości **4 000 zł** w **Wariancie 1** lub **3 000 zł** w **Wariancie 2**, a za każdy dzień jego **hospitalizacji powypadkowej** ubezpieczyciel zapewnia **60 zł** w obu opcjach.",
+            "en": "Upon diagnosis of a **serious illness in the partner**, a benefit of **PLN 4,000** is paid under **Variant 1** or **PLN 3,000** under **Variant 2**, and for each day of their **accident-related hospitalisation** the insurer pays **PLN 60** in both options."
+        },
+        "keywords": [
+            "choroba partnera",
+            "hospitalizacja partnera",
+            "małżonek szpital"
+        ],
+        "synonyms": [
+            "współmałżonek w szpitalu",
+            "choroba żony",
+            "choroba męża"
+        ],
+        "media": []
+    },
+    {
+        "id": 61,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jakie świadczenia obejmują zdrowie i życie dziecka?",
+            "en": "What benefits cover a child’s health and life?"
+        },
+        "answer": {
+            "pl": "W razie **śmierci dziecka** ubezpieczony otrzymuje **5 300 zł** w **Wariancie 1** oraz **5 000 zł** w **Wariancie 2**. **Zdiagnozowanie ciężkiej choroby u dziecka** oznacza wypłatę **5 000 zł** lub **3 500 zł**, a każdy dzień jego **leczenia w szpitalu** gwarantuje odpowiednio **120 zł** lub **80 zł** przy wypadku oraz **60 zł** lub **40 zł** w przypadku choroby. W sytuacji **osierocenia dziecka** polisa przewiduje wypłatę **5 000 zł** w **Wariancie 1** lub **4 000 zł** w **Wariancie 2**.",
+            "en": "In case of the **child’s death** the insured receives **PLN 5,300** under **Variant 1** and **PLN 5,000** under **Variant 2**. **Diagnosing a serious illness in the child** means a payout of PLN 5,000 or PLN 3,500, and each day of their **hospital treatment** guarantees **PLN 120** or **PLN 80** in case of an accident and **PLN 60** or **PLN 40** in case of illness, respectively. In case of the **child being orphaned**, the policy provides **PLN 5,000** under **Variant 1** or **PLN 4,000** under **Variant 2**."
+        },
+        "keywords": [
+            "dziecko",
+            "dzieci",
+            "śmierć dziecka",
+            "choroba dziecka",
+            "osierocone"
+        ],
+        "synonyms": [
+            "ubezpieczenie dziecka",
+            "wypłata za dziecko",
+            "hospitalizacja dziecka"
+        ],
+        "media": []
+    },
+    {
+        "id": 62,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile wynosi świadczenie z okazji narodzin dziecka?",
+            "en": "What benefit is paid on the birth of a child?"
+        },
+        "answer": {
+            "pl": "Z tytułu **urodzenia dziecka** pracownik otrzymuje jednorazowo **2 500 zł** w **Wariancie 1** oraz **1 900 zł** w **Wariancie 2**. W przypadku **urodzenia martwego dziecka** przysługuje dodatkowe świadczenie w kwocie 1 100 zł lub 900 zł, co łącznie daje **3 600 zł** w pierwszym wariancie lub **2 800 zł** w wariancie drugim.",
+            "en": "For the **birth of a child** the employee receives a one-off payment of **PLN 2,500** under **Variant 1** and **PLN 1,900** under **Variant 2**. In case of a **stillbirth**, an additional benefit of PLN 1,100 or PLN 900 is due, giving **PLN 3,600** in the first variant or **PLN 2,800** in the second."
+        },
+        "keywords": [
+            "narodziny",
+            "urodzenie dziecka",
+            "becikowe",
+            "martwe urodzenie"
+        ],
+        "synonyms": [
+            "narodziny dziecka",
+            "wypłata za urodzenie",
+            "prezent za dziecko"
+        ],
+        "media": []
+    },
+    {
+        "id": 63,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Jaką kwotę wypłaca ubezpieczyciel w przypadku śmierci rodzica?",
+            "en": "What amount does the insurer pay in case of a parent’s death?"
+        },
+        "answer": {
+            "pl": "Z tytułu **zgonu rodzica** pracownikowi przysługuje wsparcie finansowe w wysokości **3 200 zł** w **Wariancie 1** oraz **2 500 zł** w **Wariancie 2**.",
+            "en": "For the **death of a parent** the employee receives financial support of **PLN 3,200** under **Variant 1** and **PLN 2,500** under **Variant 2**."
+        },
+        "keywords": [
+            "rodzic",
+            "śmierć rodzica",
+            "zgon rodzica"
+        ],
+        "synonyms": [
+            "zgon matki",
+            "zgon ojca",
+            "śmierć rodzica"
+        ],
+        "media": []
+    },
+    {
+        "id": 64,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Czym są dodatkowe Jednostki Ubezpieczeniowe i kto może z nich skorzystać?",
+            "en": "What are the additional Insurance Units and who can use them?"
+        },
+        "answer": {
+            "pl": "**Jednostka Ubezpieczeniowa** to dobrowolne rozszerzenie polisy zarezerwowane **wyłącznie dla pracowników Damen**, pozwalające na podniesienie podstawowych sum gwarancyjnych bez angażowania współubezpieczonych. Pracownik może wykupić **maksymalnie dwie** takie jednostki zwiększające zakres.",
+            "en": "An **Insurance Unit** is a voluntary policy extension reserved **exclusively for Damen employees**, allowing the basic sums insured to be increased without involving co-insured persons. An employee may purchase **a maximum of two** such units to widen the scope."
+        },
+        "keywords": [
+            "jednostki ubezpieczeniowe",
+            "rozszerzenie",
+            "dodatkowa ochrona",
+            "suma gwarancyjna"
+        ],
+        "synonyms": [
+            "jednostka ubezpieczeniowa",
+            "zwiększenie sumy",
+            "dodatkowe ubezpieczenie"
+        ],
+        "media": []
+    },
+    {
+        "id": 65,
+        "category": {
+            "pl": "Ubezpieczenie grupowe",
+            "en": "Group insurance"
+        },
+        "question": {
+            "pl": "Ile kosztują dodatkowe jednostki i jak wpływają na sumy ubezpieczenia?",
+            "en": "How much do the additional units cost and how do they affect the sums insured?"
+        },
+        "answer": {
+            "pl": "Koszt jednej jednostki wynosi **12,00 zł** miesięcznie i podnosi sumę na życie o kolejne **20 000 zł**, sumę za zgon powypadkowy o **20 000 zł** (łącznie 40 000 zł) oraz limit uszczerbku na zdrowiu o **15 000 zł**. Wykupienie dwóch jednostek za łączną składkę **24,00 zł** miesięcznie podwaja te wartości, zwiększając świadczenie na życie o **40 000 zł**, zgon powypadkowy o **40 000 zł** (łącznie 80 000 zł) oraz limit trwałego uszczerbku na zdrowiu o **30 000 zł**.",
+            "en": "One unit costs **PLN 12.00** per month and increases the life sum by **PLN 20,000**, the accidental-death sum by PLN 20,000 (PLN 40,000 in total) and the disability limit by **PLN 15,000**. Purchasing two units for a total premium of **PLN 24.00** per month doubles these values, increasing the life benefit by **PLN 40,000**, accidental death by PLN 40,000 (PLN 80,000 in total) and the permanent disability limit by **PLN 30,000**."
+        },
+        "keywords": [
+            "jednostki koszt",
+            "składka",
+            "20 000",
+            "15 000",
+            "zwiększenie sum"
+        ],
+        "synonyms": [
+            "ile kosztuje jednostka",
+            "dodatkowa składka",
+            "zakup jednostek"
+        ],
+        "media": []
     }
 ]
