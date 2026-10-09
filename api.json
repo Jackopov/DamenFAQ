@@ -13,8 +13,19 @@
             "pl": "**Do 10. dnia miesiąca.** Pracownicy produkcji — po rozliczeniu godzin.",
             "en": "**By the 10th of the month.** Production workers — after hours are settled."
         },
-        "keywords": ["wynagrodzenie", "wypłata", "pensja", "10 dzień", "data wypłaty"],
-        "synonyms": ["kiedy wypłata", "kiedy płacą", "termin wypłaty", "pieniądze"],
+        "keywords": [
+            "wynagrodzenie",
+            "wypłata",
+            "pensja",
+            "10 dzień",
+            "data wypłaty"
+        ],
+        "synonyms": [
+            "kiedy wypłata",
+            "kiedy płacą",
+            "termin wypłaty",
+            "pieniądze"
+        ],
         "media": []
     },
     {
@@ -31,8 +42,18 @@
             "pl": "**Wcześniej, zwykle w piątek** — przed dniem wolnym.",
             "en": "**Earlier, usually on Friday** — before the non-working day."
         },
-        "keywords": ["wypłata", "dzień wolny", "weekend", "piątek", "święto"],
-        "synonyms": ["wypłata w święto", "wypłata w weekend", "wcześniejsza wypłata"],
+        "keywords": [
+            "wypłata",
+            "dzień wolny",
+            "weekend",
+            "piątek",
+            "święto"
+        ],
+        "synonyms": [
+            "wypłata w święto",
+            "wypłata w weekend",
+            "wcześniejsza wypłata"
+        ],
         "media": []
     },
     {
@@ -49,8 +70,17 @@
             "pl": "Kolejność: **zgoda przełożonego → wpis godzin → podpis brygadzisty → Janka wpisuje do systemu**.",
             "en": "Order: **supervisor approval → enter hours → foreman's signature → Janka enters it into the system**."
         },
-        "keywords": ["nadgodziny", "godziny nadliczbowe", "ewidencja", "nadliczbowe"],
-        "synonyms": ["nadgodziny jak wpisać", "praca po godzinach", "dodatkowe godziny"],
+        "keywords": [
+            "nadgodziny",
+            "godziny nadliczbowe",
+            "ewidencja",
+            "nadliczbowe"
+        ],
+        "synonyms": [
+            "nadgodziny jak wpisać",
+            "praca po godzinach",
+            "dodatkowe godziny"
+        ],
         "media": []
     },
     {
@@ -67,8 +97,17 @@
             "pl": "Jak nadgodziny: **zgoda → wpis godzin → podpis brygadzisty → Janka**.",
             "en": "Same as overtime: **approval → enter hours → foreman's signature → Janka**."
         },
-        "keywords": ["praca nocna", "noc", "nocka", "pora nocna"],
-        "synonyms": ["praca w nocy", "zmiana nocna", "nocne godziny"],
+        "keywords": [
+            "praca nocna",
+            "noc",
+            "nocka",
+            "pora nocna"
+        ],
+        "synonyms": [
+            "praca w nocy",
+            "zmiana nocna",
+            "nocne godziny"
+        ],
         "media": []
     },
     {
@@ -85,8 +124,17 @@
             "pl": "Jak nadgodziny: **zgoda przełożonego → wpis godzin → podpis brygadzisty → Janka**.",
             "en": "Same as overtime: **supervisor approval → enter hours → foreman's signature → Janka**."
         },
-        "keywords": ["weekend", "sobota", "niedziela", "praca weekendowa"],
-        "synonyms": ["praca w sobotę", "praca w niedzielę", "weekendowa zmiana"],
+        "keywords": [
+            "weekend",
+            "sobota",
+            "niedziela",
+            "praca weekendowa"
+        ],
+        "synonyms": [
+            "praca w sobotę",
+            "praca w niedzielę",
+            "weekendowa zmiana"
+        ],
         "media": []
     },
     {
@@ -103,8 +151,18 @@
             "pl": "**Decyzja kierownika** — za dobrą pracę lub zaangażowanie ponad obowiązki.",
             "en": "**Manager's decision** — for good work or commitment beyond standard duties."
         },
-        "keywords": ["premia", "bonus", "nagroda", "uznaniowa", "zadaniowa"],
-        "synonyms": ["premia jak dostać", "dodatkowa nagroda", "premia roczna"],
+        "keywords": [
+            "premia",
+            "bonus",
+            "nagroda",
+            "uznaniowa",
+            "zadaniowa"
+        ],
+        "synonyms": [
+            "premia jak dostać",
+            "dodatkowa nagroda",
+            "premia roczna"
+        ],
         "media": []
     },
     {
@@ -121,8 +179,17 @@
             "pl": "**Co miesiąc e-mailem** na adres podany w kadrach. Papier — na życzenie.",
             "en": "**Every month by email** to the address given to HR. Paper — on request."
         },
-        "keywords": ["pasek", "pasek płacowy", "lista płac", "wynagrodzenie"],
-        "synonyms": ["pasek wypłaty", "odcinek wynagrodzenia", "gdzie pasek"],
+        "keywords": [
+            "pasek",
+            "pasek płacowy",
+            "lista płac",
+            "wynagrodzenie"
+        ],
+        "synonyms": [
+            "pasek wypłaty",
+            "odcinek wynagrodzenia",
+            "gdzie pasek"
+        ],
         "media": []
     },
     {
@@ -139,8 +206,17 @@
             "pl": "**Tak, na życzenie** — poproś kadry o wersję papierową.",
             "en": "**Yes, on request** — ask HR for a paper version."
         },
-        "keywords": ["pasek", "papier", "formularz", "payslip"],
-        "synonyms": ["pasek papierowy", "druk paska", "pasek w formie papierowej"],
+        "keywords": [
+            "pasek",
+            "papier",
+            "formularz",
+            "payslip"
+        ],
+        "synonyms": [
+            "pasek papierowy",
+            "druk paska",
+            "pasek w formie papierowej"
+        ],
         "media": []
     },
     {
@@ -157,8 +233,17 @@
             "pl": "**Tak.** Paski przychodzą e-mailem co miesiąc.",
             "en": "**Yes.** Payslips arrive by email every month."
         },
-        "keywords": ["pasek", "elektroniczny", "e-mail", "email"],
-        "synonyms": ["pasek elektroniczny", "pasek mailem", "pasek online"],
+        "keywords": [
+            "pasek",
+            "elektroniczny",
+            "e-mail",
+            "email"
+        ],
+        "synonyms": [
+            "pasek elektroniczny",
+            "pasek mailem",
+            "pasek online"
+        ],
         "media": []
     },
     {
@@ -172,11 +257,20 @@
             "en": "What are the procedures for joining, auto-enrollment, or opting out of Employee Capital Plans (PPK)?"
         },
         "answer": {
-            "pl": "**Zgłoś się do kadr.** Nowy pracownik ma **3 miesiące na decyzję** (przystąpienie lub rezygnacja).", 
+            "pl": "**Zgłoś się do kadr.** Nowy pracownik ma **3 miesiące na decyzję** (przystąpienie lub rezygnacja).",
             "en": "**Contact HR.** A new employee has **3 months to decide** (join or opt out)."
         },
-        "keywords": ["PPK", "plan kapitałowy", "emerytura", "oszczędności"],
-        "synonyms": ["pracownicze plany kapitałowe", "PPK rezygnacja", "PPK przystąpienie"],
+        "keywords": [
+            "PPK",
+            "plan kapitałowy",
+            "emerytura",
+            "oszczędności"
+        ],
+        "synonyms": [
+            "pracownicze plany kapitałowe",
+            "PPK rezygnacja",
+            "PPK przystąpienie"
+        ],
         "media": []
     },
     {
@@ -193,8 +287,17 @@
             "pl": "**Papierowy formularz** — wpisz daty i zbierz **podpis kierownika**.",
             "en": "**Paper form** — enter the dates and get the **manager's signature**."
         },
-        "keywords": ["urlop", "wniosek", "formularz", "wypoczynek"],
-        "synonyms": ["urlop jak złożyć", "wniosek urlopowy", "urlop wypoczynkowy"],
+        "keywords": [
+            "urlop",
+            "wniosek",
+            "formularz",
+            "wypoczynek"
+        ],
+        "synonyms": [
+            "urlop jak złożyć",
+            "wniosek urlopowy",
+            "urlop wypoczynkowy"
+        ],
         "media": []
     },
     {
@@ -211,8 +314,17 @@
             "pl": "**Nie.** Tylko papier.",
             "en": "**No.** Paper only."
         },
-        "keywords": ["urlop", "elektroniczny", "system", "online"],
-        "synonyms": ["urlop online", "urlop w systemie", "wniosek elektroniczny"],
+        "keywords": [
+            "urlop",
+            "elektroniczny",
+            "system",
+            "online"
+        ],
+        "synonyms": [
+            "urlop online",
+            "urlop w systemie",
+            "wniosek elektroniczny"
+        ],
         "media": []
     },
     {
@@ -229,8 +341,17 @@
             "pl": "**Tak.** Papier + podpis kierownika.",
             "en": "**Yes.** Paper + manager's signature."
         },
-        "keywords": ["urlop", "papier", "formularz", "podpis"],
-        "synonyms": ["urlop na papierze", "wniosek papierowy", "urlop w formie papierowej"],
+        "keywords": [
+            "urlop",
+            "papier",
+            "formularz",
+            "podpis"
+        ],
+        "synonyms": [
+            "urlop na papierze",
+            "wniosek papierowy",
+            "urlop w formie papierowej"
+        ],
         "media": []
     },
     {
@@ -247,8 +368,16 @@
             "pl": "**Najpóźniej w dniu urlopu** — powiadom przełożonego.",
             "en": "**No later than the day of leave** — inform your supervisor."
         },
-        "keywords": ["urlop na żądanie", "żądanie", "wolne na żądanie"],
-        "synonyms": ["urlop żądany", "dzień wolny na żądanie", "urlop natychmiastowy"],
+        "keywords": [
+            "urlop na żądanie",
+            "żądanie",
+            "wolne na żądanie"
+        ],
+        "synonyms": [
+            "urlop żądany",
+            "dzień wolny na żądanie",
+            "urlop natychmiastowy"
+        ],
         "media": []
     },
     {
@@ -265,8 +394,18 @@
             "pl": "Lekarz wystawia e-ZLA → ZUS → firma. Widoczne **po 2–3 dniach**.",
             "en": "Doctor issues e-ZLA → ZUS → company. Visible **after 2–3 days**."
         },
-        "keywords": ["e-ZLA", "zwolnienie", "L4", "choroba", "lekarskie"],
-        "synonyms": ["e-zla jak sprawdzić", "zwolnienie elektroniczne", "L4 online"],
+        "keywords": [
+            "e-ZLA",
+            "zwolnienie",
+            "L4",
+            "choroba",
+            "lekarskie"
+        ],
+        "synonyms": [
+            "e-zla jak sprawdzić",
+            "zwolnienie elektroniczne",
+            "L4 online"
+        ],
         "media": []
     },
     {
@@ -283,8 +422,17 @@
             "pl": "**Tak.** Zadzwoń pierwszego dnia — e-ZLA może pojawić się w systemie później.",
             "en": "**Yes.** Call on the first day — the e-ZLA may appear in the system later."
         },
-        "keywords": ["choroba", "powiadomienie", "telefon", "pierwszy dzień"],
-        "synonyms": ["poinformować o chorobie", "zadzwonić choroba", "powiadomienie o L4"],
+        "keywords": [
+            "choroba",
+            "powiadomienie",
+            "telefon",
+            "pierwszy dzień"
+        ],
+        "synonyms": [
+            "poinformować o chorobie",
+            "zadzwonić choroba",
+            "powiadomienie o L4"
+        ],
         "media": []
     },
     {
@@ -301,8 +449,784 @@
             "pl": "**Brygadzista, kierownik lub dział kart** — sprawdzą i poprawią zapis.",
             "en": "**Foreman, manager, or card department** — they will check and correct the record."
         },
-        "keywords": ["karta", "błąd", "rejestracja", "wejście", "wyjście"],
-        "synonyms": ["błąd karty", "źle odbiła", "poprawić rejestrację", "brygadzista"],
+        "keywords": [
+            "karta",
+            "błąd",
+            "rejestracja",
+            "wejście",
+            "wyjście"
+        ],
+        "synonyms": [
+            "błąd karty",
+            "źle odbiła",
+            "poprawić rejestrację",
+            "brygadzista"
+        ],
+        "media": []
+    },
+    {
+        "id": 18,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jaki pakiet medyczny przysługuje pracownikom naszej firmy?",
+            "en": "What medical package do the employees of our company receive?"
+        },
+        "answer": {
+            "pl": "Pracownicy **Damen Marine Components Gdańsk Sp. z o.o.** objęci są pakietem opieki medycznej **Comfort Plus** zarejestrowanym pod kodem **Benefitplan PB5_BRS082_COM+_KNPCZP**.",
+            "en": "Employees of **Damen Marine Components Gdańsk Sp. z o.o.** are covered by the **Comfort Plus** medical care package registered under the code **Benefitplan PB5_BRS082_COM+_KNPCZP**."
+        },
+        "keywords": [
+            "pakiet medyczny",
+            "opieka medyczna",
+            "comfort plus",
+            "benefitplan",
+            "abonament",
+            "lux med"
+        ],
+        "synonyms": [
+            "jaki pakiet medyczny",
+            "medyczny benefit",
+            "opieka zdrowotna",
+            "package"
+        ],
+        "media": []
+    },
+    {
+        "id": 19,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Czy do pakietu można zgłosić członków rodziny?",
+            "en": "Can family members be covered by the package?"
+        },
+        "answer": {
+            "pl": "Tak, pracodawca umożliwia **odpłatne** objęcie opieką medyczną członków rodziny w ramach dedykowanego wariantu **Benefitplan PB5_JRS082_COM+_KNPCZP**.",
+            "en": "Yes, the employer allows **paid** medical coverage for family members under a dedicated variant: **Benefitplan PB5_JRS082_COM+_KNPCZP**."
+        },
+        "keywords": [
+            "członkowie rodziny",
+            "rodzina",
+            "małżonek",
+            "dzieci",
+            "pakiet rodzinny",
+            "współubezpieczenie"
+        ],
+        "synonyms": [
+            "pakiet dla rodziny",
+            "opieka medyczna dla dzieci",
+            "medyczne dla żony",
+            "medyczne dla męża"
+        ],
+        "media": []
+    },
+    {
+        "id": 20,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Gdzie można korzystać ze świadczeń medycznych?",
+            "en": "Where can I use the medical services?"
+        },
+        "answer": {
+            "pl": "Z opieki można korzystać w placówkach własnych **LUX MED** i **Medycyna Rodzinna**, w poradniach zdrowia psychicznego **Harmonia**, dedykowanych centrach diagnostycznych i stomatologicznych oraz w sieci placówek partnerskich w całym kraju.",
+            "en": "Care is available at **LUX MED** and **Medycyna Rodzinna** owned clinics, at **Harmonia** mental health clinics, dedicated diagnostic and dental centres, and in the partner network across the country."
+        },
+        "keywords": [
+            "placówka",
+            "lux med",
+            "medycyna rodzinna",
+            "harmonia",
+            "gabinet",
+            "poradnia"
+        ],
+        "synonyms": [
+            "gdzie na wizytę",
+            "placówki lux med",
+            "adres poradni"
+        ],
+        "media": []
+    },
+    {
+        "id": 21,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Do jakich lekarzy dorosły pracownik może udać się bez skierowania?",
+            "en": "Which specialists can an adult employee visit without a referral?"
+        },
+        "answer": {
+            "pl": "Bez skierowania i **bez limitu wizyt** dostępni są: internista, lekarz medycyny rodzinnej, alergolog, chirurg ogólny, dermatolog, diabetolog, endokrynolog, gastroenterolog, ginekolog, ginekolog-endokrynolog, hematolog, kardiolog, laryngolog, nefrolog, neurolog, okulista, optometrysta, ortopeda, proktolog, pulmonolog, reumatolog oraz urolog.",
+            "en": "Without a referral and **with no visit limit** you can see: internist, family medicine doctor, allergologist, general surgeon, dermatologist, diabetologist, endocrinologist, gastroenterologist, gynaecologist, gynaecologist-endocrinologist, haematologist, cardiologist, ENT specialist, nephrologist, neurologist, ophthalmologist, optometrist, orthopaedist, proctologist, pulmonologist, rheumatologist and urologist."
+        },
+        "keywords": [
+            "bez skierowania",
+            "specjalista",
+            "internista",
+            "kardiolog",
+            "dermatolog",
+            "okulista",
+            "ginekolog"
+        ],
+        "synonyms": [
+            "bez skierowania do kogo",
+            "specjaliści bez skierowania",
+            "lekarz specjalista"
+        ],
+        "media": []
+    },
+    {
+        "id": 22,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Do jakich specjalistów dziecko może pójść bez skierowania?",
+            "en": "Which specialists can a child see without a referral?"
+        },
+        "answer": {
+            "pl": "Osoby do osiemnastego roku życia mogą bez skierowania konsultować się z pediatrą, chirurgiem dziecięcym, dermatologiem, laryngologiem, neurologiem, okulistą, ortopedą oraz z **ginekologiem po ukończeniu szesnastego roku życia**.",
+            "en": "Minors under eighteen can see, without a referral: paediatrician, paediatric surgeon, dermatologist, ENT specialist, neurologist, ophthalmologist, orthopaedist, and a **gynaecologist from the age of sixteen**."
+        },
+        "keywords": [
+            "dziecko",
+            "dzieci",
+            "pediatra",
+            "bez skierowania",
+            "nastolatek"
+        ],
+        "synonyms": [
+            "dzieci specjaliści",
+            "wizyta z dzieckiem",
+            "pediatra bez skierowania"
+        ],
+        "media": []
+    },
+    {
+        "id": 23,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Które konsultacje specjalistyczne wymagają skierowania od lekarza LUX MED?",
+            "en": "Which specialist consultations require a referral from a LUX MED doctor?"
+        },
+        "answer": {
+            "pl": "Skierowania wymagają bardziej specjalistyczne dziedziny, w tym chirurgia naczyniowa, onkologiczna i plastyczna, neurochirurgia, choroby zakaźne, angiologia, anestezjologia, flebologia, foniatria, geriatria, hepatologia, hipertensjologia, immunologia oraz **rehabilitacja medyczna**.",
+            "en": "A referral is required for more specialised fields, including vascular, oncological and plastic surgery, neurosurgery, infectious diseases, angiology, anaesthesiology, phlebology, phoniatrics, geriatrics, hepatology, hypertension, immunology and **rehabilitation medicine**."
+        },
+        "keywords": [
+            "skierowanie",
+            "specjalista",
+            "chirurgia",
+            "neurochirurgia",
+            "onkolog"
+        ],
+        "synonyms": [
+            "kiedy skierowanie",
+            "specjalizacje ze skierowaniem",
+            "lekarz kieruje"
+        ],
+        "media": []
+    },
+    {
+        "id": 24,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Czy pakiet zapewnia pomoc psychologa i psychiatry oraz jakie są limity?",
+            "en": "Does the package cover a psychologist and a psychiatrist, and what are the limits?"
+        },
+        "answer": {
+            "pl": "Tak, pakiet gwarantuje wsparcie w zakresie **psychiatrii, psychologii, seksuologii oraz andrologii** zarówno dla dorosłych, jak i dzieci. Konsultacje te są objęte **rocznym limitem wynoszącym dokładnie trzy bezpłatne wizyty w roku** u każdego z tych specjalistów.",
+            "en": "Yes, the package covers **psychiatry, psychology, sexology and andrology** for both adults and children. These consultations are subject to an **annual limit of exactly three free visits per year** with each of these specialists."
+        },
+        "keywords": [
+            "psycholog",
+            "psychiatra",
+            "psychologia",
+            "seksuolog",
+            "limit wizyt",
+            "zdrowie psychiczne"
+        ],
+        "synonyms": [
+            "wizyta u psychologa",
+            "pomoc psychologiczna",
+            "trzy wizyty",
+            "konsultacja psychiatryczna"
+        ],
+        "media": []
+    },
+    {
+        "id": 25,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Czym są konsultacje profesorskie i czy są płatne?",
+            "en": "What are professorial consultations and are they paid?"
+        },
+        "answer": {
+            "pl": "Są to konsultacje u lekarzy z tytułem profesora lub stopniem doktora habilitowanego, zlecane w przypadku trudnych problemów diagnostycznych na podstawie skierowania. W ramach naszego pakietu konsultacje profesorskie są **całkowicie bezpłatne i nielimitowane**.",
+            "en": "These are consultations with physicians holding the title of professor or the degree of doctor habilitated, ordered for difficult diagnostic problems based on a referral. In our package, professorial consultations are **completely free and unlimited**."
+        },
+        "keywords": [
+            "konsultacja profesorska",
+            "profesor",
+            "doktor habilitowany",
+            "bezpłatne"
+        ],
+        "synonyms": [
+            "konsultacja u profesora",
+            "bezpłatna konsultacja",
+            "trudna diagnoza"
+        ],
+        "media": []
+    },
+    {
+        "id": 26,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Gdzie szukać pomocy w nagłych zachorowaniach lub wypadkach?",
+            "en": "Where should I seek help in case of sudden illness or an accident?"
+        },
+        "answer": {
+            "pl": "W przypadku nagłego zachorowania można skorzystać ze stacjonarnych dyżurów lekarzy internistów, pediatrów, chirurgów i ortopedów lub zadzwonić na całodobowy numer alarmowy **Pilna Pomoc Medyczna 24/7** pod numerem **22 322 99 99**.",
+            "en": "In case of sudden illness you can use on-site duty hours of internists, paediatricians, surgeons and orthopaedists, or call the 24/7 emergency line **Pilna Pomoc Medyczna 24/7** at **22 322 99 99**."
+        },
+        "keywords": [
+            "pilna pomoc",
+            "dyżur",
+            "nagłe zachorowanie",
+            "wypadek",
+            "alarmowy",
+            "24/7"
+        ],
+        "synonyms": [
+            "numer alarmowy medyczny",
+            "pilna pomoc medyczna",
+            "co zrobić gdy zachoruję"
+        ],
+        "media": []
+    },
+    {
+        "id": 27,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie badania laboratoryjne można wykonać raz w roku bez skierowania?",
+            "en": "Which laboratory tests can be done once a year without a referral?"
+        },
+        "answer": {
+            "pl": "Każda pełnoletnia osoba może **raz w roku kalendarzowym** bezpłatnie i bez skierowania wykonać w placówkach własnych: badanie ogólne moczu, morfologię krwi z płytkami i rozmazem automatycznym, poziom cholesterolu całkowitego oraz glukozę na czczo.",
+            "en": "Every adult can have, **once per calendar year**, free of charge and without a referral, at owned clinics: general urinalysis, complete blood count with platelets and automatic smear, total cholesterol, and fasting glucose."
+        },
+        "keywords": [
+            "badania laboratoryjne",
+            "morfologia",
+            "mocz",
+            "cholesterol",
+            "glukoza",
+            "bez skierowania"
+        ],
+        "synonyms": [
+            "darmowe badania",
+            "badania raz w roku",
+            "morfologia z krwi",
+            "moczu"
+        ],
+        "media": []
+    },
+    {
+        "id": 28,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie badania diagnostyczne ze skierowaniem obejmuje pakiet?",
+            "en": "Which diagnostic tests with a referral does the package cover?"
+        },
+        "answer": {
+            "pl": "Pakiet zapewnia nielimitowany dostęp do diagnostyki zleconej przez lekarza **LUX MED**, obejmującej badania krwi, moczu, kału, cytologię, **RTG**, mammografię, **USG**, rezonans magnetyczny i tomografię komputerową z kontrastem, gastroskopię, kolonoskopię, **EKG**, próby wysiłkowe, **Holter EKG**, **Holter ciśnieniowy**, **EEG** oraz spirometrię.",
+            "en": "The package provides unlimited access to diagnostics ordered by a **LUX MED** doctor, including blood, urine and stool tests, Pap smear, **X-ray**, mammography, **ultrasound**, MRI and contrast CT, gastroscopy, colonoscopy, **ECG**, stress tests, **Holter EKG**, **Holter BP monitoring**, **EEG** and spirometry."
+        },
+        "keywords": [
+            "diagnostyka",
+            "usg",
+            "rtg",
+            "rezonans",
+            "tomografia",
+            "holter",
+            "badania obrazowe",
+            "eeg"
+        ],
+        "synonyms": [
+            "badania diagnostyczne",
+            "magnes",
+            "tk",
+            "echo serca",
+            "gastroskopia"
+        ],
+        "media": []
+    },
+    {
+        "id": 29,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Na czym polega roczny Profilaktyczny Przegląd Stanu Zdrowia?",
+            "en": "What does the annual Preventive Health Check-up involve?"
+        },
+        "answer": {
+            "pl": "Jest to przysługujący **raz na dwanaście miesięcy** bilans zdrowotny bez skierowania, obejmujący wywiad medyczny oraz sprofilowany pakiet badań i konsultacji. Wariant dla kobiet obejmuje cztery konsultacje, jedenaście badań laboratoryjnych, pięć badań obrazowych i badanie czynnościowe, natomiast dla mężczyzn przewidziano cztery konsultacje, jedenaście badań z krwi i moczu, trzy badania obrazowe oraz badanie czynnościowe.",
+            "en": "It is a health review entitled **once every twelve months**, without a referral, including a medical interview and a profiled set of tests and consultations. The variant for women covers four consultations, eleven laboratory tests, five imaging tests and a functional test, while for men it covers four consultations, eleven blood and urine tests, three imaging tests and a functional test."
+        },
+        "keywords": [
+            "przegląd",
+            "profilaktyczny przegląd",
+            "bilans zdrowia",
+            "pps"
+        ],
+        "synonyms": [
+            "roczny przegląd",
+            "przegląd zdrowia",
+            "darmowy przegląd"
+        ],
+        "media": []
+    },
+    {
+        "id": 30,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak wygląda opieka nad kobietami w ciąży?",
+            "en": "How is the care for pregnant women organised?"
+        },
+        "answer": {
+            "pl": "Pakiet gwarantuje **kompleksowe prowadzenie ciąży fizjologicznej** przez ginekologa i położną wraz z pełnym panelem badań laboratoryjnych oraz badaniami **USG** dwuwymiarowymi przez powłoki brzuszne i transwaginalnymi, z wyłączeniem testów genetycznych i biologii molekularnej.",
+            "en": "The package guarantees **comprehensive management of a physiological pregnancy** by a gynaecologist and a midwife, with a full panel of laboratory tests and two-dimensional **ultrasound** scans (transabdominal and transvaginal), excluding genetic tests and molecular biology."
+        },
+        "keywords": [
+            "ciąża",
+            "ciężarna",
+            "ginekolog",
+            "położna",
+            "usg ciąży"
+        ],
+        "synonyms": [
+            "prowadzenie ciąży",
+            "badania w ciąży",
+            "opieka położnicza"
+        ],
+        "media": []
+    },
+    {
+        "id": 31,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie drobne zabiegi chirurgiczne i ambulatoryjne można wykonać w gabinetach?",
+            "en": "Which minor surgical and outpatient procedures can be performed at the clinics?"
+        },
+        "answer": {
+            "pl": "W ramach wizyty lub osobnego zabiegu personel medyczny wykonuje **szycie ran do trzech centymetrów**, zmianę opatrunków, usunięcie kleszcza, nacięcie ropnia, płukanie uszu, usunięcie ciała obcego z oka lub ucha oraz biopsje cienkoigłowe w znieczuleniu miejscowym. Zabiegi dermatologiczne ze względów czysto estetycznych nie są finansowane.",
+            "en": "During a visit or as a separate procedure, medical staff perform **suturing of wounds up to three centimetres**, dressing changes, tick removal, abscess incision, ear irrigation, removal of a foreign body from the eye or ear, and fine-needle biopsies under local anaesthesia. Dermatological procedures for purely aesthetic reasons are not covered."
+        },
+        "keywords": [
+            "zabieg",
+            "szycie ran",
+            "kleszcz",
+            "opatrunek",
+            "ropień",
+            "biopsja"
+        ],
+        "synonyms": [
+            "drobny zabieg",
+            "zszycie rany",
+            "usunięcie kleszcza"
+        ],
+        "media": []
+    },
+    {
+        "id": 32,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie świadczenia stomatologiczne zapewnia abonament?",
+            "en": "What dental services does the package provide?"
+        },
+        "answer": {
+            "pl": "Pracownikom przysługuje **bezpłatny przegląd stomatologiczny raz w roku**, dwuletnia gwarancja na procedury oraz **rabat pięćdziesięciu procent** na leczenie zachowawcze, chirurgię stomatologiczną, pedodoncję, znieczulenia, **RTG** zęba i higienizację z piaskowaniem i skalingiem. W wybranych placówkach w ostrych stanach bólowych pomoc doraźna na nocnym dyżurze w godzinach **od 20:00 do 8:00** jest bezpłatna. Pakiet **nie obejmuje ortodoncji, protetyki ani implantów**.",
+            "en": "Employees are entitled to a **free dental check-up once a year**, a two-year warranty on procedures and a **fifty percent discount** on restorative treatment, dental surgery, paediatric dentistry, anaesthesia, dental **X-ray** and hygiene with sandblasting and scaling. In selected clinics, emergency care during night duty hours **from 20:00 to 8:00** is free for acute pain. The package **does not cover orthodontics, prosthetics or implants**."
+        },
+        "keywords": [
+            "stomatolog",
+            "dentysta",
+            "zęby",
+            "przegląd stomatologiczny",
+            "higienizacja",
+            "rtg zęba"
+        ],
+        "synonyms": [
+            "dentysta rabat",
+            "stomatologia abonament",
+            "wizyta u dentysty",
+            "opieka stomatologiczna",
+            "przegląd zębów",
+            "zęby przegląd"
+        ],
+        "media": []
+    },
+    {
+        "id": 33,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak skorzystać z rehabilitacji i zabiegów fizjoterapii?",
+            "en": "How can I use rehabilitation and physiotherapy?"
+        },
+        "answer": {
+            "pl": "Rehabilitacja narządu ruchu przysługuje na podstawie **skierowania od lekarza LUX MED** i podlega **rocznemu limitowi ilościowemu**, obejmując konsultacje fizjoterapeutyczne oraz zabiegi fizykoterapii i kinezyterapii. Wyłączone z pakietu są wady wrodzone, wady postawy oraz usprawnianie pooperacyjne rozpoczęte **później niż miesiąc od operacji**.",
+            "en": "Rehabilitation of the locomotor system is available based on a **referral from a LUX MED doctor** and is subject to an **annual quantity limit**, covering physiotherapy consultations and physical therapy and kinesiotherapy procedures. Congenital defects, postural defects and post-operative rehabilitation started **more than one month after surgery** are excluded."
+        },
+        "keywords": [
+            "rehabilitacja",
+            "fizjoterapia",
+            "fizjoterapeuta",
+            "kinezyterapia",
+            "ćwiczenia"
+        ],
+        "synonyms": [
+            "rehabilitacja skierowanie",
+            "fizjoterapia abonament",
+            "ćwiczenia rehabilitacyjne"
+        ],
+        "media": []
+    },
+    {
+        "id": 34,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Kiedy przysługuje wizyta domowa lekarza?",
+            "en": "When is a home visit by a doctor available?"
+        },
+        "answer": {
+            "pl": "Wizyta domowa jest formą pomocy doraźnej realizowaną w rejonie objętym zasięgiem **tylko w nagłych zachorowaniach uniemożliwiających choremu dotarcie do placówki**, po wcześniejszej kwalifikacji przez dyspozytora medycznego. Złe samopoczucie komunikacyjne lub potrzeba wypisania recepty **nie kwalifikują** do przyjazdu lekarza.",
+            "en": "A home visit is emergency care provided within the covered area **only in cases of sudden illness that prevent the patient from reaching a clinic**, after prior qualification by a medical dispatcher. Feeling generally unwell or needing a prescription **do not qualify** for a doctor’s home visit."
+        },
+        "keywords": [
+            "wizyta domowa",
+            "lekarz do domu",
+            "dyspozytor",
+            "pomoc doraźna"
+        ],
+        "synonyms": [
+            "lekarz przyjedzie do domu",
+            "wizyta domowa lekarza"
+        ],
+        "media": []
+    },
+    {
+        "id": 35,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Czy w pakiecie dostępne są bezpłatne szczepienia ochronne?",
+            "en": "Are free protective vaccinations available in the package?"
+        },
+        "answer": {
+            "pl": "Tak, pakiet gwarantuje **bezpłatną kwalifikację, preparat oraz wykonanie szczepienia** przeciwko grypie sezonowej oraz podanie anatoksyny przeciwtężcowej. Dla grup **powyżej trzydziestu chętnych** firma może zorganizować szczepienia wyjazdowe w siedzibie zakładu.",
+            "en": "Yes, the package guarantees **free qualification, the vaccine and its administration** against seasonal influenza, as well as tetanus anatoxin. For groups of **more than thirty participants**, the company can organise on-site vaccinations at the plant."
+        },
+        "keywords": [
+            "szczepienie",
+            "szczepionka",
+            "grypa",
+            "tężec",
+            "anatoksyna"
+        ],
+        "synonyms": [
+            "szczepienie przeciw grypie",
+            "darmowe szczepienia",
+            "szczepienia w firmie"
+        ],
+        "media": []
+    },
+    {
+        "id": 36,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak umówić obowiązkowe badania medycyny pracy?",
+            "en": "How to book mandatory occupational medicine examinations?"
+        },
+        "answer": {
+            "pl": "Badania medycyny pracy można zgłosić na stronie **mp.luxmed.pl** w zakładce dla firm, przesyłając skan skierowania od pracodawcy, lub dzwoniąc na dedykowaną infolinię **22 33 81 666** od poniedziałku do piątku w godzinach **od 7:00 do 19:00**.",
+            "en": "Occupational medicine examinations can be booked on the **mp.luxmed.pl** website in the companies section by sending a scan of the referral from the employer, or by calling the dedicated hotline **22 33 81 666**, Monday to Friday **from 7:00 to 19:00**."
+        },
+        "keywords": [
+            "medycyna pracy",
+            "badania wstępne",
+            "badania okresowe",
+            "skierowanie od pracodawcy"
+        ],
+        "synonyms": [
+            "badania pracownicze",
+            "umówić badania medycyny pracy",
+            "mp.luxmed.pl"
+        ],
+        "media": []
+    },
+    {
+        "id": 37,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak działają konsultacje online na czacie oraz teleporady?",
+            "en": "How do online chat consultations and phone consultations work?"
+        },
+        "answer": {
+            "pl": "Konsultacje na czacie z internistą, pediatrą lub położną w **Portalu Pacjenta** dostępne są codziennie bez zapisów **od 7:00 do 24:00**. Z kolei planowane konsultacje telefoniczne zamawia się na wybraną godzinę przez aplikację lub infolinię, a dyżurujący lekarz ma pełne uprawnienia do wystawienia **e-zwolnienia, e-skierowania oraz e-recepty**.",
+            "en": "Chat consultations with an internist, paediatrician or midwife in the **Patient Portal** are available daily without booking **from 7:00 to 24:00**. Scheduled phone consultations are ordered for a chosen hour via the app or hotline, and the on-call doctor is fully authorised to issue an **e-sick-leave, e-referral and e-prescription**."
+        },
+        "keywords": [
+            "teleporada",
+            "czat",
+            "portal pacjenta",
+            "online",
+            "e-recepta",
+            "położna"
+        ],
+        "synonyms": [
+            "konsultacja online",
+            "rozmowa z lekarzem telefonicznie",
+            "czat z lekarzem"
+        ],
+        "media": []
+    },
+    {
+        "id": 38,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie informacje są niezbędne do wystawienia zwolnienia lekarskiego?",
+            "en": "What information is required to issue a sick leave?"
+        },
+        "answer": {
+            "pl": "Do wystawienia zwolnienia **ZUS-ZLA** lekarz wymaga podania numeru **PESEL** pracownika oraz numeru **NIP** firmy **Damen Marine Components Gdańsk Sp. z o.o.**. Osoby pracujące w kilku miejscach muszą podać numery **NIP wszystkich swoich pracodawców**.",
+            "en": "To issue a sick leave (**ZUS-ZLA**) the doctor requires the employee’s **PESEL** number and the **NIP** of **Damen Marine Components Gdańsk Sp. z o.o.** People working for several employers must provide the **NIP numbers of all their employers**."
+        },
+        "keywords": [
+            "zwolnienie lekarskie",
+            "zus-zla",
+            "e-zwolnienie",
+            "pesel",
+            "nip"
+        ],
+        "synonyms": [
+            "l4",
+            "zwolnienie od lekarza",
+            "jakie dane do zwolnienia"
+        ],
+        "media": []
+    },
+    {
+        "id": 39,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Co jest potrzebne do otrzymania zniżki na leki refundowane na e-recepcie?",
+            "en": "What is needed to get the discount on reimbursed medicines on an e-prescription?"
+        },
+        "answer": {
+            "pl": "Konieczna jest **pomyślna weryfikacja uprawnień w systemie eWUŚ** w dniu wizyty lub podpisanie pisemnego oświadczenia o objęciu ubezpieczeniem zdrowotnym **NFZ**, bez którego recepta zostanie wystawiona ze **stuprocentową odpłatnością**.",
+            "en": "A **successful verification of entitlements in the eWUŚ system** on the day of the visit, or signing a written declaration of **NFZ** health insurance coverage, is required — without it the prescription will be issued at **full (100%) cost**."
+        },
+        "keywords": [
+            "e-recepta",
+            "leki refundowane",
+            "ewuś",
+            "nfz",
+            "zniżka na leki"
+        ],
+        "synonyms": [
+            "recepta na refundowane",
+            "odpłatność za leki",
+            "tańsze leki"
+        ],
+        "media": []
+    },
+    {
+        "id": 40,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak zamówić e-receptę na stale przyjmowane leki bez wizyty?",
+            "en": "How to order an e-prescription for regularly taken medicines without a visit?"
+        },
+        "answer": {
+            "pl": "Zamówienie na kontynuację leczenia składa się w **Portalu Pacjenta** w module lekowym, telefonicznie lub w recepcji, a po wystawieniu recepty przez lekarza **czterocyfrowy kod dostępu** przesyłany jest wiadomością **SMS**.",
+            "en": "A continuation order is placed in the **Patient Portal** (medicine module), by phone or at reception, and after the doctor issues the prescription a **four-digit access code** is sent by **SMS**."
+        },
+        "keywords": [
+            "e-recepta",
+            "stałe leki",
+            "kontynuacja leczenia",
+            "sms",
+            "kod recepty"
+        ],
+        "synonyms": [
+            "recepta bez wizyty",
+            "przedłużenie recepty",
+            "stałe leki recepta"
+        ],
+        "media": []
+    },
+    {
+        "id": 41,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jak długo ważne jest skierowanie na badania diagnostyczne?",
+            "en": "How long is a referral for diagnostic tests valid?"
+        },
+        "answer": {
+            "pl": "Wszystkie skierowania wystawione w **LUX MED** zachowują ważność przez **sześć miesięcy** od momentu ich wystawienia, o ile lekarz nie wskazał na dokumencie krótszego terminu ważności.",
+            "en": "All referrals issued at **LUX MED** remain valid for **six months** from the date of issue, unless the doctor indicated a shorter validity period on the document."
+        },
+        "keywords": [
+            "skierowanie",
+            "ważność skierowania",
+            "termin ważności"
+        ],
+        "synonyms": [
+            "jak długo ważne skierowanie",
+            "ważność skierowania na badania"
+        ],
+        "media": []
+    },
+    {
+        "id": 42,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Czy inna osoba może odebrać wyniki badań w imieniu pracownika?",
+            "en": "Can another person pick up test results on the employee’s behalf?"
+        },
+        "answer": {
+            "pl": "Tak, pod warunkiem **wcześniejszego złożenia pisemnego upoważnienia** w recepcji centrum medycznego według wzoru dostępnego na stronie operatora.",
+            "en": "Yes, provided that a **written authorisation** has been filed in advance at the reception of the medical centre, using the template available on the operator’s website."
+        },
+        "keywords": [
+            "wyniki",
+            "odbiór wyników",
+            "upoważnienie"
+        ],
+        "synonyms": [
+            "kto odbierze wyniki",
+            "wyniki badań upoważnienie"
+        ],
+        "media": []
+    },
+    {
+        "id": 43,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie zasady obowiązują przy odwoływaniu wizyt lekarskich?",
+            "en": "What are the rules for cancelling medical appointments?"
+        },
+        "answer": {
+            "pl": "Wizytę, na którą pacjent nie może się stawić, należy **odwołać minimum sześć godzin** przed jej terminem poprzez bezpłatny **SMS zwrotny o treści NIE**, przez **Portal Pacjenta** lub dzwoniąc pod numer **22 33 22 888**.",
+            "en": "An appointment the patient cannot attend must be **cancelled at least six hours** in advance via a free return **SMS with the text NIE**, through the **Patient Portal**, or by calling **22 33 22 888**."
+        },
+        "keywords": [
+            "odwołanie wizyty",
+            "rezygnacja z wizyty",
+            "sms nie"
+        ],
+        "synonyms": [
+            "anulować wizytę",
+            "nie przyjdę na wizytę",
+            "odwołać umówioną wizytę"
+        ],
+        "media": []
+    },
+    {
+        "id": 44,
+        "category": {
+            "pl": "Pakiet medyczny",
+            "en": "Medical package"
+        },
+        "question": {
+            "pl": "Jakie rabaty przysługują na usługi spoza abonamentu?",
+            "en": "What discounts apply to services outside the package?"
+        },
+        "answer": {
+            "pl": "Pracownikom i objętym abonamentem członkom rodzin przysługuje stały **rabat dziesięciu procent** na wszystkie pozostałe usługi komercyjne w placówkach własnych **LUX MED** i **Medycyna Rodzinna** oraz **dziesięć procent zniżki** na zabiegi i operacje w **Szpitalu LUX MED**.",
+            "en": "Employees and covered family members receive a permanent **ten percent discount** on all other commercial services at **LUX MED** and **Medycyna Rodzinna** owned clinics, and **ten percent off** procedures and operations at the **LUX MED Hospital**."
+        },
+        "keywords": [
+            "rabat",
+            "zniżka",
+            "usługi komercyjne",
+            "szpital lux med"
+        ],
+        "synonyms": [
+            "zniżki lux med",
+            "rabat na usługi",
+            "płatne usługi taniej"
+        ],
         "media": []
     }
 ]
