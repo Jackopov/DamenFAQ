@@ -172,7 +172,9 @@ function fuzzyMatch(query, text) {
 
     // 2) Token-level matching (każde słowo zapytania występuje w tekście)
     const qWords = qNorm.split(/\s+/).filter(w => w.length > 1);
-    const tWords = new Set(tNorm.split(/\s+/));
+    // jednoliterowe słowa („w", „i", „z") pomijamy także w tekście —
+    // inaczej każdy wyraz zaczynający się na „w" trafia jako dopasowanie
+    const tWords = new Set(tNorm.split(/\s+/).filter(w => w.length > 1));
 
     let tokenHits = 0;
     qWords.forEach(qw => {
@@ -313,7 +315,7 @@ function scoreEntry(item, queryTokens, rawQuery) {
         if (!matched && aTokens.has(t)) { hits++; aHits++; }
     });
 
-    if (hits === 0) return 0;
+    if (hits === 0) return { s: 0, qHits: 0, aTie: 0 };
     let score = qHits * 12 + aHits * 2;
     score += (hits / queryTokens.length) * 40; // premia za pokrycie całego zapytania
 
@@ -324,7 +326,18 @@ function scoreEntry(item, queryTokens, rawQuery) {
         if (fullFuzzy >= 0.8) score += fullFuzzy * 30;
     }
 
-    return score;
+    // 6) Bonus za dokładne trafienie w synonim wpisu — zapytanie identyczne
+    // z synonimem oznacza zamierzone trafienie w ten wpis (silniejsze niż fuzzy)
+    if (rawQuery && Array.isArray(item.synonyms)) {
+        const rq = normalize(rawQuery).trim();
+        if (rq && item.synonyms.some(s => normalize(s).trim() === rq)) score += 35;
+    }
+
+    // Informacja pomocnicza dla remisów: ile tokenów zapytania występuje
+    // także w odpowiedzi (wpis tematycznie bliższy zapytaniu)
+    const aTie = queryTokens.filter(t => item._corpus.aTokens.has(t)).length;
+
+    return { s: score, qHits: qHits, aTie: aTie };
 }
 
 function findBest(question, exclude) {
@@ -332,9 +345,14 @@ function findBest(question, exclude) {
     if (!tokens.length) return [];
     return faqData
         .filter(f => f !== exclude)
-        .map(f => ({ f, s: scoreEntry(f, tokens, question) }))
+        .map(f => {
+            const r = scoreEntry(f, tokens, question);
+            return { f, s: r.s, qHits: r.qHits, aTie: r.aTie };
+        })
         .filter(x => x.s > 0)
-        .sort((a, b) => b.s - a.s);
+        // przy remisie wygrywa wpis z większą liczbą trafionych słów zapytania
+        // w pytaniu, a następnie w odpowiedzi
+        .sort((a, b) => (b.s - a.s) || (b.qHits - a.qHits) || (b.aTie - a.aTie));
 }
 
 // ── Pobieranie danych z pliku api.json ─────────────────────────────────────

@@ -247,33 +247,6 @@
         "media": []
     },
     {
-        "id": 10,
-        "category": {
-            "pl": "Wynagrodzenie",
-            "en": "Pay"
-        },
-        "question": {
-            "pl": "Jak wyglądają procedury przystąpienia, autozapisu lub rezygnacji z Pracowniczych Planów Kapitałowych (PPK)?",
-            "en": "What are the procedures for joining, auto-enrollment, or opting out of Employee Capital Plans (PPK)?"
-        },
-        "answer": {
-            "pl": "**Zgłoś się do kadr.** Nowy pracownik ma **3 miesiące na decyzję** (przystąpienie lub rezygnacja).",
-            "en": "**Contact HR.** A new employee has **3 months to decide** (join or opt out)."
-        },
-        "keywords": [
-            "PPK",
-            "plan kapitałowy",
-            "emerytura",
-            "oszczędności"
-        ],
-        "synonyms": [
-            "pracownicze plany kapitałowe",
-            "PPK rezygnacja",
-            "PPK przystąpienie"
-        ],
-        "media": []
-    },
-    {
         "id": 11,
         "category": {
             "pl": "Urlop",
@@ -1363,7 +1336,9 @@
         ],
         "synonyms": [
             "śmierć w wypadku",
-            "odszkodowanie za wypadek"
+            "odszkodowanie za wypadek",
+            "zgon powypadkowy",
+            "śmierć powypadkowa"
         ],
         "media": []
     },
@@ -1787,6 +1762,563 @@
             "ile kosztuje jednostka",
             "dodatkowa składka",
             "zakup jednostek"
+        ],
+        "media": []
+    },
+    {
+        "id": 66,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Czym są Pracownicze Plany Kapitałowe (PPK) i kto zarządza środkami w naszej firmie?",
+            "en": "What are Employee Capital Plans (PPK) and who manages the funds in our company?"
+        },
+        "answer": {
+            "pl": "**Pracownicze Plany Kapitałowe** to dobrowolny, prywatny system długoterminowego oszczędzania tworzony wspólnie przez pracownika, pracodawcę oraz państwo, mający na celu budowanie zabezpieczenia finansowego na przyszłość. W **Damen Marine Components Gdańsk** program prowadzony jest we współpracy z wyspecjalizowaną instytucją finansową **Nationale-Nederlanden Powszechne Towarzystwo Emerytalne SA**.",
+            "en": "**Employee Capital Plans (PPK)** are a voluntary, private long-term savings system created jointly by the employee, the employer and the state, designed to build financial security for the future. In **Damen Marine Components Gdańsk** the programme is run together with the specialised financial institution **Nationale-Nederlanden Powszechne Towarzystwo Emerytalne SA**."
+        },
+        "keywords": [
+            "ppk",
+            "pracownicze plany kapitałowe",
+            "oszczędzanie",
+            "nationale-nederlanden pte"
+        ],
+        "synonyms": [
+            "co to ppk",
+            "pracowniczy plan kapitałowy",
+            "program emerytalny"
+        ],
+        "media": []
+    },
+    {
+        "id": 67,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Kto może przystąpić do PPK i kogo dotyczy automatyczny zapis?",
+            "en": "Who can join PPK and whom does the automatic enrolment cover?"
+        },
+        "answer": {
+            "pl": "Program obejmuje wszystkie zatrudnione osoby podlegające obowiązkowym ubezpieczeniom emerytalnemu i rentowemu, pracujące zarówno na podstawie **umowy o pracę, jak i umowy zlecenia**. Pracownicy w przedziale wiekowym **od 18 do 54 lat** zapisywani są do programu **w pełni automatycznie** przez pracodawcę. Nowo zatrudniony pracownik ma **3 miesiące na decyzję** (przystąpienie lub rezygnacja) – w razie wątpliwości **zgłoś się do kadr**.",
+            "en": "The programme covers all employed persons subject to mandatory pension and disability insurance, working under both **an employment contract and a contract of mandate**. Employees **aged 18 to 54** are **automatically enrolled** in the programme by the employer. A newly hired employee has **3 months to decide** (join or opt out) – in case of doubt, **contact the HR department**."
+        },
+        "keywords": [
+            "ppk",
+            "przystąpienie",
+            "automatyczny zapis",
+            "umowa o pracę",
+            "zlecenie",
+            "autozapis",
+            "3 miesiące",
+            "nowy pracownik"
+        ],
+        "synonyms": [
+            "kogo dotyczy ppk",
+            "zapis do ppk",
+            "kto wchodzi do ppk",
+            "jak przystąpić do ppk",
+            "przystąpienie do ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 68,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Jak mogą przystąpić do programu pracownicy, którzy ukończyli 55 lat?",
+            "en": "How can employees over 55 join the programme?"
+        },
+        "answer": {
+            "pl": "Osoby w wieku **od 55 do 69 lat** nie podlegają automatycznemu zapisowi, ale mogą w każdej chwili przystąpić do programu na własny wniosek. Wystarczy złożyć u pracodawcy **pisemną deklarację przystąpienia do PPK**.",
+            "en": "People **aged 55 to 69** are not automatically enrolled but can join the programme at any time upon their own request. It is enough to submit a **written declaration of joining PPK** to the employer."
+        },
+        "keywords": [
+            "ppk",
+            "55 lat",
+            "deklaracja",
+            "wniosek",
+            "przystąpienie"
+        ],
+        "synonyms": [
+            "ppk po 55",
+            "jak przystąpić po 55 roku życia"
+        ],
+        "media": []
+    },
+    {
+        "id": 69,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Czy udział w programie jest obowiązkowy i czy można w każdej chwili zrezygnować?",
+            "en": "Is participation mandatory and can I opt out at any time?"
+        },
+        "answer": {
+            "pl": "Uczestnictwo w **PPK** jest **całkowicie dobrowolne**. Pracownik może w dowolnym momencie zrezygnować z dokonywania wpłat poprzez złożenie **deklaracji o rezygnacji**, jak również w dowolnym momencie **wznowić** oszczędzanie.",
+            "en": "Participation in **PPK** is **completely voluntary**. The employee may opt out of contributions at any time by submitting a **declaration of resignation**, and may also **resume** saving at any time."
+        },
+        "keywords": [
+            "ppk",
+            "rezygnacja",
+            "dobrowolne",
+            "zrezygnować",
+            "wznowienie"
+        ],
+        "synonyms": [
+            "zrezygnować z ppk",
+            "rezygnacja z ppk",
+            "wypisać się z ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 70,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Na czym polega ponowny automatyczny zapis po czterech latach?",
+            "en": "What is the automatic re-enrolment after four years?"
+        },
+        "answer": {
+            "pl": "W przypadku złożenia rezygnacji pracodawca ma ustawowy obowiązek **co cztery lata ponownie wpisać pracownika** na listę uczestników programu po uprzednim poinformowaniu go o tym fakcie. Jeżeli pracownik nadal nie chce gromadzić środków w **PPK**, musi ponownie złożyć deklarację o rezygnacji z dokonywania wpłat.",
+            "en": "After a resignation, the employer is legally obliged to **re-enrol the employee** on the participants list **every four years**, after informing them beforehand. If the employee still does not want to save in **PPK**, they must submit another declaration of resignation from contributions."
+        },
+        "keywords": [
+            "ppk",
+            "ponowny zapis",
+            "cztery lata",
+            "rezygnacja"
+        ],
+        "synonyms": [
+            "automatyczny zapis po 4 latach",
+            "co 4 lata zapis"
+        ],
+        "media": []
+    },
+    {
+        "id": 71,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Czy środki odkładane w ramach PPK stanowią prywatną własność pracownika?",
+            "en": "Are the funds saved in PPK the private property of the employee?"
+        },
+        "answer": {
+            "pl": "Tak, kapitał gromadzony na indywidualnym rachunku jest ustawowo zagwarantowaną, **prywatną własnością pracownika**. Oznacza to pełne prawo do dysponowania oszczędnościami na określonych zasadach oraz możliwość ich **dziedziczenia**.",
+            "en": "Yes, the capital accumulated on an individual account is statutorily guaranteed, **private property of the employee**. This means full rights to dispose of the savings under defined rules and the possibility to **bequeath** them."
+        },
+        "keywords": [
+            "ppk",
+            "własność",
+            "dziedziczenie",
+            "rachunek"
+        ],
+        "synonyms": [
+            "czy pieniądze w ppk są moje",
+            "dziedziczenie ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 72,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Z jakich trzech źródeł zasilane jest konto uczestnika?",
+            "en": "What three sources fund the participant’s account?"
+        },
+        "answer": {
+            "pl": "Rachunek **PPK** zasilany jest z comiesięcznych **potrąceń z wynagrodzenia** pracownika, comiesięcznych **dopłat finansowanych przez firmę** oraz **jednorazowych i rocznych premii** wypłacanych przez państwo z **Funduszu Pracy**.",
+            "en": "The **PPK** account is funded from monthly **deductions from the employee’s salary**, monthly **contributions paid by the company**, and **one-off and annual bonuses** paid by the state from the **Labour Fund**."
+        },
+        "keywords": [
+            "ppk",
+            "źródła",
+            "wpłata pracownika",
+            "wpłata pracodawcy",
+            "dopłata państwa"
+        ],
+        "synonyms": [
+            "z czego składa się ppk",
+            "wpłaty na ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 73,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Ile wynoszą podstawowe wpłaty pracownika i pracodawcy?",
+            "en": "How much are the basic employee and employer contributions?"
+        },
+        "answer": {
+            "pl": "Wpłata podstawowa pracownika wynosi **2%** jego wynagrodzenia brutto, natomiast pracodawca dopłaca ze swoich środków równowartość **1,5%** wynagrodzenia brutto pracownika. Łącznie na konto trafia co miesiąc minimum **3,5%** podstawy wynagrodzenia.",
+            "en": "The employee’s basic contribution amounts to **2%** of their gross salary, while the employer adds **1.5%** of the employee’s gross salary from its own funds. In total, at least **3.5%** of the salary base is credited to the account each month."
+        },
+        "keywords": [
+            "ppk",
+            "wpłata",
+            "2%",
+            "1,5%",
+            "3,5%",
+            "składka"
+        ],
+        "synonyms": [
+            "ile wynosi wpłata do ppk",
+            "procent wpłaty",
+            "składka ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 74,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Kto i na jakich zasadach może obniżyć swoją wpłatę podstawową do 0,5%?",
+            "en": "Who can reduce their basic contribution to 0.5% and on what terms?"
+        },
+        "answer": {
+            "pl": "Pracownicy, których **łączne miesięczne wynagrodzenie ze wszystkich źródeł nie przekracza 120% minimalnego wynagrodzenia**, mają prawo złożyć wniosek o obniżenie swojej wpłaty podstawowej do poziomu **od 0,5% do 2%**. Obniżenie wpłaty pracownika **nie zmniejsza wpłaty pracodawcy**, która wciąż wynosi pełne **1,5%**.",
+            "en": "Employees whose **total monthly remuneration from all sources does not exceed 120% of the minimum wage** may apply to reduce their basic contribution to **between 0.5% and 2%**. Reducing the employee’s contribution **does not reduce the employer’s contribution**, which stays at the full **1.5%**."
+        },
+        "keywords": [
+            "ppk",
+            "obniżenie wpłaty",
+            "0,5%",
+            "120%",
+            "minimalne wynagrodzenie"
+        ],
+        "synonyms": [
+            "mniejsza wpłata do ppk",
+            "obniżyć składkę ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 75,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Jakie dopłaty przekazuje państwo i kiedy są one przyznawane?",
+            "en": "What state contributions are paid and when?"
+        },
+        "answer": {
+            "pl": "Państwo przekazuje **jednorazową wpłatę powitalną w wysokości 250 zł** po trzech pełnych miesiącach oszczędzania oraz regularną **dopłatę roczną w kwocie 240 zł** za każdy rok kalendarzowy, w którym zgromadzono określoną przepisami sumę wpłat podstawowych.",
+            "en": "The state pays a **one-off welcome contribution of PLN 250** after three full months of saving, plus a regular **annual contribution of PLN 240** for each calendar year in which the statutory sum of basic contributions was accumulated."
+        },
+        "keywords": [
+            "ppk",
+            "dopłata państwa",
+            "250 zł",
+            "240 zł",
+            "wpłata powitalna"
+        ],
+        "synonyms": [
+            "dopłaty z budżetu",
+            "ile dopłaca państwo",
+            "wpłata powitalna"
+        ],
+        "media": []
+    },
+    {
+        "id": 76,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Dlaczego od wpłaty pracodawcy potrącany jest podatek dochodowy?",
+            "en": "Why is income tax withheld from the employer’s contribution?"
+        },
+        "answer": {
+            "pl": "Wpłata finansowana przez pracodawcę stanowi dla pracownika **nieodpłatny przychód ze stosunku pracy**. Sama wpłata pracodawcy w całości trafia na konto **PPK**, natomiast należny podatek dochodowy od tej kwoty potrącany jest z comiesięcznego **wynagrodzenia netto** pracownika.",
+            "en": "The employer-funded contribution constitutes **non-paid employment income** for the employee. The contribution itself goes in full to the **PPK** account, while the income tax due on that amount is withheld from the employee’s monthly **net salary**."
+        },
+        "keywords": [
+            "ppk",
+            "podatek",
+            "pit",
+            "przychód",
+            "wynagrodzenie netto"
+        ],
+        "synonyms": [
+            "podatek od wpłaty pracodawcy",
+            "dlaczego potrącenie z pensji"
+        ],
+        "media": []
+    },
+    {
+        "id": 77,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Czy pracownik może zadeklarować wyższe wpłaty na swój rachunek?",
+            "en": "Can the employee declare higher contributions to their account?"
+        },
+        "answer": {
+            "pl": "Tak, każdy uczestnik może zadeklarować **dobrowolną wpłatę dodatkową w wysokości do 2%** wynagrodzenia brutto, zwiększając tempo akumulacji kapitału. Pracodawca również ma możliwość zaoferowania **dodatkowej wpłaty do 2,5%**.",
+            "en": "Yes, every participant may declare an **additional voluntary contribution of up to 2%** of gross salary, increasing the pace of capital accumulation. The employer may also offer an **additional contribution of up to 2.5%**."
+        },
+        "keywords": [
+            "ppk",
+            "wpłata dodatkowa",
+            "dobrowolna",
+            "2%",
+            "2,5%"
+        ],
+        "synonyms": [
+            "dodatkowa wpłata ppk",
+            "zwiększyć wpłatę"
+        ],
+        "media": []
+    },
+    {
+        "id": 78,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "W jaki sposób inwestowane są zgromadzone środki?",
+            "en": "How are the accumulated funds invested?"
+        },
+        "answer": {
+            "pl": "Środki lokowane są w tak zwanych **funduszach zdefiniowanej daty** zarządzanych przez **Nationale-Nederlanden PTE**. Profil inwestycyjny dopasowuje się automatycznie do wieku pracownika – w młodszym wieku większa część środków lokowana jest w aktywa o wyższym potencjale wzrostu, a wraz ze zbliżaniem się do **sześćdziesiątego roku życia** portfel stopniowo przenosi się w bezpieczne instrumenty dłużne.",
+            "en": "The funds are invested in so-called **target-date funds** managed by **Nationale-Nederlanden PTE**. The investment profile automatically matches the employee’s age – at a younger age most funds go into higher-growth assets, and as the employee approaches their **sixtieth year** the portfolio gradually shifts into safe debt instruments."
+        },
+        "keywords": [
+            "ppk",
+            "inwestowanie",
+            "fundusze zdefiniowanej daty",
+            "profil inwestycyjny"
+        ],
+        "synonyms": [
+            "w co inwestowane są ppk",
+            "fundusz emerytalny ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 79,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Jak pracownik może sprawdzać stan konta i zarządzać inwestycjami?",
+            "en": "How can the employee check the account balance and manage investments?"
+        },
+        "answer": {
+            "pl": "Bieżący podgląd salda, historii wpłat oraz wyników inwestycyjnych dostępny jest **online przez całą dobę** za pośrednictwem dedykowanego serwisu internetowego **n-Serwis PPK**. Z poziomu portalu można również dokonywać **zmian alokacji** środków czy zarządzać dyspozycjami.",
+            "en": "A live view of the balance, contribution history and investment performance is available **online 24/7** through the dedicated website **n-Serwis PPK**. From the portal you can also make **allocation changes** and manage payment orders."
+        },
+        "keywords": [
+            "ppk",
+            "n-serwis",
+            "konto online",
+            "saldo",
+            "logowanie"
+        ],
+        "synonyms": [
+            "jak sprawdzić ppk",
+            "portal ppk",
+            "konto ppk online"
+        ],
+        "media": []
+    },
+    {
+        "id": 80,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Co dzieje się ze środkami PPK zgromadzonymi u poprzedniego pracodawcy?",
+            "en": "What happens to PPK funds saved with a previous employer?"
+        },
+        "answer": {
+            "pl": "Nowo zatrudniony pracownik może złożyć w dziale kadr **oświadczenie o posiadanych rachunkach PPK**, a pracodawca w jego imieniu złoży wniosek o **bezpłatną wypłatę transferową**, łącząc wszystkie dotychczasowe oszczędności na jednym nowym koncie w **Nationale-Nederlanden**.",
+            "en": "A newly hired employee can submit a **declaration of existing PPK accounts** to the HR department, and the employer will file an application for a **free transfer payment** on their behalf, consolidating all previous savings on one new account at **Nationale-Nederlanden**."
+        },
+        "keywords": [
+            "ppk",
+            "poprzedni pracodawca",
+            "przeniesienie",
+            "wypłata transferowa"
+        ],
+        "synonyms": [
+            "przenieść ppk",
+            "co z ppk po zmianie pracy",
+            "transfer ppk"
+        ],
+        "media": []
+    },
+    {
+        "id": 81,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Kiedy wypłata środków jest najbardziej korzystna finansowo?",
+            "en": "When is a payout the most financially advantageous?"
+        },
+        "answer": {
+            "pl": "Zgromadzone oszczędności najlepiej wypłacić **po ukończeniu 60. roku życia**. Wypłata po osiągnięciu tego wieku jest **całkowicie zwolniona z podatku od zysków kapitałowych (podatku Belki)** oraz zachowuje wszystkie dopłaty przekazane przez państwo i pracodawcę.",
+            "en": "It is best to withdraw the accumulated savings **after reaching the age of 60**. A withdrawal at that age is **fully exempt from the tax on capital gains (Belka tax)** and preserves all contributions paid by the state and the employer."
+        },
+        "keywords": [
+            "ppk",
+            "wypłata",
+            "60 lat",
+            "podatek belki",
+            "opodatkowanie"
+        ],
+        "synonyms": [
+            "kiedy wypłacić ppk",
+            "podatek od ppk",
+            "wypłata po 60"
+        ],
+        "media": []
+    },
+    {
+        "id": 82,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Czy można wypłacić pieniądze w dowolnej chwili przed ukończeniem 60 lat?",
+            "en": "Can the money be withdrawn at any time before turning 60?"
+        },
+        "answer": {
+            "pl": "Tak, **wcześniejszy zwrot środków** na dowolny cel jest możliwy w każdym momencie, jednak wiąże się z potrąceniami. W takim przypadku wypłacany kapitał pomniejszany jest o **całość dopłat państwowych**, **30% wpłat sfinansowanych przez pracodawcę** (kwota ta trafia na indywidualne subkonto pracownika w **ZUS**) oraz **19% podatku od wypracowanych zysków kapitałowych**.",
+            "en": "Yes, an **early return of funds** for any purpose is possible at any time, but it involves deductions. In that case the withdrawn capital is reduced by the **full state contributions**, **30% of the employer-funded contributions** (this amount goes to the employee’s individual sub-account at **ZUS**) and **19% tax on the earned capital gains**."
+        },
+        "keywords": [
+            "ppk",
+            "wcześniejsza wypłata",
+            "30%",
+            "19%",
+            "zus",
+            "potrącenia"
+        ],
+        "synonyms": [
+            "wypłata przed 60",
+            "wcześniejszy zwrot ppk",
+            "ile stracę wypłacając ppk",
+            "wcześniejsza wypłata ppk",
+            "wypłata ppk przed 60"
+        ],
+        "media": []
+    },
+    {
+        "id": 83,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Na jakich zasadach można wypłacić środki na wkład własny przy zakupie mieszkania?",
+            "en": "On what terms can funds be withdrawn for a down payment on a flat?"
+        },
+        "answer": {
+            "pl": "Uczestnicy **poniżej 45. roku życia** mogą wypłacić do **100% wartości kapitału z PPK** na pokrycie wkładu własnego przy kredycie hipotecznym na zakup **mieszkania, domu lub działki budowlanej**. Pieniądze te pobiera się **bez żadnych potrąceń podatkowych**, z obowiązkiem ich **bezzodsetkowego zwrotu** na własny rachunek **PPK w okresie do 15 lat**.",
+            "en": "Participants **under the age of 45** may withdraw up to **100% of the PPK capital** to cover a down payment for a mortgage on a **flat, house or building plot**. The money is taken **without any tax deductions**, with the obligation to return it **interest-free** to their own **PPK account within 15 years**."
+        },
+        "keywords": [
+            "ppk",
+            "wkład własny",
+            "mieszkanie",
+            "kredyt hipoteczny",
+            "45 lat",
+            "15 lat"
+        ],
+        "synonyms": [
+            "wypłata na mieszkanie",
+            "wkład własny z ppk",
+            "ppk a kredyt"
+        ],
+        "media": []
+    },
+    {
+        "id": 84,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Jak działa wypłata środków w przypadku ciężkiej choroby?",
+            "en": "How does a payout work in case of a serious illness?"
+        },
+        "answer": {
+            "pl": "W razie zdiagnozowania **poważnej jednostki chorobowej** u pracownika, jego **małżonka lub dziecka** istnieje możliwość wypłaty do **25% zgromadzonych środków**. Wypłata ta ma charakter **całkowicie bezzwrotny** i nie podlega opodatkowaniu podatkiem od zysków kapitałowych.",
+            "en": "In case of a **serious medical condition** diagnosed in the employee, their **spouse or child**, it is possible to withdraw up to **25% of the accumulated funds**. Such a payout is **completely non-refundable** and is not subject to the tax on capital gains."
+        },
+        "keywords": [
+            "ppk",
+            "ciężka choroba",
+            "25%",
+            "bezzwrotne",
+            "małżonek",
+            "dziecko"
+        ],
+        "synonyms": [
+            "wypłata z ppk na chorobę",
+            "ppk a ciężka choroba"
+        ],
+        "media": []
+    },
+    {
+        "id": 85,
+        "category": {
+            "pl": "Pracownicze Plany Kapitałowe",
+            "en": "Employee Capital Plans (PPK)"
+        },
+        "question": {
+            "pl": "Gdzie pracownicy mogą uzyskać wsparcie informacyjne dotyczące rachunku PPK?",
+            "en": "Where can employees get support information about their PPK account?"
+        },
+        "answer": {
+            "pl": "Wszelkie szczegółowe pytania dotyczące logowania, stanu konta i dyspozycji można kierować bezpośrednio do konsultantów **Nationale-Nederlanden PTE** za pośrednictwem dedykowanego **Centrum Obsługi Telefonicznej** pod numerem **801 20 30 40** lub **22 522 00 00**.",
+            "en": "All detailed questions about logging in, account balance and payment orders can be directed straight to **Nationale-Nederlanden PTE** consultants via the dedicated **Telephone Service Centre** at **801 20 30 40** or **22 522 00 00**."
+        },
+        "keywords": [
+            "ppk",
+            "kontakt",
+            "infolinia",
+            "obsługa",
+            "n-serwis"
+        ],
+        "synonyms": [
+            "telefon do ppk",
+            "konsultant ppk",
+            "centrum obsługi ppk"
         ],
         "media": []
     }
