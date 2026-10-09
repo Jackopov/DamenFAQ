@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Mapa zakładu Damen Marine Components — wklej lub wstaw plan hali, żeby szybko znaleźć swoje stanowisko.">
+    <meta name="description" content="Mapa zakładu Damen Marine Components Gdańsk (ul. Sztutowska 21) z legendą — stuknij mapę, aby powiększyć i odczytać szczegóły.">
     <title>Mapa zakładu — Damen Marine Components</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,6 +72,7 @@
             box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
             padding: 26px;
         }
+        .card + .card { margin-top: 20px; }
         .card-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
         .pin-badge {
             flex-shrink: 0;
@@ -84,38 +85,10 @@
             box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
         }
         .card-head h1 { font-size: 1.45rem; font-weight: 700; color: #F1F5F9; line-height: 1.25; }
+        .card-head h2 { font-size: 1.25rem; font-weight: 700; color: #F1F5F9; line-height: 1.25; }
         .card-head p { font-size: 0.92rem; color: #94A3B8; margin-top: 4px; }
 
-        /* ── Strefa upuszczania / wklejania ── */
-        .dropzone {
-            border: 2px dashed rgba(56, 189, 248, 0.45);
-            border-radius: 16px;
-            background: rgba(2, 6, 23, 0.45);
-            padding: 38px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-        }
-        .dropzone:hover, .dropzone.dragover {
-            border-color: #38BDF8;
-            background: rgba(56, 189, 248, 0.07);
-            box-shadow: 0 0 22px rgba(56, 189, 248, 0.18);
-        }
-        .dz-icon { color: #38BDF8; margin-bottom: 10px; }
-        .dz-title { font-size: 1rem; font-weight: 600; color: #E2E8F0; }
-        .dz-sub { font-size: 0.85rem; color: #94A3B8; margin-top: 6px; }
-        .dz-kbd {
-            display: inline-block;
-            background: rgba(148, 163, 184, 0.15);
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            border-bottom-width: 2px;
-            border-radius: 6px;
-            padding: 1px 7px;
-            font-size: 0.8rem;
-            color: #CBD5E1;
-        }
-
-        /* ── Podgląd mapy ── */
+        /* ── Podgląd mapy (tylko odczyt) ── */
         .map-view {
             position: relative;
             border-radius: 16px;
@@ -150,84 +123,167 @@
             border: 1px solid rgba(148, 163, 184, 0.3);
             pointer-events: none;
         }
+        .addr-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .addr-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 12.5px; color: #BAE6FD;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 999px;
+            padding: 5px 12px;
+        }
 
-        /* ── Przyciski akcji ── */
-        .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-        .btn {
+        /* ── Legenda ── */
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .lg-group {
+            background: rgba(2, 6, 23, 0.45);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 14px;
+            padding: 14px 16px;
+        }
+        .lg-group h3 {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #F1F5F9;
+            margin-bottom: 8px;
+        }
+        .lg-group ul { list-style: none; }
+        .lg-group li {
+            font-size: 0.85rem;
+            color: #CBD5E1;
+            padding: 3px 0 3px 16px;
+            position: relative;
+        }
+        .lg-group li::before {
+            content: '';
+            position: absolute;
+            left: 2px; top: 0.85em;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: #64748B;
+        }
+        .lg-group li strong { color: #F1F5F9; font-weight: 600; }
+        .dot {
+            width: 12px; height: 12px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px currentColor;
+        }
+        .dot.entry   { background: #38BDF8; color: #38BDF8; }
+        .dot.halls   { background: #94A3B8; color: #94A3B8; }
+        .dot.finish  { background: #A78BFA; color: #A78BFA; }
+        .dot.hotel   { background: #34D399; color: #34D399; }
+        .dot.fire    { background: #F87171; color: #F87171; }
+        .dot.explode { background: #FBBF24; color: #FBBF24; }
+        .lg-note {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #94A3B8;
+            border-left: 3px solid #FBBF24;
+            padding-left: 10px;
+        }
+
+        .hint { font-size: 0.8rem; color: #64748B; margin-top: 14px; }
+
+        /* ── Przeglądarka mapy z zoomem (pinch / pan / dbl-tap) ── */
+        .viewer {
+            position: fixed; inset: 0;
+            z-index: 999;
+            background: rgba(2, 6, 23, 0.96);
+            display: flex;
+            flex-direction: column;
+            touch-action: none;
+        }
+        .viewer[hidden] { display: none; }
+        .viewer-bar {
+            display: flex; align-items: center; gap: 10px;
+            padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+            padding-left: max(14px, env(safe-area-inset-left, 0px));
+            padding-right: max(14px, env(safe-area-inset-right, 0px));
+            flex-shrink: 0;
+        }
+        .viewer-title { font-size: 13px; font-weight: 600; color: #94A3B8; }
+        .viewer-tools { margin-left: auto; display: flex; gap: 8px; }
+        .v-btn {
             font: inherit;
-            font-size: 13.5px;
-            font-weight: 600;
-            padding: 9px 16px;
+            width: 44px; height: 44px;
             border-radius: 12px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            transition: all 0.2s;
             border: 1px solid rgba(56, 189, 248, 0.35);
             background: rgba(56, 189, 248, 0.1);
             color: #7DD3FC;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: background 0.15s, transform 0.1s;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-1px); }
-        .btn:active { transform: scale(0.97); }
-        .btn.ghost {
-            border-color: rgba(148, 163, 184, 0.3);
-            background: rgba(148, 163, 184, 0.08);
+        .v-btn:hover { background: rgba(56, 189, 248, 0.22); }
+        .v-btn:active { transform: scale(0.94); }
+        .v-btn.close { border-color: rgba(248, 113, 113, 0.4); background: rgba(248, 113, 113, 0.1); color: #FCA5A5; }
+        .v-stage {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            touch-action: none;
+            cursor: grab;
+        }
+        .v-stage.dragging { cursor: grabbing; }
+        .v-stage img {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            transform-origin: 0 0;
+            user-select: none;
+            -webkit-user-drag: none;
+            will-change: transform;
+            background: #fff;
+        }
+        .v-hint {
+            position: absolute;
+            left: 50%; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+            transform: translateX(-50%);
+            background: rgba(7, 13, 30, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             color: #CBD5E1;
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            pointer-events: none;
+            white-space: nowrap;
+            max-width: 92vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .btn.ghost:hover { background: rgba(148, 163, 184, 0.16); }
-        .btn.danger {
-            border-color: rgba(248, 113, 113, 0.35);
-            background: rgba(248, 113, 113, 0.08);
-            color: #FCA5A5;
-        }
-        .btn.danger:hover { background: rgba(248, 113, 113, 0.18); }
-        .btn[hidden] { display: none !important; }
-
-        .hint { font-size: 0.8rem; color: #64748B; margin-top: 14px; }
-        .msg {
-            margin-top: 12px;
-            font-size: 0.87rem;
-            padding: 10px 14px;
-            border-radius: 10px;
+        .v-zoomlvl {
+            position: absolute;
+            left: 50%; top: 12px;
+            transform: translateX(-50%);
+            background: rgba(7, 13, 30, 0.85);
             border: 1px solid rgba(56, 189, 248, 0.35);
-            background: rgba(56, 189, 248, 0.08);
-            color: #BAE6FD;
+            color: #7DD3FC;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .msg.error {
-            border-color: rgba(248, 113, 113, 0.4);
-            background: rgba(248, 113, 113, 0.09);
-            color: #FCA5A5;
-        }
-
-        /* ── Lightbox ── */
-        .lightbox {
-            position: fixed; inset: 0;
-            z-index: 999;
-            background: rgba(2, 6, 23, 0.94);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            cursor: zoom-out;
-            opacity: 1;
-            transition: opacity 0.2s;
-        }
-        .lightbox[hidden] { display: none; }
-        .lightbox img {
-            max-width: 96vw;
-            max-height: 92vh;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
-            cursor: default;
-        }
+        .v-zoomlvl.show { opacity: 1; }
 
         @media (max-width: 640px) {
             .card { padding: 18px; border-radius: 16px; }
             .card-head h1 { font-size: 1.2rem; }
+            .card-head h2 { font-size: 1.1rem; }
             .site-name { display: none; }
-            .dropzone { padding: 28px 14px; }
+            .legend-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -252,243 +308,314 @@
                 </div>
                 <div>
                     <h1>Mapa zakładu</h1>
-                    <p>Wklej zrzut ekranu albo zdjęcie planu hali — zobaczysz je tutaj od razu.</p>
+                    <p>Teren produkcyjny DMC Gdańsk — stuknij mapę, aby powiększyć i wygodnie odczytać szczegóły z telefonu.</p>
                 </div>
             </div>
 
-            <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Wstaw mapę zakładu">
-                <div class="dz-icon">
-                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div class="map-view" id="map-view" role="button" tabindex="0" aria-label="Otwórz mapę zakładu w powiększeniu">
+                <span class="map-badge">📍 MAPA ZAKŁADU · 2025</span>
+                <img id="map-img" src="images/mapa-zakladu.jpg" alt="Plan terenu zakładu Damen Marine Components Gdańsk przy ul. Sztutowskiej 21" draggable="false">
+                <span class="zoom-hint">🔍 Stuknij, aby powiększyć</span>
+            </div>
+
+            <div class="addr-row">
+                <span class="addr-chip">📍 ul. Sztutowska 21, Gdańsk</span>
+                <span class="addr-chip">🌊 Martwa Wisła — od północy</span>
+                <span class="addr-chip">🏞 Rozwójka — od zachodu</span>
+            </div>
+
+            <p class="hint">Mapa jest w wysokiej rozdzielczości — w powiększeniu możesz przybliżyć do czytelnych szczegółów. Karta jest wyłącznie do odczytu.</p>
+        </section>
+
+        <section class="card">
+            <div class="card-head">
+                <div class="pin-badge" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
                 </div>
-                <div class="dz-title">Wklej mapę skrótem <span class="dz-kbd">Ctrl</span> + <span class="dz-kbd">V</span></div>
-                <div class="dz-sub">lub kliknij tutaj, żeby wybrać plik · albo upuść zdjęcie w tym miejscu</div>
+                <div>
+                    <h2>Legenda terenu</h2>
+                    <p>Co gdzie się znajduje na terenie zakładu.</p>
+                </div>
             </div>
 
-            <div class="map-view" id="map-view" hidden>
-                <span class="map-badge" id="map-badge">📍 MAPA ZAKŁADU</span>
-                <img id="map-img" alt="Mapa zakładu Damen Marine Components">
-                <span class="zoom-hint">Kliknij, aby powiększyć</span>
+            <div class="legend-grid">
+                <div class="lg-group">
+                    <h3><span class="dot entry" aria-hidden="true"></span> Wjazd i zaplecze (od ul. Sztutowskiej)</h3>
+                    <ul>
+                        <li><strong>Portiernia i Dyżurka Ochrony</strong> — całodobowa, przy bramie głównej</li>
+                        <li><strong>Parking Aut Osobowych</strong> — dedykowany parking przy wjeździe</li>
+                        <li><strong>1/3 Dyrekcja</strong> — budynek administracyjno-biurowy</li>
+                        <li><strong>1/8 Warsztat</strong> + przyległa <strong>Wiata Warsztatowa</strong> — zaplecze techniczne</li>
+                    </ul>
+                </div>
+
+                <div class="lg-group">
+                    <h3><span class="dot halls" aria-hidden="true"></span> Hale produkcyjne i montażowe</h3>
+                    <ul>
+                        <li><strong>1/18 Hala Produkcyjna</strong> — wielkogabarytowa, z przyległym otwartym <strong>Magazynem Blach</strong></li>
+                        <li><strong>1/12 Hala P&amp;T</strong> — ciąg technologiczny z halą 1/1</li>
+                        <li><strong>1/1 Budynek Biurowo-Produkcyjny</strong></li>
+                        <li><strong>1/7 Hala Produkcyjna</strong></li>
+                        <li><strong>1/9 Budynek Produkcyjny</strong></li>
+                        <li><strong>1/23 Hala Produkcyjna</strong> — sektor północno-zachodni</li>
+                        <li><strong>1/20 Hala Produkcyjna</strong> — wspierana przez halę namiotową</li>
+                        <li><strong>1/14 Budynek Produkcyjny</strong> — wysunięty na zachód, przy Budynku Hotelowym</li>
+                    </ul>
+                </div>
+
+                <div class="lg-group">
+                    <h3><span class="dot finish" aria-hidden="true"></span> Obróbka powierzchniowa i energetyka (pas wschodni)</h3>
+                    <ul>
+                        <li><strong>1/19 Śrutownia</strong> — przygotowanie powierzchni</li>
+                        <li><strong>1/10 Lakiernia</strong> — magazyn wyrobów z wiatami składowymi</li>
+                        <li><strong>Trafostacja</strong> — zasilanie elektryczne zakładu</li>
+                    </ul>
+                </div>
+
+                <div class="lg-group">
+                    <h3><span class="dot hotel" aria-hidden="true"></span> Zaplecze socjalne</h3>
+                    <ul>
+                        <li><strong>Budynek Hotelowy</strong> — przy 1/14, od strony zachodniej</li>
+                    </ul>
+                </div>
+
+                <div class="lg-group">
+                    <h3><span class="dot fire" aria-hidden="true"></span> Bezpieczeństwo pożarowe</h3>
+                    <ul>
+                        <li><strong>Droga Pożarowa</strong> (kolor czerwony) — prowadzona wzdłuż całego nabrzeża <strong>Martwej Wisły</strong> oraz rzeki <strong>Rozwójki</strong></li>
+                        <li><strong>Punkty czerpania wody</strong> — wyznaczone dla Państwowej Straży Pożarnej</li>
+                        <li><strong>Punkty zbiórki do ewakuacji</strong> — bezpieczne strefy przy wjeździe i w głębi nabrzeża</li>
+                    </ul>
+                </div>
+
+                <div class="lg-group">
+                    <h3><span class="dot explode" aria-hidden="true"></span> Strefy zagrożenia wybuchem i media</h3>
+                    <ul>
+                        <li><strong>Zbiorniki z gazem propan</strong> — stacjonarne</li>
+                        <li><strong>Baterie gazów technicznych</strong> — tlen, argon, dwutlenek węgla</li>
+                        <li><strong>Stacje Rozprężania Acetylenu</strong></li>
+                        <li><strong>Kontenery z butlami Varigon H35</strong> — mieszanka spawalnicza</li>
+                        <li><strong>Zakładowa stacja paliw</strong> — zbiornik oleju napędowego</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="actions">
-                <button type="button" class="btn" id="btn-change">🔄 Wstaw nową mapę</button>
-                <button type="button" class="btn ghost" id="btn-download" hidden>⬇️ Pobierz</button>
-                <button type="button" class="btn danger" id="btn-remove" hidden>🗑️ Usuń mapę</button>
-            </div>
-
-            <input type="file" id="file-input" accept="image/*" hidden>
-
-            <p class="hint">Obsługuje PNG, JPG i inne obrazy. Duże zdjęcia są automatycznie pomniejszane i zapisywane lokalnie w tej przeglądarce (dane nie opuszczają urządzenia).</p>
-
-            <div class="msg" id="msg" hidden></div>
+            <p class="lg-note">⚠️ Każdy z punktów mediów i stref zagrożenia wybuchem ma wyznaczony promień strefy bezpiecznej — obszary te są wyłączone z zastawiania oraz bezpośredniego ruchu pieszego.</p>
         </section>
     </main>
 
-    <div class="lightbox" id="lightbox" hidden>
-        <img id="lightbox-img" alt="Mapa zakładu — powiększenie">
+    <!-- ── Pełnoekranowa przeglądarka mapy z zoomem ── -->
+    <div class="viewer" id="viewer" hidden aria-label="Mapa zakładu — powiększenie" role="dialog">
+        <div class="viewer-bar">
+            <span class="viewer-title">📍 Mapa zakładu DMC Gdańsk</span>
+            <div class="viewer-tools">
+                <button type="button" class="v-btn" id="v-out" aria-label="Pomniejsz">−</button>
+                <button type="button" class="v-btn" id="v-reset" aria-label="Dopasuj do ekranu">⟲</button>
+                <button type="button" class="v-btn" id="v-in" aria-label="Powiększ">+</button>
+                <button type="button" class="v-btn close" id="v-close" aria-label="Zamknij">✕</button>
+            </div>
+        </div>
+        <div class="v-stage" id="v-stage">
+            <img id="v-img" src="images/mapa-zakladu.jpg" alt="Plan terenu zakładu w powiększeniu" draggable="false">
+            <span class="v-zoomlvl" id="v-zoomlvl">100%</span>
+            <span class="v-hint">🔍 Szczyp dwa palce, aby przybliżyć · przeciągnij, aby przesunąć · stuknij dwukrotnie, aby powiększyć</span>
+        </div>
     </div>
 
     <script>
     (function () {
         'use strict';
 
-        var STORE_KEY = 'damen-map-image';
-        var DEFAULT_SRC = 'images/mapa-zakladu.jpg';
-
-        var dropzone = document.getElementById('dropzone');
-        var fileInput = document.getElementById('file-input');
         var mapView = document.getElementById('map-view');
-        var mapImg = document.getElementById('map-img');
-        var mapBadge = document.getElementById('map-badge');
-        var btnChange = document.getElementById('btn-change');
-        var btnDownload = document.getElementById('btn-download');
-        var btnRemove = document.getElementById('btn-remove');
-        var msgBox = document.getElementById('msg');
-        var lightbox = document.getElementById('lightbox');
-        var lightboxImg = document.getElementById('lightbox-img');
+        var viewer = document.getElementById('viewer');
+        var stage = document.getElementById('v-stage');
+        var img = document.getElementById('v-img');
+        var lvlBox = document.getElementById('v-zoomlvl');
 
-        var currentIsStored = false;
-        var currentSrc = null;
+        var MAX_ZOOM = 8;      // × względem dopasowania do ekranu
+        var DBL_TAP_ZOOM = 2.5;
 
-        /* ── Komunikaty ── */
-        function showMsg(text, isError) {
-            msgBox.textContent = text;
-            msgBox.className = 'msg' + (isError ? ' error' : '');
-            msgBox.hidden = false;
-        }
-        function clearMsg() { msgBox.hidden = true; }
+        var S = 1, tx = 0, ty = 0;      // stan transformacji
+        var layout = { left: 0, top: 0, w: 0, h: 0, stageW: 0, stageH: 0 };
+        var pointers = new Map();       // aktywne punkty dotyku (pinch)
+        var pinchStart = null;
+        var lastTap = { t: 0, x: 0, y: 0 };
+        var lvlTimer = null;
 
-        /* ── Wyświetlanie mapy ── */
-        function showMap(src, fromStorage, label) {
-            currentSrc = src;
-            currentIsStored = !!fromStorage;
-            mapImg.src = src;
-            mapBadge.textContent = label || '📍 MAPA ZAKŁADU';
-            mapView.hidden = false;
-            dropzone.style.display = 'none';
-            btnDownload.hidden = false;
-            btnRemove.hidden = !fromStorage;
-            btnChange.firstChild.nodeValue = fromStorage ? '🔄 Wstaw nową mapę' : '🔄 Wstaw mapę z pliku';
+        /* ── Pomocnicze ── */
+        function measure() {
+            layout.w = img.clientWidth;
+            layout.h = img.clientHeight;
+            layout.left = img.offsetLeft;
+            layout.top = img.offsetTop;
+            layout.stageW = stage.clientWidth;
+            layout.stageH = stage.clientHeight;
         }
 
-        function showEmpty() {
-            currentSrc = null;
-            currentIsStored = false;
-            mapImg.removeAttribute('src');
-            mapView.hidden = true;
-            dropzone.style.display = '';
-            btnDownload.hidden = true;
-            btnRemove.hidden = true;
+        function clamp() {
+            if (S <= 1) { S = 1; }
+            if (S >= MAX_ZOOM) { S = MAX_ZOOM; }
+            var SW = layout.w * S, SH = layout.h * S;
+            if (SW <= layout.stageW) { tx = (layout.stageW - SW) / 2 - layout.left; }
+            else { tx = Math.min(Math.max(tx, layout.stageW - layout.left - SW), -layout.left); }
+            if (SH <= layout.stageH) { ty = (layout.stageH - SH) / 2 - layout.top; }
+            else { ty = Math.min(Math.max(ty, layout.stageH - layout.top - SH), -layout.top); }
         }
 
-        /* ── Skalowanie + kompresja obrazu (ochrona przed limitem localStorage) ── */
-        function processFile(file) {
-            if (!file) return;
-            if (!file.type || file.type.indexOf('image/') !== 0) {
-                showMsg('To nie jest plik graficzny — wklej zdjęcie lub zrzut ekranu.', true);
-                return;
+        function apply() {
+            clamp();
+            img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + S + ')';
+        }
+
+        function showLevel() {
+            lvlBox.textContent = Math.round(S * 100) + '%';
+            lvlBox.classList.add('show');
+            clearTimeout(lvlTimer);
+            lvlTimer = setTimeout(function () { lvlBox.classList.remove('show'); }, 900);
+        }
+
+        /* Zoom wokół punktu stage (współrzędne stage) */
+        function zoomAt(px, py, newS) {
+            newS = Math.min(MAX_ZOOM, Math.max(1, newS));
+            var cx = (px - layout.left - tx) / S;
+            var cy = (py - layout.top - ty) / S;
+            S = newS;
+            tx = px - layout.left - cx * S;
+            ty = py - layout.top - cy * S;
+            apply();
+            showLevel();
+        }
+
+        /* ── Otwieranie / zamykanie ── */
+        function openViewer() {
+            viewer.hidden = false;
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(function () {
+                img.style.transform = 'none';
+                measure();
+                S = 1; tx = 0; ty = 0;
+                apply();
+            });
+        }
+        function closeViewer() {
+            viewer.hidden = true;
+            document.body.style.overflow = '';
+            pointers.clear();
+            pinchStart = null;
+        }
+
+        mapView.addEventListener('click', openViewer);
+        mapView.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openViewer(); }
+        });
+        document.getElementById('v-close').addEventListener('click', closeViewer);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !viewer.hidden) closeViewer();
+        });
+
+        /* ── Przyciski narzędzi ── */
+        function center() { return { x: layout.stageW / 2, y: layout.stageH / 2 }; }
+        document.getElementById('v-in').addEventListener('click', function () {
+            var c = center(); zoomAt(c.x, c.y, S * 1.6);
+        });
+        document.getElementById('v-out').addEventListener('click', function () {
+            var c = center(); zoomAt(c.x, c.y, S / 1.6);
+        });
+        document.getElementById('v-reset').addEventListener('click', function () {
+            S = 1; tx = 0; ty = 0; apply(); showLevel();
+        });
+
+        /* ── Kółko myszy (desktop) ── */
+        stage.addEventListener('wheel', function (e) {
+            e.preventDefault();
+            var r = stage.getBoundingClientRect();
+            var f = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+            zoomAt(e.clientX - r.left, e.clientY - r.top, S * f);
+        }, { passive: false });
+
+        /* ── Podwójne kliknięcie / stuknięcie ── */
+        function toggleZoom(px, py) {
+            if (S > 1.2) { S = 1; tx = 0; ty = 0; apply(); showLevel(); }
+            else { zoomAt(px, py, DBL_TAP_ZOOM); }
+        }
+        stage.addEventListener('dblclick', function (e) {
+            var r = stage.getBoundingClientRect();
+            toggleZoom(e.clientX - r.left, e.clientY - r.top);
+        });
+
+        /* ── Dotyk: pinch + przeciąganie (Pointer Events) ── */
+        function stagePos(e) {
+            var r = stage.getBoundingClientRect();
+            return { x: e.clientX - r.left, y: e.clientY - r.top };
+        }
+        function pinchInfo() {
+            var pts = Array.from(pointers.values());
+            var mid = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 };
+            var d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+            return { mid: mid, dist: d };
+        }
+
+        stage.addEventListener('pointerdown', function (e) {
+            if (viewer.hidden) return;
+            try { stage.setPointerCapture(e.pointerId); } catch (err) { /* synthetic pointer bez aktywnego capture */ }
+            pointers.set(e.pointerId, stagePos(e));
+            stage.classList.add('dragging');
+            if (pointers.size === 2) {
+                var pi = pinchInfo();
+                pinchStart = { dist: pi.dist, S: S, mid: pi.mid, tx: tx, ty: ty };
             }
-            clearMsg();
+        });
 
-            var reader = new FileReader();
-            reader.onerror = function () { showMsg('Nie udało się odczytać pliku.', true); };
-            reader.onload = function (e) {
-                var img = new Image();
-                img.onerror = function () { showMsg('Nie udało się wczytać obrazu — spróbuj innego pliku.', true); };
-                img.onload = function () {
-                    var dataUrl = encode(img, 2200, 0.85);
-                    /* jeśli wciąż za duży — mocniej kompresujemy */
-                    if (dataUrl && dataUrl.length > 4200000) dataUrl = encode(img, 1500, 0.72);
-                    if (!dataUrl) { showMsg('Nie udało się przetworzyć obrazu.', true); return; }
-                    try {
-                        localStorage.setItem(STORE_KEY, dataUrl);
-                    } catch (err) {
-                        showMsg('Zdjęcie jest za duże na pamięć przeglądarki — zmniejsz je i spróbuj ponownie.', true);
-                        return;
-                    }
-                    showMap(dataUrl, true, '📍 MAPA ZAKŁADU · TWOJA');
-                    showMsg('✅ Mapa zapisana — będzie widoczna po kolejnym otwarciu tej strony.');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+        stage.addEventListener('pointermove', function (e) {
+            if (!pointers.has(e.pointerId)) return;
+            var prev = pointers.get(e.pointerId);
+            var cur = stagePos(e);
+            pointers.set(e.pointerId, cur);
 
-        function encode(img, maxDim, quality) {
-            try {
-                var w = img.naturalWidth || img.width;
-                var h = img.naturalHeight || img.height;
-                if (!w || !h) return null;
-                var scale = Math.min(1, maxDim / Math.max(w, h));
-                var canvas = document.createElement('canvas');
-                canvas.width = Math.max(1, Math.round(w * scale));
-                canvas.height = Math.max(1, Math.round(h * scale));
-                canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                return canvas.toDataURL('image/jpeg', quality);
-            } catch (err) {
-                return null;
+            if (pointers.size === 1) {
+                /* przeciąganie */
+                tx += cur.x - prev.x;
+                ty += cur.y - prev.y;
+                apply();
+            } else if (pointers.size === 2 && pinchStart) {
+                /* pinch: skalowanie wokół środka palców */
+                var pi = pinchInfo();
+                var newS = pinchStart.S * (pi.dist / Math.max(1, pinchStart.dist));
+                var cx = (pinchStart.mid.x - layout.left - pinchStart.tx) / pinchStart.S;
+                var cy = (pinchStart.mid.y - layout.top - pinchStart.ty) / pinchStart.S;
+                S = Math.min(MAX_ZOOM, Math.max(1, newS));
+                tx = pi.mid.x - layout.left - cx * S;
+                ty = pi.mid.y - layout.top - cy * S;
+                apply();
             }
-        }
+        });
 
-        /* ── Wklejanie (Ctrl+V) ── */
-        document.addEventListener('paste', function (e) {
-            var items = e.clipboardData && e.clipboardData.items;
-            if (!items) return;
-            for (var i = 0; i < items.length; i++) {
-                if (items[i].kind === 'file' && items[i].type.indexOf('image/') === 0) {
-                    e.preventDefault();
-                    processFile(items[i].getAsFile());
-                    return;
+        function onPointerEnd(e) {
+            if (!pointers.has(e.pointerId)) return;
+            /* wykrywanie szybkiego podwójnego stuknięcia (touch) */
+            if (e.pointerType === 'touch' && pointers.size === 1) {
+                var p = pointers.get(e.pointerId);
+                var now = Date.now();
+                var moved = Math.hypot(p.x - lastTap.x, p.y - lastTap.y);
+                if (now - lastTap.t < 320 && moved < 40) {
+                    toggleZoom(p.x, p.y);
+                    lastTap.t = 0;
+                } else {
+                    lastTap = { t: now, x: p.x, y: p.y };
                 }
             }
-        });
-
-        /* ── Wybór pliku ── */
-        dropzone.addEventListener('click', function () { fileInput.click(); });
-        dropzone.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
-        });
-        btnChange.addEventListener('click', function () { fileInput.click(); });
-        fileInput.addEventListener('change', function () {
-            processFile(fileInput.files && fileInput.files[0]);
-            fileInput.value = '';
-        });
-
-        /* ── Drag & drop ── */
-        ['dragenter', 'dragover'].forEach(function (ev) {
-            dropzone.addEventListener(ev, function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropzone.classList.add('dragover');
-            });
-        });
-        ['dragleave', 'drop'].forEach(function (ev) {
-            dropzone.addEventListener(ev, function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropzone.classList.remove('dragover');
-            });
-        });
-        dropzone.addEventListener('drop', function (e) {
-            var files = e.dataTransfer && e.dataTransfer.files;
-            if (files && files.length) processFile(files[0]);
-        });
-        /* cała karta też akceptuje upuszczone zdjęcie */
-        document.addEventListener('dragover', function (e) { e.preventDefault(); });
-        document.addEventListener('drop', function (e) {
-            e.preventDefault();
-            var files = e.dataTransfer && e.dataTransfer.files;
-            if (files && files.length && !mapView.hidden && e.target !== dropzone) processFile(files[0]);
-        });
-
-        /* ── Pobieranie / usuwanie ── */
-        btnDownload.addEventListener('click', function () {
-            if (!currentSrc) return;
-            var a = document.createElement('a');
-            a.href = currentSrc;
-            a.download = 'mapa-zakladu.jpg';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        });
-        btnRemove.addEventListener('click', function () {
-            try { localStorage.removeItem(STORE_KEY); } catch (err) {}
-            clearMsg();
-            loadInitial();
-            showMsg('Mapa usunięta.');
-        });
-
-        /* ── Lightbox ── */
-        mapImg.addEventListener('click', function () {
-            if (!currentSrc) return;
-            lightboxImg.src = currentSrc;
-            lightbox.hidden = false;
-        });
-        lightbox.addEventListener('click', function () { lightbox.hidden = true; });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') lightbox.hidden = true;
-        });
-
-        /* ── Start: własna mapa → mapa domyślna → pusto ── */
-        function loadInitial() {
-            var stored = null;
-            try { stored = localStorage.getItem(STORE_KEY); } catch (err) {}
-            if (stored) {
-                showMap(stored, true, '📍 MAPA ZAKŁADU');
-                return;
-            }
-            var probe = new Image();
-            probe.onload = function () {
-                showMap(DEFAULT_SRC, false, '📍 MAPA ZAKŁADU');
-            };
-            probe.onerror = function () { showEmpty(); };
-            probe.src = DEFAULT_SRC;
+            pointers.delete(e.pointerId);
+            if (pointers.size < 2) pinchStart = null;
+            if (pointers.size === 0) stage.classList.remove('dragging');
         }
+        stage.addEventListener('pointerup', onPointerEnd);
+        stage.addEventListener('pointercancel', onPointerEnd);
 
-        loadInitial();
-
-        /* udostępnione do testów / debugowania */
-        window.__mapa = { processFile: processFile, showMap: showMap, loadInitial: loadInitial };
+        window.addEventListener('resize', function () {
+            if (viewer.hidden) return;
+            measure();
+            apply();
+        });
     })();
     </script>
 </body>

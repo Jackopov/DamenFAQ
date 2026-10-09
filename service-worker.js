@@ -5,7 +5,7 @@
    On activate: prune old caches when the SW version changes.
 */
 
-const CACHE_NAME = 'damen-faq-v9';
+const CACHE_NAME = 'damen-faq-v10';
 
 /* All static assets that must work offline.
    api.json is fetched at runtime and also cached on first access. */
@@ -24,7 +24,8 @@ const PRECACHE_URLS = [
     './manifest.json',
     './contacts.json',
     './api.json',
-    './images/Damen Marine logo.png'
+    './images/Damen Marine logo.png',
+    './images/mapa-zakladu.jpg'
 ];
 
 /* ── Install ──────────────────────────────────────────────────────────────── */
